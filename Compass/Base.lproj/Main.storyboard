@@ -30,7 +30,7 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dmp-tk-HL3">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="483"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="Compass" translatesAutoresizingMaskIntoConstraints="NO" id="Upa-KP-xDd">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="Compass Launcher" translatesAutoresizingMaskIntoConstraints="NO" id="Upa-KP-xDd">
                                         <rect key="frame" x="131" y="90" width="338" height="304"/>
                                     </imageView>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3x9-WD-eo7">
@@ -64,7 +64,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Compass" width="300" height="300"/>
+        <image name="Compass Launcher" width="150" height="175"/>
         <image name="DeSoto Bridge" width="150" height="29"/>
     </resources>
 </document>
