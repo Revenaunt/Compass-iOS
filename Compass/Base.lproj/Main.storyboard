@@ -30,30 +30,40 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dmp-tk-HL3">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="483"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUH-Kg-K4K">
+                                        <rect key="frame" x="180" y="381" width="240" height="94"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OHH-hw-cjH">
+                                                <rect key="frame" x="110" y="37" width="20" height="20"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="OHH-hw-cjH" firstAttribute="centerY" secondItem="rUH-Kg-K4K" secondAttribute="centerY" id="IiP-H4-KoV"/>
+                                            <constraint firstItem="OHH-hw-cjH" firstAttribute="centerX" secondItem="rUH-Kg-K4K" secondAttribute="centerX" id="VN8-DJ-vRN"/>
+                                        </constraints>
+                                    </view>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="Compass Launcher" translatesAutoresizingMaskIntoConstraints="NO" id="Upa-KP-xDd">
                                         <rect key="frame" x="131" y="90" width="338" height="304"/>
                                     </imageView>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3x9-WD-eo7">
-                                        <rect key="frame" x="290" y="408" width="20" height="20"/>
-                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="rUH-Kg-K4K" secondAttribute="bottom" constant="8" id="OoY-Ob-I7w"/>
                                     <constraint firstItem="Upa-KP-xDd" firstAttribute="centerY" secondItem="dmp-tk-HL3" secondAttribute="centerY" id="a9j-09-F8a"/>
-                                    <constraint firstItem="3x9-WD-eo7" firstAttribute="top" secondItem="Upa-KP-xDd" secondAttribute="bottom" constant="60" id="hil-UA-CwX"/>
+                                    <constraint firstItem="rUH-Kg-K4K" firstAttribute="top" secondItem="Upa-KP-xDd" secondAttribute="bottom" constant="8" id="kYY-rq-s4s"/>
                                     <constraint firstItem="Upa-KP-xDd" firstAttribute="centerX" secondItem="dmp-tk-HL3" secondAttribute="centerX" id="qDs-gR-f07"/>
-                                    <constraint firstItem="3x9-WD-eo7" firstAttribute="centerX" secondItem="dmp-tk-HL3" secondAttribute="centerX" id="zZs-fA-3OV"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dmp-tk-HL3" secondAttribute="bottom" constant="110" id="CeF-bO-dnL"/>
                             <constraint firstItem="dmp-tk-HL3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GlE-Bd-XiM"/>
-                            <constraint firstItem="WEZ-7r-g4l" firstAttribute="top" secondItem="CUp-si-eDw" secondAttribute="bottom" constant="2" id="KSI-iY-FNK"/>
-                            <constraint firstItem="CUp-si-eDw" firstAttribute="top" secondItem="dmp-tk-HL3" secondAttribute="bottom" id="Wp2-Hh-YHj"/>
                             <constraint firstItem="dmp-tk-HL3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="apv-se-998"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WEZ-7r-g4l" secondAttribute="bottom" constant="20" id="cmN-w2-6JG"/>
                             <constraint firstItem="WEZ-7r-g4l" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dyI-fa-bpg"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CUp-si-eDw" secondAttribute="bottom" constant="40" id="n6a-cG-yEQ"/>
                             <constraint firstItem="CUp-si-eDw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tUI-TE-SHg"/>
                         </constraints>
                     </view>
