@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		547C466D1CBBF9EC00953735 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547C466C1CBBF9EC00953735 /* Locksmith.framework */; };
 		5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480310C1CB6B27F00112807 /* AppDelegate.swift */; };
 		5480310F1CB6B27F00112807 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480310E1CB6B27F00112807 /* ViewController.swift */; };
 		548031121CB6B27F00112807 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 548031101CB6B27F00112807 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		547C466C1CBBF9EC00953735 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
 		548031091CB6B27F00112807 /* Compass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Compass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5480310C1CB6B27F00112807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5480310E1CB6B27F00112807 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				547C466D1CBBF9EC00953735 /* Locksmith.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +82,7 @@
 		548031001CB6B27F00112807 = {
 			isa = PBXGroup;
 			children = (
+				547C466C1CBBF9EC00953735 /* Locksmith.framework */,
 				5480310B1CB6B27F00112807 /* Compass */,
 				548031231CB6B27F00112807 /* CompassTests */,
 				5480312E1CB6B27F00112807 /* CompassUITests */,
@@ -138,6 +142,7 @@
 				548031051CB6B27F00112807 /* Sources */,
 				548031061CB6B27F00112807 /* Frameworks */,
 				548031071CB6B27F00112807 /* Resources */,
+				547C466E1CBBFA2E00953735 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -254,6 +259,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		547C466E1CBBFA2E00953735 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Locksmith.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		548031051CB6B27F00112807 /* Sources */ = {
@@ -406,6 +428,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Compass/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.tndata.Compass;
@@ -420,6 +446,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Compass/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.tndata.Compass;

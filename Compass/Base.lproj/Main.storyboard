@@ -36,11 +36,21 @@
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OHH-hw-cjH">
                                                 <rect key="frame" x="110" y="37" width="20" height="20"/>
                                             </activityIndicatorView>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWs-pG-EN5">
+                                                <rect key="frame" x="44" y="32" width="55" height="30"/>
+                                                <state key="normal" title="Sign Up"/>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKP-qN-z4h">
+                                                <rect key="frame" x="143" y="32" width="42" height="30"/>
+                                                <state key="normal" title="Log In"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="OWs-pG-EN5" firstAttribute="centerY" secondItem="rUH-Kg-K4K" secondAttribute="centerY" id="AUu-hf-f8A"/>
                                             <constraint firstItem="OHH-hw-cjH" firstAttribute="centerY" secondItem="rUH-Kg-K4K" secondAttribute="centerY" id="IiP-H4-KoV"/>
                                             <constraint firstItem="OHH-hw-cjH" firstAttribute="centerX" secondItem="rUH-Kg-K4K" secondAttribute="centerX" id="VN8-DJ-vRN"/>
+                                            <constraint firstItem="rKP-qN-z4h" firstAttribute="centerY" secondItem="rUH-Kg-K4K" secondAttribute="centerY" id="Y2N-ym-nub"/>
                                         </constraints>
                                     </view>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="Compass Launcher" translatesAutoresizingMaskIntoConstraints="NO" id="Upa-KP-xDd">
@@ -67,6 +77,11 @@
                             <constraint firstItem="CUp-si-eDw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tUI-TE-SHg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="OHH-hw-cjH" id="wj9-rh-mYw"/>
+                        <outlet property="logIn" destination="rKP-qN-z4h" id="RLO-0Y-n3y"/>
+                        <outlet property="signUp" destination="OWs-pG-EN5" id="WHh-h5-qQU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
