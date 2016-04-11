@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,79 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="made in memphis" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEZ-7r-g4l">
+                                <rect key="frame" x="232" y="559" width="136" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="DeSoto Bridge" translatesAutoresizingMaskIntoConstraints="NO" id="CUp-si-eDw">
+                                <rect key="frame" x="153" y="491" width="295" height="60"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dmp-tk-HL3">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="483"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUH-Kg-K4K">
+                                        <rect key="frame" x="180" y="381" width="240" height="94"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OHH-hw-cjH">
+                                                <rect key="frame" x="110" y="37" width="20" height="20"/>
+                                            </activityIndicatorView>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWs-pG-EN5">
+                                                <rect key="frame" x="44" y="32" width="55" height="30"/>
+                                                <state key="normal" title="Sign Up"/>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKP-qN-z4h">
+                                                <rect key="frame" x="143" y="32" width="42" height="30"/>
+                                                <state key="normal" title="Log In"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="OWs-pG-EN5" firstAttribute="centerY" secondItem="rUH-Kg-K4K" secondAttribute="centerY" id="AUu-hf-f8A"/>
+                                            <constraint firstItem="OHH-hw-cjH" firstAttribute="centerY" secondItem="rUH-Kg-K4K" secondAttribute="centerY" id="IiP-H4-KoV"/>
+                                            <constraint firstItem="OHH-hw-cjH" firstAttribute="centerX" secondItem="rUH-Kg-K4K" secondAttribute="centerX" id="VN8-DJ-vRN"/>
+                                            <constraint firstItem="rKP-qN-z4h" firstAttribute="centerY" secondItem="rUH-Kg-K4K" secondAttribute="centerY" id="Y2N-ym-nub"/>
+                                        </constraints>
+                                    </view>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="Compass Launcher" translatesAutoresizingMaskIntoConstraints="NO" id="Upa-KP-xDd">
+                                        <rect key="frame" x="131" y="90" width="338" height="304"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="rUH-Kg-K4K" secondAttribute="bottom" constant="8" id="OoY-Ob-I7w"/>
+                                    <constraint firstItem="Upa-KP-xDd" firstAttribute="centerY" secondItem="dmp-tk-HL3" secondAttribute="centerY" id="a9j-09-F8a"/>
+                                    <constraint firstItem="rUH-Kg-K4K" firstAttribute="top" secondItem="Upa-KP-xDd" secondAttribute="bottom" constant="8" id="kYY-rq-s4s"/>
+                                    <constraint firstItem="Upa-KP-xDd" firstAttribute="centerX" secondItem="dmp-tk-HL3" secondAttribute="centerX" id="qDs-gR-f07"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dmp-tk-HL3" secondAttribute="bottom" constant="110" id="CeF-bO-dnL"/>
+                            <constraint firstItem="dmp-tk-HL3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GlE-Bd-XiM"/>
+                            <constraint firstItem="dmp-tk-HL3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="apv-se-998"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WEZ-7r-g4l" secondAttribute="bottom" constant="20" id="cmN-w2-6JG"/>
+                            <constraint firstItem="WEZ-7r-g4l" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dyI-fa-bpg"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CUp-si-eDw" secondAttribute="bottom" constant="40" id="n6a-cG-yEQ"/>
+                            <constraint firstItem="CUp-si-eDw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tUI-TE-SHg"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="OHH-hw-cjH" id="wj9-rh-mYw"/>
+                        <outlet property="logIn" destination="rKP-qN-z4h" id="RLO-0Y-n3y"/>
+                        <outlet property="signUp" destination="OWs-pG-EN5" id="WHh-h5-qQU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="565" y="367"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Compass Launcher" width="150" height="175"/>
+        <image name="DeSoto Bridge" width="150" height="29"/>
+    </resources>
 </document>
