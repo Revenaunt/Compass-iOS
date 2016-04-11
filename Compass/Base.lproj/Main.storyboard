@@ -40,15 +40,12 @@
                                                 <rect key="frame" x="44" y="32" width="55" height="30"/>
                                                 <state key="normal" title="Sign Up"/>
                                                 <connections>
-                                                    <action selector="signUpClick" destination="BYZ-38-t0r" eventType="touchUpInside" id="HCi-GO-wmd"/>
+                                                    <segue destination="rzO-Rp-uL9" kind="show" id="fhr-9F-UOy"/>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKP-qN-z4h">
                                                 <rect key="frame" x="143" y="32" width="42" height="30"/>
                                                 <state key="normal" title="Log In"/>
-                                                <connections>
-                                                    <action selector="logInClick" destination="BYZ-38-t0r" eventType="touchUpInside" id="58U-kv-NlZ"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,7 +88,38 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="565" y="367"/>
+            <point key="canvasLocation" x="-825" y="557"/>
+        </scene>
+        <!--Sign Up View Controller-->
+        <scene sceneID="Yj8-Ej-pLb">
+            <objects>
+                <viewController id="rzO-Rp-uL9" customClass="SignUpViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5G2-6Y-fa1"/>
+                        <viewControllerLayoutGuide type="bottom" id="djY-Ki-tZh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="l5X-Gf-85F">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zfc-XI-DOU">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Sign Up" id="R43-ZZ-7YI"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="zfc-XI-DOU" secondAttribute="trailing" constant="-20" id="YHZ-FR-79n"/>
+                            <constraint firstItem="zfc-XI-DOU" firstAttribute="top" secondItem="5G2-6Y-fa1" secondAttribute="bottom" id="dFl-5a-3l1"/>
+                            <constraint firstItem="zfc-XI-DOU" firstAttribute="leading" secondItem="l5X-Gf-85F" secondAttribute="leadingMargin" constant="-20" id="fcR-9V-ovH"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gtZ-YC-Xrq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="597" y="50"/>
         </scene>
     </scenes>
     <resources>

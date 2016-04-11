@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		547C466D1CBBF9EC00953735 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547C466C1CBBF9EC00953735 /* Locksmith.framework */; };
+		547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547C46711CBC2D2900953735 /* SignUpViewController.swift */; };
 		5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480310C1CB6B27F00112807 /* AppDelegate.swift */; };
 		5480310F1CB6B27F00112807 /* LauncherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480310E1CB6B27F00112807 /* LauncherViewController.swift */; };
 		548031121CB6B27F00112807 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 548031101CB6B27F00112807 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		547C466C1CBBF9EC00953735 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
+		547C46711CBC2D2900953735 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		548031091CB6B27F00112807 /* Compass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Compass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5480310C1CB6B27F00112807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5480310E1CB6B27F00112807 /* LauncherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		547C46701CBC1F8700953735 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5480310E1CB6B27F00112807 /* LauncherViewController.swift */,
+				547C46711CBC2D2900953735 /* SignUpViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		548031001CB6B27F00112807 = {
 			isa = PBXGroup;
 			children = (
@@ -104,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				5480310C1CB6B27F00112807 /* AppDelegate.swift */,
-				5480310E1CB6B27F00112807 /* LauncherViewController.swift */,
+				547C46701CBC1F8700953735 /* Controllers */,
 				548031101CB6B27F00112807 /* Main.storyboard */,
 				548031161CB6B27F00112807 /* Assets.xcassets */,
 				548031181CB6B27F00112807 /* LaunchScreen.storyboard */,
@@ -284,6 +295,7 @@
 			files = (
 				5480310F1CB6B27F00112807 /* LauncherViewController.swift in Sources */,
 				548031151CB6B27F00112807 /* Compass.xcdatamodeld in Sources */,
+				547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */,
 				5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
