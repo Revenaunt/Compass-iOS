@@ -117,6 +117,9 @@
                                 <rect key="frame" x="20" y="109" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="addressEditingBegun" destination="rzO-Rp-uL9" eventType="editingDidBegin" id="6oD-MX-ceg"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMf-8X-xFB">
                                 <rect key="frame" x="20" y="155" width="93" height="21"/>
@@ -127,12 +130,18 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JVS-Hm-ZfM" userLabel="Password">
                                 <rect key="frame" x="20" y="184" width="273" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <action selector="passwordEditingBegun" destination="rzO-Rp-uL9" eventType="editingDidBegin" id="kPn-41-C3b"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password check" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g26-4p-rn8" userLabel="Check Password">
                                 <rect key="frame" x="307" y="184" width="273" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <action selector="passwordCheckEditingBegun" destination="rzO-Rp-uL9" eventType="editingDidEnd" id="XWi-MZ-3BE"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwv-SN-Vmq">
                                 <rect key="frame" x="20" y="223" width="48" height="21"/>
@@ -144,11 +153,17 @@
                                 <rect key="frame" x="20" y="252" width="273" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="firstNameEditingBegun" destination="rzO-Rp-uL9" eventType="editingDidEnd" id="6H4-mx-BNn"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="last" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yfp-EQ-Gh8" userLabel="Last Name">
                                 <rect key="frame" x="307" y="252" width="273" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="lastNameEditingBegun" destination="rzO-Rp-uL9" eventType="editingDidEnd" id="Xmx-5d-kdx"/>
+                                </connections>
                             </textField>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5gv-0k-urn" userLabel="Button Container">
                                 <rect key="frame" x="20" y="290" width="560" height="290"/>
@@ -160,6 +175,9 @@
                                             <constraint firstAttribute="height" constant="40" id="uBu-ON-2bL"/>
                                         </constraints>
                                         <state key="normal" title="Sign Up"/>
+                                        <connections>
+                                            <action selector="signUpTapped" destination="rzO-Rp-uL9" eventType="touchUpInside" id="nld-l8-vJ1"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -208,6 +226,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="address" destination="MaA-pP-IjZ" id="iKX-Er-9m4"/>
+                        <outlet property="firstName" destination="Nge-qe-XJY" id="JSL-xN-Wxb"/>
+                        <outlet property="lastName" destination="Yfp-EQ-Gh8" id="4ZD-dg-xfg"/>
+                        <outlet property="password" destination="JVS-Hm-ZfM" id="JhV-5d-tXM"/>
+                        <outlet property="passwordCheck" destination="g26-4p-rn8" id="I6k-v6-m7L"/>
                         <outlet property="signUpButton" destination="qes-aX-r4M" id="8rW-rd-bhi"/>
                     </connections>
                 </viewController>
@@ -256,7 +279,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3VM-MO-sDx" userLabel="Password">
                                         <rect key="frame" x="8" y="113" width="584" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4xF-nj-Saj" userLabel="Button Container">
                                         <rect key="frame" x="8" y="151" width="584" height="161"/>
