@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5449E5F11CBD646E0017629E /* LogInViewController.swift */; };
 		547C466D1CBBF9EC00953735 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547C466C1CBBF9EC00953735 /* Locksmith.framework */; };
 		547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547C46711CBC2D2900953735 /* SignUpViewController.swift */; };
 		5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480310C1CB6B27F00112807 /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5449E5F11CBD646E0017629E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		547C466C1CBBF9EC00953735 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
 		547C46711CBC2D2900953735 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		548031091CB6B27F00112807 /* Compass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Compass.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +88,7 @@
 			children = (
 				5480310E1CB6B27F00112807 /* LauncherViewController.swift */,
 				547C46711CBC2D2900953735 /* SignUpViewController.swift */,
+				5449E5F11CBD646E0017629E /* LogInViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				5480310F1CB6B27F00112807 /* LauncherViewController.swift in Sources */,
 				548031151CB6B27F00112807 /* Compass.xcdatamodeld in Sources */,
 				547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */,
+				5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */,
 				5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
