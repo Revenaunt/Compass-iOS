@@ -13,5 +13,8 @@ class SignUpViewController: UIViewController{
         super.viewDidLoad()
     }
     
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated);
+        navigationController?.setNavigationBarHidden(false, animated: animated);
+    }
 }

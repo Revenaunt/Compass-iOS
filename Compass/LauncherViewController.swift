@@ -24,6 +24,11 @@ class LauncherViewController: UIViewController {
             logIn.hidden = false;
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated);
+        navigationController?.setNavigationBarHidden(true, animated: animated);
+    }
 
     override func didReceiveMemoryWarning(){
         super.didReceiveMemoryWarning()

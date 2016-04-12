@@ -81,13 +81,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		547C46701CBC1F8700953735 /* Controllers */ = {
+		547C46701CBC1F8700953735 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				5480310E1CB6B27F00112807 /* LauncherViewController.swift */,
 				547C46711CBC2D2900953735 /* SignUpViewController.swift */,
 			);
-			name = Controllers;
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		548031001CB6B27F00112807 = {
@@ -115,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				5480310C1CB6B27F00112807 /* AppDelegate.swift */,
-				547C46701CBC1F8700953735 /* Controllers */,
+				547C46701CBC1F8700953735 /* Controller */,
 				548031101CB6B27F00112807 /* Main.storyboard */,
 				548031161CB6B27F00112807 /* Assets.xcassets */,
 				548031181CB6B27F00112807 /* LaunchScreen.storyboard */,
