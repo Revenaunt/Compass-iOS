@@ -116,9 +116,10 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MaA-pP-IjZ" userLabel="Email">
                                 <rect key="frame" x="20" y="109" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                 <connections>
                                     <action selector="addressEditingBegun" destination="rzO-Rp-uL9" eventType="editingDidBegin" id="6oD-MX-ceg"/>
+                                    <outlet property="delegate" destination="rzO-Rp-uL9" id="XBl-dj-W5F"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMf-8X-xFB">
@@ -130,17 +131,19 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JVS-Hm-ZfM" userLabel="Password">
                                 <rect key="frame" x="20" y="184" width="273" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="passwordEditingBegun" destination="rzO-Rp-uL9" eventType="editingDidBegin" id="kPn-41-C3b"/>
+                                    <outlet property="delegate" destination="rzO-Rp-uL9" id="7Fw-7C-O6H"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password check" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g26-4p-rn8" userLabel="Check Password">
                                 <rect key="frame" x="307" y="184" width="273" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="passwordCheckEditingBegun" destination="rzO-Rp-uL9" eventType="editingDidEnd" id="XWi-MZ-3BE"/>
+                                    <outlet property="delegate" destination="rzO-Rp-uL9" id="T0H-Fd-rNa"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwv-SN-Vmq">
@@ -152,17 +155,19 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="first" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nge-qe-XJY" userLabel="First Name">
                                 <rect key="frame" x="20" y="252" width="273" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                 <connections>
                                     <action selector="firstNameEditingBegun" destination="rzO-Rp-uL9" eventType="editingDidEnd" id="6H4-mx-BNn"/>
+                                    <outlet property="delegate" destination="rzO-Rp-uL9" id="Ar7-Pr-m49"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="last" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yfp-EQ-Gh8" userLabel="Last Name">
                                 <rect key="frame" x="307" y="252" width="273" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                 <connections>
                                     <action selector="lastNameEditingBegun" destination="rzO-Rp-uL9" eventType="editingDidEnd" id="Xmx-5d-kdx"/>
+                                    <outlet property="delegate" destination="rzO-Rp-uL9" id="xgM-S0-Mgu"/>
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5gv-0k-urn" userLabel="Button Container">
@@ -179,15 +184,21 @@
                                             <action selector="signUpTapped" destination="rzO-Rp-uL9" eventType="touchUpInside" id="nld-l8-vJ1"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vfn-cd-tD0">
+                                        <rect key="frame" x="270" y="135" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="qes-aX-r4M" firstAttribute="centerY" secondItem="5gv-0k-urn" secondAttribute="centerY" id="F95-Ys-CAX"/>
                                     <constraint firstItem="qes-aX-r4M" firstAttribute="centerX" secondItem="5gv-0k-urn" secondAttribute="centerX" id="HYD-R2-OI4"/>
+                                    <constraint firstItem="vfn-cd-tD0" firstAttribute="centerY" secondItem="5gv-0k-urn" secondAttribute="centerY" id="ccr-cK-Lwb"/>
+                                    <constraint firstItem="vfn-cd-tD0" firstAttribute="centerX" secondItem="5gv-0k-urn" secondAttribute="centerX" id="ops-fP-Fwz"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="JVS-Hm-ZfM" firstAttribute="leading" secondItem="l5X-Gf-85F" secondAttribute="leadingMargin" id="07K-Wz-EIh"/>
                             <constraint firstItem="g26-4p-rn8" firstAttribute="trailing" secondItem="l5X-Gf-85F" secondAttribute="trailingMargin" id="2x3-fd-pHG"/>
@@ -224,8 +235,12 @@
                             <constraint firstItem="MaA-pP-IjZ" firstAttribute="top" secondItem="y3R-U2-syJ" secondAttribute="bottom" constant="8" id="w7n-qc-cde"/>
                             <constraint firstItem="g26-4p-rn8" firstAttribute="baseline" secondItem="JVS-Hm-ZfM" secondAttribute="baseline" id="wQk-QW-eQC"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Pm4-tk-9yv" appends="YES" id="HOt-uf-lyY"/>
+                        </connections>
                     </view>
                     <connections>
+                        <outlet property="activity" destination="vfn-cd-tD0" id="S80-Y4-dJ0"/>
                         <outlet property="address" destination="MaA-pP-IjZ" id="iKX-Er-9m4"/>
                         <outlet property="firstName" destination="Nge-qe-XJY" id="JSL-xN-Wxb"/>
                         <outlet property="lastName" destination="Yfp-EQ-Gh8" id="4ZD-dg-xfg"/>
@@ -235,6 +250,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gtZ-YC-Xrq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Pm4-tk-9yv">
+                    <connections>
+                        <action selector="onTap:" destination="rzO-Rp-uL9" id="O30-wx-sZW"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="965" y="130"/>
         </scene>
@@ -268,7 +288,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qxf-7A-XKi" userLabel="Email">
                                         <rect key="frame" x="8" y="45" width="584" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgl-iP-nG6">
                                         <rect key="frame" x="8" y="84" width="93" height="21"/>

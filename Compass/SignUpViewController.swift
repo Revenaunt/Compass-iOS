@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController{
+class SignUpViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -17,6 +17,7 @@ class SignUpViewController: UIViewController{
     @IBOutlet weak var lastName: UITextField!
     
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     
     
     override func viewDidLoad(){
@@ -69,6 +70,25 @@ class SignUpViewController: UIViewController{
         lastName.layer.borderWidth = 0;
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        if textField == address{
+            password.becomeFirstResponder()
+        }
+        else if textField == password{
+            passwordCheck.becomeFirstResponder()
+        }
+        else if textField == passwordCheck{
+            firstName.becomeFirstResponder()
+        }
+        else if textField == firstName{
+            lastName.becomeFirstResponder()
+        }
+        else if (textField == lastName){
+            lastName.resignFirstResponder()
+        }
+        return true
+    }
+    
     @IBAction func signUpTapped(){
         let email = address.text!;
         let pass = password.text!;
@@ -80,7 +100,7 @@ class SignUpViewController: UIViewController{
             address.layer.borderWidth = 1;
             return;
         }
-        if pass.isEmpty{
+        if pass.characters.count < 5{
             password.layer.borderWidth = 1;
             return;
         }
@@ -105,7 +125,17 @@ class SignUpViewController: UIViewController{
         return emailTest.evaluateWithObject(email);
     }
     
+    @IBAction func onTap(sender: AnyObject){
+        address.resignFirstResponder()
+        password.resignFirstResponder()
+        passwordCheck.resignFirstResponder()
+        firstName.resignFirstResponder()
+        lastName.resignFirstResponder()
+    }
+    
     private func signUp(){
         print("Signing up");
+        signUpButton.hidden = true;
+        activity.hidden = false;
     }
 }
