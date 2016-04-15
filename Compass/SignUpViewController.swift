@@ -97,7 +97,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         let first = firstName.text!;
         let last = lastName.text!;
         
-        signUp();
         if !isValidEmail(email){
             address.layer.borderWidth = 1;
             return;
@@ -118,6 +117,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
             lastName.layer.borderWidth = 1;
             return;
         }
+        signUp(email, password: pass, firstName: first, lastName: last);
     }
     
     private func isValidEmail(email: String) -> Bool{
@@ -134,18 +134,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         lastName.resignFirstResponder()
     }
     
-    private func signUp(){
+    private func signUp(email: String, password: String, firstName: String, lastName: String){
         print("Signing up");
         signUpButton.hidden = true;
         activity.hidden = false;
         
-        Just.get("http://staging.tndata.org/api/categories/?version=2") { (r) in
-            if r.ok{
-                print(r.statusCode);
-                print(String(data: r.content!, encoding: NSUTF8StringEncoding))
+        Just.post(API.getSignUpUrl(), data: API.getSignUpBody(email, password: password, firstName: firstName, lastName: lastName)){ (response) in
+            if response.ok{
+                print(response.statusCode)
+                print(String(data: response.content!, encoding:NSUTF8StringEncoding));
+                print("Success!!")
             }
             else{
-                print(r.error);
+                self.signUpButton.hidden = false;
+                self.activity.hidden = true;
             }
         }
     }

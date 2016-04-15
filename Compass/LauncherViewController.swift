@@ -17,6 +17,8 @@ class LauncherViewController: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         
+        print(API.STAGING);
+        
         let defaults = NSUserDefaults.standardUserDefaults();
         if !defaults.boolForKey("hasLoggedIn"){
             activityIndicator.hidden = true;
