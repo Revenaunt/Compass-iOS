@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Just
 
 class SignUpViewController: UIViewController, UITextFieldDelegate{
     
@@ -96,6 +97,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         let first = firstName.text!;
         let last = lastName.text!;
         
+        signUp();
         if !isValidEmail(email){
             address.layer.borderWidth = 1;
             return;
@@ -116,7 +118,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
             lastName.layer.borderWidth = 1;
             return;
         }
-        signUp();
     }
     
     private func isValidEmail(email: String) -> Bool{
@@ -137,5 +138,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         print("Signing up");
         signUpButton.hidden = true;
         activity.hidden = false;
+        
+        Just.get("http://staging.tndata.org/api/categories/?version=2") { (r) in
+            if r.ok{
+                print(r.statusCode);
+                print(String(data: r.content!, encoding: NSUTF8StringEncoding))
+            }
+            else{
+                print(r.error);
+            }
+        }
     }
 }

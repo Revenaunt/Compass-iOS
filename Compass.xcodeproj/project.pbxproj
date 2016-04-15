@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5449E5F11CBD646E0017629E /* LogInViewController.swift */; };
+		5475BDEF1CC153F100D80D3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475BDEE1CC153F100D80D3E /* API.swift */; };
+		5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; };
+		5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		547C466D1CBBF9EC00953735 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547C466C1CBBF9EC00953735 /* Locksmith.framework */; };
 		547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547C46711CBC2D2900953735 /* SignUpViewController.swift */; };
 		5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480310C1CB6B27F00112807 /* AppDelegate.swift */; };
@@ -37,8 +40,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5475BDEB1CC149D400D80D3E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		5449E5F11CBD646E0017629E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		5475BDE81CC1426800D80D3E /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
+		5475BDEE1CC153F100D80D3E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		5475BDF01CC16E9300D80D3E /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/iOS/Just.framework; sourceTree = "<group>"; };
 		547C466C1CBBF9EC00953735 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
 		547C46711CBC2D2900953735 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		548031091CB6B27F00112807 /* Compass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Compass.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */,
 				547C466D1CBBF9EC00953735 /* Locksmith.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,6 +104,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5475BDED1CC153D300D80D3E /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				5475BDEE1CC153F100D80D3E /* API.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		547C46701CBC1F8700953735 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +125,8 @@
 		548031001CB6B27F00112807 = {
 			isa = PBXGroup;
 			children = (
+				5475BDF01CC16E9300D80D3E /* Just.framework */,
+				5475BDE81CC1426800D80D3E /* Carthage */,
 				547C466C1CBBF9EC00953735 /* Locksmith.framework */,
 				5480310B1CB6B27F00112807 /* Compass */,
 				548031231CB6B27F00112807 /* CompassTests */,
@@ -119,6 +150,7 @@
 			children = (
 				5480310C1CB6B27F00112807 /* AppDelegate.swift */,
 				547C46701CBC1F8700953735 /* Controller */,
+				5475BDED1CC153D300D80D3E /* Util */,
 				548031101CB6B27F00112807 /* Main.storyboard */,
 				548031161CB6B27F00112807 /* Assets.xcassets */,
 				548031181CB6B27F00112807 /* LaunchScreen.storyboard */,
@@ -156,6 +188,7 @@
 				548031051CB6B27F00112807 /* Sources */,
 				548031061CB6B27F00112807 /* Frameworks */,
 				548031071CB6B27F00112807 /* Resources */,
+				5475BDEB1CC149D400D80D3E /* Embed Frameworks */,
 				547C466E1CBBFA2E00953735 /* ShellScript */,
 			);
 			buildRules = (
@@ -300,6 +333,7 @@
 				548031151CB6B27F00112807 /* Compass.xcdatamodeld in Sources */,
 				547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */,
 				5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */,
+				5475BDEF1CC153F100D80D3E /* API.swift in Sources */,
 				5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
