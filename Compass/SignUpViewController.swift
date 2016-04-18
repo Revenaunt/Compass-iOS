@@ -8,6 +8,7 @@
 
 import UIKit
 import Just
+import ObjectMapper;
 
 class SignUpViewController: UIViewController, UITextFieldDelegate{
     
@@ -145,6 +146,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                 print(response.statusCode)
                 print(result);
                 print("Success!!")
+                
+                Data.setUser(Mapper<User>().map(result));
+                print(Data.getUser()?.toString());
             }
             else{
                 self.signUpButton.hidden = false;

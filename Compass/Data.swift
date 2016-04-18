@@ -13,7 +13,7 @@ class Data{
     private static var user: User? = nil;
     
     
-    class func setUser(user: User){
+    class func setUser(user: User?){
         self.user = user;
     }
     
