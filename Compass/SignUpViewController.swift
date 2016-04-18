@@ -141,8 +141,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         
         Just.post(API.getSignUpUrl(), data: API.getSignUpBody(email, password: password, firstName: firstName, lastName: lastName)){ (response) in
             if response.ok{
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
                 print(response.statusCode)
-                print(String(data: response.content!, encoding:NSUTF8StringEncoding));
+                print(result);
                 print("Success!!")
             }
             else{
