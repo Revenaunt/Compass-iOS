@@ -7,10 +7,16 @@
 //
 
 import UIKit
+import Just
+import ObjectMapper
+import Locksmith
+
 
 class LogInViewController: UIViewController{
-    
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     
     override func viewDidLoad(){
@@ -25,5 +31,72 @@ class LogInViewController: UIViewController{
     override func viewWillAppear(animated: Bool){
         super.viewWillAppear(animated);
         navigationController?.setNavigationBarHidden(false, animated: animated);
+    }
+    
+    
+    @IBAction func onLogInTap(){
+        toggleMenu(false);
+        
+        let email = emailField.text!;
+        let pass = passwordField.text!;
+        
+        Just.post(API.getLogInUrl(), data: API.getLogInBody(email, password: pass)){ (response) in
+            print(response.ok);
+            print(response.statusCode ?? -1);
+            if response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!){
+                Data.setUser(Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)));
+                print(Data.getUser()!.toString());
+                
+                //This right here is probably not necessary except for testing purposes
+                do{
+                    try Locksmith.deleteDataForUserAccount("CompassAccount");
+                }
+                catch{
+                    print("There is no account to delete");
+                }
+                
+                do{
+                    var accountInfo = [String: String]();
+                    accountInfo["email"] = email;
+                    accountInfo["password"] = pass;
+                    try Locksmith.saveData(accountInfo, forUserAccount: "CompassAccount");
+                }
+                catch{
+                    print("Error writing to keychain");
+                    print(error);
+                }
+                
+                self.fetchCategories();
+            }
+            else{
+                print(response.error);
+                self.toggleMenu(true);
+            }
+        }
+    }
+    
+    private func fetchCategories(){
+        Just.get(API.getCategoriesUrl()){ (response) in
+            if (response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!)){
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
+                Data.setPublicCategories(Mapper<ParserModels.CategoryContentArray>().map(result)?.categories);
+                for category in Data.getPublicCategories()!{
+                    print(category.toString());
+                }
+                dispatch_async(dispatch_get_main_queue(), {
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("OnBoardingSurvey") as! OnBoardingSurveyViewController;
+                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+                })
+            }
+            else{
+                self.toggleMenu(true);
+            }
+        }
+    }
+    
+    private func toggleMenu(showButton: Bool){
+        logInButton.hidden = !showButton;
+        indicator.hidden = showButton;
     }
 }

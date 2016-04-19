@@ -46,6 +46,13 @@ class API{
         return postProcess(BASE_URL + "auth/token/");
     }
     
+    static func getLogInBody(email: String, password: String) -> [String: String]{
+        var logInBody = [String: String]();
+        logInBody["email"] = email;
+        logInBody["password"] = password;
+        return logInBody;
+    }
+    
     static func getSignUpUrl() -> String{
         return postProcess(BASE_URL + "users/");
     }
