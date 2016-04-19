@@ -8,6 +8,7 @@
 
 import UIKit
 import Just
+import ObjectMapper;
 
 class SignUpViewController: UIViewController, UITextFieldDelegate{
     
@@ -97,7 +98,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         let first = firstName.text!;
         let last = lastName.text!;
         
-        signUp();
         if !isValidEmail(email){
             address.layer.borderWidth = 1;
             return;
@@ -118,6 +118,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
             lastName.layer.borderWidth = 1;
             return;
         }
+        signUp(email, password: pass, firstName: first, lastName: last);
     }
     
     private func isValidEmail(email: String) -> Bool{
@@ -134,18 +135,44 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         lastName.resignFirstResponder()
     }
     
-    private func signUp(){
+    private func signUp(email: String, password: String, firstName: String, lastName: String){
         print("Signing up");
         signUpButton.hidden = true;
         activity.hidden = false;
         
-        Just.get("http://staging.tndata.org/api/categories/?version=2") { (r) in
-            if r.ok{
-                print(r.statusCode);
-                print(String(data: r.content!, encoding: NSUTF8StringEncoding))
+        Just.post(API.getSignUpUrl(), data: API.getSignUpBody(email, password: password, firstName: firstName, lastName: lastName)){ (response) in
+            if response.ok{
+                Data.setUser(Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)));
+                print(Data.getUser()?.toString());
+                
+                //TODO save credentials in the keychain
+                
+                self.fetchCategories();
             }
             else{
-                print(r.error);
+                self.signUpButton.hidden = false;
+                self.activity.hidden = true;
+            }
+        }
+    }
+    
+    private func fetchCategories(){
+        Just.get(API.getCategoriesUrl()){ (response) in
+            if (response.ok){
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
+                Data.setPublicCategories(Mapper<ParserModels.CategoryContentArray>().map(result)?.categories);
+                for category in Data.getPublicCategories()!{
+                    print(category.toString());
+                }
+                dispatch_async(dispatch_get_main_queue(), {
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("OnBoardingSurvey") as! OnBoardingSurveyViewController;
+                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+                })
+            }
+            else{
+                //Keep trying, I guess.
+                self.fetchCategories();
             }
         }
     }

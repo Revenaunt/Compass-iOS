@@ -7,7 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54437C931CC58CFF00D5035C /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54437C921CC58CFF00D5035C /* ObjectMapper.framework */; };
+		54437C941CC58D0700D5035C /* ObjectMapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54437C921CC58CFF00D5035C /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5449E5F11CBD646E0017629E /* LogInViewController.swift */; };
+		545D98BE1CC68C820037FAEF /* CategoryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BD1CC68C820037FAEF /* CategoryContent.swift */; };
+		545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BF1CC695F50037FAEF /* TDCBase.swift */; };
+		545D98C21CC697100037FAEF /* TDCContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C11CC697100037FAEF /* TDCContent.swift */; };
+		545D98C41CC69A890037FAEF /* ParserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C31CC69A890037FAEF /* ParserModels.swift */; };
+		545D98C61CC69F690037FAEF /* OnBoardingSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C51CC69F690037FAEF /* OnBoardingSurveyViewController.swift */; };
+		5467E9B01CC534D00088E417 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9AF1CC534D00088E417 /* User.swift */; };
+		5467E9B41CC5551F0088E417 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9B31CC5551F0088E417 /* Data.swift */; };
 		5475BDEF1CC153F100D80D3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475BDEE1CC153F100D80D3E /* API.swift */; };
 		5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; };
 		5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -47,6 +56,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				54437C941CC58D0700D5035C /* ObjectMapper.framework in Embed Frameworks */,
 				5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -55,7 +65,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		54437C921CC58CFF00D5035C /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		5449E5F11CBD646E0017629E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		545D98BD1CC68C820037FAEF /* CategoryContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryContent.swift; sourceTree = "<group>"; };
+		545D98BF1CC695F50037FAEF /* TDCBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCBase.swift; sourceTree = "<group>"; };
+		545D98C11CC697100037FAEF /* TDCContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCContent.swift; sourceTree = "<group>"; };
+		545D98C31CC69A890037FAEF /* ParserModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserModels.swift; sourceTree = "<group>"; };
+		545D98C51CC69F690037FAEF /* OnBoardingSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingSurveyViewController.swift; sourceTree = "<group>"; };
+		5467E9AF1CC534D00088E417 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5467E9B31CC5551F0088E417 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		5475BDE81CC1426800D80D3E /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
 		5475BDEE1CC153F100D80D3E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5475BDF01CC16E9300D80D3E /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/iOS/Just.framework; sourceTree = "<group>"; };
@@ -83,6 +101,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */,
+				54437C931CC58CFF00D5035C /* ObjectMapper.framework in Frameworks */,
 				547C466D1CBBF9EC00953735 /* Locksmith.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,10 +123,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5467E9AE1CC532760088E417 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5467E9AF1CC534D00088E417 /* User.swift */,
+				5467E9B31CC5551F0088E417 /* Data.swift */,
+				545D98BD1CC68C820037FAEF /* CategoryContent.swift */,
+				545D98BF1CC695F50037FAEF /* TDCBase.swift */,
+				545D98C11CC697100037FAEF /* TDCContent.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		5475BDED1CC153D300D80D3E /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				5475BDEE1CC153F100D80D3E /* API.swift */,
+				545D98C31CC69A890037FAEF /* ParserModels.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -118,6 +150,7 @@
 				5480310E1CB6B27F00112807 /* LauncherViewController.swift */,
 				547C46711CBC2D2900953735 /* SignUpViewController.swift */,
 				5449E5F11CBD646E0017629E /* LogInViewController.swift */,
+				545D98C51CC69F690037FAEF /* OnBoardingSurveyViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -125,6 +158,7 @@
 		548031001CB6B27F00112807 = {
 			isa = PBXGroup;
 			children = (
+				54437C921CC58CFF00D5035C /* ObjectMapper.framework */,
 				5475BDF01CC16E9300D80D3E /* Just.framework */,
 				5475BDE81CC1426800D80D3E /* Carthage */,
 				547C466C1CBBF9EC00953735 /* Locksmith.framework */,
@@ -150,6 +184,7 @@
 			children = (
 				5480310C1CB6B27F00112807 /* AppDelegate.swift */,
 				547C46701CBC1F8700953735 /* Controller */,
+				5467E9AE1CC532760088E417 /* Model */,
 				5475BDED1CC153D300D80D3E /* Util */,
 				548031101CB6B27F00112807 /* Main.storyboard */,
 				548031161CB6B27F00112807 /* Assets.xcassets */,
@@ -329,12 +364,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				545D98BE1CC68C820037FAEF /* CategoryContent.swift in Sources */,
 				5480310F1CB6B27F00112807 /* LauncherViewController.swift in Sources */,
+				545D98C61CC69F690037FAEF /* OnBoardingSurveyViewController.swift in Sources */,
 				548031151CB6B27F00112807 /* Compass.xcdatamodeld in Sources */,
+				545D98C21CC697100037FAEF /* TDCContent.swift in Sources */,
 				547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */,
 				5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */,
 				5475BDEF1CC153F100D80D3E /* API.swift in Sources */,
 				5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */,
+				5467E9B01CC534D00088E417 /* User.swift in Sources */,
+				545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */,
+				545D98C41CC69A890037FAEF /* ParserModels.swift in Sources */,
+				5467E9B41CC5551F0088E417 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
