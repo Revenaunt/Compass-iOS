@@ -9,6 +9,7 @@
 import UIKit
 import Just
 import ObjectMapper;
+import Locksmith;
 
 class SignUpViewController: UIViewController, UITextFieldDelegate{
     
@@ -136,16 +137,34 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     }
     
     private func signUp(email: String, password: String, firstName: String, lastName: String){
-        print("Signing up");
         signUpButton.hidden = true;
         activity.hidden = false;
         
         Just.post(API.getSignUpUrl(), data: API.getSignUpBody(email, password: password, firstName: firstName, lastName: lastName)){ (response) in
             if response.ok{
-                Data.setUser(Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)));
-                print(Data.getUser()?.toString());
+                let user = Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding))!;
+                user.setPassword(password);
+                Data.setUser(user);
+                print(user.toString());
                 
-                //TODO save credentials in the keychain
+                //This right here is probably not necessary except for testing purposes
+                do{
+                    try Locksmith.deleteDataForUserAccount("CompassAccount");
+                }
+                catch{
+                    print("There is no account to delete");
+                }
+                
+                do{
+                    var accountInfo = [String: String]();
+                    accountInfo["email"] = user.getEmail();
+                    accountInfo["password"] = user.getPassword();
+                    try Locksmith.saveData(accountInfo, forUserAccount: "CompassAccount");
+                }
+                catch{
+                    print("Error writing to keychain");
+                    print(error);
+                }
                 
                 self.fetchCategories();
             }

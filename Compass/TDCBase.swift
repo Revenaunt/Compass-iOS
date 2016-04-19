@@ -13,6 +13,10 @@ class TDCBase: Mappable{
     private var id: Int = -1;
     
     
+    init(id: Int){
+        self.id = id;
+    }
+    
     func getId() -> Int{
         return id;
     }

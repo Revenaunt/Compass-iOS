@@ -9,9 +9,8 @@
 import ObjectMapper
 
 
-class User: Mappable{
+class User: TDCBase{
     //Profile information
-    private var id: Int = 0;
     private var profileId: Int = 0;
     private var email: String = "";
     private var password: String = "";
@@ -35,14 +34,32 @@ class User: Mappable{
     init(email: String, password: String){
         self.email = email;
         self.password = password;
+        super.init(id: -1);
+    }
+    
+    func setPassword(password: String){
+        self.password = password;
+    }
+    
+    func getEmail() -> String{
+        return email;
+    }
+    
+    func getPassword() -> String{
+        return password;
+    }
+    
+    func getToken() -> String{
+        return token;
     }
     
     required init?(_ map: Map){
-        
+        super.init(map);
     }
     
-    func mapping(map: Map){
-        id <- map["id"];
+    override func mapping(map: Map){
+        super.mapping(map);
+        
         profileId <- map["userprofile_id"];
         email <- map["email"];
         firstName <- map["first_name"];
@@ -62,7 +79,6 @@ class User: Mappable{
     }
     
     func toString() -> String{
-        return fullName + "(uid: " + String(id) + ", pid: " + String(profileId) + "), " + email + ", "
-            + (needsOnBoarding ? "needs on-boarding" : "doesn't need onboarding");
+        return fullName + "(uid: \(getId()), pid: \(profileId)), \(email), " + (needsOnBoarding ? "needs on-boarding" : "doesn't need onboarding");
     }
 }
