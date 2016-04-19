@@ -142,17 +142,32 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         
         Just.post(API.getSignUpUrl(), data: API.getSignUpBody(email, password: password, firstName: firstName, lastName: lastName)){ (response) in
             if response.ok{
-                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                print(response.statusCode)
-                print(result);
-                print("Success!!")
-                
-                Data.setUser(Mapper<User>().map(result));
+                Data.setUser(Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)));
                 print(Data.getUser()?.toString());
+                
+                //TODO save credentials in the keychain
+                
+                self.fetchCategories();
             }
             else{
                 self.signUpButton.hidden = false;
                 self.activity.hidden = true;
+            }
+        }
+    }
+    
+    private func fetchCategories(){
+        Just.get(API.getCategoriesUrl()){ (response) in
+            if (response.ok){
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
+                Data.setPublicCategories(Mapper<ParserModels.CategoryContentArray>().map(result)?.categories);
+                for category in Data.getPublicCategories()!{
+                    print(category.toString());
+                }
+            }
+            else{
+                //Keep trying, I guess.
+                self.fetchCategories();
             }
         }
     }

@@ -58,6 +58,43 @@ class API{
         body["last_name"] = lastName;
         return body;
     }
+    
+    
+    /*------------------------------*
+     * APPLICATION DATA AND LIBRARY *
+     *------------------------------*/
+    
+    //Categories
+    static func getCategoriesUrl() -> String{
+        return postProcess(BASE_URL + "categories/?page_size=999999");
+    }
+    
+    static func getCategoryUrl(categoryId: Int) -> String{
+        return postProcess(BASE_URL + "categories/\(categoryId)/");
+    }
+    
+    static func getUserCategoryUrl(categoryId: Int) -> String{
+        return postProcess(BASE_URL + "users/categories/?category=\(categoryId)");
+    }
+    
+    /*static func getDeleteCategoryUrl(userCategory: UserCategory) -> String{
+        return BASE_URL + "users/categories/" + userCategory.getId() + "/";
+    }*/
+    
+    static func getUserCategoriesUrl() -> String{
+        return postProcess(BASE_URL + "users/categories/?page_size=999999");
+    }
+    
+    /*static func getPostCategoryBody(category: CategoryContent) -> [String: String]{
+        JSONObject postCategoriesBody = new JSONObject();
+        try{
+            postCategoriesBody.put("category", category.getId());
+        }
+        catch (JSONException jsonx){
+            jsonx.printStackTrace();
+        }
+        return postCategoriesBody;
+    }*/
 }
 
 

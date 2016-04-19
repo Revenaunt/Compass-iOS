@@ -11,6 +11,7 @@ import Foundation
 
 class Data{
     private static var user: User? = nil;
+    private static var publicCategories: [CategoryContent]? = nil;
     
     
     class func setUser(user: User?){
@@ -19,5 +20,13 @@ class Data{
     
     class func getUser() -> User?{
         return user;
+    }
+    
+    class func setPublicCategories(publicCategories: [CategoryContent]?){
+        self.publicCategories = publicCategories;
+    }
+    
+    class func getPublicCategories() -> [CategoryContent]?{
+        return publicCategories;
     }
 }
