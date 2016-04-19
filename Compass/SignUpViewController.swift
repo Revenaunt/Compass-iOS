@@ -164,6 +164,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                 for category in Data.getPublicCategories()!{
                     print(category.toString());
                 }
+                dispatch_async(dispatch_get_main_queue(), {
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("OnBoardingSurvey") as! OnBoardingSurveyViewController;
+                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+                })
             }
             else{
                 //Keep trying, I guess.

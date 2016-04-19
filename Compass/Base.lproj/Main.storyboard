@@ -383,7 +383,7 @@
         <!--On Boarding Survey-->
         <scene sceneID="Kdc-zL-Kp9">
             <objects>
-                <viewController storyboardIdentifier="OnBoardingSurvey" title="On Boarding Survey" id="aCt-qz-8sw" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnBoardingSurvey" title="On Boarding Survey" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aCt-qz-8sw" customClass="OnBoardingSurveyViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lsv-lt-Zfx"/>
                         <viewControllerLayoutGuide type="bottom" id="eQw-fN-IIB"/>
