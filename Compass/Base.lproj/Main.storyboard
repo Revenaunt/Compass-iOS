@@ -313,11 +313,19 @@
                                                 <state key="normal" title="Log In">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onLogInTap" destination="8ag-XI-7iu" eventType="touchUpInside" id="DE6-X7-CEK"/>
+                                                </connections>
                                             </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="017-d0-F4H">
+                                                <rect key="frame" x="282" y="71" width="20" height="20"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.098039215690000001" green="0.46274509800000002" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="017-d0-F4H" firstAttribute="centerY" secondItem="4xF-nj-Saj" secondAttribute="centerY" id="8ct-sI-1LZ"/>
                                             <constraint firstItem="HKj-T7-xRN" firstAttribute="centerY" secondItem="4xF-nj-Saj" secondAttribute="centerY" id="9jb-h9-QHe"/>
+                                            <constraint firstItem="017-d0-F4H" firstAttribute="centerX" secondItem="4xF-nj-Saj" secondAttribute="centerX" id="L5C-A4-rnC"/>
                                             <constraint firstItem="HKj-T7-xRN" firstAttribute="centerX" secondItem="4xF-nj-Saj" secondAttribute="centerX" id="mEn-JI-XM1"/>
                                         </constraints>
                                     </view>
@@ -355,7 +363,10 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="800"/>
                     <connections>
+                        <outlet property="emailField" destination="Qxf-7A-XKi" id="JX2-hz-YNK"/>
+                        <outlet property="indicator" destination="017-d0-F4H" id="qUh-FX-zth"/>
                         <outlet property="logInButton" destination="HKj-T7-xRN" id="f5W-nv-83z"/>
+                        <outlet property="passwordField" destination="3VM-MO-sDx" id="DPH-7K-29I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjz-FU-PBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
