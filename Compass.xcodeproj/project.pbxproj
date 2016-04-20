@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		54010E111CC6BAA2009FB013 /* Locksmith.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 547C466C1CBBF9EC00953735 /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54010E131CC6C398009FB013 /* CompassUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54010E121CC6C398009FB013 /* CompassUtil.swift */; };
+		54010E151CC6D31A009FB013 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54010E141CC6D31A009FB013 /* MainViewController.swift */; };
 		54437C931CC58CFF00D5035C /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54437C921CC58CFF00D5035C /* ObjectMapper.framework */; };
 		54437C941CC58D0700D5035C /* ObjectMapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54437C921CC58CFF00D5035C /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5449E5F11CBD646E0017629E /* LogInViewController.swift */; };
@@ -32,6 +33,8 @@
 		5480311A1CB6B27F00112807 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 548031181CB6B27F00112807 /* LaunchScreen.storyboard */; };
 		548031251CB6B27F00112807 /* CompassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548031241CB6B27F00112807 /* CompassTests.swift */; };
 		548031301CB6B27F00112807 /* CompassUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480312F1CB6B27F00112807 /* CompassUITests.swift */; };
+		54F60F591CC7F11A00D1424D /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F60F581CC7F11A00D1424D /* CircleProgressView.swift */; };
+		54F60F5C1CC80C7400D1424D /* UpNextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F60F5B1CC80C7400D1424D /* UpNextCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,7 @@
 
 /* Begin PBXFileReference section */
 		54010E121CC6C398009FB013 /* CompassUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassUtil.swift; sourceTree = "<group>"; };
+		54010E141CC6D31A009FB013 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		54437C921CC58CFF00D5035C /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		5449E5F11CBD646E0017629E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		545D98BD1CC68C820037FAEF /* CategoryContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryContent.swift; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 		5480312B1CB6B27F00112807 /* CompassUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CompassUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5480312F1CB6B27F00112807 /* CompassUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassUITests.swift; sourceTree = "<group>"; };
 		548031311CB6B27F00112807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54F60F581CC7F11A00D1424D /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
+		54F60F5B1CC80C7400D1424D /* UpNextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpNextCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +162,7 @@
 				547C46711CBC2D2900953735 /* SignUpViewController.swift */,
 				5449E5F11CBD646E0017629E /* LogInViewController.swift */,
 				545D98C51CC69F690037FAEF /* OnBoardingSurveyViewController.swift */,
+				54010E141CC6D31A009FB013 /* MainViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -188,8 +195,10 @@
 			isa = PBXGroup;
 			children = (
 				5480310C1CB6B27F00112807 /* AppDelegate.swift */,
+				54F60F5A1CC80C4300D1424D /* Cell */,
 				547C46701CBC1F8700953735 /* Controller */,
 				5467E9AE1CC532760088E417 /* Model */,
+				54F60F571CC7EC8C00D1424D /* UI */,
 				5475BDED1CC153D300D80D3E /* Util */,
 				548031101CB6B27F00112807 /* Main.storyboard */,
 				548031161CB6B27F00112807 /* Assets.xcassets */,
@@ -216,6 +225,22 @@
 				548031311CB6B27F00112807 /* Info.plist */,
 			);
 			path = CompassUITests;
+			sourceTree = "<group>";
+		};
+		54F60F571CC7EC8C00D1424D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				54F60F581CC7F11A00D1424D /* CircleProgressView.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		54F60F5A1CC80C4300D1424D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				54F60F5B1CC80C7400D1424D /* UpNextCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,12 +397,15 @@
 				545D98BE1CC68C820037FAEF /* CategoryContent.swift in Sources */,
 				5480310F1CB6B27F00112807 /* LauncherViewController.swift in Sources */,
 				545D98C61CC69F690037FAEF /* OnBoardingSurveyViewController.swift in Sources */,
+				54F60F5C1CC80C7400D1424D /* UpNextCell.swift in Sources */,
 				548031151CB6B27F00112807 /* Compass.xcdatamodeld in Sources */,
 				545D98C21CC697100037FAEF /* TDCContent.swift in Sources */,
+				54F60F591CC7F11A00D1424D /* CircleProgressView.swift in Sources */,
 				547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */,
 				54010E131CC6C398009FB013 /* CompassUtil.swift in Sources */,
 				5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */,
 				5475BDEF1CC153F100D80D3E /* API.swift in Sources */,
+				54010E151CC6D31A009FB013 /* MainViewController.swift in Sources */,
 				5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */,
 				5467E9B01CC534D00088E417 /* User.swift in Sources */,
 				545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */,
