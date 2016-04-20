@@ -26,5 +26,6 @@ class UpNextCell: UITableViewCell {
     
     func setProgress(progress: Double){
         progressIndicator.setProgress(progress, animated: true);
+        progressCaption.text = "\(progress) complete";
     }
 }

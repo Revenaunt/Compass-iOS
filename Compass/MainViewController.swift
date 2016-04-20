@@ -9,7 +9,7 @@
 import UIKit
 
 
-class MainViewController: UITableViewController{
+class MainViewController: UITableViewController, UIActionSheetDelegate{
     override func viewDidLoad(){
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None;
     }
@@ -19,7 +19,7 @@ class MainViewController: UITableViewController{
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 2;
+        return 1;
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
@@ -33,5 +33,16 @@ class MainViewController: UITableViewController{
         }
         
         return cell;
+    }
+    
+    @IBAction func addTap(sender: AnyObject){
+        let addSheet = UIAlertController(title: "Choose an option", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet);
+        addSheet.addAction(UIAlertAction(title: "Search goals", style: .Default){ action in
+            
+        });
+        addSheet.addAction(UIAlertAction(title: "Browse goals", style: .Default){ action in
+            
+        });
+        presentViewController(addSheet, animated: true, completion: nil);
     }
 }

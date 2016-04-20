@@ -450,16 +450,16 @@
         <scene sceneID="UuE-Hv-zPa">
             <objects>
                 <tableViewController title="Main" id="hvk-pI-Gwh" customClass="MainViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="160" sectionHeaderHeight="28" sectionFooterHeight="28" id="IMT-KW-c44">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="175" sectionHeaderHeight="28" sectionFooterHeight="28" id="IMT-KW-c44">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpNextCell" rowHeight="160" id="9ZF-eR-FAx" customClass="UpNextCell" customModule="Compass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="160"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpNextCell" rowHeight="175" id="9ZF-eR-FAx" customClass="UpNextCell" customModule="Compass" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="175"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9ZF-eR-FAx" id="AGd-cE-Q6D">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="159"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="174"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Up Next" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKO-cc-6XZ">
@@ -473,53 +473,56 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTk-TS-BJC" userLabel="Content Container">
-                                            <rect key="frame" x="8" y="37" width="584" height="114"/>
+                                            <rect key="frame" x="8" y="37" width="584" height="129"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zto-5s-0nC" userLabel="ActionContainer">
-                                                    <rect key="frame" x="131" y="0.0" width="453" height="114"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Just a test label to see how stuff looks like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1v-zz-d46">
-                                                            <rect key="frame" x="0.0" y="0.0" width="322" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Cb-HC-iGf" userLabel="Progress Container">
-                                                    <rect key="frame" x="0.0" y="0.0" width="123" height="114"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="105" height="129"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Completion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wxc-dO-XVW">
-                                                            <rect key="frame" x="15" y="86" width="88" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ze-ex-7vR" customClass="CircleProgressView" customModule="Compass" customModuleProvider="target">
-                                                            <rect key="frame" x="24" y="8" width="70" height="70"/>
+                                                            <rect key="frame" x="27" y="7" width="50" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="70" id="Blx-Kb-ezl"/>
-                                                                <constraint firstAttribute="height" constant="70" id="v2n-RW-BcZ"/>
+                                                                <constraint firstAttribute="width" constant="50" id="Blx-Kb-ezl"/>
+                                                                <constraint firstAttribute="height" constant="50" id="v2n-RW-BcZ"/>
                                                             </constraints>
                                                         </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Completion" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wxc-dO-XVW">
+                                                            <rect key="frame" x="8" y="65" width="88" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="Wxc-dO-XVW" firstAttribute="centerX" secondItem="8Cb-HC-iGf" secondAttribute="centerX" id="1V2-Q9-i6i"/>
                                                         <constraint firstItem="8Ze-ex-7vR" firstAttribute="top" secondItem="8Cb-HC-iGf" secondAttribute="top" constant="8" id="41c-ym-zLs"/>
                                                         <constraint firstItem="Wxc-dO-XVW" firstAttribute="top" secondItem="8Ze-ex-7vR" secondAttribute="bottom" constant="8" id="8YE-jl-zaf"/>
-                                                        <constraint firstAttribute="width" secondItem="8Cb-HC-iGf" secondAttribute="height" multiplier="1:1" id="Io7-Dr-BhA"/>
                                                         <constraint firstItem="8Ze-ex-7vR" firstAttribute="centerX" secondItem="8Cb-HC-iGf" secondAttribute="centerX" id="hud-zs-zaE"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Wxc-dO-XVW" secondAttribute="bottom" constant="8" id="iHM-qX-iDc"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zto-5s-0nC" userLabel="ActionContainer">
+                                                    <rect key="frame" x="111" y="0.0" width="473" height="129"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="What if my text is long enough that it needs wrapping. What happens then, yo? " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOM-EP-jrL">
+                                                            <rect key="frame" x="-141" y="8" width="606" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="bOM-EP-jrL" firstAttribute="top" secondItem="Zto-5s-0nC" secondAttribute="top" constant="8" id="Avn-xG-hke"/>
+                                                        <constraint firstAttribute="trailing" secondItem="bOM-EP-jrL" secondAttribute="trailing" constant="8" id="FSH-Zo-Woh"/>
+                                                        <constraint firstItem="bOM-EP-jrL" firstAttribute="leading" secondItem="Zto-5s-0nC" secondAttribute="leading" constant="8" id="fYI-ha-0mg"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="Zto-5s-0nC" firstAttribute="top" secondItem="YTk-TS-BJC" secondAttribute="top" id="Atx-Z7-L6D"/>
-                                                <constraint firstAttribute="bottom" secondItem="8Cb-HC-iGf" secondAttribute="bottom" id="YOI-vC-Def"/>
+                                                <constraint firstItem="Zto-5s-0nC" firstAttribute="height" secondItem="8Cb-HC-iGf" secondAttribute="height" id="Bgz-MN-OeC"/>
                                                 <constraint firstItem="8Cb-HC-iGf" firstAttribute="leading" secondItem="YTk-TS-BJC" secondAttribute="leading" id="cjD-zl-RcX"/>
                                                 <constraint firstAttribute="bottom" secondItem="Zto-5s-0nC" secondAttribute="bottom" id="gop-LD-ZUo"/>
                                                 <constraint firstItem="8Cb-HC-iGf" firstAttribute="top" secondItem="YTk-TS-BJC" secondAttribute="top" id="rK5-BA-Pb8"/>
@@ -548,7 +551,13 @@
                             <outlet property="delegate" destination="hvk-pI-Gwh" id="dqU-ur-cgr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="0Wz-kC-kbu"/>
+                    <navigationItem key="navigationItem" id="0Wz-kC-kbu">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="MiY-Xs-VZg">
+                            <connections>
+                                <action selector="addTap:" destination="hvk-pI-Gwh" id="X4v-Do-3ef"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="teD-m8-TBF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
