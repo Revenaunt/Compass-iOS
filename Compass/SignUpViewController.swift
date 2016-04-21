@@ -185,7 +185,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                 }
                 dispatch_async(dispatch_get_main_queue(), {
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("OnBoardingSurvey") as! OnBoardingSurveyViewController;
+                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
                     UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
                 })
             }
