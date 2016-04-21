@@ -41,7 +41,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
             
         });
         addSheet.addAction(UIAlertAction(title: "Browse goals", style: .Default){ action in
-            
+            self.performSegueWithIdentifier("Library", sender: self);
         });
         presentViewController(addSheet, animated: true, completion: nil);
     }

@@ -12,6 +12,7 @@
 		54010E151CC6D31A009FB013 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54010E141CC6D31A009FB013 /* MainViewController.swift */; };
 		54437C931CC58CFF00D5035C /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54437C921CC58CFF00D5035C /* ObjectMapper.framework */; };
 		54437C941CC58D0700D5035C /* ObjectMapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54437C921CC58CFF00D5035C /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		544614211CC927CE00F2B441 /* ChooseCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544614201CC927CE00F2B441 /* ChooseCategoryViewController.swift */; };
 		5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5449E5F11CBD646E0017629E /* LogInViewController.swift */; };
 		545D98BE1CC68C820037FAEF /* CategoryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BD1CC68C820037FAEF /* CategoryContent.swift */; };
 		545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BF1CC695F50037FAEF /* TDCBase.swift */; };
@@ -74,6 +75,7 @@
 		54010E121CC6C398009FB013 /* CompassUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassUtil.swift; sourceTree = "<group>"; };
 		54010E141CC6D31A009FB013 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		54437C921CC58CFF00D5035C /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
+		544614201CC927CE00F2B441 /* ChooseCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCategoryViewController.swift; sourceTree = "<group>"; };
 		5449E5F11CBD646E0017629E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		545D98BD1CC68C820037FAEF /* CategoryContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryContent.swift; sourceTree = "<group>"; };
 		545D98BF1CC695F50037FAEF /* TDCBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCBase.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				5449E5F11CBD646E0017629E /* LogInViewController.swift */,
 				545D98C51CC69F690037FAEF /* OnBoardingSurveyViewController.swift */,
 				54010E141CC6D31A009FB013 /* MainViewController.swift */,
+				544614201CC927CE00F2B441 /* ChooseCategoryViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				54F60F591CC7F11A00D1424D /* CircleProgressView.swift in Sources */,
 				547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */,
 				54010E131CC6C398009FB013 /* CompassUtil.swift in Sources */,
+				544614211CC927CE00F2B441 /* ChooseCategoryViewController.swift in Sources */,
 				5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */,
 				5475BDEF1CC153F100D80D3E /* API.swift in Sources */,
 				54010E151CC6D31A009FB013 /* MainViewController.swift in Sources */,
