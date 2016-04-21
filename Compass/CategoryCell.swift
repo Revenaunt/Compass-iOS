@@ -28,7 +28,7 @@ class CategoryCell: UITableViewCell{
     func setCategory(category: CategoryContent){
         categoryImage.layer.cornerRadius = categoryImage.frame.size.width/2;
         categoryImage.clipsToBounds = true;
-        categoryImage.image = UIImage(named: "Tile - Community");
+        categoryImage.image = UIImage(named: CompassUtil.getCategoryTileAssetName(category));
         categoryTitle.text = category.getTitle();
     }
 }
