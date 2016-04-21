@@ -566,22 +566,55 @@
             </objects>
             <point key="canvasLocation" x="-13" y="3710"/>
         </scene>
-        <!--Table View Controller-->
+        <!--What Interests You?-->
         <scene sceneID="b8y-kQ-j17">
             <objects>
-                <tableViewController id="DYE-he-MmB" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="r7B-Gp-mCq">
+                <tableViewController title="What Interests You?" id="DYE-he-MmB" customClass="ChooseCategoryViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="117" sectionHeaderHeight="28" sectionFooterHeight="28" id="r7B-Gp-mCq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="7c0-c0-Ysn">
-                                <rect key="frame" x="0.0" y="92" width="600" height="100"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" rowHeight="117" id="7c0-c0-Ysn" customClass="CategoryCell" customModule="Compass" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="117"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7c0-c0-Ysn" id="IpL-gi-fyP">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="7c0-c0-Ysn" id="IpL-gi-fyP">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="116"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ucm-lY-xKg">
+                                            <rect key="frame" x="8" y="8" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="rRf-29-MGC"/>
+                                                <constraint firstAttribute="width" constant="100" id="uWa-x9-iaR"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category title" textAlignment="natural" lineBreakMode="tailTruncation" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="uyj-c7-3Vt">
+                                            <rect key="frame" x="116" y="47" width="476" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="uyj-c7-3Vt" firstAttribute="leading" secondItem="ucm-lY-xKg" secondAttribute="trailing" constant="8" id="0J8-Hk-HbI"/>
+                                        <constraint firstItem="uyj-c7-3Vt" firstAttribute="centerY" secondItem="IpL-gi-fyP" secondAttribute="centerY" id="50t-Uj-JRH"/>
+                                        <constraint firstItem="uyj-c7-3Vt" firstAttribute="trailing" secondItem="IpL-gi-fyP" secondAttribute="trailingMargin" id="MwR-Uz-rnC"/>
+                                        <constraint firstItem="uyj-c7-3Vt" firstAttribute="centerX" secondItem="IpL-gi-fyP" secondAttribute="centerX" id="OXf-ta-sR7"/>
+                                        <constraint firstItem="ucm-lY-xKg" firstAttribute="top" secondItem="IpL-gi-fyP" secondAttribute="topMargin" id="Rlk-LP-1lE"/>
+                                        <constraint firstItem="ucm-lY-xKg" firstAttribute="leading" secondItem="IpL-gi-fyP" secondAttribute="leadingMargin" id="aP6-w1-k0f"/>
+                                        <constraint firstItem="ucm-lY-xKg" firstAttribute="bottom" secondItem="IpL-gi-fyP" secondAttribute="bottomMargin" id="fce-vP-9BD"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="OXf-ta-sR7"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="categoryImage" destination="ucm-lY-xKg" id="5Nj-vT-scI"/>
+                                    <outlet property="categoryTitle" destination="uyj-c7-3Vt" id="fBP-gZ-ZOt"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
