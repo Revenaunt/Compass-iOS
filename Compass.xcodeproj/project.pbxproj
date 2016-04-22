@@ -14,6 +14,13 @@
 		54437C941CC58D0700D5035C /* ObjectMapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54437C921CC58CFF00D5035C /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		544614211CC927CE00F2B441 /* ChooseCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544614201CC927CE00F2B441 /* ChooseCategoryViewController.swift */; };
 		544614231CC92C5400F2B441 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544614221CC92C5400F2B441 /* CategoryCell.swift */; };
+		544614251CC9495C00F2B441 /* GoalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544614241CC9495C00F2B441 /* GoalContent.swift */; };
+		544614271CC9719800F2B441 /* GoalLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544614261CC9719800F2B441 /* GoalLibraryViewController.swift */; };
+		544614291CC971D000F2B441 /* CategoryDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544614281CC971D000F2B441 /* CategoryDescriptionCell.swift */; };
+		5448276A1CCA88E500BBC062 /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544827691CCA88E500BBC062 /* GoalCell.swift */; };
+		5448276C1CCA956000BBC062 /* CategoryHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448276B1CCA956000BBC062 /* CategoryHeaderCell.swift */; };
+		5448276E1CCAC36A00BBC062 /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5448276D1CCAC36A00BBC062 /* Nuke.framework */; };
+		5448276F1CCAC37600BBC062 /* Nuke.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5448276D1CCAC36A00BBC062 /* Nuke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5449E5F11CBD646E0017629E /* LogInViewController.swift */; };
 		545D98BE1CC68C820037FAEF /* CategoryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BD1CC68C820037FAEF /* CategoryContent.swift */; };
 		545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BF1CC695F50037FAEF /* TDCBase.swift */; };
@@ -63,6 +70,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5448276F1CCAC37600BBC062 /* Nuke.framework in Embed Frameworks */,
 				54010E111CC6BAA2009FB013 /* Locksmith.framework in Embed Frameworks */,
 				54437C941CC58D0700D5035C /* ObjectMapper.framework in Embed Frameworks */,
 				5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */,
@@ -78,6 +86,12 @@
 		54437C921CC58CFF00D5035C /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		544614201CC927CE00F2B441 /* ChooseCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCategoryViewController.swift; sourceTree = "<group>"; };
 		544614221CC92C5400F2B441 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		544614241CC9495C00F2B441 /* GoalContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalContent.swift; sourceTree = "<group>"; };
+		544614261CC9719800F2B441 /* GoalLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalLibraryViewController.swift; sourceTree = "<group>"; };
+		544614281CC971D000F2B441 /* CategoryDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDescriptionCell.swift; sourceTree = "<group>"; };
+		544827691CCA88E500BBC062 /* GoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
+		5448276B1CCA956000BBC062 /* CategoryHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryHeaderCell.swift; sourceTree = "<group>"; };
+		5448276D1CCAC36A00BBC062 /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
 		5449E5F11CBD646E0017629E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		545D98BD1CC68C820037FAEF /* CategoryContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryContent.swift; sourceTree = "<group>"; };
 		545D98BF1CC695F50037FAEF /* TDCBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCBase.swift; sourceTree = "<group>"; };
@@ -117,6 +131,7 @@
 				5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */,
 				54437C931CC58CFF00D5035C /* ObjectMapper.framework in Frameworks */,
 				547C466D1CBBF9EC00953735 /* Locksmith.framework in Frameworks */,
+				5448276E1CCAC36A00BBC062 /* Nuke.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +160,7 @@
 				545D98BD1CC68C820037FAEF /* CategoryContent.swift */,
 				545D98BF1CC695F50037FAEF /* TDCBase.swift */,
 				545D98C11CC697100037FAEF /* TDCContent.swift */,
+				544614241CC9495C00F2B441 /* GoalContent.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -168,6 +184,7 @@
 				545D98C51CC69F690037FAEF /* OnBoardingSurveyViewController.swift */,
 				54010E141CC6D31A009FB013 /* MainViewController.swift */,
 				544614201CC927CE00F2B441 /* ChooseCategoryViewController.swift */,
+				544614261CC9719800F2B441 /* GoalLibraryViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -175,6 +192,7 @@
 		548031001CB6B27F00112807 = {
 			isa = PBXGroup;
 			children = (
+				5448276D1CCAC36A00BBC062 /* Nuke.framework */,
 				54437C921CC58CFF00D5035C /* ObjectMapper.framework */,
 				5475BDF01CC16E9300D80D3E /* Just.framework */,
 				5475BDE81CC1426800D80D3E /* Carthage */,
@@ -245,6 +263,9 @@
 			children = (
 				54F60F5B1CC80C7400D1424D /* UpNextCell.swift */,
 				544614221CC92C5400F2B441 /* CategoryCell.swift */,
+				544614281CC971D000F2B441 /* CategoryDescriptionCell.swift */,
+				544827691CCA88E500BBC062 /* GoalCell.swift */,
+				5448276B1CCA956000BBC062 /* CategoryHeaderCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -400,12 +421,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				544614291CC971D000F2B441 /* CategoryDescriptionCell.swift in Sources */,
 				545D98BE1CC68C820037FAEF /* CategoryContent.swift in Sources */,
 				544614231CC92C5400F2B441 /* CategoryCell.swift in Sources */,
 				5480310F1CB6B27F00112807 /* LauncherViewController.swift in Sources */,
 				545D98C61CC69F690037FAEF /* OnBoardingSurveyViewController.swift in Sources */,
+				5448276A1CCA88E500BBC062 /* GoalCell.swift in Sources */,
 				54F60F5C1CC80C7400D1424D /* UpNextCell.swift in Sources */,
 				548031151CB6B27F00112807 /* Compass.xcdatamodeld in Sources */,
+				544614251CC9495C00F2B441 /* GoalContent.swift in Sources */,
 				545D98C21CC697100037FAEF /* TDCContent.swift in Sources */,
 				54F60F591CC7F11A00D1424D /* CircleProgressView.swift in Sources */,
 				547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */,
@@ -413,7 +437,9 @@
 				544614211CC927CE00F2B441 /* ChooseCategoryViewController.swift in Sources */,
 				5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */,
 				5475BDEF1CC153F100D80D3E /* API.swift in Sources */,
+				544614271CC9719800F2B441 /* GoalLibraryViewController.swift in Sources */,
 				54010E151CC6D31A009FB013 /* MainViewController.swift in Sources */,
+				5448276C1CCA956000BBC062 /* CategoryHeaderCell.swift in Sources */,
 				5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */,
 				5467E9B01CC534D00088E417 /* User.swift in Sources */,
 				545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */,

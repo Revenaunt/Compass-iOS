@@ -32,7 +32,6 @@ class TDCContent: TDCBase{
         return iconUrl;
     }
     
-    
     required init?(_ map: Map){
         super.init(map);
     }

@@ -102,6 +102,11 @@ class API{
         }
         return postCategoriesBody;
     }*/
+    
+    //Goals
+    static func getGoalsUrl(category: CategoryContent) -> String{
+        return postProcess(BASE_URL + "goals/?category=\(category.getId())");
+    }
 }
 
 
