@@ -10,36 +10,21 @@ import ObjectMapper
 
 
 class GoalContent: TDCContent{
-    private var outcome: String{
-        get{
-            return self.outcome;
-        }
-        
-        set (outcome){
-            self.outcome = outcome;
-        }
-    };
+    private var outcome: String = "";
+    private var categoryIdSet: Set<Int> = Set<Int>();
+    private var behaviorCount: Int = 0;
     
-    private var categoryIdSet: Set<Int>{
-        get{
-            return self.categoryIdSet;
-        }
-        
-        set (categoryIdSet){
-            self.categoryIdSet = categoryIdSet;
-        }
-    };
+    func getOutcome() -> String{
+        return outcome;
+    }
     
-    private var behaviorCount: Int{
-        get{
-            return self.behaviorCount;
-        }
-        
-        set (behaviorCount){
-            self.behaviorCount = behaviorCount;
-        }
-    };
+    func getCategoryIdSet() -> Set<Int>{
+        return categoryIdSet;
+    }
     
+    func getBehaviorCount() -> Int{
+        return behaviorCount;
+    }
     
     required init?(_ map: Map){
         super.init(map);
@@ -51,5 +36,9 @@ class GoalContent: TDCContent{
         outcome <- map["outcome"];
         categoryIdSet <- map["categories"];
         behaviorCount <- map["behaviors_count"];
+    }
+    
+    func toString() -> String{
+        return "Goal #\(getId()): \(getTitle())";
     }
 }
