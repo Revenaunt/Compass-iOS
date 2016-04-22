@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Just
+import Nuke
 
 
 class CategoryHeaderCell: UITableViewCell{
@@ -15,6 +15,11 @@ class CategoryHeaderCell: UITableViewCell{
     
     
     func setHeader(category: CategoryContent){
-        //Just.
+        if (category.getImageUrl().characters.count != 0){
+            Nuke.taskWith(NSURL(string: category.getImageUrl())!){
+                let image = $0.image;
+                self.categoryImage.image = image;
+            }.resume();
+        }
     }
 }

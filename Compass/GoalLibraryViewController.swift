@@ -9,6 +9,7 @@
 import UIKit
 import Just
 import ObjectMapper
+import Nuke
 
 
 class GoalLibraryViewController: UITableViewController{
@@ -78,6 +79,8 @@ class GoalLibraryViewController: UITableViewController{
         var cell: UITableViewCell;
         if (indexPath.section == 0){
             cell = tableView.dequeueReusableCellWithIdentifier("HeaderHeroCell", forIndexPath: indexPath);
+            let instance = cell as! CategoryHeaderCell;
+            instance.setHeader(category!);
         }
         else if (indexPath.section == 1){
             cell = tableView.dequeueReusableCellWithIdentifier("CategoryDescriptionCell", forIndexPath: indexPath);
@@ -88,6 +91,7 @@ class GoalLibraryViewController: UITableViewController{
             cell = tableView.dequeueReusableCellWithIdentifier("GoalCell", forIndexPath: indexPath);
             let instance = cell as! GoalCell;
             instance.setContent(goals[indexPath.row], category: category!);
+            
         }
         else{
             if (activityCell == nil){
