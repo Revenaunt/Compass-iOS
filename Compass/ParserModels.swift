@@ -22,4 +22,18 @@ class ParserModels{
             categories <- map["results"];
         }
     }
+    
+    class GoalContentArray: Mappable{
+        var goals: [GoalContent]? = nil;
+        var next: String? = nil;
+        
+        required init?(_ map: Map){
+            
+        }
+        
+        func mapping(map: Map){
+            goals <- map["results"];
+            next <- map["next"];
+        }
+    }
 }

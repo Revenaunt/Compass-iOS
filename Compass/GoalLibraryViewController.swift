@@ -7,25 +7,69 @@
 //
 
 import UIKit
+import Just
+import ObjectMapper
 
 
 class GoalLibraryViewController: UITableViewController{
     var category: CategoryContent? = nil;
+    private var goals = [GoalContent]();
+    private var activityCell: UITableViewCell? = nil;
+    
+    private var loading: Bool = false;
+    private var next: String? = nil;
     
     
     override func viewDidLoad(){
         super.viewDidLoad();
         self.tableView.bounces = false;
+        
+        //Load first batch of goalz
+        next = API.getGoalsUrl(category!);
+        loadMore();
+    }
+    
+    private func loadMore(){
+        loading = true;
+        Just.get(next!){ (response) in
+            if (response.ok){
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding)!;
+                let gca = Mapper<ParserModels.GoalContentArray>().map(result)!;
+                let start = self.goals.count;
+                self.goals.appendContentsOf(gca.goals!);
+                self.next = gca.next;
+                if (API.STAGING && self.next != nil && (self.next?.hasPrefix("https"))!){
+                    self.next = "http" + (self.next?.substringFromIndex((self.next?.startIndex.advancedBy(5))!))!;
+                }
+                var paths = [NSIndexPath]();
+                for i in 0...gca.goals!.count-1{
+                    paths.append(NSIndexPath(forRow: start+i, inSection: 2));
+                }
+                print("Next url: \(self.next)");
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.beginUpdates()
+                    if (self.next == nil){
+                        self.tableView.deleteSections(NSIndexSet(index: 3), withRowAnimation: .Automatic);
+                    }
+                    self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
+                    self.tableView.endUpdates();
+                });
+            }
+            self.loading = false;
+        }
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
+        if (next == nil){
+            return 3;
+        }
         return 4;
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         print("Section: \(section)");
         if (section == 2){
-            return 4
+            return goals.count;
         }
         return 1;
     }
@@ -43,10 +87,19 @@ class GoalLibraryViewController: UITableViewController{
         else if (indexPath.section == 2){
             cell = tableView.dequeueReusableCellWithIdentifier("GoalCell", forIndexPath: indexPath);
             let instance = cell as! GoalCell;
-            instance.setContent(nil, category: category!);
+            instance.setContent(goals[indexPath.row], category: category!);
         }
         else{
-            cell = tableView.dequeueReusableCellWithIdentifier("ProgressCell", forIndexPath: indexPath);
+            if (activityCell == nil){
+                cell = tableView.dequeueReusableCellWithIdentifier("ProgressCell", forIndexPath: indexPath);
+                activityCell = cell;
+            }
+            else{
+                cell = activityCell!;
+            }
+            if (!loading && next != nil){
+                loadMore();
+            }
         }
         
         return cell;
