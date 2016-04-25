@@ -13,6 +13,7 @@ import ObjectMapper
 class FeedData: Mappable{
     private var progress: Progress? = nil;
     private var actionFeedback: ActionFeedback? = nil;
+    private var upcomingActions: [UpcomingAction] = [UpcomingAction]();
     
     
     required init?(_ map: Map){
@@ -22,6 +23,7 @@ class FeedData: Mappable{
     func mapping(map: Map){
         progress <- map["progress"];
         actionFeedback <- map["action_feedback"];
+        upcomingActions <- map["upcoming"];
     }
     
     

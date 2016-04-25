@@ -38,6 +38,7 @@
 		5468F8511CCEB7B200D5769B /* UserAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8501CCEB7B200D5769B /* UserAction.swift */; };
 		5468F8531CCEB7D100D5769B /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8521CCEB7D100D5769B /* Action.swift */; };
 		5468F8551CCEBA8300D5769B /* FeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8541CCEBA8300D5769B /* FeedData.swift */; };
+		5468F8571CCEBF7C00D5769B /* UpcomingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8561CCEBF7C00D5769B /* UpcomingAction.swift */; };
 		5475BDEF1CC153F100D80D3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475BDEE1CC153F100D80D3E /* API.swift */; };
 		5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; };
 		5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -118,6 +119,7 @@
 		5468F8501CCEB7B200D5769B /* UserAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAction.swift; sourceTree = "<group>"; };
 		5468F8521CCEB7D100D5769B /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		5468F8541CCEBA8300D5769B /* FeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedData.swift; sourceTree = "<group>"; };
+		5468F8561CCEBF7C00D5769B /* UpcomingAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingAction.swift; sourceTree = "<group>"; };
 		5475BDE81CC1426800D80D3E /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
 		5475BDEE1CC153F100D80D3E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5475BDF01CC16E9300D80D3E /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/iOS/Just.framework; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				5468F8501CCEB7B200D5769B /* UserAction.swift */,
 				5468F8521CCEB7D100D5769B /* Action.swift */,
 				5468F8541CCEBA8300D5769B /* FeedData.swift */,
+				5468F8561CCEBF7C00D5769B /* UpcomingAction.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */,
 				5467E9B01CC534D00088E417 /* User.swift in Sources */,
 				545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */,
+				5468F8571CCEBF7C00D5769B /* UpcomingAction.swift in Sources */,
 				545D98C41CC69A890037FAEF /* ParserModels.swift in Sources */,
 				5467E9B41CC5551F0088E417 /* Data.swift in Sources */,
 				5468F8491CCEB09600D5769B /* FeedGoalCell.swift in Sources */,
