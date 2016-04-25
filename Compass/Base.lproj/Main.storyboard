@@ -450,16 +450,16 @@
         <scene sceneID="UuE-Hv-zPa">
             <objects>
                 <tableViewController title="Main" id="hvk-pI-Gwh" customClass="MainViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="175" sectionHeaderHeight="28" sectionFooterHeight="28" id="IMT-KW-c44">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="155" sectionHeaderHeight="28" sectionFooterHeight="28" id="IMT-KW-c44">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpNextCell" rowHeight="175" id="9ZF-eR-FAx" customClass="UpNextCell" customModule="Compass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="175"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpNextCell" rowHeight="155" id="9ZF-eR-FAx" customClass="UpNextCell" customModule="Compass" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="155"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9ZF-eR-FAx" id="AGd-cE-Q6D">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="174"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="154"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Up Next" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKO-cc-6XZ">
@@ -468,11 +468,30 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTk-TS-BJC" userLabel="Content Container">
-                                            <rect key="frame" x="8" y="38" width="584" height="128"/>
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YTk-TS-BJC" userLabel="Content Container">
+                                            <rect key="frame" x="8" y="38" width="584" height="95"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zto-5s-0nC" userLabel="ActionContainer">
-                                                    <rect key="frame" x="88" y="0.0" width="496" height="128"/>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Cb-HC-iGf" userLabel="Progress Container">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="95"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ze-ex-7vR" customClass="CircleProgressView" customModule="Compass" customModuleProvider="target">
+                                                            <rect key="frame" x="15" y="23" width="50" height="50"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="Blx-Kb-ezl"/>
+                                                                <constraint firstAttribute="height" constant="50" id="v2n-RW-BcZ"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="Fxf-Ml-8TM"/>
+                                                        <constraint firstItem="8Ze-ex-7vR" firstAttribute="centerY" secondItem="8Cb-HC-iGf" secondAttribute="centerY" id="Yzm-08-L5o"/>
+                                                        <constraint firstItem="8Ze-ex-7vR" firstAttribute="centerX" secondItem="8Cb-HC-iGf" secondAttribute="centerX" id="mMQ-rJ-3is"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zto-5s-0nC" userLabel="ActionContainer">
+                                                    <rect key="frame" x="88" y="0.0" width="496" height="95"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recognize that all of your feelings are important" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOM-EP-jrL">
                                                             <rect key="frame" x="8" y="8" width="480" height="17"/>
@@ -506,51 +525,13 @@
                                                         <constraint firstItem="Koo-Aj-XK2" firstAttribute="leading" secondItem="Zto-5s-0nC" secondAttribute="leading" constant="8" id="yE1-eG-uGR"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Cb-HC-iGf" userLabel="Progress Container">
-                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="128"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ze-ex-7vR" customClass="CircleProgressView" customModule="Compass" customModuleProvider="target">
-                                                            <rect key="frame" x="15" y="8" width="50" height="50"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="6DK-DS-De7"/>
-                                                                <constraint firstAttribute="width" constant="50" id="Blx-Kb-ezl"/>
-                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ahu-du-QZX"/>
-                                                                <constraint firstAttribute="height" constant="50" id="v2n-RW-BcZ"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completion" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wxc-dO-XVW">
-                                                            <rect key="frame" x="8" y="66" width="64" height="29"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstItem="Wxc-dO-XVW" firstAttribute="centerX" secondItem="8Cb-HC-iGf" secondAttribute="centerX" id="1V2-Q9-i6i"/>
-                                                        <constraint firstItem="8Ze-ex-7vR" firstAttribute="top" secondItem="8Cb-HC-iGf" secondAttribute="top" constant="8" id="41c-ym-zLs"/>
-                                                        <constraint firstItem="Wxc-dO-XVW" firstAttribute="top" secondItem="8Ze-ex-7vR" secondAttribute="bottom" constant="8" id="8YE-jl-zaf"/>
-                                                        <constraint firstItem="Wxc-dO-XVW" firstAttribute="leading" secondItem="8Cb-HC-iGf" secondAttribute="leading" constant="8" id="FCy-ZQ-lnA"/>
-                                                        <constraint firstAttribute="width" constant="80" id="Fxf-Ml-8TM"/>
-                                                        <constraint firstItem="Wxc-dO-XVW" firstAttribute="top" secondItem="8Ze-ex-7vR" secondAttribute="bottom" constant="8" id="afY-Lp-bFK"/>
-                                                        <constraint firstItem="8Ze-ex-7vR" firstAttribute="centerX" secondItem="8Cb-HC-iGf" secondAttribute="centerX" id="hud-zs-zaE"/>
-                                                        <constraint firstItem="8Ze-ex-7vR" firstAttribute="top" secondItem="8Cb-HC-iGf" secondAttribute="top" constant="8" id="koz-kZ-Dk8"/>
-                                                        <constraint firstItem="8Ze-ex-7vR" firstAttribute="centerX" secondItem="8Cb-HC-iGf" secondAttribute="centerX" id="mMQ-rJ-3is"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Wxc-dO-XVW" secondAttribute="trailing" constant="8" id="rHy-3r-fVo"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="1V2-Q9-i6i"/>
-                                                        </mask>
-                                                    </variation>
-                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="Zto-5s-0nC" firstAttribute="leading" secondItem="8Cb-HC-iGf" secondAttribute="trailing" constant="8" id="1HS-Ca-8Ck"/>
                                                 <constraint firstAttribute="trailing" secondItem="Zto-5s-0nC" secondAttribute="trailing" id="5sF-1a-M85"/>
                                                 <constraint firstItem="Zto-5s-0nC" firstAttribute="top" secondItem="YTk-TS-BJC" secondAttribute="top" id="GIP-aW-tY6"/>
+                                                <constraint firstItem="Zto-5s-0nC" firstAttribute="height" secondItem="8Cb-HC-iGf" secondAttribute="height" id="GR4-EH-UFC"/>
                                                 <constraint firstItem="8Cb-HC-iGf" firstAttribute="leading" secondItem="YTk-TS-BJC" secondAttribute="leading" id="L1j-aj-BFT"/>
                                                 <constraint firstItem="8Cb-HC-iGf" firstAttribute="top" secondItem="YTk-TS-BJC" secondAttribute="top" id="MpW-3S-Yma"/>
                                                 <constraint firstAttribute="bottom" secondItem="Zto-5s-0nC" secondAttribute="bottom" id="ciG-SP-4MN"/>
@@ -569,7 +550,6 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="progressCaption" destination="Wxc-dO-XVW" id="AUV-Dk-hCC"/>
                                     <outlet property="progressIndicator" destination="8Ze-ex-7vR" id="FtN-cL-btS"/>
                                 </connections>
                             </tableViewCell>

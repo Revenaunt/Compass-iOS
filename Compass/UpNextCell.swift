@@ -10,7 +10,6 @@ import UIKit
 
 class UpNextCell: UITableViewCell {
     @IBOutlet weak var progressIndicator: CircleProgressView!
-    @IBOutlet weak var progressCaption: UILabel!
 
     
     override func awakeFromNib() {
@@ -26,6 +25,6 @@ class UpNextCell: UITableViewCell {
     
     func setProgress(progress: Double){
         progressIndicator.setProgress(progress, animated: true);
-        progressCaption.text = "\(progress) complete";
+        //progressCaption.text = "\(progress) complete";
     }
 }
