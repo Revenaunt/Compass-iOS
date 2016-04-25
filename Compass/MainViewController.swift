@@ -53,8 +53,10 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         else if (indexPath.section == 1){
             cell = tableView.dequeueReusableCellWithIdentifier("FeedbackCell", forIndexPath: indexPath);
         }
+        else if (indexPath.section == 2){
+            cell = tableView.dequeueReusableCellWithIdentifier("UpcomingCell", forIndexPath: indexPath);
+        }
         else{
-    
             cell = tableView.dequeueReusableCellWithIdentifier("UpNextCell", forIndexPath: indexPath);
             let upNextCell = cell as! UpNextCell;
             upNextCell.setProgress(0.28);

@@ -595,6 +595,46 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpcomingCell" rowHeight="94" id="lbd-71-qxq" customClass="UpcomingCell" customModule="Compass" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="342" width="600" height="94"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lbd-71-qxq" id="LSN-Od-JU1">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="93"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1a9-jM-YAa">
+                                            <rect key="frame" x="16" y="8" width="568" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Time" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSP-8g-6kW">
+                                            <rect key="frame" x="16" y="64" width="568" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtY-t1-dpa">
+                                            <rect key="frame" x="16" y="36" width="568" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="1a9-jM-YAa" firstAttribute="leading" secondItem="LSN-Od-JU1" secondAttribute="leadingMargin" constant="8" id="0wg-yF-YbW"/>
+                                        <constraint firstItem="1a9-jM-YAa" firstAttribute="top" secondItem="LSN-Od-JU1" secondAttribute="topMargin" id="5QZ-tp-NA1"/>
+                                        <constraint firstItem="tSP-8g-6kW" firstAttribute="leading" secondItem="LSN-Od-JU1" secondAttribute="leadingMargin" constant="8" id="9rW-6e-wCK"/>
+                                        <constraint firstItem="1a9-jM-YAa" firstAttribute="trailing" secondItem="LSN-Od-JU1" secondAttribute="trailingMargin" constant="-8" id="Bzk-fE-8VH"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="tSP-8g-6kW" secondAttribute="bottom" id="MNV-xq-2mW"/>
+                                        <constraint firstItem="PtY-t1-dpa" firstAttribute="trailing" secondItem="LSN-Od-JU1" secondAttribute="trailingMargin" constant="-8" id="Tzx-I3-cYw"/>
+                                        <constraint firstItem="PtY-t1-dpa" firstAttribute="leading" secondItem="LSN-Od-JU1" secondAttribute="leadingMargin" constant="8" id="Vpf-Sp-yXX"/>
+                                        <constraint firstItem="tSP-8g-6kW" firstAttribute="trailing" secondItem="LSN-Od-JU1" secondAttribute="trailingMargin" constant="-8" id="n3t-uh-6d4"/>
+                                        <constraint firstItem="tSP-8g-6kW" firstAttribute="top" secondItem="PtY-t1-dpa" secondAttribute="bottom" constant="8" id="rRl-pj-bfq"/>
+                                        <constraint firstItem="PtY-t1-dpa" firstAttribute="top" secondItem="1a9-jM-YAa" secondAttribute="bottom" constant="8" id="xHv-Lw-IJH"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="hvk-pI-Gwh" id="11O-cs-QK7"/>
