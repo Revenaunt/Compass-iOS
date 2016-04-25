@@ -43,4 +43,8 @@ class CompassUtil{
                 return"Tile - Master";
         }
     }
+    
+    static func getHeaderMap(user: User) -> [String: String]{
+        return ["Authorization": "Token " + user.getToken()];
+    }
 }

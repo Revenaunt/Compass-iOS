@@ -27,6 +27,7 @@ class ParserModels{
         var goals: [GoalContent]? = nil;
         var next: String? = nil;
         
+        
         required init?(_ map: Map){
             
         }
@@ -34,6 +35,19 @@ class ParserModels{
         func mapping(map: Map){
             goals <- map["results"];
             next <- map["next"];
+        }
+    }
+    
+    class FeedDataArray: Mappable{
+        var feedData: [FeedData]? = nil;
+        
+        
+        required init?(_ map: Map){
+            
+        }
+        
+        func mapping(map: Map){
+            feedData <- map["results"];
         }
     }
 }

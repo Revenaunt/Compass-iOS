@@ -1,0 +1,74 @@
+//
+//  InitialDataLoader.swift
+//  Compass
+//
+//  Created by Ismael Alonso on 4/25/16.
+//  Copyright © 2016 Tennessee Data Commons. All rights reserved.
+//
+
+import Just
+import ObjectMapper
+
+
+
+class InitialDataLoader{
+    private static var user: User? = nil;
+    private static var callback: ((Bool)) -> Void = { success in };
+    
+    static func load(user: User, callback: ((Bool)) -> Void){
+        self.user = user;
+        self.callback = callback;
+        fetchCategories();
+    }
+    
+    private static func fetchCategories(){
+        Just.get(API.getCategoriesUrl()){ (response) in
+            if (response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!)){
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
+                Data.setPublicCategories(Mapper<ParserModels.CategoryContentArray>().map(result)?.categories);
+                for category in Data.getPublicCategories()!{
+                    print(category.toString());
+                }
+                fetchFeedData();
+            }
+            else{
+                failure();
+            }
+        }
+    }
+    
+    private static func fetchFeedData(){
+        Just.get(API.getFeedDataUrl(), headers: CompassUtil.getHeaderMap(user!)){ (response) in
+            if (response.ok){
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
+                Data.setFeedData((Mapper<ParserModels.FeedDataArray>().map(result)?.feedData![0])!);
+                success();
+            }
+            else{
+                failure();
+            }
+        }
+    }
+    
+    private static func fetchCustomGoals(){
+        
+    }
+    
+    private static func fetchUserGoals(){
+        
+    }
+    
+    private static func success(){
+        dispatch_async(dispatch_get_main_queue(), {
+            callback(true);
+        });
+    }
+    
+    private static func failure(){
+        dispatch_async(dispatch_get_main_queue(), {
+            callback(false);
+        });
+    }
+}
+
+

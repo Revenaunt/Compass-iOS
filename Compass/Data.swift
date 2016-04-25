@@ -12,6 +12,7 @@ import Foundation
 class Data{
     private static var user: User? = nil;
     private static var publicCategories: [CategoryContent]? = nil;
+    private static var feedData: FeedData? = nil;
     
     
     class func setUser(user: User?){
@@ -28,5 +29,13 @@ class Data{
     
     class func getPublicCategories() -> [CategoryContent]?{
         return publicCategories;
+    }
+    
+    class func setFeedData(feedData: FeedData){
+        self.feedData = feedData;
+    }
+    
+    class func getFeedData() -> FeedData?{
+        return feedData;
     }
 }

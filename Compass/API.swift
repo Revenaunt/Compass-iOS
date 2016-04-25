@@ -71,6 +71,10 @@ class API{
      * APPLICATION DATA AND LIBRARY *
      *------------------------------*/
     
+    static func getFeedDataUrl() -> String{
+        return postProcess(BASE_URL + "users/feed/");
+    }
+    
     //Categories
     static func getCategoriesUrl() -> String{
         return postProcess(BASE_URL + "categories/?page_size=999999");
