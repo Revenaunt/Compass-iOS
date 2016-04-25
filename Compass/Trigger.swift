@@ -10,15 +10,15 @@ import ObjectMapper
 
 
 class Trigger: TDCBase{
-    var name: String = "";
+    private var name: String = "";
     
-    var time: String = "";
-    var date: String = "";
-    var recurrences: String = "";
+    private var time: String = "";
+    private var date: String = "";
+    private var recurrences: String = "";
     
-    var recurrencesDisplay: String = "";
+    private var recurrencesDisplay: String = "";
     
-    var disabled: Bool = false;
+    private var disabled: Bool = false;
     
     
     required init?(_ map: Map){

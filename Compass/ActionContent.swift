@@ -10,13 +10,13 @@ import ObjectMapper
 
 
 class ActionContent: TDCContent{
-    var sequenceOrder: Int = -1;
-    var moreInfo: String = "";
-    var htmlMoreInfo: String = "";
-    var externalResource: String = "";
-    var externalResourceName: String = "";
-    var trigger: Trigger? = nil;
-    var behaviorId: Int = -1;
+    private var sequenceOrder: Int = -1;
+    private var moreInfo: String = "";
+    private var htmlMoreInfo: String = "";
+    private var externalResource: String = "";
+    private var externalResourceName: String = "";
+    private var trigger: Trigger? = nil;
+    private var behaviorId: Int = -1;
     
     
     required init?(_ map: Map){
