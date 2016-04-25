@@ -635,6 +635,48 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedGoalCell" rowHeight="100" id="RoT-1z-5rg" customClass="FeedGoalCell" customModule="Compass" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="436" width="600" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RoT-1z-5rg" id="NdQ-zH-vPz">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HPS-8U-9dl">
+                                            <rect key="frame" x="8" y="8" width="83" height="83"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nxj-LE-UDb">
+                                                    <rect key="frame" x="19" y="19" width="45" height="45"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="45" id="BbN-CB-4m4"/>
+                                                        <constraint firstAttribute="width" constant="45" id="DgH-MK-oJ3"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="HPS-8U-9dl" secondAttribute="height" multiplier="1:1" id="7YG-5t-XjA"/>
+                                                <constraint firstItem="nxj-LE-UDb" firstAttribute="centerY" secondItem="HPS-8U-9dl" secondAttribute="centerY" id="uXt-Jh-ckz"/>
+                                                <constraint firstItem="nxj-LE-UDb" firstAttribute="centerX" secondItem="HPS-8U-9dl" secondAttribute="centerX" id="xnK-vh-iYz"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEX-Qz-bKw">
+                                            <rect key="frame" x="99" y="39" width="493" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="jEX-Qz-bKw" firstAttribute="trailing" secondItem="NdQ-zH-vPz" secondAttribute="trailingMargin" id="HYW-gK-Wkv"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="HPS-8U-9dl" secondAttribute="bottom" id="IER-pp-fCj"/>
+                                        <constraint firstItem="jEX-Qz-bKw" firstAttribute="leading" secondItem="HPS-8U-9dl" secondAttribute="trailing" constant="8" id="KE5-cZ-9i1"/>
+                                        <constraint firstItem="HPS-8U-9dl" firstAttribute="leading" secondItem="NdQ-zH-vPz" secondAttribute="leadingMargin" id="MYI-MD-C1h"/>
+                                        <constraint firstItem="jEX-Qz-bKw" firstAttribute="centerY" secondItem="NdQ-zH-vPz" secondAttribute="centerY" id="Qir-v8-NvC"/>
+                                        <constraint firstItem="HPS-8U-9dl" firstAttribute="top" secondItem="NdQ-zH-vPz" secondAttribute="topMargin" id="YDB-tv-D7U"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="hvk-pI-Gwh" id="11O-cs-QK7"/>

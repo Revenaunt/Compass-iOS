@@ -31,6 +31,7 @@
 		5467E9B41CC5551F0088E417 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9B31CC5551F0088E417 /* Data.swift */; };
 		5468F8451CCEA68500D5769B /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8441CCEA68500D5769B /* FeedbackCell.swift */; };
 		5468F8471CCEAA8700D5769B /* UpcomingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8461CCEAA8700D5769B /* UpcomingCell.swift */; };
+		5468F8491CCEB09600D5769B /* FeedGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8481CCEB09600D5769B /* FeedGoalCell.swift */; };
 		5475BDEF1CC153F100D80D3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475BDEE1CC153F100D80D3E /* API.swift */; };
 		5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; };
 		5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -104,6 +105,7 @@
 		5467E9B31CC5551F0088E417 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		5468F8441CCEA68500D5769B /* FeedbackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
 		5468F8461CCEAA8700D5769B /* UpcomingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingCell.swift; sourceTree = "<group>"; };
+		5468F8481CCEB09600D5769B /* FeedGoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedGoalCell.swift; sourceTree = "<group>"; };
 		5475BDE81CC1426800D80D3E /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
 		5475BDEE1CC153F100D80D3E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5475BDF01CC16E9300D80D3E /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/iOS/Just.framework; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				5448276B1CCA956000BBC062 /* CategoryHeaderCell.swift */,
 				5468F8441CCEA68500D5769B /* FeedbackCell.swift */,
 				5468F8461CCEAA8700D5769B /* UpcomingCell.swift */,
+				5468F8481CCEB09600D5769B /* FeedGoalCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */,
 				545D98C41CC69A890037FAEF /* ParserModels.swift in Sources */,
 				5467E9B41CC5551F0088E417 /* Data.swift in Sources */,
+				5468F8491CCEB09600D5769B /* FeedGoalCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,7 +20,10 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if (section == 2){
-            return 3
+            return 3;
+        }
+        if (section == 3){
+            return 5;
         }
         return 1;
     }
@@ -57,9 +60,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
             cell = tableView.dequeueReusableCellWithIdentifier("UpcomingCell", forIndexPath: indexPath);
         }
         else{
-            cell = tableView.dequeueReusableCellWithIdentifier("UpNextCell", forIndexPath: indexPath);
-            let upNextCell = cell as! UpNextCell;
-            upNextCell.setProgress(0.28);
+            cell = tableView.dequeueReusableCellWithIdentifier("FeedGoalCell", forIndexPath: indexPath);
         }
         
         return cell;
