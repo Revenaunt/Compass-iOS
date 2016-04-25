@@ -29,6 +29,7 @@
 		545D98C61CC69F690037FAEF /* OnBoardingSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C51CC69F690037FAEF /* OnBoardingSurveyViewController.swift */; };
 		5467E9B01CC534D00088E417 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9AF1CC534D00088E417 /* User.swift */; };
 		5467E9B41CC5551F0088E417 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9B31CC5551F0088E417 /* Data.swift */; };
+		5468F8451CCEA68500D5769B /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8441CCEA68500D5769B /* FeedbackCell.swift */; };
 		5475BDEF1CC153F100D80D3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475BDEE1CC153F100D80D3E /* API.swift */; };
 		5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; };
 		5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -100,6 +101,7 @@
 		545D98C51CC69F690037FAEF /* OnBoardingSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingSurveyViewController.swift; sourceTree = "<group>"; };
 		5467E9AF1CC534D00088E417 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5467E9B31CC5551F0088E417 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		5468F8441CCEA68500D5769B /* FeedbackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
 		5475BDE81CC1426800D80D3E /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
 		5475BDEE1CC153F100D80D3E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5475BDF01CC16E9300D80D3E /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/iOS/Just.framework; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				544614281CC971D000F2B441 /* CategoryDescriptionCell.swift */,
 				544827691CCA88E500BBC062 /* GoalCell.swift */,
 				5448276B1CCA956000BBC062 /* CategoryHeaderCell.swift */,
+				5468F8441CCEA68500D5769B /* FeedbackCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				54010E131CC6C398009FB013 /* CompassUtil.swift in Sources */,
 				544614211CC927CE00F2B441 /* ChooseCategoryViewController.swift in Sources */,
 				5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */,
+				5468F8451CCEA68500D5769B /* FeedbackCell.swift in Sources */,
 				5475BDEF1CC153F100D80D3E /* API.swift in Sources */,
 				544614271CC9719800F2B441 /* GoalLibraryViewController.swift in Sources */,
 				54010E151CC6D31A009FB013 /* MainViewController.swift in Sources */,

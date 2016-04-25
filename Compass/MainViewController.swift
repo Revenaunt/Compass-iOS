@@ -43,13 +43,21 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("UpNextCell", forIndexPath: indexPath) as! UpNextCell;
+        var cell: UITableViewCell;
         
         if (indexPath.section == 0){
-            cell.setProgress(0.44);
+            cell = tableView.dequeueReusableCellWithIdentifier("UpNextCell", forIndexPath: indexPath);
+            let upNextCell = cell as! UpNextCell;
+            upNextCell.setProgress(0.44);
+        }
+        else if (indexPath.section == 1){
+            cell = tableView.dequeueReusableCellWithIdentifier("FeedbackCell", forIndexPath: indexPath);
         }
         else{
-            cell.setProgress(0.28);
+    
+            cell = tableView.dequeueReusableCellWithIdentifier("UpNextCell", forIndexPath: indexPath);
+            let upNextCell = cell as! UpNextCell;
+            upNextCell.setProgress(0.28);
         }
         
         return cell;
