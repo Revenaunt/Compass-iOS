@@ -37,6 +37,7 @@
 		5468F84F1CCEB6C600D5769B /* UserContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F84E1CCEB6C600D5769B /* UserContent.swift */; };
 		5468F8511CCEB7B200D5769B /* UserAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8501CCEB7B200D5769B /* UserAction.swift */; };
 		5468F8531CCEB7D100D5769B /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8521CCEB7D100D5769B /* Action.swift */; };
+		5468F8551CCEBA8300D5769B /* FeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8541CCEBA8300D5769B /* FeedData.swift */; };
 		5475BDEF1CC153F100D80D3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475BDEE1CC153F100D80D3E /* API.swift */; };
 		5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; };
 		5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -116,6 +117,7 @@
 		5468F84E1CCEB6C600D5769B /* UserContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserContent.swift; sourceTree = "<group>"; };
 		5468F8501CCEB7B200D5769B /* UserAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAction.swift; sourceTree = "<group>"; };
 		5468F8521CCEB7D100D5769B /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		5468F8541CCEBA8300D5769B /* FeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedData.swift; sourceTree = "<group>"; };
 		5475BDE81CC1426800D80D3E /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
 		5475BDEE1CC153F100D80D3E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5475BDF01CC16E9300D80D3E /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/iOS/Just.framework; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				5468F84E1CCEB6C600D5769B /* UserContent.swift */,
 				5468F8501CCEB7B200D5769B /* UserAction.swift */,
 				5468F8521CCEB7D100D5769B /* Action.swift */,
+				5468F8541CCEBA8300D5769B /* FeedData.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5468F8551CCEBA8300D5769B /* FeedData.swift in Sources */,
 				544614291CC971D000F2B441 /* CategoryDescriptionCell.swift in Sources */,
 				545D98BE1CC68C820037FAEF /* CategoryContent.swift in Sources */,
 				544614231CC92C5400F2B441 /* CategoryCell.swift in Sources */,
