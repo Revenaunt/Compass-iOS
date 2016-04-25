@@ -15,17 +15,37 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 1;
+        return 4;
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 2;
+        if (section == 2){
+            return 3
+        }
+        return 1;
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (section == 0){
+            return "Up Next";
+        }
+        else if (section == 1){
+            //Feedback is a complete different section layout-wise, but it is part of the original up next.
+            //  Returning an empty string as the section header will make it seem like they are part of the same thing.
+            return "";
+        }
+        else if (section == 2){
+            return "Upcoming";
+        }
+        else{
+            return "My Goals";
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = self.tableView.dequeueReusableCellWithIdentifier("UpNextCell", forIndexPath: indexPath) as! UpNextCell;
         
-        if (indexPath.item == 0){
+        if (indexPath.section == 0){
             cell.setProgress(0.44);
         }
         else{
