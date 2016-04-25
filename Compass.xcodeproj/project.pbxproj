@@ -32,6 +32,8 @@
 		5468F8451CCEA68500D5769B /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8441CCEA68500D5769B /* FeedbackCell.swift */; };
 		5468F8471CCEAA8700D5769B /* UpcomingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8461CCEAA8700D5769B /* UpcomingCell.swift */; };
 		5468F8491CCEB09600D5769B /* FeedGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8481CCEB09600D5769B /* FeedGoalCell.swift */; };
+		5468F84B1CCEB20600D5769B /* ActionContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F84A1CCEB20600D5769B /* ActionContent.swift */; };
+		5468F84D1CCEB45000D5769B /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F84C1CCEB45000D5769B /* Trigger.swift */; };
 		5475BDEF1CC153F100D80D3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475BDEE1CC153F100D80D3E /* API.swift */; };
 		5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; };
 		5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -106,6 +108,8 @@
 		5468F8441CCEA68500D5769B /* FeedbackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
 		5468F8461CCEAA8700D5769B /* UpcomingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingCell.swift; sourceTree = "<group>"; };
 		5468F8481CCEB09600D5769B /* FeedGoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedGoalCell.swift; sourceTree = "<group>"; };
+		5468F84A1CCEB20600D5769B /* ActionContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionContent.swift; sourceTree = "<group>"; };
+		5468F84C1CCEB45000D5769B /* Trigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		5475BDE81CC1426800D80D3E /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
 		5475BDEE1CC153F100D80D3E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5475BDF01CC16E9300D80D3E /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/iOS/Just.framework; sourceTree = "<group>"; };
@@ -167,6 +171,8 @@
 				545D98BF1CC695F50037FAEF /* TDCBase.swift */,
 				545D98C11CC697100037FAEF /* TDCContent.swift */,
 				544614241CC9495C00F2B441 /* GoalContent.swift */,
+				5468F84A1CCEB20600D5769B /* ActionContent.swift */,
+				5468F84C1CCEB45000D5769B /* Trigger.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -445,6 +451,7 @@
 				547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */,
 				54010E131CC6C398009FB013 /* CompassUtil.swift in Sources */,
 				544614211CC927CE00F2B441 /* ChooseCategoryViewController.swift in Sources */,
+				5468F84D1CCEB45000D5769B /* Trigger.swift in Sources */,
 				5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */,
 				5468F8451CCEA68500D5769B /* FeedbackCell.swift in Sources */,
 				5475BDEF1CC153F100D80D3E /* API.swift in Sources */,
@@ -457,6 +464,7 @@
 				545D98C41CC69A890037FAEF /* ParserModels.swift in Sources */,
 				5467E9B41CC5551F0088E417 /* Data.swift in Sources */,
 				5468F8491CCEB09600D5769B /* FeedGoalCell.swift in Sources */,
+				5468F84B1CCEB20600D5769B /* ActionContent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
