@@ -696,6 +696,11 @@
                                         <constraint firstItem="HPS-8U-9dl" firstAttribute="top" secondItem="NdQ-zH-vPz" secondAttribute="topMargin" id="YDB-tv-D7U"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="icon" destination="nxj-LE-UDb" id="1q5-mc-G9Y"/>
+                                    <outlet property="iconContainer" destination="HPS-8U-9dl" id="V2e-3t-7CV"/>
+                                    <outlet property="title" destination="jEX-Qz-bKw" id="Drb-Mm-COR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

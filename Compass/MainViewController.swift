@@ -48,6 +48,8 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         }
         else{
             cell = tableView.dequeueReusableCellWithIdentifier("FeedGoalCell", forIndexPath: indexPath);
+            let goalCell = cell as! FeedGoalCell;
+            goalCell.bind(Data.feedData.getGoals()[indexPath.row]);
         }
         
         return cell;
@@ -67,5 +69,32 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
             self.performSegueWithIdentifier("Library", sender: self);
         });
         presentViewController(addSheet, animated: true, completion: nil);
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+        print("Height for: \(indexPath.section), \(indexPath.row)");
+        if (indexPath.section == 0){
+            
+        }
+        else if (indexPath.section == 1){
+            
+        }
+        else if (indexPath.section == 2){
+            
+        }
+        else if (indexPath.section == 3){
+            return 100;
+        }
+        return 120;
+    }
+}
+
+extension String{
+    func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat{
+        let constraintRect = CGSize(width: width, height: CGFloat.max)
+        
+        let boundingBox = self.boundingRectWithSize(constraintRect, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        
+        return boundingBox.height
     }
 }

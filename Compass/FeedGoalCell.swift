@@ -10,5 +10,11 @@ import UIKit
 
 
 class FeedGoalCell: UITableViewCell{
+    @IBOutlet weak var iconContainer: UIView!
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var title: UILabel!
     
+    func bind(goal: Goal){
+        title.text = goal.getTitle();
+    }
 }

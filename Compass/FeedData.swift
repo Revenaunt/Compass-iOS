@@ -15,7 +15,7 @@ class FeedData: Mappable, CustomStringConvertible{
     private var actionFeedback: ActionFeedback? = nil;
     private var upNextAction: UpcomingAction? = nil;
     private var upcomingActions: [UpcomingAction] = [UpcomingAction]();
-    private var goals: [GoalContent] = [GoalContent]();
+    private var goals: [Goal] = [Goal]();
     
     
     init(){
@@ -52,8 +52,12 @@ class FeedData: Mappable, CustomStringConvertible{
         return upcomingActions;
     }
     
-    func getGoals() -> [GoalContent]{
+    func getGoals() -> [Goal]{
         return goals;
+    }
+    
+    func addGoals(goals: [Goal]){
+        self.goals.appendContentsOf(goals);
     }
     
     var description: String{

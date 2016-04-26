@@ -42,7 +42,7 @@ class InitialDataLoader{
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
                 Data.feedData = (Mapper<ParserModels.FeedDataArray>().map(result)?.feedData![0])!;
-                success();
+                fetchCustomGoals();
             }
             else{
                 failure();
@@ -51,7 +51,16 @@ class InitialDataLoader{
     }
     
     private static func fetchCustomGoals(){
-        
+        Just.get(API.getCustomGoalsUrl(), headers: CompassUtil.getHeaderMap(user!)){ response in
+            if (response.ok){
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
+                Data.feedData.addGoals((Mapper<ParserModels.CustomGoalArray>().map(result)?.goals)!);
+                success();
+            }
+            else{
+                failure();
+            }
+        }
     }
     
     private static func fetchUserGoals(){
