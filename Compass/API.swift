@@ -111,6 +111,14 @@ class API{
     static func getGoalsUrl(category: CategoryContent) -> String{
         return postProcess(BASE_URL + "goals/?category=\(category.getId())");
     }
+    
+    static func getUserGoalsUrl() -> String{
+        return postProcess(BASE_URL + "users/goals/?page_size=3");
+    }
+    
+    static func getCustomGoalsUrl() -> String{
+        return postProcess(BASE_URL + "users/customgoals/?page_size=3");
+    }
 }
 
 
