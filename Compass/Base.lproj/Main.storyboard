@@ -594,6 +594,10 @@
                                         <constraint firstItem="ujD-xy-Gy6" firstAttribute="height" secondItem="IdG-7j-xsg" secondAttribute="height" id="lzd-gs-9fS"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="subtitle" destination="tei-o4-Y2j" id="ia6-1j-6sH"/>
+                                    <outlet property="title" destination="esv-Mr-qqO" id="5Jt-WJ-rwB"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpcomingCell" rowHeight="94" id="lbd-71-qxq" customClass="UpcomingCell" customModule="Compass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="342" width="600" height="94"/>

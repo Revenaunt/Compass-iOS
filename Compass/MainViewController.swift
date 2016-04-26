@@ -15,6 +15,9 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
+        if (Data.getFeedData()!.getFeedback() == nil){
+            return 3;
+        }
         return 4;
     }
     
@@ -55,6 +58,9 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         }
         else if (indexPath.section == 1){
             cell = tableView.dequeueReusableCellWithIdentifier("FeedbackCell", forIndexPath: indexPath);
+            let feedbackCell = cell as! FeedbackCell;
+            feedbackCell.setFeedback(Data.getFeedData()!.getFeedback()!);
+            
         }
         else if (indexPath.section == 2){
             cell = tableView.dequeueReusableCellWithIdentifier("UpcomingCell", forIndexPath: indexPath);

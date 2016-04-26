@@ -13,8 +13,14 @@ import ObjectMapper
 class FeedData: Mappable{
     private var progress: Progress? = nil;
     private var actionFeedback: ActionFeedback? = nil;
+    private var upNextAction: UpcomingAction? = nil;
     private var upcomingActions: [UpcomingAction] = [UpcomingAction]();
+    private var goals: [GoalContent] = [GoalContent]();
     
+    
+    init(){
+        
+    }
     
     required init?(_ map: Map){
         
@@ -24,11 +30,34 @@ class FeedData: Mappable{
         progress <- map["progress"];
         actionFeedback <- map["action_feedback"];
         upcomingActions <- map["upcoming"];
+        
+        if (upcomingActions.count > 0){
+            upNextAction = upcomingActions.removeAtIndex(0) as UpcomingAction;
+        }
+    }
+    
+    func getProgress() -> Progress?{
+        return progress;
+    }
+    
+    func getUpNextAction() -> UpcomingAction?{
+        return upNextAction;
+    }
+    
+    func getFeedback() -> ActionFeedback?{
+        return actionFeedback;
+    }
+    
+    func getUpcoming() -> [UpcomingAction]{
+        return upcomingActions;
+    }
+    
+    func getGoals() -> [GoalContent]{
+        return goals;
     }
     
     
-    
-    private class Progress: Mappable{
+    class Progress: Mappable{
         private var totalActions: Int = 0;
         private var completedActions: Int = 0;
         private var progressPercentage: Int = 0;
@@ -38,7 +67,7 @@ class FeedData: Mappable{
             
         }
         
-        private func mapping(map: Map){
+        internal func mapping(map: Map){
             totalActions <- map["total"];
             completedActions <- map["completed"];
             progressPercentage <- map["progress"];
@@ -71,7 +100,7 @@ class FeedData: Mappable{
         }
     }
     
-    private class ActionFeedback: Mappable{
+    class ActionFeedback: Mappable{
         private var title: String = "";
         private var subtitle: String = "";
         private var iconId: Int = -1;
@@ -84,7 +113,7 @@ class FeedData: Mappable{
             
         }
         
-        private func mapping(map: Map){
+        internal func mapping(map: Map){
             title <- map["title"];
             subtitle <- map["subtitle"];
             iconId <- map["icon"];

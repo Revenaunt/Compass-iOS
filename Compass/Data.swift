@@ -12,7 +12,15 @@ import Foundation
 class Data{
     private static var user: User? = nil;
     private static var publicCategories: [CategoryContent]? = nil;
-    private static var feedData: FeedData? = nil;
+    private static var feedData: FeedData?{
+        get{
+            return self.feedData;
+        }
+        set{
+            self.feedData = newValue;
+            FeedTypes.setDataSource(newValue ?? FeedData());
+        }
+    };
     
     
     class func setUser(user: User?){

@@ -10,5 +10,12 @@ import UIKit
 
 
 class FeedbackCell: UITableViewCell{
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var subtitle: UILabel!
     
+    
+    func setFeedback(feedback: FeedData.ActionFeedback){
+        title.text = feedback.getTitle();
+        subtitle.text = feedback.getSubtitle();
+    }
 }
