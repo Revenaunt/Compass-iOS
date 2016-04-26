@@ -49,7 +49,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         else{
             cell = tableView.dequeueReusableCellWithIdentifier("FeedGoalCell", forIndexPath: indexPath);
             let goalCell = cell as! FeedGoalCell;
-            goalCell.bind(Data.feedData.getGoals()[indexPath.row]);
+            goalCell.bind(Data.feedData.getGoals()[indexPath.row], category: nil);
         }
         
         return cell;

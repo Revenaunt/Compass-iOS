@@ -25,8 +25,8 @@ class InitialDataLoader{
         Just.get(API.getCategoriesUrl()){ (response) in
             if (response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!)){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                Data.setPublicCategories(Mapper<ParserModels.CategoryContentArray>().map(result)?.categories);
-                for category in Data.getPublicCategories()!{
+                Data.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
+                for category in Data.publicCategories{
                     print(category.toString());
                 }
                 fetchFeedData();
@@ -54,8 +54,14 @@ class InitialDataLoader{
         Just.get(API.getCustomGoalsUrl(), headers: CompassUtil.getHeaderMap(user!)){ response in
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                Data.feedData.addGoals((Mapper<ParserModels.CustomGoalArray>().map(result)?.goals)!);
-                success();
+                let goals = (Mapper<ParserModels.CustomGoalArray>().map(result)?.goals)!
+                if (goals.count > 0){
+                    Data.feedData.addGoals(goals);
+                    success();
+                }
+                else{
+                    fetchUserGoals();
+                }
             }
             else{
                 failure();
@@ -64,7 +70,22 @@ class InitialDataLoader{
     }
     
     private static func fetchUserGoals(){
-        
+        Just.get(API.getUserGoalsUrl(), headers: CompassUtil.getHeaderMap(user!)){ response in
+            if (response.ok){
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
+                let goals = (Mapper<ParserModels.UserGoalArray>().map(result)?.goals)!
+                if (goals.count > 0){
+                    Data.feedData.addGoals(goals);
+                    success();
+                }
+                else{
+                    fetchUserGoals();
+                }
+            }
+            else{
+                failure();
+            }
+        }
     }
     
     private static func success(){

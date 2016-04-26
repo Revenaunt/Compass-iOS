@@ -34,7 +34,11 @@ class UserGoal: Goal{
     }
     
     override func getTitle() -> String{
-        return (goal?.getTitle())!;
+        return goal!.getTitle();
+    }
+    
+    override func getIconUrl() -> String {
+        return goal!.getIconUrl();
     }
     
     override func getColor() -> String{

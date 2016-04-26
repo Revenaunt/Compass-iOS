@@ -53,6 +53,21 @@ class ParserModels{
         }
     }
     
+    class UserGoalArray: Mappable{
+        var goals: [UserGoal]? = nil;
+        var next: String? = nil;
+        
+        
+        required init?(_ map: Map){
+            
+        }
+        
+        func mapping(map: Map){
+            goals <- map["results"];
+            next <- map["next"];
+        }
+    }
+    
     class FeedDataArray: Mappable{
         var feedData: [FeedData]? = nil;
         

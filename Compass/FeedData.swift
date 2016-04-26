@@ -16,6 +16,7 @@ class FeedData: Mappable, CustomStringConvertible{
     private var upNextAction: UpcomingAction? = nil;
     private var upcomingActions: [UpcomingAction] = [UpcomingAction]();
     private var goals: [Goal] = [Goal]();
+    private var nextGoalBatchUrl: String? = nil;
     
     
     init(){
@@ -58,6 +59,14 @@ class FeedData: Mappable, CustomStringConvertible{
     
     func addGoals(goals: [Goal]){
         self.goals.appendContentsOf(goals);
+    }
+    
+    func setNextGoalBatchUrl(url: String?){
+        nextGoalBatchUrl = url;
+    }
+    
+    func getNextGoalBatchUrl() -> String?{
+        return nextGoalBatchUrl;
     }
     
     var description: String{
