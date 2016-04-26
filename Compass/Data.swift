@@ -10,19 +10,25 @@ import Foundation
 
 
 class Data{
+    //Internal instances
+    private static var internalFeedData:FeedData = FeedData();
+    
     private static var user: User? = nil;
     private static var publicCategories: [CategoryContent]? = nil;
-    private static var feedData: FeedData?{
+    
+    //Stored pricedures, used to distribute the instances
+    static var feedData: FeedData{
         get{
-            return self.feedData;
+            return self.internalFeedData;
         }
-        set{
-            self.feedData = newValue;
-            FeedTypes.setDataSource(newValue ?? FeedData());
+        set (feedData){
+            self.internalFeedData = feedData;
+            FeedTypes.setDataSource(feedData ?? FeedData());
         }
     };
     
     
+    //Deprecate these
     class func setUser(user: User?){
         self.user = user;
     }
@@ -37,13 +43,5 @@ class Data{
     
     class func getPublicCategories() -> [CategoryContent]?{
         return publicCategories;
-    }
-    
-    class func setFeedData(feedData: FeedData){
-        self.feedData = feedData;
-    }
-    
-    class func getFeedData() -> FeedData?{
-        return feedData;
     }
 }

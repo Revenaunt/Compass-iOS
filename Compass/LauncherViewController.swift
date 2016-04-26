@@ -12,7 +12,7 @@ import Just
 import ObjectMapper
 
 
-class LauncherViewController: UIViewController {
+class LauncherViewController: UIViewController{
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var signUp: UIButton!
     @IBOutlet weak var logIn: UIButton!
@@ -39,7 +39,7 @@ class LauncherViewController: UIViewController {
                     print(Data.getUser()!.toString());
                     InitialDataLoader.load(Data.getUser()!){ (success) in
                         if (success){
-                            print(Data.getFeedData() != nil);
+                            print(Data.feedData);
                             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
                             let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
                             UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;

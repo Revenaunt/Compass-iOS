@@ -28,7 +28,7 @@ class FeedTypes{
     }
     
     static func hasFeedback() -> Bool{
-        return hasUpNextAction() && Data.getFeedData()?.getFeedback() != nil;
+        return hasUpNextAction() && feedData.getFeedback() != nil;
     }
     
     static func getFeedbackSectionPosition() -> Int{
@@ -44,10 +44,7 @@ class FeedTypes{
     }
     
     static func getUpcomingSectionPosition() -> Int{
-        if (hasFeedback()){
-            return getFeedbackSectionPosition() + 1;
-        }
-        return getUpNextSectionPosition() + 1;
+        return getFeedbackSectionPosition() + 1;
     }
     
     static func isUpcomingSection(section: Int) -> Bool{
@@ -64,5 +61,47 @@ class FeedTypes{
     
     static func isGoalsSectionPosition(section: Int) -> Bool{
         return getGoalsSectionPosition() == section;
+    }
+    
+    static func getSectionCount() -> Int{
+        return getGoalsSectionPosition() + 1;
+    }
+    
+    static func getSectionItemCount(section: Int) -> Int{
+        switch (section){
+            case getUpNextSectionPosition():
+                return 1;
+            
+            case getFeedbackSectionPosition():
+                return FeedTypes.hasFeedback() ? 1 : 0;
+            
+            case getUpcomingSectionPosition():
+                return Data.feedData.getUpcoming().count;
+            
+            case getGoalsSectionPosition():
+                return Data.feedData.getGoals().count;
+            
+            default:
+                return 0;
+        }
+    }
+    
+    static func getSectionHeaderTitle(section: Int) -> String{
+        switch (section){
+            case getUpNextSectionPosition():
+                return "Up Next";
+            
+            case getFeedbackSectionPosition():
+                return "";
+            
+            case getUpcomingSectionPosition():
+                return hasUpcoming() ? "Upcoming" : "";
+            
+            case getGoalsSectionPosition():
+                return hasGoals() ? "My Goals" : "";
+            
+            default:
+                return "";
+        }
     }
 }

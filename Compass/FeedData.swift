@@ -10,7 +10,7 @@ import ObjectMapper
 
 
 //No need to extend TDCBase
-class FeedData: Mappable{
+class FeedData: Mappable, CustomStringConvertible{
     private var progress: Progress? = nil;
     private var actionFeedback: ActionFeedback? = nil;
     private var upNextAction: UpcomingAction? = nil;
@@ -54,6 +54,10 @@ class FeedData: Mappable{
     
     func getGoals() -> [GoalContent]{
         return goals;
+    }
+    
+    var description: String{
+        return "Feed Data: \(upNextAction != nil ? "has" : "doesn't have") up next, \(actionFeedback != nil ? "has" : "doesn't have") feedback, \(upcomingActions.count) actions, \(goals.count) goals";
     }
     
     

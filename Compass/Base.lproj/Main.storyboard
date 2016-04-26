@@ -19,33 +19,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="made in memphis" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEZ-7r-g4l">
-                                <rect key="frame" x="232" y="559" width="136" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="made in memphis" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEZ-7r-g4l">
+                                <rect key="frame" x="250" y="565" width="100" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="DeSoto Bridge" translatesAutoresizingMaskIntoConstraints="NO" id="CUp-si-eDw">
-                                <rect key="frame" x="153" y="491" width="295" height="60"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DeSoto Bridge" translatesAutoresizingMaskIntoConstraints="NO" id="CUp-si-eDw">
+                                <rect key="frame" x="225" y="531" width="150" height="29"/>
                             </imageView>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dmp-tk-HL3">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="483"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dmp-tk-HL3" userLabel="Main Container">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="490"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUH-Kg-K4K">
-                                        <rect key="frame" x="180" y="381" width="240" height="94"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rUH-Kg-K4K" userLabel="Menu">
+                                        <rect key="frame" x="180" y="341" width="240" height="141"/>
                                         <subviews>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OHH-hw-cjH">
-                                                <rect key="frame" x="110" y="37" width="20" height="20"/>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OHH-hw-cjH">
+                                                <rect key="frame" x="110" y="61" width="20" height="20"/>
                                             </activityIndicatorView>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWs-pG-EN5">
-                                                <rect key="frame" x="44" y="32" width="55" height="30"/>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWs-pG-EN5">
+                                                <rect key="frame" x="47" y="56" width="55" height="30"/>
                                                 <state key="normal" title="Sign Up"/>
                                                 <connections>
                                                     <segue destination="rzO-Rp-uL9" kind="show" id="fhr-9F-UOy"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKP-qN-z4h">
-                                                <rect key="frame" x="143" y="32" width="42" height="30"/>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKP-qN-z4h">
+                                                <rect key="frame" x="146" y="56" width="42" height="30"/>
                                                 <state key="normal" title="Log In"/>
                                                 <connections>
                                                     <segue destination="8ag-XI-7iu" kind="show" id="Let-gI-axp"/>
@@ -56,20 +56,25 @@
                                         <constraints>
                                             <constraint firstItem="OWs-pG-EN5" firstAttribute="centerY" secondItem="rUH-Kg-K4K" secondAttribute="centerY" id="AUu-hf-f8A"/>
                                             <constraint firstItem="OHH-hw-cjH" firstAttribute="centerY" secondItem="rUH-Kg-K4K" secondAttribute="centerY" id="IiP-H4-KoV"/>
+                                            <constraint firstItem="OHH-hw-cjH" firstAttribute="leading" secondItem="OWs-pG-EN5" secondAttribute="trailing" constant="8" id="QdE-8W-3hf"/>
                                             <constraint firstItem="OHH-hw-cjH" firstAttribute="centerX" secondItem="rUH-Kg-K4K" secondAttribute="centerX" id="VN8-DJ-vRN"/>
                                             <constraint firstItem="rKP-qN-z4h" firstAttribute="centerY" secondItem="rUH-Kg-K4K" secondAttribute="centerY" id="Y2N-ym-nub"/>
+                                            <constraint firstAttribute="width" constant="240" id="bY3-dn-sgT"/>
+                                            <constraint firstItem="rKP-qN-z4h" firstAttribute="leading" secondItem="OHH-hw-cjH" secondAttribute="trailing" constant="16" id="fCO-0l-V9R"/>
                                         </constraints>
                                     </view>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="Compass Launcher" translatesAutoresizingMaskIntoConstraints="NO" id="Upa-KP-xDd">
-                                        <rect key="frame" x="131" y="90" width="338" height="304"/>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Compass Launcher" translatesAutoresizingMaskIntoConstraints="NO" id="Upa-KP-xDd">
+                                        <rect key="frame" x="225" y="158" width="150" height="175"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="Upa-KP-xDd" firstAttribute="centerX" secondItem="dmp-tk-HL3" secondAttribute="centerX" id="HnS-sH-MHA"/>
                                     <constraint firstAttribute="bottom" secondItem="rUH-Kg-K4K" secondAttribute="bottom" constant="8" id="OoY-Ob-I7w"/>
                                     <constraint firstItem="Upa-KP-xDd" firstAttribute="centerY" secondItem="dmp-tk-HL3" secondAttribute="centerY" id="a9j-09-F8a"/>
                                     <constraint firstItem="rUH-Kg-K4K" firstAttribute="top" secondItem="Upa-KP-xDd" secondAttribute="bottom" constant="8" id="kYY-rq-s4s"/>
                                     <constraint firstItem="Upa-KP-xDd" firstAttribute="centerX" secondItem="dmp-tk-HL3" secondAttribute="centerX" id="qDs-gR-f07"/>
+                                    <constraint firstItem="rUH-Kg-K4K" firstAttribute="centerX" secondItem="dmp-tk-HL3" secondAttribute="centerX" id="t2A-um-vMb"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -77,10 +82,13 @@
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dmp-tk-HL3" secondAttribute="bottom" constant="110" id="CeF-bO-dnL"/>
                             <constraint firstItem="dmp-tk-HL3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GlE-Bd-XiM"/>
+                            <constraint firstItem="dmp-tk-HL3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="NmL-9t-uaf"/>
                             <constraint firstItem="dmp-tk-HL3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="apv-se-998"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WEZ-7r-g4l" secondAttribute="bottom" constant="20" id="cmN-w2-6JG"/>
                             <constraint firstItem="WEZ-7r-g4l" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dyI-fa-bpg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dmp-tk-HL3" secondAttribute="trailing" constant="-20" id="h4X-Ej-Eeh"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CUp-si-eDw" secondAttribute="bottom" constant="40" id="n6a-cG-yEQ"/>
+                            <constraint firstItem="dmp-tk-HL3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="suw-3l-wfo"/>
                             <constraint firstItem="CUp-si-eDw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tUI-TE-SHg"/>
                         </constraints>
                     </view>
@@ -484,19 +492,19 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zto-5s-0nC" userLabel="ActionContainer">
                                             <rect key="frame" x="96" y="8" width="496" height="108"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recognize that all of your feelings are important" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOM-EP-jrL">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOM-EP-jrL">
                                                     <rect key="frame" x="8" y="8" width="480" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action's goal title, whatever it is" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cM-Oc-MYx">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cM-Oc-MYx">
                                                     <rect key="frame" x="8" y="33" width="480" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Koo-Aj-XK2">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Koo-Aj-XK2">
                                                     <rect key="frame" x="8" y="58" width="480" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -528,7 +536,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="action" destination="bOM-EP-jrL" id="Wkh-B6-BAH"/>
+                                    <outlet property="goal" destination="0cM-Oc-MYx" id="knF-m5-5d8"/>
                                     <outlet property="progressIndicator" destination="8Ze-ex-7vR" id="FtN-cL-btS"/>
+                                    <outlet property="time" destination="Koo-Aj-XK2" id="bqt-ni-5U4"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedbackCell" id="wug-8K-Pxu" customClass="FeedbackCell" customModule="Compass" customModuleProvider="target">
@@ -638,6 +649,11 @@
                                         <constraint firstItem="PtY-t1-dpa" firstAttribute="top" secondItem="1a9-jM-YAa" secondAttribute="bottom" constant="8" id="xHv-Lw-IJH"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="action" destination="1a9-jM-YAa" id="L4l-8Z-QpR"/>
+                                    <outlet property="goal" destination="PtY-t1-dpa" id="LEn-56-bbk"/>
+                                    <outlet property="time" destination="tSP-8g-6kW" id="1RT-XT-JBH"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedGoalCell" rowHeight="100" id="RoT-1z-5rg" customClass="FeedGoalCell" customModule="Compass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="436" width="600" height="100"/>

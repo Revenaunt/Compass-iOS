@@ -41,7 +41,7 @@ class InitialDataLoader{
         Just.get(API.getFeedDataUrl(), headers: CompassUtil.getHeaderMap(user!)){ (response) in
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                Data.setFeedData((Mapper<ParserModels.FeedDataArray>().map(result)?.feedData![0])!);
+                Data.feedData = (Mapper<ParserModels.FeedDataArray>().map(result)?.feedData![0])!;
                 success();
             }
             else{

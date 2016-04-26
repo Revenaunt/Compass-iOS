@@ -10,5 +10,14 @@ import UIKit
 
 
 class UpcomingCell: UITableViewCell{
+    @IBOutlet weak var action: UILabel!
+    @IBOutlet weak var goal: UILabel!
+    @IBOutlet weak var time: UILabel!
     
+    
+    func bind(upcoming: UpcomingAction){
+        action.text = upcoming.getTitle();
+        goal.text = upcoming.getGoalTitle();
+        time.text = upcoming.getTrigger();
+    }
 }

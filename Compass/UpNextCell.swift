@@ -10,7 +10,10 @@ import UIKit
 
 class UpNextCell: UITableViewCell {
     @IBOutlet weak var progressIndicator: CircleProgressView!
-
+    @IBOutlet weak var action: UILabel!
+    @IBOutlet weak var goal: UILabel!
+    @IBOutlet weak var time: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,8 +26,10 @@ class UpNextCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setProgress(progress: Double){
-        progressIndicator.setProgress(progress, animated: true);
-        //progressCaption.text = "\(progress) complete";
+    func bind(upNext: UpcomingAction, progress: FeedData.Progress){
+        progressIndicator.setProgress(Double(progress.getProgressPercentage())/100, animated: true);
+        action.text = upNext.getTitle();
+        goal.text = upNext.getGoalTitle();
+        time.text = upNext.getTrigger();
     }
 }
