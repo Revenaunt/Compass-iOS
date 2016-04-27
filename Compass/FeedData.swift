@@ -144,9 +144,8 @@ class FeedData: Mappable, CustomStringConvertible{
             return subtitle;
         }
         
-        func getIconResource() -> String{
-            //TODO
-            return "";
+        func getIconResourceName() -> String{
+            return "Feedback \(iconId)";
         }
         
         func setGoal(/* UpcomingAction */){

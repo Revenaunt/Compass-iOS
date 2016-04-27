@@ -40,7 +40,7 @@ class CompassUtil{
                 return "Tile - Romance";
             
             default:
-                return"Tile - Master";
+                return "Tile - Master";
         }
     }
     

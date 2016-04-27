@@ -38,6 +38,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         else if (indexPath.section == 1){
             cell = tableView.dequeueReusableCellWithIdentifier("FeedbackCell", forIndexPath: indexPath);
             let feedbackCell = cell as! FeedbackCell;
+            //Data.feedData.getFeedback()!.title = "What if the title is ridiculously large? What if the title is ridiculously large? What if the title is ridiculously large?";
             feedbackCell.setFeedback(Data.feedData.getFeedback()!);
             
         }
@@ -77,7 +78,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
             
         }
         else if (indexPath.section == 1){
-            
+            return FeedbackCell.getCellHeight(Data.feedData.getFeedback()!);
         }
         else if (indexPath.section == 2){
             
