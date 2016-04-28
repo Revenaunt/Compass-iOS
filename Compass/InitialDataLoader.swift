@@ -57,11 +57,11 @@ class InitialDataLoader{
                 let goals = (Mapper<ParserModels.CustomGoalArray>().map(result)?.goals)!
                 if (goals.count > 0){
                     Data.feedData.addGoals(goals);
-                    success();
+                    //success();
                 }
-                else{
+                //else{
                     fetchUserGoals();
-                }
+                //}
             }
             else{
                 failure();
@@ -76,11 +76,9 @@ class InitialDataLoader{
                 let goals = (Mapper<ParserModels.UserGoalArray>().map(result)?.goals)!
                 if (goals.count > 0){
                     Data.feedData.addGoals(goals);
-                    success();
+                    
                 }
-                else{
-                    fetchUserGoals();
-                }
+                success();
             }
             else{
                 failure();

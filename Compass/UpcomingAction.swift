@@ -47,9 +47,23 @@ class UpcomingAction: Mappable{
         return goalTitle;
     }
     
-    //TODO trigger (unimportant now)
-    
     func getTrigger() -> String{
         return trigger;
+    }
+    
+    func getTriggerDisplay() -> String{
+        let parser = NSDateFormatter();
+        parser.dateFormat = "yyyy-MM-dd HH:mm:ssZZZ";
+        let date = NSDateFormatter().dateFromString(trigger);
+        
+        print(trigger);
+        print(date);
+        
+        if (date == nil){
+            return "Time placeholder";
+        }
+        let formatter = NSDateFormatter();
+        formatter.dateFormat = "hh:mm a";
+        return formatter.stringFromDate(date!);
     }
 }

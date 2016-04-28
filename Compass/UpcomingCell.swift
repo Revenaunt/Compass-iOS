@@ -18,6 +18,6 @@ class UpcomingCell: UITableViewCell{
     func bind(upcoming: UpcomingAction){
         action.text = upcoming.getTitle();
         goal.text = upcoming.getGoalTitle();
-        time.text = upcoming.getTrigger();
+        time.text = upcoming.getTriggerDisplay();
     }
 }

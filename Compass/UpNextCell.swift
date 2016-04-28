@@ -30,6 +30,6 @@ class UpNextCell: UITableViewCell {
         progressIndicator.setProgress(Double(progress.getProgressPercentage())/100, animated: true);
         action.text = upNext.getTitle();
         goal.text = upNext.getGoalTitle();
-        time.text = upNext.getTrigger();
+        time.text = upNext.getTriggerDisplay();
     }
 }

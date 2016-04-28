@@ -113,11 +113,11 @@ class API{
     }
     
     static func getUserGoalsUrl() -> String{
-        return postProcess(BASE_URL + "users/goals/?page_size=3");
+        return postProcess(BASE_URL + "users/goals/?page_size=999999");
     }
     
     static func getCustomGoalsUrl() -> String{
-        return postProcess(BASE_URL + "users/customgoals/?page_size=3");
+        return postProcess(BASE_URL + "users/customgoals/?page_size=999999");
     }
 }
 
