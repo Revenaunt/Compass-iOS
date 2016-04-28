@@ -179,8 +179,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         Just.get(API.getCategoriesUrl()){ (response) in
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                Data.setPublicCategories(Mapper<ParserModels.CategoryContentArray>().map(result)?.categories);
-                for category in Data.getPublicCategories()!{
+                Data.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
+                for category in Data.publicCategories{
                     print(category.toString());
                 }
                 dispatch_async(dispatch_get_main_queue(), {

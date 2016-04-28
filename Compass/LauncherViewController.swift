@@ -12,7 +12,7 @@ import Just
 import ObjectMapper
 
 
-class LauncherViewController: UIViewController {
+class LauncherViewController: UIViewController{
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var signUp: UIButton!
     @IBOutlet weak var logIn: UIButton!
@@ -37,8 +37,17 @@ class LauncherViewController: UIViewController {
                 if response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!){
                     Data.setUser(Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)));
                     print(Data.getUser()!.toString());
-                    
-                    self.fetchCategories();
+                    InitialDataLoader.load(Data.getUser()!){ (success) in
+                        if (success){
+                            print(Data.feedData);
+                            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+                            let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
+                            UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+                        }
+                        else{
+                            self.showMenu()
+                        }
+                    }
                 }
                 else{
                     print(response.error);
@@ -61,27 +70,7 @@ class LauncherViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func fetchCategories(){
-        Just.get(API.getCategoriesUrl()){ (response) in
-            if (response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!)){
-                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                Data.setPublicCategories(Mapper<ParserModels.CategoryContentArray>().map(result)?.categories);
-                for category in Data.getPublicCategories()!{
-                    print(category.toString());
-                }
-                dispatch_async(dispatch_get_main_queue(), {
-                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
-                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
-                })
-            }
-            else{
-                self.showMenu();
-            }
-        }
-    }
-    
-    func showMenu(){
+    private func showMenu(){
         activityIndicator.hidden = true;
         signUp.hidden = false;
         logIn.hidden = false;

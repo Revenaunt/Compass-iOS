@@ -71,6 +71,10 @@ class API{
      * APPLICATION DATA AND LIBRARY *
      *------------------------------*/
     
+    static func getFeedDataUrl() -> String{
+        return postProcess(BASE_URL + "users/feed/");
+    }
+    
     //Categories
     static func getCategoriesUrl() -> String{
         return postProcess(BASE_URL + "categories/?page_size=999999");
@@ -106,6 +110,14 @@ class API{
     //Goals
     static func getGoalsUrl(category: CategoryContent) -> String{
         return postProcess(BASE_URL + "goals/?category=\(category.getId())");
+    }
+    
+    static func getUserGoalsUrl() -> String{
+        return postProcess(BASE_URL + "users/goals/?page_size=999999");
+    }
+    
+    static func getCustomGoalsUrl() -> String{
+        return postProcess(BASE_URL + "users/customgoals/?page_size=999999");
     }
 }
 
