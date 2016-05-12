@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0470B39D7F142BE7F891B742 /* libPods-CompassTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F2478479BE177B779DCD98 /* libPods-CompassTests.a */; };
+		2323CCC2BDABA181DC623F77 /* libPods-CompassUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1EAD2D159AB0B5330D29FE2 /* libPods-CompassUITests.a */; };
 		54010E111CC6BAA2009FB013 /* Locksmith.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 547C466C1CBBF9EC00953735 /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54010E131CC6C398009FB013 /* CompassUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54010E121CC6C398009FB013 /* CompassUtil.swift */; };
 		54010E151CC6D31A009FB013 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54010E141CC6D31A009FB013 /* MainViewController.swift */; };
@@ -59,6 +61,7 @@
 		548031301CB6B27F00112807 /* CompassUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480312F1CB6B27F00112807 /* CompassUITests.swift */; };
 		54F60F591CC7F11A00D1424D /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F60F581CC7F11A00D1424D /* CircleProgressView.swift */; };
 		54F60F5C1CC80C7400D1424D /* UpNextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F60F5B1CC80C7400D1424D /* UpNextCell.swift */; };
+		6CC3A5F08D855A98FEA253CF /* libPods-Compass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5187931E5C5935638D9AA5F /* libPods-Compass.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +99,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2E5E342EB7E1B3B54D372FD2 /* Pods-CompassTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompassTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CompassTests/Pods-CompassTests.release.xcconfig"; sourceTree = "<group>"; };
+		4C0E0A6802662DB5A8DF34AD /* Pods-Compass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Compass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Compass/Pods-Compass.debug.xcconfig"; sourceTree = "<group>"; };
+		4FB75CC448FACCEDDBDF2460 /* Pods-CompassTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompassTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CompassTests/Pods-CompassTests.debug.xcconfig"; sourceTree = "<group>"; };
 		54010E121CC6C398009FB013 /* CompassUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassUtil.swift; sourceTree = "<group>"; };
 		54010E141CC6D31A009FB013 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		544335561CCFC5B800EB066E /* FeedTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTypes.swift; sourceTree = "<group>"; };
@@ -151,6 +157,12 @@
 		548031311CB6B27F00112807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54F60F581CC7F11A00D1424D /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		54F60F5B1CC80C7400D1424D /* UpNextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpNextCell.swift; sourceTree = "<group>"; };
+		8A270F9BCE981D16FE828B73 /* Pods-CompassUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompassUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CompassUITests/Pods-CompassUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9B6FC9C1A1D3C82D77E62546 /* Pods-Compass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Compass.release.xcconfig"; path = "Pods/Target Support Files/Pods-Compass/Pods-Compass.release.xcconfig"; sourceTree = "<group>"; };
+		A1EAD2D159AB0B5330D29FE2 /* libPods-CompassUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CompassUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5187931E5C5935638D9AA5F /* libPods-Compass.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Compass.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8F2478479BE177B779DCD98 /* libPods-CompassTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CompassTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7D36A3C9F9BEF0EA619E86A /* Pods-CompassUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompassUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CompassUITests/Pods-CompassUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +174,7 @@
 				54437C931CC58CFF00D5035C /* ObjectMapper.framework in Frameworks */,
 				547C466D1CBBF9EC00953735 /* Locksmith.framework in Frameworks */,
 				5448276E1CCAC36A00BBC062 /* Nuke.framework in Frameworks */,
+				6CC3A5F08D855A98FEA253CF /* libPods-Compass.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0470B39D7F142BE7F891B742 /* libPods-CompassTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2323CCC2BDABA181DC623F77 /* libPods-CompassUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +258,8 @@
 				548031231CB6B27F00112807 /* CompassTests */,
 				5480312E1CB6B27F00112807 /* CompassUITests */,
 				5480310A1CB6B27F00112807 /* Products */,
+				B448BA780B3CD90384D67D6D /* Pods */,
+				7AB3422A3D08137A36F94525 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -315,6 +332,29 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
+		7AB3422A3D08137A36F94525 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A5187931E5C5935638D9AA5F /* libPods-Compass.a */,
+				C8F2478479BE177B779DCD98 /* libPods-CompassTests.a */,
+				A1EAD2D159AB0B5330D29FE2 /* libPods-CompassUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B448BA780B3CD90384D67D6D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4C0E0A6802662DB5A8DF34AD /* Pods-Compass.debug.xcconfig */,
+				9B6FC9C1A1D3C82D77E62546 /* Pods-Compass.release.xcconfig */,
+				4FB75CC448FACCEDDBDF2460 /* Pods-CompassTests.debug.xcconfig */,
+				2E5E342EB7E1B3B54D372FD2 /* Pods-CompassTests.release.xcconfig */,
+				F7D36A3C9F9BEF0EA619E86A /* Pods-CompassUITests.debug.xcconfig */,
+				8A270F9BCE981D16FE828B73 /* Pods-CompassUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -322,11 +362,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 548031341CB6B27F00112807 /* Build configuration list for PBXNativeTarget "Compass" */;
 			buildPhases = (
+				75C9D51A0A96813226A5BDDC /* 📦 Check Pods Manifest.lock */,
 				548031051CB6B27F00112807 /* Sources */,
 				548031061CB6B27F00112807 /* Frameworks */,
 				548031071CB6B27F00112807 /* Resources */,
 				5475BDEB1CC149D400D80D3E /* Embed Frameworks */,
 				547C466E1CBBFA2E00953735 /* ShellScript */,
+				4385E0418F42945CDFB1C7EA /* 📦 Embed Pods Frameworks */,
+				DD6E1132563C9F51DC34E14D /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -341,9 +384,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 548031371CB6B27F00112807 /* Build configuration list for PBXNativeTarget "CompassTests" */;
 			buildPhases = (
+				08F446EF6B01F610E94CA2BE /* 📦 Check Pods Manifest.lock */,
 				5480311C1CB6B27F00112807 /* Sources */,
 				5480311D1CB6B27F00112807 /* Frameworks */,
 				5480311E1CB6B27F00112807 /* Resources */,
+				68F1F74376C3F0DFB743BAC4 /* 📦 Embed Pods Frameworks */,
+				9260EA290E57BD6600A5E120 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -359,9 +405,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5480313A1CB6B27F00112807 /* Build configuration list for PBXNativeTarget "CompassUITests" */;
 			buildPhases = (
+				F1580CDAE16DC8871D4E3484 /* 📦 Check Pods Manifest.lock */,
 				548031271CB6B27F00112807 /* Sources */,
 				548031281CB6B27F00112807 /* Frameworks */,
 				548031291CB6B27F00112807 /* Resources */,
+				7220D5ECBD0571D072F0846D /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -445,6 +493,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		08F446EF6B01F610E94CA2BE /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4385E0418F42945CDFB1C7EA /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Compass/Pods-Compass-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		547C466E1CBBFA2E00953735 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -458,6 +536,96 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		68F1F74376C3F0DFB743BAC4 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CompassTests/Pods-CompassTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7220D5ECBD0571D072F0846D /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CompassUITests/Pods-CompassUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75C9D51A0A96813226A5BDDC /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9260EA290E57BD6600A5E120 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CompassTests/Pods-CompassTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD6E1132563C9F51DC34E14D /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Compass/Pods-Compass-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1580CDAE16DC8871D4E3484 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -644,6 +812,7 @@
 		};
 		548031351CB6B27F00112807 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C0E0A6802662DB5A8DF34AD /* Pods-Compass.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -662,6 +831,7 @@
 		};
 		548031361CB6B27F00112807 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B6FC9C1A1D3C82D77E62546 /* Pods-Compass.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -680,6 +850,7 @@
 		};
 		548031381CB6B27F00112807 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FB75CC448FACCEDDBDF2460 /* Pods-CompassTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = CompassTests/Info.plist;
@@ -692,6 +863,7 @@
 		};
 		548031391CB6B27F00112807 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E5E342EB7E1B3B54D372FD2 /* Pods-CompassTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = CompassTests/Info.plist;
@@ -704,6 +876,7 @@
 		};
 		5480313B1CB6B27F00112807 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7D36A3C9F9BEF0EA619E86A /* Pods-CompassUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = CompassUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -715,6 +888,7 @@
 		};
 		5480313C1CB6B27F00112807 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A270F9BCE981D16FE828B73 /* Pods-CompassUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = CompassUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
