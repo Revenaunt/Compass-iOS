@@ -144,7 +144,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
             if response.ok{
                 let user = Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding))!;
                 user.setPassword(password);
-                Data.setUser(user);
+                SharedData.setUser(user);
                 print(user.toString());
                 
                 //This right here is probably not necessary except for testing purposes
@@ -179,8 +179,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         Just.get(API.getCategoriesUrl()){ (response) in
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                Data.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
-                for category in Data.publicCategories{
+                SharedData.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
+                for category in SharedData.publicCategories{
                     print(category.toString());
                 }
                 dispatch_async(dispatch_get_main_queue(), {

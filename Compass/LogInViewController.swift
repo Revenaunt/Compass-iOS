@@ -44,8 +44,8 @@ class LogInViewController: UIViewController{
             print(response.ok);
             print(response.statusCode ?? -1);
             if response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!){
-                Data.setUser(Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)));
-                print(Data.getUser()!.toString());
+                SharedData.setUser(Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)));
+                print(SharedData.getUser()!.toString());
                 
                 //This right here is probably not necessary except for testing purposes
                 do{
@@ -79,8 +79,8 @@ class LogInViewController: UIViewController{
         Just.get(API.getCategoriesUrl()){ (response) in
             if (response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!)){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                Data.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
-                for category in Data.publicCategories{
+                SharedData.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
+                for category in SharedData.publicCategories{
                     print(category.toString());
                 }
                 dispatch_async(dispatch_get_main_queue(), {

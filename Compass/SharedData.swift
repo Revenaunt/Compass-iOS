@@ -9,7 +9,7 @@
 import Foundation
 
 
-class Data{
+class SharedData{
     //Internal instances
     private static var internalFeedData: FeedData = FeedData();
     private static var internalCategoryMap: [Int: CategoryContent] = [Int: CategoryContent]();
@@ -32,7 +32,7 @@ class Data{
         }
     };
     
-    //Stored pricedures, used to distribute the instances
+    //Stored procedures, used to distribute the instances
     static var feedData: FeedData{
         get{
             return self.internalFeedData;
@@ -42,6 +42,11 @@ class Data{
             FeedTypes.setDataSource(feedData ?? FeedData());
         }
     };
+    
+    
+    class func hasUser() -> Bool{
+        return user != nil;
+    }
     
     
     //Deprecate these

@@ -76,10 +76,10 @@ class FeedTypes{
                 return FeedTypes.hasFeedback() ? 1 : 0;
             
             case getUpcomingSectionPosition():
-                return Data.feedData.getUpcoming().count;
+                return SharedData.feedData.getUpcoming().count;
             
             case getGoalsSectionPosition():
-                return Data.feedData.getGoals().count;
+                return SharedData.feedData.getGoals().count;
             
             default:
                 return 0;

@@ -81,4 +81,8 @@ class User: TDCBase{
     func toString() -> String{
         return fullName + "(uid: \(getId()), pid: \(profileId)), \(email), " + (needsOnBoarding ? "needs on-boarding" : "doesn't need onboarding");
     }
+    
+    func getHeaderMap() -> [String: String]{
+        return ["Authorization": "Token \(token)"];
+    }
 }

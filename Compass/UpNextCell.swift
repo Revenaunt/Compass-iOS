@@ -26,10 +26,23 @@ class UpNextCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func bind(upNext: UpcomingAction, progress: FeedData.Progress){
+    func bind(upNext: UpcomingAction?, progress: FeedData.Progress){
         progressIndicator.setProgress(Double(progress.getProgressPercentage())/100, animated: true);
-        action.text = upNext.getTitle();
-        goal.text = upNext.getGoalTitle();
-        time.text = upNext.getTriggerDisplay();
+        if (upNext == nil){
+            if (progress.getTotalActions() == 0){
+                action.text = "No activities selected for today";
+                goal.text = "Select a goal to get started";
+            }
+            else{
+                action.text = "No activities remaining today";
+                goal.text = "See you tomorrow";
+            }
+            time.text = ""
+        }
+        else{
+            action.text = upNext!.getTitle();
+            goal.text = upNext!.getGoalTitle();
+            time.text = upNext!.getTriggerDisplay();
+        }
     }
 }

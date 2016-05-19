@@ -7,18 +7,134 @@
 //
 
 import UIKit
+import Just
+import Locksmith
 import CoreData
 
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate{
     var window: UIWindow?
+    
+    //GCM variables
+    var gcmSenderId: String?
+    var registrationToken: String?
+    var registrationOptions = [String: AnyObject]()
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool{
+        //For some reason, the line group that follows this one won't work if I don't do this first.
+        //  It is nonsense (good job, Google), but it works.
+        var configureError:NSError?;
+        GGLContext.sharedInstance().configureWithError(&configureError);
+        //I ain't even remotely comfortable having this here...
+        assert(configureError == nil, "Error configuring Google services: \(configureError)");
+        
+        //Get the GCM Sender ID.
+        print("Retrieving GCM Sender ID...");
+        gcmSenderId = GGLContext.sharedInstance().configuration.gcmSenderID;
+        print("GCM Sender ID retrieved: \(gcmSenderId)");
+        
+        //Fire the notification registration process.
+        let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil);
+        application.registerUserNotificationSettings(settings);
+        application.registerForRemoteNotifications();
+        
+        return true;
     }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData){
+        print("didRegister Called");
+        
+        //Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
+        let instanceIDConfig = GGLInstanceIDConfig.defaultConfig();
+        instanceIDConfig.delegate = self;
+        
+        //Start the GGLInstanceID shared instance with that config and request a registration
+        //  token to enable reception of notifications
+        GGLInstanceID.sharedInstance().startWithConfig(instanceIDConfig)
+        registrationOptions = [kGGLInstanceIDRegisterAPNSOption: deviceToken,
+                               kGGLInstanceIDAPNSServerTypeSandboxOption: true];
+        
+        register();
+    }
+    
+    func registrationHandler(registrationToken: String!, error: NSError!){
+        print("GCM Token: \(registrationToken)");
+        if (registrationToken != nil){
+            //The method calls to NotificationUtil will handle the specific cases
+            NotificationUtil.setRegistrationToken(registrationToken);
+            NotificationUtil.sendRegistrationToken();
+        }
+        else if (error != nil){
+            print(error.description);
+        }
+    }
+    
+    func onTokenRefresh(){
+        print("onTokenRefresh()");
+        register();
+    }
+    
+    private func register(){
+        GGLInstanceID.sharedInstance()
+            .tokenWithAuthorizedEntity(gcmSenderId, scope: kGGLInstanceIDScopeGCM,
+                                       options: registrationOptions, handler: registrationHandler);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //This is all native stuff, mostly core data, which I ain't sure we need. I also don't know what it does. yet.
+    //  I am separating it because it is nagging the crap out of me.
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

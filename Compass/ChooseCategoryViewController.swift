@@ -15,12 +15,12 @@ class ChooseCategoryViewController: UITableViewController{
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return Data.publicCategories.count;
+        return SharedData.publicCategories.count;
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as! CategoryCell;
-        cell.setCategory(Data.publicCategories[indexPath.row]);
+        cell.setCategory(SharedData.publicCategories[indexPath.row]);
         return cell;
     }
     
@@ -29,7 +29,7 @@ class ChooseCategoryViewController: UITableViewController{
             let goalLibraryController = segue.destinationViewController as! GoalLibraryViewController;
             if let selectedCell = sender as? CategoryCell{
                 let indexPath = tableView.indexPathForCell(selectedCell);
-                goalLibraryController.category = Data.publicCategories[indexPath!.row];
+                goalLibraryController.category = SharedData.publicCategories[indexPath!.row];
             }
         }
     }

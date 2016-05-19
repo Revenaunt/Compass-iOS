@@ -12,7 +12,10 @@ import Locksmith
 
 class MainViewController: UITableViewController, UIActionSheetDelegate{
     override func viewDidLoad(){
+        NotificationUtil.sendRegistrationToken();
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None;
+        
+        print(SharedData.getUser()?.getToken());
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
@@ -31,26 +34,30 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         var cell: UITableViewCell;
         
         if (indexPath.section == 0){
+            print("Binding up next cell");
             cell = tableView.dequeueReusableCellWithIdentifier("UpNextCell", forIndexPath: indexPath);
             let upNextCell = cell as! UpNextCell;
-            upNextCell.bind(Data.feedData.getUpNextAction()!, progress: Data.feedData.getProgress()!);
+            upNextCell.bind(SharedData.feedData.getUpNextAction(), progress: SharedData.feedData.getProgress()!);
         }
         else if (indexPath.section == 1){
+            print("Binding feedback cell");
             cell = tableView.dequeueReusableCellWithIdentifier("FeedbackCell", forIndexPath: indexPath);
             let feedbackCell = cell as! FeedbackCell;
             //Data.feedData.getFeedback()!.title = "What if the title is ridiculously large? What if the title is ridiculously large? What if the title is ridiculously large?";
-            feedbackCell.setFeedback(Data.feedData.getFeedback()!);
+            feedbackCell.setFeedback(SharedData.feedData.getFeedback()!);
             
         }
         else if (indexPath.section == 2){
+            print("Binding upcoming cell");
             cell = tableView.dequeueReusableCellWithIdentifier("UpcomingCell", forIndexPath: indexPath);
             let upcomingCell = cell as! UpcomingCell;
-            upcomingCell.bind(Data.feedData.getUpcoming()[indexPath.row]);
+            upcomingCell.bind(SharedData.feedData.getUpcoming()[indexPath.row]);
         }
         else{
+            print("Binding goal cell");
             cell = tableView.dequeueReusableCellWithIdentifier("FeedGoalCell", forIndexPath: indexPath);
             let goalCell = cell as! FeedGoalCell;
-            goalCell.bind(Data.feedData.getGoals()[indexPath.row]);
+            goalCell.bind(SharedData.feedData.getGoals()[indexPath.row]);
         }
         
         return cell;
@@ -78,7 +85,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
             
         }
         else if (indexPath.section == 1){
-            return FeedbackCell.getCellHeight(Data.feedData.getFeedback()!);
+            return FeedbackCell.getCellHeight(SharedData.feedData.getFeedback()!);
         }
         else if (indexPath.section == 2){
             

@@ -66,6 +66,16 @@ class API{
         return body;
     }
     
+    static func getPostRegistrationUrl() -> String{
+        return postProcess(BASE_URL + "notifications/devices/");
+    }
+    
+    static func getPostRegistrationBody(token: String) -> [String: String]{
+        var body = [String: String]();
+        body["registration_id"] = token;
+        return body;
+    }
+    
     
     /*------------------------------*
      * APPLICATION DATA AND LIBRARY *

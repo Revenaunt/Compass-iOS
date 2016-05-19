@@ -35,11 +35,11 @@ class LauncherViewController: UIViewController{
                 print(response.ok);
                 print(response.statusCode ?? -1);
                 if response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!){
-                    Data.setUser(Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)));
-                    print(Data.getUser()!.toString());
-                    InitialDataLoader.load(Data.getUser()!){ (success) in
+                    SharedData.setUser(Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)));
+                    print(SharedData.getUser()!.toString());
+                    InitialDataLoader.load(SharedData.getUser()!){ (success) in
                         if (success){
-                            print(Data.feedData);
+                            print(SharedData.feedData);
                             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
                             let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
                             UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;

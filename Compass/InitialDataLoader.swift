@@ -25,8 +25,8 @@ class InitialDataLoader{
         Just.get(API.getCategoriesUrl()){ (response) in
             if (response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!)){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                Data.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
-                for category in Data.publicCategories{
+                SharedData.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
+                for category in SharedData.publicCategories{
                     print(category.toString());
                 }
                 fetchFeedData();
@@ -41,7 +41,7 @@ class InitialDataLoader{
         Just.get(API.getFeedDataUrl(), headers: CompassUtil.getHeaderMap(user!)){ (response) in
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                Data.feedData = (Mapper<ParserModels.FeedDataArray>().map(result)?.feedData![0])!;
+                SharedData.feedData = (Mapper<ParserModels.FeedDataArray>().map(result)?.feedData![0])!;
                 fetchCustomGoals();
             }
             else{
@@ -56,7 +56,7 @@ class InitialDataLoader{
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
                 let goals = (Mapper<ParserModels.CustomGoalArray>().map(result)?.goals)!
                 if (goals.count > 0){
-                    Data.feedData.addGoals(goals);
+                    SharedData.feedData.addGoals(goals);
                     //success();
                 }
                 //else{
@@ -75,7 +75,7 @@ class InitialDataLoader{
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
                 let goals = (Mapper<ParserModels.UserGoalArray>().map(result)?.goals)!
                 if (goals.count > 0){
-                    Data.feedData.addGoals(goals);
+                    SharedData.feedData.addGoals(goals);
                     
                 }
                 success();

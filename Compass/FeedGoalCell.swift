@@ -25,7 +25,7 @@ class FeedGoalCell: UITableViewCell{
         }
         else{
             let userGoal = goal as! UserGoal;
-            let category = Data.getCategory(userGoal.getPrimaryCategoryId());
+            let category = SharedData.getCategory(userGoal.getPrimaryCategoryId());
             if (category != nil){
                 iconContainer.layer.backgroundColor = category?.getParsedColor().CGColor;
             }
