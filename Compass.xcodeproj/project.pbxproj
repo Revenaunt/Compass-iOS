@@ -34,6 +34,7 @@
 		545D98C21CC697100037FAEF /* TDCContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C11CC697100037FAEF /* TDCContent.swift */; };
 		545D98C41CC69A890037FAEF /* ParserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C31CC69A890037FAEF /* ParserModels.swift */; };
 		545D98C61CC69F690037FAEF /* OnBoardingSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C51CC69F690037FAEF /* OnBoardingSurveyViewController.swift */; };
+		546114DA1CF386C6007BBD1B /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546114D91CF386C6007BBD1B /* GoalViewController.swift */; };
 		5467E9B01CC534D00088E417 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9AF1CC534D00088E417 /* User.swift */; };
 		5467E9B41CC5551F0088E417 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9B31CC5551F0088E417 /* SharedData.swift */; };
 		5468F8451CCEA68500D5769B /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8441CCEA68500D5769B /* FeedbackCell.swift */; };
@@ -126,6 +127,7 @@
 		545D98C11CC697100037FAEF /* TDCContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCContent.swift; sourceTree = "<group>"; };
 		545D98C31CC69A890037FAEF /* ParserModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserModels.swift; sourceTree = "<group>"; };
 		545D98C51CC69F690037FAEF /* OnBoardingSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingSurveyViewController.swift; sourceTree = "<group>"; };
+		546114D91CF386C6007BBD1B /* GoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
 		5467E9AF1CC534D00088E417 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5467E9B31CC5551F0088E417 /* SharedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
 		5468F8441CCEA68500D5769B /* FeedbackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				54010E141CC6D31A009FB013 /* MainViewController.swift */,
 				544614201CC927CE00F2B441 /* ChooseCategoryViewController.swift */,
 				544614261CC9719800F2B441 /* GoalLibraryViewController.swift */,
+				546114D91CF386C6007BBD1B /* GoalViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */,
 				5443355B1CD019C200EB066E /* CustomGoal.swift in Sources */,
 				544335571CCFC5B800EB066E /* FeedTypes.swift in Sources */,
+				546114DA1CF386C6007BBD1B /* GoalViewController.swift in Sources */,
 				5468F8571CCEBF7C00D5769B /* UpcomingAction.swift in Sources */,
 				545D98C41CC69A890037FAEF /* ParserModels.swift in Sources */,
 				5467E9B41CC5551F0088E417 /* SharedData.swift in Sources */,

@@ -14,6 +14,7 @@ import Nuke
 
 class GoalLibraryViewController: UITableViewController{
     var category: CategoryContent? = nil;
+    
     private var goals = [GoalContent]();
     private var activityCell: UITableViewCell? = nil;
     
@@ -124,6 +125,17 @@ class GoalLibraryViewController: UITableViewController{
         }
         else{
             return 50;
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        if let selectedCell = sender as? GoalCell{
+            if (segue.identifier == "ShowGoalFromLibrary"){
+                let goalController = segue.destinationViewController as! GoalViewController;
+                let indexPath = tableView.indexPathForCell(selectedCell);
+                goalController.category = category!;
+                goalController.goal = goals[indexPath!.row];
+            }
         }
     }
 }
