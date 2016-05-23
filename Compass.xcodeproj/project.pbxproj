@@ -440,6 +440,14 @@
 					548031081CB6B27F00112807 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 3LXVG22MWC;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					5480311F1CB6B27F00112807 = {
 						CreatedOnToolsVersion = 7.3;

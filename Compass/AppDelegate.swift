@@ -14,6 +14,7 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate{
+    
     var window: UIWindow?
     
     //GCM variables
@@ -82,7 +83,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
                                        options: registrationOptions, handler: registrationHandler);
     }
     
+    func applicationDidBecomeActive( application: UIApplication) {
+        // Connect to the GCM server to receive non-APNS notifications
+        GCMService.sharedInstance().connectWithHandler({(error:NSError?) -> Void in
+            
+        })
+    }
     
+    func applicationDidEnterBackground(application: UIApplication) {
+        GCMService.sharedInstance().disconnect()
+    }
+    
+    func application( application: UIApplication,
+                      didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print("Notification received: \(userInfo)")
+        // This works only if the app started the GCM service
+        GCMService.sharedInstance().appDidReceiveMessage(userInfo);
+        // Handle the received message
+        NSNotificationCenter.defaultCenter().postNotificationName("onMessageReceived", object: nil,
+                                                                  userInfo: userInfo)
+        /*
+        Deal with this later
+ 
+        let notification = UILocalNotification()
+        notification.alertBody = "I just got a notification through GCM" // text that will be displayed in the notification
+        notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+        notification.fireDate = NSDate().dateByAddingTimeInterval(1000) // todo item due date (when notification will be fired)
+        notification.soundName = UILocalNotificationDefaultSoundName // play default sound
+        notification
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)*/
+    }
+    
+    func application( application: UIApplication,
+                      didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
+                                                   fetchCompletionHandler handler: (UIBackgroundFetchResult) -> Void) {
+        print("Notification received: \(userInfo)")
+        // This works only if the app started the GCM service
+        GCMService.sharedInstance().appDidReceiveMessage(userInfo);
+        // Handle the received message
+        // Invoke the completion handler passing the appropriate UIBackgroundFetchResult value
+        NSNotificationCenter.defaultCenter().postNotificationName("onMessageReceived", object: nil,
+                                                                  userInfo: userInfo)
+        handler(UIBackgroundFetchResult.NoData);
+    }
     
     
     
@@ -141,17 +184,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
     func applicationWillTerminate(application: UIApplication) {
