@@ -29,6 +29,7 @@
 		5448276E1CCAC36A00BBC062 /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5448276D1CCAC36A00BBC062 /* Nuke.framework */; };
 		5448276F1CCAC37600BBC062 /* Nuke.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5448276D1CCAC36A00BBC062 /* Nuke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5449E5F11CBD646E0017629E /* LogInViewController.swift */; };
+		545627321CF4B029007C3731 /* Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545627311CF4B029007C3731 /* Reward.swift */; };
 		545D98BE1CC68C820037FAEF /* CategoryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BD1CC68C820037FAEF /* CategoryContent.swift */; };
 		545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BF1CC695F50037FAEF /* TDCBase.swift */; };
 		545D98C21CC697100037FAEF /* TDCContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C11CC697100037FAEF /* TDCContent.swift */; };
@@ -122,6 +123,7 @@
 		5448276B1CCA956000BBC062 /* CategoryHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryHeaderCell.swift; sourceTree = "<group>"; };
 		5448276D1CCAC36A00BBC062 /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
 		5449E5F11CBD646E0017629E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		545627311CF4B029007C3731 /* Reward.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reward.swift; sourceTree = "<group>"; };
 		545D98BD1CC68C820037FAEF /* CategoryContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryContent.swift; sourceTree = "<group>"; };
 		545D98BF1CC695F50037FAEF /* TDCBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCBase.swift; sourceTree = "<group>"; };
 		545D98C11CC697100037FAEF /* TDCContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCContent.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				544335581CD018DF00EB066E /* Goal.swift */,
 				5443355A1CD019C200EB066E /* CustomGoal.swift */,
 				5443355C1CD01B0A00EB066E /* UserGoal.swift */,
+				545627311CF4B029007C3731 /* Reward.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 				544614291CC971D000F2B441 /* CategoryDescriptionCell.swift in Sources */,
 				545D98BE1CC68C820037FAEF /* CategoryContent.swift in Sources */,
 				544614231CC92C5400F2B441 /* CategoryCell.swift in Sources */,
+				545627321CF4B029007C3731 /* Reward.swift in Sources */,
 				5480310F1CB6B27F00112807 /* LauncherViewController.swift in Sources */,
 				545D98C61CC69F690037FAEF /* OnBoardingSurveyViewController.swift in Sources */,
 				5468F8531CCEB7D100D5769B /* Action.swift in Sources */,
