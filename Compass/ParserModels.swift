@@ -80,4 +80,17 @@ class ParserModels{
             feedData <- map["results"];
         }
     }
+    
+    class RewardArray: Mappable{
+        var rewards: [Reward]? = nil;
+        
+        
+        required init?(_ map: Map){
+            
+        }
+        
+        func mapping(map: Map){
+            rewards <- map["results"];
+        }
+    }
 }

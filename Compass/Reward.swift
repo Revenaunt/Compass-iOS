@@ -53,7 +53,7 @@ class Reward: TDCBase{
     }
     
     func getMessage() -> String{
-        return messageType;
+        return message;
     }
     
     func getAuthor() -> String{

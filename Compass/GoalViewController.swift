@@ -7,6 +7,8 @@
 //
 
 import Nuke
+import Just
+import ObjectMapper
 
 
 class GoalViewController: UIViewController{
@@ -41,5 +43,16 @@ class GoalViewController: UIViewController{
         
         goalTitle.text = goal?.getTitle();
         goalDescription.text = goal?.getDescription();
+        
+        Just.get(API.getRandomRewardUrl()){ (response) in
+            if (response.ok){
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
+                let reward = (Mapper<ParserModels.RewardArray>().map(result)?.rewards![0])!;
+                self.additionalSectionTitle.text = reward.getHeaderTitle();
+                self.additionalSectionTitle.hidden = false;
+                self.additionalSectionContent.text = reward.getMessage();
+                self.additionalSectionContent.hidden = false;
+            }
+        }
     }
 }

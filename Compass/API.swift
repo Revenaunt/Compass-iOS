@@ -129,6 +129,15 @@ class API{
     static func getCustomGoalsUrl() -> String{
         return postProcess(BASE_URL + "users/customgoals/?page_size=999999");
     }
+    
+    
+    /*---------------*
+     * MISCELLANEOUS *
+     *---------------*/
+    
+    static func getRandomRewardUrl() -> String{
+        return postProcess(BASE_URL + "rewards/?random=1");
+    }
 }
 
 
