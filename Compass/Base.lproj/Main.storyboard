@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TDf-Up-ni2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TDf-Up-ni2">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -951,7 +951,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="836"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNQ-lf-ZsP" userLabel="Master Container">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="648"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="674"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8jn-BA-7Ve" userLabel="Header">
                                                 <rect key="frame" x="4" y="0.0" width="600" height="400"/>
@@ -1007,15 +1007,21 @@
                                                     <constraint firstItem="rse-AQ-Nbt" firstAttribute="leading" secondItem="MCV-RW-kLx" secondAttribute="trailing" constant="28" id="eTA-VC-S9y"/>
                                                 </constraints>
                                             </view>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MORE INFO / REWARD HEADER" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPB-gY-DIT">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reward header" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPB-gY-DIT">
                                                 <rect key="frame" x="28" y="565" width="544" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section content" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kX-Ii-MQD">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reward" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kX-Ii-MQD">
                                                 <rect key="frame" x="28" y="597" width="544" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp9-d4-3b2">
+                                                <rect key="frame" x="28" y="626" width="544" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1031,15 +1037,20 @@
                                             <constraint firstItem="RzE-Jh-Vy3" firstAttribute="leading" secondItem="BNQ-lf-ZsP" secondAttribute="leading" constant="28" id="8O0-be-zxA"/>
                                             <constraint firstItem="WIO-Rd-lcj" firstAttribute="leading" secondItem="BNQ-lf-ZsP" secondAttribute="leading" constant="28" id="AmF-oo-pGw"/>
                                             <constraint firstItem="rPB-gY-DIT" firstAttribute="leading" secondItem="BNQ-lf-ZsP" secondAttribute="leading" constant="28" id="GuD-TE-sDD"/>
-                                            <constraint firstAttribute="bottom" secondItem="7kX-Ii-MQD" secondAttribute="bottom" constant="30" id="Lmm-5d-XMB"/>
+                                            <constraint firstAttribute="trailing" secondItem="Qp9-d4-3b2" secondAttribute="trailing" constant="28" id="Jgp-L9-Zfk"/>
                                             <constraint firstAttribute="trailing" secondItem="rPB-gY-DIT" secondAttribute="trailing" constant="28" id="O0O-mP-OWM"/>
+                                            <constraint firstAttribute="bottom" secondItem="Qp9-d4-3b2" secondAttribute="bottom" constant="30" id="QsA-bp-jCd"/>
                                             <constraint firstItem="rPB-gY-DIT" firstAttribute="top" secondItem="f7G-u9-0cN" secondAttribute="bottom" constant="30" id="R7k-qq-Vzi"/>
                                             <constraint firstItem="8jn-BA-7Ve" firstAttribute="leading" secondItem="BNQ-lf-ZsP" secondAttribute="leading" constant="4" id="UoG-MX-NEz"/>
                                             <constraint firstAttribute="trailing" secondItem="RzE-Jh-Vy3" secondAttribute="trailing" constant="28" id="VO2-Tj-Pwd"/>
+                                            <constraint firstAttribute="bottom" secondItem="f7G-u9-0cN" secondAttribute="bottom" priority="250" constant="30" id="VXm-Nb-vGw"/>
                                             <constraint firstItem="8jn-BA-7Ve" firstAttribute="top" secondItem="BNQ-lf-ZsP" secondAttribute="top" id="aSF-u2-hFm"/>
                                             <constraint firstAttribute="trailing" secondItem="WIO-Rd-lcj" secondAttribute="trailing" constant="28" id="ftb-Aj-bLw"/>
                                             <constraint firstAttribute="trailing" secondItem="7kX-Ii-MQD" secondAttribute="trailing" constant="28" id="iEt-Pf-VtU"/>
+                                            <constraint firstItem="Qp9-d4-3b2" firstAttribute="leading" secondItem="BNQ-lf-ZsP" secondAttribute="leading" constant="28" id="m9H-3M-ylw"/>
                                             <constraint firstItem="f7G-u9-0cN" firstAttribute="top" secondItem="WIO-Rd-lcj" secondAttribute="bottom" constant="12" id="sdh-x6-G7v"/>
+                                            <constraint firstAttribute="bottom" secondItem="7kX-Ii-MQD" secondAttribute="bottom" priority="250" constant="56" id="uTI-fv-V7Z"/>
+                                            <constraint firstItem="Qp9-d4-3b2" firstAttribute="top" secondItem="7kX-Ii-MQD" secondAttribute="bottom" constant="8" id="veT-Uf-LvD"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1061,12 +1072,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="additionalSectionContent" destination="7kX-Ii-MQD" id="rlM-FE-s2k"/>
-                        <outlet property="additionalSectionTitle" destination="rPB-gY-DIT" id="ZG7-5o-6SV"/>
+                        <outlet property="author" destination="Qp9-d4-3b2" id="Cgr-oQ-X3k"/>
+                        <outlet property="contentContainer" destination="BNQ-lf-ZsP" id="Oew-bi-daA"/>
                         <outlet property="goalDescription" destination="WIO-Rd-lcj" id="orB-c7-As3"/>
                         <outlet property="goalTitle" destination="RzE-Jh-Vy3" id="udf-R4-nXm"/>
                         <outlet property="header" destination="8jn-BA-7Ve" id="G5A-YS-LfH"/>
                         <outlet property="headerImage" destination="ejE-or-JT5" id="Xjp-Ys-Hfq"/>
+                        <outlet property="reward" destination="7kX-Ii-MQD" id="Ppr-hI-iRa"/>
+                        <outlet property="rewardHeader" destination="rPB-gY-DIT" id="g5j-yB-RTz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nG7-R6-NYO" userLabel="First Responder" sceneMemberID="firstResponder"/>

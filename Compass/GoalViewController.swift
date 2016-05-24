@@ -23,8 +23,14 @@ class GoalViewController: UIViewController{
     @IBOutlet weak var goalTitle: UILabel!
     @IBOutlet weak var goalDescription: UILabel!
     
-    @IBOutlet weak var additionalSectionTitle: UILabel!
-    @IBOutlet weak var additionalSectionContent: UILabel!
+    @IBOutlet weak var contentContainer: UIView!
+    @IBOutlet var rewardHeader: UILabel!
+    @IBOutlet var reward: UILabel!
+    @IBOutlet var author: UILabel!
+    
+    private var rewardHeaderConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
+    private var rewardConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
+    private var authorConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
     
     
     override func viewDidLoad(){
@@ -38,20 +44,55 @@ class GoalViewController: UIViewController{
                 self.headerImage.layer.cornerRadius = self.headerImage.frame.height/2;
                 self.headerImage.clipsToBounds = true;
                 self.headerImage.image = image;
-                }.resume();
+            }.resume();
         }
         
+        //Goal information
         goalTitle.text = goal?.getTitle();
         goalDescription.text = goal?.getDescription();
         
+        //Reward content
+        //Extract the relevant constraints before they get removed
+        for constraint in contentContainer.constraints{
+            //Author constraints need to go all in the author array, because author may not be
+            //  added back to the container.
+            if (constraint.firstItem === author || constraint.secondItem === author){
+                authorConstraints.append(constraint);
+                continue;
+            }
+            if (constraint.firstItem === rewardHeader || constraint.secondItem === rewardHeader){
+                rewardHeaderConstraints.append(constraint);
+                continue;
+            }
+            if (constraint.firstItem === reward || constraint.secondItem === reward){
+                rewardConstraints.append(constraint);
+            }
+        }
+        
+        //Remove the reward related views and fetch the reward
+        rewardHeader.removeFromSuperview();
+        reward.removeFromSuperview();
+        author.removeFromSuperview();
         Just.get(API.getRandomRewardUrl()){ (response) in
             if (response.ok){
+                print("Reward retrieved");
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                let reward = (Mapper<ParserModels.RewardArray>().map(result)?.rewards![0])!;
-                self.additionalSectionTitle.text = reward.getHeaderTitle();
-                self.additionalSectionTitle.hidden = false;
-                self.additionalSectionContent.text = reward.getMessage();
-                self.additionalSectionContent.hidden = false;
+                let rewardContent = (Mapper<ParserModels.RewardArray>().map(result)?.rewards![0])!;
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.contentContainer.addSubview(self.rewardHeader);
+                    self.contentContainer.addSubview(self.reward);
+                    self.contentContainer.addConstraints(self.rewardHeaderConstraints);
+                    self.contentContainer.addConstraints(self.rewardConstraints);
+                    self.rewardHeader.text = rewardContent.getHeaderTitle();
+                    self.reward.text = rewardContent.getMessage();
+                    if (rewardContent.isQuote()){
+                        self.contentContainer.addSubview(self.author);
+                        self.contentContainer.addConstraints(self.authorConstraints);
+                        self.author.text = rewardContent.getAuthor();
+                    }
+                    self.contentContainer.layoutIfNeeded();
+                });
             }
         }
     }
