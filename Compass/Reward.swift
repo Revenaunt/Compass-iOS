@@ -36,6 +36,22 @@ class Reward: TDCBase{
         return messageType == TYPE_JOKE;
     }
     
+    func getHeaderTitle() -> String{
+        if (isQuote()){
+            return "A thought for the day";
+        }
+        if (isFortune()){
+            return "Here's a fortune cookie for you";
+        }
+        if (isFact()){
+            return "Here's a fun fact for you";
+        }
+        if (isJoke()){
+            return "Here's a joke for you";
+        }
+        return "";
+    }
+    
     func getMessage() -> String{
         return messageType;
     }
