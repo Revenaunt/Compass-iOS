@@ -16,6 +16,8 @@ class GoalViewController: UIViewController{
     var category: CategoryContent?;
     var goal: GoalContent?;
     
+    var imageViewProcessed = false;
+    
     //UI components
     @IBOutlet weak var header: UIView!
     @IBOutlet weak var headerImage: UIImageView!
@@ -40,10 +42,14 @@ class GoalViewController: UIViewController{
         //Header image
         if (category!.getIconUrl().characters.count != 0){
             Nuke.taskWith(NSURL(string: category!.getIconUrl())!){
-                let image = $0.image;
+                //For some reason, in the second run, the frame object reports a wrong height,
+                //  to fix that, header image is forced to layout to calculate the actual
+                //  height respecting its constraints, and only then we set the corner radius
+                self.headerImage.setNeedsLayout();
+                self.headerImage.layoutIfNeeded();
                 self.headerImage.layer.cornerRadius = self.headerImage.frame.height/2;
                 self.headerImage.clipsToBounds = true;
-                self.headerImage.image = image;
+                self.headerImage.image = $0.image;
             }.resume();
         }
         
@@ -55,7 +61,7 @@ class GoalViewController: UIViewController{
         //Extract the relevant constraints before they get removed
         for constraint in contentContainer.constraints{
             //Author constraints need to go all in the author array, because author may not be
-            //  added back to the container.
+            //  added back to the container
             if (constraint.firstItem === author || constraint.secondItem === author){
                 authorConstraints.append(constraint);
                 continue;
