@@ -129,6 +129,25 @@ class API{
     static func getCustomGoalsUrl() -> String{
         return postProcess(BASE_URL + "users/customgoals/?page_size=999999");
     }
+    
+    static func getPostGoalUrl(goal: GoalContent) -> String{
+        return postProcess("\(BASE_URL)goals/\(goal.getId())/enroll");
+    }
+    
+    static func getPostGoalBody(category: CategoryContent) -> [String: String]{
+        var body = [String: String]();
+        body["category"] = "\(category.getId())";
+        return body;
+    }
+    
+    
+    /*---------------*
+     * MISCELLANEOUS *
+     *---------------*/
+    
+    static func getRandomRewardUrl() -> String{
+        return postProcess(BASE_URL + "rewards/?random=1");
+    }
 }
 
 

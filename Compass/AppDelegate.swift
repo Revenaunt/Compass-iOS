@@ -47,6 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData){
         print("didRegister Called");
         
+        print(deviceToken);
+        
         //Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
         let instanceIDConfig = GGLInstanceIDConfig.defaultConfig();
         instanceIDConfig.delegate = self;
