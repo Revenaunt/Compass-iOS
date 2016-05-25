@@ -12,6 +12,9 @@ import ObjectMapper
 
 
 class GoalViewController: UIViewController, UIScrollViewDelegate{
+    //Delegate
+    var delegate: GoalAddedDelegate? = nil;
+    
     //Data
     var category: CategoryContent?;
     var goal: GoalContent?;
@@ -114,4 +117,15 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
     @IBAction func notNow(){
         navigationController!.popViewControllerAnimated(true);
     }
+    
+    @IBAction func yesImIn(){
+        if (delegate != nil){
+            delegate?.goalAdded();
+        }
+        navigationController!.popViewControllerAnimated(true);
+    }
+}
+
+protocol GoalAddedDelegate{
+    func goalAdded();
 }

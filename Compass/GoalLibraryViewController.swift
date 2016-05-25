@@ -12,7 +12,7 @@ import ObjectMapper
 import Nuke
 
 
-class GoalLibraryViewController: UITableViewController{
+class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     var category: CategoryContent? = nil;
     
     private var goals = [GoalContent]();
@@ -20,6 +20,9 @@ class GoalLibraryViewController: UITableViewController{
     
     private var loading: Bool = false;
     private var next: String? = nil;
+    
+    private var selectedGoal: GoalContent? = nil;
+    private var goalWasAdded = false;
     
     
     override func viewDidLoad(){
@@ -29,6 +32,15 @@ class GoalLibraryViewController: UITableViewController{
         //Load first batch of goalz
         next = API.getGoalsUrl(category!);
         loadMore();
+    }
+    
+    override func viewDidAppear(animated: Bool){
+        //if we come from a child view controller (as opposed to the parent)
+        if (selectedGoal != nil){
+            if (goalWasAdded){
+                print("the goal is marked as added");
+            }
+        }
     }
     
     private func loadMore(){
@@ -133,9 +145,17 @@ class GoalLibraryViewController: UITableViewController{
             if (segue.identifier == "ShowGoalFromLibrary"){
                 let goalController = segue.destinationViewController as! GoalViewController;
                 let indexPath = tableView.indexPathForCell(selectedCell);
+                selectedGoal = goals[indexPath!.row];
+                goalWasAdded = false;
+                goalController.delegate = self;
                 goalController.category = category!;
-                goalController.goal = goals[indexPath!.row];
+                goalController.goal = selectedGoal;
             }
         }
     }
+    
+    func goalAdded(){
+        goalWasAdded = true;
+    }
 }
+
