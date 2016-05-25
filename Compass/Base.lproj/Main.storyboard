@@ -990,6 +990,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCV-RW-kLx">
                                                         <rect key="frame" x="20" y="5" width="72" height="30"/>
                                                         <state key="normal" title="NOT NOW"/>
+                                                        <connections>
+                                                            <action selector="notNow" destination="i24-uW-uw0" eventType="touchUpInside" id="6Gr-dM-flN"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rse-AQ-Nbt">
                                                         <rect key="frame" x="120" y="5" width="71" height="30"/>

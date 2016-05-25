@@ -110,4 +110,8 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
     func scrollViewDidEndDragging(scrollView: UIScrollView, decelerate: Bool){
         self.scrollView.contentSize = self.contentContainer.frame.size;
     }
+    
+    @IBAction func notNow(){
+        navigationController!.popViewControllerAnimated(true);
+    }
 }
