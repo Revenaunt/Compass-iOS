@@ -28,7 +28,6 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     
     override func viewDidLoad(){
         super.viewDidLoad();
-        self.tableView.bounces = false;
         
         //Load first batch of goalz
         next = API.getGoalsUrl(category!);
@@ -149,9 +148,10 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
             return UIScreen.mainScreen().bounds.width*2/3;
         }
         else if (indexPath.section == 1){
-            let title = category!.getTitle().heightWithConstrainedWidth(UIScreen.mainScreen().bounds.width, font: UIFont.boldSystemFontOfSize(17));
-            let description = category!.getDescription().heightWithConstrainedWidth(UIScreen.mainScreen().bounds.width, font: UIFont.systemFontOfSize(17));
-            return title+description+50;
+            let width = UIScreen.mainScreen().bounds.width-56;
+            let title = category!.getTitle().heightWithConstrainedWidth(width, font: UIFont.systemFontOfSize(20));
+            let description = category!.getDescription().heightWithConstrainedWidth(width, font: UIFont.systemFontOfSize(17));
+            return title+description+62;
         }
         else if (indexPath.section == 2){
             return 100;
