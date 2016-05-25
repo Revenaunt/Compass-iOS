@@ -11,7 +11,7 @@ import Just
 import ObjectMapper
 
 
-class GoalViewController: UIViewController{
+class GoalViewController: UIViewController, UIScrollViewDelegate{
     //Data
     var category: CategoryContent?;
     var goal: GoalContent?;
@@ -19,6 +19,8 @@ class GoalViewController: UIViewController{
     var imageViewProcessed = false;
     
     //UI components
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var header: UIView!
     @IBOutlet weak var headerImage: UIImageView!
     
@@ -97,9 +99,15 @@ class GoalViewController: UIViewController{
                         self.contentContainer.addConstraints(self.authorConstraints);
                         self.author.text = rewardContent.getAuthor();
                     }
+                    self.contentContainer.setNeedsLayout();
                     self.contentContainer.layoutIfNeeded();
+                    self.scrollView.contentSize = self.contentContainer.frame.size;
                 });
             }
         }
+    }
+    
+    func scrollViewDidEndDragging(scrollView: UIScrollView, decelerate: Bool){
+        self.scrollView.contentSize = self.contentContainer.frame.size;
     }
 }

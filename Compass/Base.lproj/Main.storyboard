@@ -1060,6 +1060,9 @@
                                     <constraint firstItem="BNQ-lf-ZsP" firstAttribute="leading" secondItem="lWg-1j-2Xn" secondAttribute="leading" id="U56-zz-4pY"/>
                                     <constraint firstItem="BNQ-lf-ZsP" firstAttribute="top" secondItem="lWg-1j-2Xn" secondAttribute="top" id="VUS-vy-vID"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="i24-uW-uw0" id="f3H-dF-eD2"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1080,6 +1083,7 @@
                         <outlet property="headerImage" destination="ejE-or-JT5" id="Xjp-Ys-Hfq"/>
                         <outlet property="reward" destination="7kX-Ii-MQD" id="Ppr-hI-iRa"/>
                         <outlet property="rewardHeader" destination="rPB-gY-DIT" id="g5j-yB-RTz"/>
+                        <outlet property="scrollView" destination="lWg-1j-2Xn" id="qwQ-tB-NQV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nG7-R6-NYO" userLabel="First Responder" sceneMemberID="firstResponder"/>
