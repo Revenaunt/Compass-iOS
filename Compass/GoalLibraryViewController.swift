@@ -21,6 +21,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     private var loading: Bool = false;
     private var next: String? = nil;
     
+    private var selectedGoalIndex: Int = -1;
     private var selectedGoal: GoalContent? = nil;
     private var goalWasAdded = false;
     
@@ -38,14 +39,33 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
         //if we come from a child view controller (as opposed to the parent)
         if (selectedGoal != nil){
             if (goalWasAdded){
-                print("the goal is marked as added");
+                //Add the goal
+                Just.post(API.getPostGoalUrl(selectedGoal!), headers: SharedData.getUser()!.getHeaderMap(),
+                          json: API.getPostGoalBody(category!)){ (response) in
+                            if (response.ok){
+                                print("Goal posted successfully");
+                            }
+                            else{
+                                print("Goal not posted successfully: \(response.statusCode)");
+                            }
+                };
+                
+                //User feedback
+                let description = "Compass will check back in occasionally with activities that can help you reach your goal.";
+                let alert = UIAlertController(title: "You're awesome", message: description, preferredStyle: UIAlertControllerStyle.Alert);
+                alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default, handler: { action in
+                    self.goals.removeAtIndex(self.selectedGoalIndex);
+                    let indexPath = NSIndexPath(forRow: self.selectedGoalIndex, inSection: 2);
+                    self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade);
+                }));
+                presentViewController(alert, animated: true, completion: nil);
             }
         }
     }
     
     private func loadMore(){
         loading = true;
-        Just.get(next!){ (response) in
+        Just.get(next!, headers: SharedData.getUser()!.getHeaderMap()){ (response) in
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding)!;
                 let gca = Mapper<ParserModels.GoalContentArray>().map(result)!;
@@ -119,6 +139,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
             }
         }
         
+        cell.selectionStyle = UITableViewCellSelectionStyle.None;
         return cell;
     }
     
@@ -145,7 +166,8 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
             if (segue.identifier == "ShowGoalFromLibrary"){
                 let goalController = segue.destinationViewController as! GoalViewController;
                 let indexPath = tableView.indexPathForCell(selectedCell);
-                selectedGoal = goals[indexPath!.row];
+                selectedGoalIndex = indexPath!.row;
+                selectedGoal = goals[selectedGoalIndex];
                 goalWasAdded = false;
                 goalController.delegate = self;
                 goalController.category = category!;
