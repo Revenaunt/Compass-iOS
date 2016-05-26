@@ -103,7 +103,6 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        print("Section: \(section)");
         if (section == 2){
             return goals.count;
         }
@@ -146,7 +145,6 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     }
     
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
-        print("Height for: \(indexPath.section), \(indexPath.row)");
         if (indexPath.section == 0){
             return UIScreen.mainScreen().bounds.width*2/3;
         }
