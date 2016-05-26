@@ -7,35 +7,16 @@
 //
 
 import UIKit
-import Just
-import Locksmith
 import CoreData
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate{
     
     var window: UIWindow?
-    
-    //GCM variables
-    var gcmSenderId: String?
-    var registrationToken: String?
-    var registrationOptions = [String: AnyObject]()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool{
-        //For some reason, the line group that follows this one won't work if I don't do this first.
-        //  It is nonsense (good job, Google), but it works.
-        var configureError:NSError?;
-        GGLContext.sharedInstance().configureWithError(&configureError);
-        //I ain't even remotely comfortable having this here...
-        assert(configureError == nil, "Error configuring Google services: \(configureError)");
-        
-        //Get the GCM Sender ID.
-        print("Retrieving GCM Sender ID...");
-        gcmSenderId = GGLContext.sharedInstance().configuration.gcmSenderID;
-        print("GCM Sender ID retrieved: \(gcmSenderId)");
-        
         //Fire the notification registration process.
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil);
         application.registerUserNotificationSettings(settings);
@@ -45,88 +26,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData){
-        print("didRegister Called");
+        //Process the token
+        var token = NSString(format: "%@", deviceToken)
+        token = token.stringByReplacingOccurrencesOfString("<", withString: "")
+        token = token.stringByReplacingOccurrencesOfString(">", withString: "")
+        token = token.stringByReplacingOccurrencesOfString(" ", withString: "")
         
         print(deviceToken);
+        print(token as String);
         
-        //Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
-        let instanceIDConfig = GGLInstanceIDConfig.defaultConfig();
-        instanceIDConfig.delegate = self;
-        
-        //Start the GGLInstanceID shared instance with that config and request a registration
-        //  token to enable reception of notifications
-        GGLInstanceID.sharedInstance().startWithConfig(instanceIDConfig)
-        registrationOptions = [kGGLInstanceIDRegisterAPNSOption: deviceToken,
-                               kGGLInstanceIDAPNSServerTypeSandboxOption: true];
-        
-        register();
-    }
-    
-    func registrationHandler(registrationToken: String!, error: NSError!){
-        print("GCM Token: \(registrationToken)");
-        if (registrationToken != nil){
-            //The method calls to NotificationUtil will handle the specific cases
-            NotificationUtil.setRegistrationToken(registrationToken);
-            NotificationUtil.sendRegistrationToken();
-        }
-        else if (error != nil){
-            print(error.description);
-        }
-    }
-    
-    func onTokenRefresh(){
-        print("onTokenRefresh()");
-        register();
-    }
-    
-    private func register(){
-        GGLInstanceID.sharedInstance()
-            .tokenWithAuthorizedEntity(gcmSenderId, scope: kGGLInstanceIDScopeGCM,
-                                       options: registrationOptions, handler: registrationHandler);
-    }
-    
-    func applicationDidBecomeActive( application: UIApplication) {
-        // Connect to the GCM server to receive non-APNS notifications
-        GCMService.sharedInstance().connectWithHandler({(error:NSError?) -> Void in
-            
-        })
-    }
-    
-    func applicationDidEnterBackground(application: UIApplication) {
-        GCMService.sharedInstance().disconnect()
-    }
-    
-    func application( application: UIApplication,
-                      didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print("Notification received: \(userInfo)")
-        // This works only if the app started the GCM service
-        GCMService.sharedInstance().appDidReceiveMessage(userInfo);
-        // Handle the received message
-        NSNotificationCenter.defaultCenter().postNotificationName("onMessageReceived", object: nil,
-                                                                  userInfo: userInfo)
-        /*
-        Deal with this later
- 
-        let notification = UILocalNotification()
-        notification.alertBody = "I just got a notification through GCM" // text that will be displayed in the notification
-        notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
-        notification.fireDate = NSDate().dateByAddingTimeInterval(1000) // todo item due date (when notification will be fired)
-        notification.soundName = UILocalNotificationDefaultSoundName // play default sound
-        notification
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)*/
-    }
-    
-    func application( application: UIApplication,
-                      didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
-                                                   fetchCompletionHandler handler: (UIBackgroundFetchResult) -> Void) {
-        print("Notification received: \(userInfo)")
-        // This works only if the app started the GCM service
-        GCMService.sharedInstance().appDidReceiveMessage(userInfo);
-        // Handle the received message
-        // Invoke the completion handler passing the appropriate UIBackgroundFetchResult value
-        NSNotificationCenter.defaultCenter().postNotificationName("onMessageReceived", object: nil,
-                                                                  userInfo: userInfo)
-        handler(UIBackgroundFetchResult.NoData);
+        //The method calls to NotificationUtil will handle the specific cases
+        NotificationUtil.setApnsToken(token as String);
+        NotificationUtil.sendRegistrationToken();
     }
     
     
