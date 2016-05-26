@@ -49,7 +49,6 @@
 		5468F8551CCEBA8300D5769B /* FeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8541CCEBA8300D5769B /* FeedData.swift */; };
 		5468F8571CCEBF7C00D5769B /* UpcomingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8561CCEBF7C00D5769B /* UpcomingAction.swift */; };
 		5468F8591CCEC1ED00D5769B /* InitialDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8581CCEC1ED00D5769B /* InitialDataLoader.swift */; };
-		5472B46C1CEBC03D00A4F462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5472B46B1CEBC03D00A4F462 /* GoogleService-Info.plist */; };
 		5475BDEF1CC153F100D80D3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475BDEE1CC153F100D80D3E /* API.swift */; };
 		5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; };
 		5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -143,7 +142,6 @@
 		5468F8541CCEBA8300D5769B /* FeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedData.swift; sourceTree = "<group>"; };
 		5468F8561CCEBF7C00D5769B /* UpcomingAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingAction.swift; sourceTree = "<group>"; };
 		5468F8581CCEC1ED00D5769B /* InitialDataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialDataLoader.swift; sourceTree = "<group>"; };
-		5472B46B1CEBC03D00A4F462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5475BDE81CC1426800D80D3E /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
 		5475BDEE1CC153F100D80D3E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5475BDF01CC16E9300D80D3E /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/iOS/Just.framework; sourceTree = "<group>"; };
@@ -297,7 +295,6 @@
 				548031161CB6B27F00112807 /* Assets.xcassets */,
 				548031181CB6B27F00112807 /* LaunchScreen.storyboard */,
 				5480311B1CB6B27F00112807 /* Info.plist */,
-				5472B46B1CEBC03D00A4F462 /* GoogleService-Info.plist */,
 				548031131CB6B27F00112807 /* Compass.xcdatamodeld */,
 			);
 			path = Compass;
@@ -491,7 +488,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5480311A1CB6B27F00112807 /* LaunchScreen.storyboard in Resources */,
-				5472B46C1CEBC03D00A4F462 /* GoogleService-Info.plist in Resources */,
 				548031171CB6B27F00112807 /* Assets.xcassets in Resources */,
 				548031121CB6B27F00112807 /* Main.storyboard in Resources */,
 			);
