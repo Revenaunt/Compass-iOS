@@ -6,8 +6,7 @@ target 'Compass' do
   # use_frameworks!
 
   # Pods for Compass
-
-  pod 'Google/CloudMessaging'
+  
 
   target 'CompassTests' do
     inherit! :search_paths

@@ -16,9 +16,6 @@ DerivedData
 !default.perspectivev3
 xcuserdata
 
-## GCM
-Compass/GoogleService-Info.plist
-
 ## Other
 *.xccheckout
 *.moved-aside
