@@ -13,7 +13,6 @@ import Locksmith
 class MainViewController: UITableViewController, UIActionSheetDelegate{
     override func viewDidLoad(){
         NotificationUtil.sendRegistrationToken();
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None;
         
         print(SharedData.getUser()?.getToken());
     }
