@@ -72,6 +72,7 @@ class API{
     
     static func getPostRegistrationBody(token: String) -> [String: String]{
         var body = [String: String]();
+        body["device_type"] = "ios";
         body["registration_id"] = token;
         return body;
     }
