@@ -6,6 +6,7 @@
 //  Copyright © 2016 Tennessee Data Commons. All rights reserved.
 //
 
+import UIKit
 import Nuke
 import Just
 import ObjectMapper
