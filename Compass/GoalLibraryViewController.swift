@@ -32,6 +32,9 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
         //Load first batch of goalz
         next = API.getGoalsUrl(category!);
         loadMore();
+        
+        //Automatic height calculation
+        tableView.rowHeight = UITableViewAutomaticDimension;
     }
     
     override func viewDidAppear(animated: Bool){
@@ -142,7 +145,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
         return cell;
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
         print("Height for: \(indexPath.section), \(indexPath.row)");
         if (indexPath.section == 0){
             return UIScreen.mainScreen().bounds.width*2/3;
