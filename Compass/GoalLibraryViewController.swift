@@ -28,11 +28,13 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     
     override func viewDidLoad(){
         super.viewDidLoad();
-        self.tableView.bounces = false;
         
         //Load first batch of goalz
         next = API.getGoalsUrl(category!);
         loadMore();
+        
+        //Automatic height calculation
+        tableView.rowHeight = UITableViewAutomaticDimension;
     }
     
     override func viewDidAppear(animated: Bool){
@@ -101,7 +103,6 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        print("Section: \(section)");
         if (section == 2){
             return goals.count;
         }
@@ -143,15 +144,15 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
         return cell;
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
-        print("Height for: \(indexPath.section), \(indexPath.row)");
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
         if (indexPath.section == 0){
             return UIScreen.mainScreen().bounds.width*2/3;
         }
         else if (indexPath.section == 1){
-            let title = category!.getTitle().heightWithConstrainedWidth(UIScreen.mainScreen().bounds.width, font: UIFont.boldSystemFontOfSize(17));
-            let description = category!.getDescription().heightWithConstrainedWidth(UIScreen.mainScreen().bounds.width, font: UIFont.systemFontOfSize(17));
-            return title+description+50;
+            let width = UIScreen.mainScreen().bounds.width-56;
+            let title = category!.getTitle().heightWithConstrainedWidth(width, font: UIFont.systemFontOfSize(20));
+            let description = category!.getDescription().heightWithConstrainedWidth(width, font: UIFont.systemFontOfSize(17));
+            return title+description+62;
         }
         else if (indexPath.section == 2){
             return 100;
