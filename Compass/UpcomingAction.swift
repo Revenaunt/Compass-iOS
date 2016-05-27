@@ -57,9 +57,6 @@ class UpcomingAction: Mappable{
         parser.dateFormat = "yyyy-MM-dd HH:mm:ssZZZ";
         let date = parser.dateFromString(trigger);
         
-        print(trigger);
-        print(date);
-        
         if (date == nil){
             return "";
         }
