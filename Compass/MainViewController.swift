@@ -15,6 +15,9 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         NotificationUtil.sendRegistrationToken();
         
         print(SharedData.getUser()?.getToken());
+        
+        //Automatic height calculation
+        tableView.rowHeight = UITableViewAutomaticDimension;
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
@@ -78,7 +81,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         presentViewController(addSheet, animated: true, completion: nil);
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
         print("Height for: \(indexPath.section), \(indexPath.row)");
         if (indexPath.section == 0){
             
