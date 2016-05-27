@@ -66,30 +66,19 @@ class LogInViewController: UIViewController{
                     print(error);
                 }
                 
-                self.fetchCategories();
+                InitialDataLoader.load(SharedData.getUser()!){ (success) in
+                    if (success){
+                        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+                        let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
+                        UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+                    }
+                    else{
+                        self.toggleMenu(true);
+                    }
+                }
             }
             else{
                 print(response.error);
-                self.toggleMenu(true);
-            }
-        }
-    }
-    
-    private func fetchCategories(){
-        Just.get(API.getCategoriesUrl()){ (response) in
-            if (response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!)){
-                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                SharedData.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
-                for category in SharedData.publicCategories{
-                    print(category.toString());
-                }
-                dispatch_async(dispatch_get_main_queue(), {
-                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
-                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
-                })
-            }
-            else{
                 self.toggleMenu(true);
             }
         }

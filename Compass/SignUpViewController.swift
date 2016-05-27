@@ -166,32 +166,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                     print(error);
                 }
                 
-                self.fetchCategories();
+                InitialDataLoader.load(SharedData.getUser()!){ (success) in
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
+                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+                }
             }
             else{
                 self.signUpButton.hidden = false;
                 self.activity.hidden = true;
-            }
-        }
-    }
-    
-    private func fetchCategories(){
-        Just.get(API.getCategoriesUrl()){ (response) in
-            if (response.ok){
-                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                SharedData.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
-                for category in SharedData.publicCategories{
-                    print(category.toString());
-                }
-                dispatch_async(dispatch_get_main_queue(), {
-                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
-                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
-                })
-            }
-            else{
-                //Keep trying, I guess.
-                self.fetchCategories();
             }
         }
     }
