@@ -42,7 +42,7 @@ class InitialDataLoader{
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
                 SharedData.feedData = (Mapper<ParserModels.FeedDataArray>().map(result)?.feedData![0])!;
-                fetchCustomGoals();
+                fetchUserGoals();
             }
             else{
                 failure();

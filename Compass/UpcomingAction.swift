@@ -61,7 +61,7 @@ class UpcomingAction: Mappable{
         print(date);
         
         if (date == nil){
-            return "Time placeholder";
+            return "";
         }
         let formatter = NSDateFormatter();
         formatter.dateFormat = "h:mm a";
