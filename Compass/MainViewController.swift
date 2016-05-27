@@ -18,6 +18,20 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         
         //Automatic height calculation
         tableView.rowHeight = UITableViewAutomaticDimension;
+        
+        //tableView.backgroundView!.layer.zPosition -= 1;
+        
+        /*refreshControl = UIRefreshControl()
+        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        tableView.backgroundView = refreshControl;*/
+        refreshControl!.addTarget(self, action: #selector(MainViewController.refresh), forControlEvents: UIControlEvents.ValueChanged);
+    }
+    
+    func refresh(){
+        InitialDataLoader.load(SharedData.getUser()!){ (success) in
+            self.tableView.reloadData();
+            self.refreshControl?.endRefreshing()
+        }
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
