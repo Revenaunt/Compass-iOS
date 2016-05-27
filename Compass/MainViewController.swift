@@ -13,9 +13,25 @@ import Locksmith
 class MainViewController: UITableViewController, UIActionSheetDelegate{
     override func viewDidLoad(){
         NotificationUtil.sendRegistrationToken();
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None;
         
         print(SharedData.getUser()?.getToken());
+        
+        //Automatic height calculation
+        tableView.rowHeight = UITableViewAutomaticDimension;
+        
+        //tableView.backgroundView!.layer.zPosition -= 1;
+        
+        /*refreshControl = UIRefreshControl()
+        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        tableView.backgroundView = refreshControl;*/
+        refreshControl!.addTarget(self, action: #selector(MainViewController.refresh), forControlEvents: UIControlEvents.ValueChanged);
+    }
+    
+    func refresh(){
+        InitialDataLoader.load(SharedData.getUser()!){ (success) in
+            self.tableView.reloadData();
+            self.refreshControl?.endRefreshing()
+        }
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
@@ -79,7 +95,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         presentViewController(addSheet, animated: true, completion: nil);
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
         print("Height for: \(indexPath.section), \(indexPath.row)");
         if (indexPath.section == 0){
             

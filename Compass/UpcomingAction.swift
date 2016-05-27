@@ -53,17 +53,18 @@ class UpcomingAction: Mappable{
     
     func getTriggerDisplay() -> String{
         let parser = NSDateFormatter();
+        parser.locale = NSLocale(localeIdentifier: "us");
         parser.dateFormat = "yyyy-MM-dd HH:mm:ssZZZ";
-        let date = NSDateFormatter().dateFromString(trigger);
+        let date = parser.dateFromString(trigger);
         
         print(trigger);
         print(date);
         
         if (date == nil){
-            return "Time placeholder";
+            return "";
         }
         let formatter = NSDateFormatter();
-        formatter.dateFormat = "hh:mm a";
+        formatter.dateFormat = "h:mm a";
         return formatter.stringFromDate(date!);
     }
 }
