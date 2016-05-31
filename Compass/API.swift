@@ -132,7 +132,7 @@ class API{
     }
     
     static func getPostGoalUrl(goal: GoalContent) -> String{
-        return postProcess("\(BASE_URL)goals/\(goal.getId())/enroll");
+        return postProcess("\(BASE_URL)goals/\(goal.getId())/enroll/");
     }
     
     static func getPostGoalBody(category: CategoryContent) -> [String: String]{
