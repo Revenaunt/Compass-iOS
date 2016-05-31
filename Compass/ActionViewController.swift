@@ -9,6 +9,7 @@
 import UIKit
 import Just
 import ObjectMapper
+import Nuke
 
 
 class ActionViewController: UIViewController{
@@ -31,6 +32,9 @@ class ActionViewController: UIViewController{
             if (response.ok){
                 let action = Mapper<UserAction>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
                 self.fetchCategory(action!.getPrimaryCategoryId());
+                self.actionTitle.text = action!.getTitle();
+                self.behaviorTitle.text = action!.getBehaviorTitle();
+                self.actionDescription.text = action!.getDescription();
             }
         };
     }
@@ -38,8 +42,17 @@ class ActionViewController: UIViewController{
     private func fetchCategory(categoryId: Int){
         Just.get(API.getUserCategoryUrl(categoryId), headers: SharedData.getUser()!.getHeaderMap()) { (response) in
             if (response.ok){
-                //let category = Mapper
+                let category = Mapper<ParserModels.UserCategoryArray>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!)?.categories![0];
+                if (category!.getIconUrl().characters.count != 0){
+                    Nuke.taskWith(NSURL(string: category!.getImageUrl())!){
+                        self.hero.image = $0.image;
+                    }.resume();
+                }
             }
         }
+    }
+    
+    private func fetchReward(){
+        
     }
 }

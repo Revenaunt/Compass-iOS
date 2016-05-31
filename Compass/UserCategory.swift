@@ -26,4 +26,12 @@ class UserCategory: UserContent{
     func getCategory() -> CategoryContent?{
         return category;
     }
+    
+    func getIconUrl() -> String{
+        return category!.getIconUrl();
+    }
+    
+    func getImageUrl() -> String{
+        return category!.getImageUrl();
+    }
 }

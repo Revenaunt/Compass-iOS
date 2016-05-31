@@ -115,11 +115,25 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         switch (indexPath.section){
             case 0, 2:
-                performSegueWithIdentifier("ShowActionFromFeed", sender: self);
+                performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
                 break;
             
             default:
                 break;
+        }
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        if (segue.identifier == "ShowActionFromFeed"){
+            let actionController = segue.destinationViewController as! ActionViewController;
+            if (sender as? UpNextCell) != nil{
+                actionController.upcomingAction = SharedData.feedData.getUpNextAction();
+            }
+            else if let selectedCell = sender as? UpcomingCell{
+                let indexPath = tableView.indexPathForCell(selectedCell);
+                actionController.upcomingAction = SharedData.feedData.getUpcoming()[indexPath!.row];
+            }
         }
     }
 }

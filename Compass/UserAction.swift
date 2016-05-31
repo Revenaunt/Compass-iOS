@@ -32,4 +32,16 @@ class UserAction: Action{
     func getPrimaryCategoryId() -> Int{
         return primaryCategoryId;
     }
+    
+    func getTitle() -> String{
+        return action!.getTitle();
+    }
+    
+    func getDescription() -> String{
+        return action!.getDescription();
+    }
+    
+    func getBehaviorTitle() -> String{
+        return action!.getBehaviorTitle();
+    }
 }
