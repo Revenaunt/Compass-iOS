@@ -810,10 +810,10 @@
             </objects>
             <point key="canvasLocation" x="937" y="3710"/>
         </scene>
-        <!--Action-->
+        <!--Activity-->
         <scene sceneID="VgW-3N-gx5">
             <objects>
-                <viewController title="Action" id="Q9M-9N-CVz" sceneMemberID="viewController">
+                <viewController title="Activity" automaticallyAdjustsScrollViewInsets="NO" id="Q9M-9N-CVz" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UPL-cz-q1U"/>
                         <viewControllerLayoutGuide type="bottom" id="tg4-C1-f1r"/>
@@ -822,14 +822,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WkA-6K-knu">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WkA-6K-knu">
                                 <rect key="frame" x="0.0" y="64" width="600" height="836"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hgj-DZ-wFC" userLabel="Master Container">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="702"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2O-zK-2h6" userLabel="Image Container">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                                <rect key="frame" x="4" y="0.0" width="600" height="400"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TDC Master" translatesAutoresizingMaskIntoConstraints="NO" id="4vm-sO-jYA" userLabel="Hero">
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
@@ -921,9 +921,9 @@
                                             <constraint firstItem="2Mo-2M-RPF" firstAttribute="top" secondItem="36V-sI-Bi6" secondAttribute="bottom" constant="8" id="Ju8-L7-hQk"/>
                                             <constraint firstItem="gw5-l6-c1q" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="28" id="K4W-H0-8LJ"/>
                                             <constraint firstItem="gw5-l6-c1q" firstAttribute="top" secondItem="gGD-hh-hP4" secondAttribute="bottom" constant="8" id="MVr-R2-XAR"/>
-                                            <constraint firstAttribute="trailing" secondItem="V2O-zK-2h6" secondAttribute="trailing" id="NbU-Dz-8xJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="V2O-zK-2h6" secondAttribute="trailing" constant="-4" id="NbU-Dz-8xJ"/>
                                             <constraint firstAttribute="trailing" secondItem="wDb-Oa-LVE" secondAttribute="trailing" constant="28" id="O2V-mM-zNO"/>
-                                            <constraint firstItem="V2O-zK-2h6" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" id="OOx-4d-Rf0"/>
+                                            <constraint firstItem="V2O-zK-2h6" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="4" id="OOx-4d-Rf0"/>
                                             <constraint firstAttribute="trailing" secondItem="gw5-l6-c1q" secondAttribute="trailing" constant="28" id="ScC-gI-XWs"/>
                                             <constraint firstAttribute="trailing" secondItem="TIP-67-qLi" secondAttribute="trailing" constant="28" id="Sy4-fy-8Id"/>
                                             <constraint firstItem="2Mo-2M-RPF" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="28" id="Ta0-4k-b0a"/>

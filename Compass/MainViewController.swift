@@ -111,6 +111,17 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         }
         return 120;
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        switch (indexPath.section){
+            case 0, 2:
+                performSegueWithIdentifier("ShowActionFromFeed", sender: self);
+                break;
+            
+            default:
+                break;
+        }
+    }
 }
 
 extension String{
