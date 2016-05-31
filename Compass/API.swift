@@ -141,6 +141,11 @@ class API{
         return body;
     }
     
+    //Actions
+    static func getActionUrl(actionMappingId: Int) -> String{
+        return postProcess("\(BASE_URL)users/actions/\(actionMappingId)/");
+    }
+    
     
     /*---------------*
      * MISCELLANEOUS *

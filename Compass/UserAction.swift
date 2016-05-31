@@ -28,4 +28,8 @@ class UserAction: Action{
         primaryGoalId <- map["primary_goal"];
         primaryCategoryId <- map["primary_category"];
     }
+    
+    func getPrimaryCategoryId() -> Int{
+        return primaryCategoryId;
+    }
 }

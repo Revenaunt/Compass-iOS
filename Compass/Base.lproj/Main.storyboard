@@ -813,7 +813,7 @@
         <!--Activity-->
         <scene sceneID="VgW-3N-gx5">
             <objects>
-                <viewController title="Activity" automaticallyAdjustsScrollViewInsets="NO" id="Q9M-9N-CVz" sceneMemberID="viewController">
+                <viewController title="Activity" automaticallyAdjustsScrollViewInsets="NO" id="Q9M-9N-CVz" customClass="ActionViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UPL-cz-q1U"/>
                         <viewControllerLayoutGuide type="bottom" id="tg4-C1-f1r"/>
@@ -960,6 +960,16 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="900"/>
+                    <connections>
+                        <outlet property="actionDescription" destination="wDb-Oa-LVE" id="0T0-Z8-X4c"/>
+                        <outlet property="actionTitle" destination="36V-sI-Bi6" id="xSG-c6-Dbi"/>
+                        <outlet property="behaviorTitle" destination="2Mo-2M-RPF" id="gwh-er-Vic"/>
+                        <outlet property="hero" destination="4vm-sO-jYA" id="ZEP-ig-FJ3"/>
+                        <outlet property="rescheduleButton" destination="HCG-yJ-L4f" id="4rN-OB-LGW"/>
+                        <outlet property="rewardAuthor" destination="gw5-l6-c1q" id="thu-gj-95R"/>
+                        <outlet property="rewardContent" destination="gGD-hh-hP4" id="5TF-JM-z0S"/>
+                        <outlet property="rewardHeader" destination="hYN-O8-PJ7" id="lOc-vV-VVs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eb9-EM-G73" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
