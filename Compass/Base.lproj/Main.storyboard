@@ -959,6 +959,7 @@
                                             <constraint firstItem="np3-Uk-l0v" firstAttribute="top" secondItem="V2O-zK-2h6" secondAttribute="bottom" constant="30" id="VNV-mu-oQr"/>
                                             <constraint firstItem="EdY-zy-ufX" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="28" id="VUg-Uf-JN1"/>
                                             <constraint firstAttribute="bottom" secondItem="np3-Uk-l0v" secondAttribute="bottom" priority="250" constant="30" id="cGa-NJ-bdK"/>
+                                            <constraint firstAttribute="bottom" secondItem="V2O-zK-2h6" secondAttribute="bottom" priority="250" constant="30" id="e3f-cS-NFo"/>
                                             <constraint firstAttribute="bottom" secondItem="EdY-zy-ufX" secondAttribute="bottom" constant="30" id="ekZ-5a-jTb"/>
                                             <constraint firstAttribute="trailing" secondItem="EdY-zy-ufX" secondAttribute="trailing" constant="28" id="nlK-Nv-9WF"/>
                                             <constraint firstItem="V2O-zK-2h6" firstAttribute="top" secondItem="Hgj-DZ-wFC" secondAttribute="top" id="xhZ-Bg-1XW"/>
@@ -985,14 +986,18 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="900"/>
                     <connections>
+                        <outlet property="actionContainer" destination="np3-Uk-l0v" id="jkI-QI-xxO"/>
                         <outlet property="actionDescription" destination="wDb-Oa-LVE" id="0T0-Z8-X4c"/>
                         <outlet property="actionTitle" destination="36V-sI-Bi6" id="xSG-c6-Dbi"/>
                         <outlet property="behaviorTitle" destination="2Mo-2M-RPF" id="gwh-er-Vic"/>
                         <outlet property="hero" destination="4vm-sO-jYA" id="ZEP-ig-FJ3"/>
+                        <outlet property="masterContainer" destination="Hgj-DZ-wFC" id="DKf-a2-rIa"/>
                         <outlet property="rescheduleButton" destination="HCG-yJ-L4f" id="4rN-OB-LGW"/>
                         <outlet property="rewardAuthor" destination="gw5-l6-c1q" id="thu-gj-95R"/>
+                        <outlet property="rewardContainer" destination="EdY-zy-ufX" id="PLn-bE-Thg"/>
                         <outlet property="rewardContent" destination="gGD-hh-hP4" id="5TF-JM-z0S"/>
                         <outlet property="rewardHeader" destination="hYN-O8-PJ7" id="lOc-vV-VVs"/>
+                        <outlet property="scrollView" destination="WkA-6K-knu" id="DLR-kf-9qx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eb9-EM-G73" userLabel="First Responder" sceneMemberID="firstResponder"/>

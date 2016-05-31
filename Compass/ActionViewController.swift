@@ -17,24 +17,65 @@ class ActionViewController: UIViewController{
     var upcomingAction: UpcomingAction? = nil;
     
     //UI components
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var masterContainer: UIView!
     @IBOutlet weak var hero: UIImageView!
+    @IBOutlet var actionContainer: UIView!
     @IBOutlet weak var actionTitle: UILabel!
     @IBOutlet weak var behaviorTitle: UILabel!
     @IBOutlet weak var actionDescription: UILabel!
     @IBOutlet weak var rescheduleButton: UIButton!
+    @IBOutlet var rewardContainer: UIView!
     @IBOutlet weak var rewardHeader: UILabel!
     @IBOutlet weak var rewardContent: UILabel!
-    @IBOutlet weak var rewardAuthor: UILabel!
+    @IBOutlet var rewardAuthor: UILabel!
+    
+    var actionConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
+    var rewardConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
+    var authorConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
     
     
     override func viewDidLoad(){
+        //Backup the constraints
+        for constraint in masterContainer.constraints{
+            if (constraint.firstItem === rewardContainer || constraint.secondItem === rewardContainer){
+                rewardConstraints.append(constraint);
+            }
+            else if (constraint.firstItem === actionContainer || constraint.secondItem === actionContainer){
+                actionConstraints.append(constraint);
+            }
+        }
+        for constraint in rewardContainer.constraints{
+            if (constraint.firstItem === rewardAuthor || constraint.secondItem === rewardAuthor){
+                authorConstraints.append(constraint);
+            }
+        }
+        
+        //Remove all items from the master containes (except for the header) and the author
+        actionContainer.removeFromSuperview();
+        rewardContainer.removeFromSuperview();
+        rewardAuthor.removeFromSuperview();
+        
+        //Fetch the action
         Just.get(API.getActionUrl(upcomingAction!.getId()), headers: SharedData.getUser()!.getHeaderMap()) { (response) in
             if (response.ok){
+                //Parse and populate
                 let action = Mapper<UserAction>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.actionTitle.text = action!.getTitle();
+                    self.behaviorTitle.text = action!.getBehaviorTitle();
+                    self.actionDescription.text = action!.getDescription();
+                    self.masterContainer.addSubview(self.actionContainer);
+                    self.masterContainer.addConstraints(self.actionConstraints);
+                    self.masterContainer.setNeedsLayout();
+                    self.masterContainer.layoutIfNeeded();
+                    self.scrollView.contentSize = self.masterContainer.frame.size;
+                });
+                
+                //Fetch category and reward
                 self.fetchCategory(action!.getPrimaryCategoryId());
-                self.actionTitle.text = action!.getTitle();
-                self.behaviorTitle.text = action!.getBehaviorTitle();
-                self.actionDescription.text = action!.getDescription();
+                self.fetchReward();
             }
         };
     }
@@ -53,6 +94,29 @@ class ActionViewController: UIViewController{
     }
     
     private func fetchReward(){
-        
+        Just.get(API.getRandomRewardUrl()){ (response) in
+            if (response.ok){
+                print("Reward retrieved");
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
+                let rewardContent = (Mapper<ParserModels.RewardArray>().map(result)?.rewards![0])!;
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.rewardHeader.text = rewardContent.getHeaderTitle();
+                    self.rewardContent.text = rewardContent.getMessage();
+                    self.masterContainer.addSubview(self.rewardContainer);
+                    self.masterContainer.addConstraints(self.rewardConstraints);
+                    if (rewardContent.isQuote()){
+                        self.rewardAuthor.text = rewardContent.getAuthor();
+                        self.rewardContainer.addSubview(self.rewardAuthor);
+                        self.rewardContainer.addConstraints(self.authorConstraints);
+                    }
+                    self.rewardContainer.setNeedsLayout();
+                    self.rewardContainer.layoutIfNeeded();
+                    self.masterContainer.setNeedsLayout();
+                    self.masterContainer.layoutIfNeeded();
+                    self.scrollView.contentSize = self.masterContainer.frame.size;
+                });
+            }
+        }
     }
 }
