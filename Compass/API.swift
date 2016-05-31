@@ -14,7 +14,7 @@ class API{
     //    static let STAGING = false;
     //#endif
     
-    private static let USE_NGROK_TUNNEL = false;
+    private static let USE_NGROK_TUNNEL = true;
     private static let APP_BASE_URL = "https://app.tndata.org/api/";
     private static let STAGING_BASE_URL = "http://staging.tndata.org/api/";
     private static let NGROK_TUNNEL_URL = "https://tndata.ngrok.io/api/";
@@ -132,7 +132,7 @@ class API{
     }
     
     static func getPostGoalUrl(goal: GoalContent) -> String{
-        return postProcess("\(BASE_URL)goals/\(goal.getId())/enroll");
+        return postProcess("\(BASE_URL)goals/\(goal.getId())/enroll/");
     }
     
     static func getPostGoalBody(category: CategoryContent) -> [String: String]{
