@@ -25,7 +25,7 @@ class ActionViewController: UIViewController{
     @IBOutlet weak var actionTitle: UILabel!
     @IBOutlet weak var behaviorTitle: UILabel!
     @IBOutlet weak var actionDescription: UILabel!
-    @IBOutlet weak var rescheduleButton: UIButton!
+    @IBOutlet weak var laterButton: UIButton!
     @IBOutlet var rewardContainer: UIView!
     @IBOutlet weak var rewardHeader: UILabel!
     @IBOutlet weak var rewardContent: UILabel!
@@ -59,6 +59,7 @@ class ActionViewController: UIViewController{
         
         //Either the mappingId is set or the upcomingAction is set (xor), select the propper mappingId
         if (upcomingAction != nil){
+            laterButton.hidden = true;
             mappingId = upcomingAction!.getId();
         }
         
@@ -123,6 +124,18 @@ class ActionViewController: UIViewController{
                     self.scrollView.contentSize = self.masterContainer.frame.size;
                 });
             }
+        }
+    }
+    
+    @IBAction func later(){
+        
+    }
+    
+    @IBAction func gotIt(){
+        Just.post(API.getPostActionReportUrl(mappingId), json: API.getPostActionReportBody("completed"),
+                  headers: SharedData.getUser()!.getHeaderMap());
+        if (navigationController != nil){
+            navigationController!.popViewControllerAnimated(true);
         }
     }
 }

@@ -871,14 +871,14 @@
                                                                 <rect key="frame" x="20" y="5" width="45" height="30"/>
                                                                 <state key="normal" title="LATER"/>
                                                                 <connections>
-                                                                    <action selector="notNow" destination="i24-uW-uw0" eventType="touchUpInside" id="EVh-EV-0Z0"/>
+                                                                    <action selector="later" destination="Q9M-9N-CVz" eventType="touchUpInside" id="XU3-CW-2n6"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jzn-un-a5O">
                                                                 <rect key="frame" x="93" y="5" width="53" height="30"/>
                                                                 <state key="normal" title="GOT IT!"/>
                                                                 <connections>
-                                                                    <action selector="yesImIn" destination="i24-uW-uw0" eventType="touchUpInside" id="Ybc-HX-DN0"/>
+                                                                    <action selector="gotIt" destination="Q9M-9N-CVz" eventType="touchUpInside" id="iS3-Zj-SH0"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -991,8 +991,8 @@
                         <outlet property="actionTitle" destination="36V-sI-Bi6" id="xSG-c6-Dbi"/>
                         <outlet property="behaviorTitle" destination="2Mo-2M-RPF" id="gwh-er-Vic"/>
                         <outlet property="hero" destination="4vm-sO-jYA" id="ZEP-ig-FJ3"/>
+                        <outlet property="laterButton" destination="HCG-yJ-L4f" id="Iyl-wN-8N9"/>
                         <outlet property="masterContainer" destination="Hgj-DZ-wFC" id="DKf-a2-rIa"/>
-                        <outlet property="rescheduleButton" destination="HCG-yJ-L4f" id="4rN-OB-LGW"/>
                         <outlet property="rewardAuthor" destination="gw5-l6-c1q" id="thu-gj-95R"/>
                         <outlet property="rewardContainer" destination="EdY-zy-ufX" id="PLn-bE-Thg"/>
                         <outlet property="rewardContent" destination="gGD-hh-hP4" id="5TF-JM-z0S"/>

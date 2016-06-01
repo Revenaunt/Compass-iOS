@@ -154,6 +154,16 @@ class API{
     static func getRandomRewardUrl() -> String{
         return postProcess(BASE_URL + "rewards/?random=1");
     }
+    
+    static func getPostActionReportUrl(actionId: Int) -> String{
+        return postProcess("\(BASE_URL)users/actions/\(actionId)/complete/");
+    }
+    
+    static func getPostActionReportBody(state: String) -> [String: String]{
+        var body = [String: String]();
+        body["state"] = state;
+        return body;
+    }
 }
 
 
