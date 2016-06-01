@@ -55,7 +55,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         let vc = storyboard.instantiateViewControllerWithIdentifier("actionController") as! ActionViewController;
         let message = Mapper<APNsMessage>().map(userInfo);
         vc.mappingId = message!.getMappingId();
-        window?.rootViewController = vc;
+        if let rootController = window?.rootViewController as! UINavigationController?{
+            print("This is a navigation controller");
+            rootController.pushViewController(vc, animated: true);
+        }
+        else{
+            window?.rootViewController = vc;
+        }
     }
     
     

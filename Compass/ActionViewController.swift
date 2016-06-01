@@ -57,6 +57,7 @@ class ActionViewController: UIViewController{
         rewardContainer.removeFromSuperview();
         rewardAuthor.removeFromSuperview();
         
+        //Either the mappingId is set or the upcomingAction is set (xor), select the propper mappingId
         if (upcomingAction != nil){
             mappingId = upcomingAction!.getId();
         }
