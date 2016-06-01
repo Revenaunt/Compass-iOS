@@ -34,14 +34,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             
             let message = Mapper<APNsMessage>().map(payload)!;
             if (message.isAction()){
+                //Create the navigation controller and set as root
                 let storyboard = UIStoryboard(name: "Main", bundle: nil);
                 let navController = storyboard.instantiateViewControllerWithIdentifier("LauncherNavController") as! UINavigationController;
                 window?.rootViewController = navController;
-                let launcherController = storyboard.instantiateViewControllerWithIdentifier("LauncherController");
-                let actionController = storyboard.instantiateViewControllerWithIdentifier("actionController");
                 
-                navController.pushViewController(launcherController, animated: false);
-                navController.pushViewController(actionController, animated: true);
+                //Create the action controller and immediately push
+                let actionController = storyboard.instantiateViewControllerWithIdentifier("actionController") as! ActionViewController;
+                actionController.mappingId = message.getMappingId();
+                navController.pushViewController(actionController, animated: false);
             }
         }
         
