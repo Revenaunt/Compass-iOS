@@ -10,6 +10,9 @@ import ObjectMapper
 
 
 class UpcomingAction: Mappable{
+    private let USER_ACTION_TYPE = "useraction";
+    private let CUSTOM_ACTION_TYPE = "customaction";
+    
     private var id: Int = -1;
     private var title: String = "";
     private var goalId: Int = -1;
@@ -63,5 +66,13 @@ class UpcomingAction: Mappable{
         let formatter = NSDateFormatter();
         formatter.dateFormat = "h:mm a";
         return formatter.stringFromDate(date!);
+    }
+    
+    func isUserAction() -> Bool{
+        return type == USER_ACTION_TYPE;
+    }
+    
+    func isCustomAction() -> Bool{
+        return type == CUSTOM_ACTION_TYPE;
     }
 }

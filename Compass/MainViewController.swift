@@ -115,7 +115,9 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         switch (indexPath.section){
             case 0, 2:
-                performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
+                if (SharedData.feedData.getUpcoming()[indexPath.row].isUserAction()){
+                    performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
+                }
                 break;
             
             default:

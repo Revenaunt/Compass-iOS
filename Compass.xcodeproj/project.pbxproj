@@ -52,6 +52,7 @@
 		5475BDEF1CC153F100D80D3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475BDEE1CC153F100D80D3E /* API.swift */; };
 		5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; };
 		5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		547AF1BC1CFF34F7008EC34F /* APNsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547AF1BB1CFF34F7008EC34F /* APNsMessage.swift */; };
 		547C466D1CBBF9EC00953735 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547C466C1CBBF9EC00953735 /* Locksmith.framework */; };
 		547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547C46711CBC2D2900953735 /* SignUpViewController.swift */; };
 		5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480310C1CB6B27F00112807 /* AppDelegate.swift */; };
@@ -147,6 +148,7 @@
 		5475BDE81CC1426800D80D3E /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
 		5475BDEE1CC153F100D80D3E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5475BDF01CC16E9300D80D3E /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/iOS/Just.framework; sourceTree = "<group>"; };
+		547AF1BB1CFF34F7008EC34F /* APNsMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNsMessage.swift; sourceTree = "<group>"; };
 		547C466C1CBBF9EC00953735 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
 		547C46711CBC2D2900953735 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		548031091CB6B27F00112807 /* Compass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Compass.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +230,7 @@
 				5443355C1CD01B0A00EB066E /* UserGoal.swift */,
 				545627311CF4B029007C3731 /* Reward.swift */,
 				5488FC221CFDF9EF00E758C1 /* UserCategory.swift */,
+				547AF1BB1CFF34F7008EC34F /* APNsMessage.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */,
 				5424E98D1CE4EA330016B4DD /* NotificationUtil.swift in Sources */,
 				5467E9B01CC534D00088E417 /* User.swift in Sources */,
+				547AF1BC1CFF34F7008EC34F /* APNsMessage.swift in Sources */,
 				545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */,
 				5443355B1CD019C200EB066E /* CustomGoal.swift in Sources */,
 				544335571CCFC5B800EB066E /* FeedTypes.swift in Sources */,

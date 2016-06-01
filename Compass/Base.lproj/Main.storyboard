@@ -813,7 +813,7 @@
         <!--Activity-->
         <scene sceneID="VgW-3N-gx5">
             <objects>
-                <viewController title="Activity" automaticallyAdjustsScrollViewInsets="NO" id="Q9M-9N-CVz" customClass="ActionViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="actionController" title="Activity" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Q9M-9N-CVz" customClass="ActionViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UPL-cz-q1U"/>
                         <viewControllerLayoutGuide type="bottom" id="tg4-C1-f1r"/>
@@ -866,17 +866,17 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TIP-67-qLi" userLabel="Button Container">
-                                                        <rect key="frame" x="346" y="93" width="198" height="40"/>
+                                                        <rect key="frame" x="398" y="93" width="146" height="40"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCG-yJ-L4f">
-                                                                <rect key="frame" x="20" y="5" width="97" height="30"/>
-                                                                <state key="normal" title="RESCHEDULE"/>
+                                                                <rect key="frame" x="20" y="5" width="45" height="30"/>
+                                                                <state key="normal" title="LATER"/>
                                                                 <connections>
                                                                     <action selector="notNow" destination="i24-uW-uw0" eventType="touchUpInside" id="EVh-EV-0Z0"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jzn-un-a5O">
-                                                                <rect key="frame" x="145" y="5" width="53" height="30"/>
+                                                                <rect key="frame" x="93" y="5" width="53" height="30"/>
                                                                 <state key="normal" title="GOT IT!"/>
                                                                 <connections>
                                                                     <action selector="yesImIn" destination="i24-uW-uw0" eventType="touchUpInside" id="Ybc-HX-DN0"/>
@@ -888,6 +888,7 @@
                                                             <constraint firstItem="HCG-yJ-L4f" firstAttribute="top" secondItem="TIP-67-qLi" secondAttribute="top" constant="5" id="6Mb-ql-qjs"/>
                                                             <constraint firstItem="Jzn-un-a5O" firstAttribute="top" secondItem="TIP-67-qLi" secondAttribute="top" constant="5" id="JHi-9K-ouf"/>
                                                             <constraint firstAttribute="bottom" secondItem="HCG-yJ-L4f" secondAttribute="bottom" constant="5" id="N5h-3A-kNQ"/>
+                                                            <constraint firstItem="Jzn-un-a5O" firstAttribute="leading" secondItem="TIP-67-qLi" secondAttribute="leading" priority="250" constant="30" id="N9P-UR-7Zl"/>
                                                             <constraint firstItem="HCG-yJ-L4f" firstAttribute="leading" secondItem="TIP-67-qLi" secondAttribute="leading" constant="20" id="VV7-TG-bqx"/>
                                                             <constraint firstAttribute="trailing" secondItem="Jzn-un-a5O" secondAttribute="trailing" id="bDo-Od-NS2"/>
                                                             <constraint firstItem="Jzn-un-a5O" firstAttribute="leading" secondItem="HCG-yJ-L4f" secondAttribute="trailing" constant="28" id="keE-Pf-sEQ"/>

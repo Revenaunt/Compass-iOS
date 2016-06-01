@@ -15,6 +15,7 @@ import Nuke
 class ActionViewController: UIViewController{
     //Data
     var upcomingAction: UpcomingAction? = nil;
+    var mappingId: Int = -1;
     
     //UI components
     @IBOutlet weak var scrollView: UIScrollView!
@@ -56,8 +57,12 @@ class ActionViewController: UIViewController{
         rewardContainer.removeFromSuperview();
         rewardAuthor.removeFromSuperview();
         
+        if (upcomingAction != nil){
+            mappingId = upcomingAction!.getId();
+        }
+        
         //Fetch the action
-        Just.get(API.getActionUrl(upcomingAction!.getId()), headers: SharedData.getUser()!.getHeaderMap()) { (response) in
+        Just.get(API.getActionUrl(mappingId), headers: SharedData.getUser()!.getHeaderMap()) { (response) in
             if (response.ok){
                 //Parse and populate
                 let action = Mapper<UserAction>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!);

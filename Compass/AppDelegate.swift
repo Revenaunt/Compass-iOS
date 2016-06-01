@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import ObjectMapper
 
 
 @UIApplicationMain
@@ -21,6 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil);
         application.registerUserNotificationSettings(settings);
         application.registerForRemoteNotifications();
+        
+        if let payload = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary{
+            print("Doin' some evil. With Love, APNs");
+            let storyboard = UIStoryboard(name: "Main", bundle: nil);
+            let vc = storyboard.instantiateViewControllerWithIdentifier("actionController");
+            window?.rootViewController = vc;
+        }
         
         return true;
     }
@@ -40,9 +48,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         NotificationUtil.sendRegistrationToken();
     }
     
-    
-    
-    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject: AnyObject]){
+        print("Doin' some evil in didReceiveRemoteNotification. With Love, APNs");
+        print(userInfo);
+        let storyboard = UIStoryboard(name: "Main", bundle: nil);
+        let vc = storyboard.instantiateViewControllerWithIdentifier("actionController") as! ActionViewController;
+        let message = Mapper<APNsMessage>().map(userInfo);
+        vc.mappingId = message!.getMappingId();
+        window?.rootViewController = vc;
+    }
     
     
     
