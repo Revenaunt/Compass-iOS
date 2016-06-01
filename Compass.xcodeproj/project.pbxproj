@@ -388,6 +388,7 @@
 				547C466E1CBBFA2E00953735 /* ShellScript */,
 				4385E0418F42945CDFB1C7EA /* 📦 Embed Pods Frameworks */,
 				DD6E1132563C9F51DC34E14D /* 📦 Copy Pods Resources */,
+				547AF1BD1CFF80E0008EC34F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -548,6 +549,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Compass/Pods-Compass-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		547AF1BD1CFF80E0008EC34F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" d6f77229d69c5771af38c2e26799a3d0af7871a2 94b851e97f021832ee2502e5f700c54fe02e4ec415aa8a70038fecf2aa160158";
 		};
 		547C466E1CBBFA2E00953735 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -854,6 +868,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Compass/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				New_Setting = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.getcompass.Compass;
@@ -875,6 +890,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Compass/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				New_Setting = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.getcompass.Compass;

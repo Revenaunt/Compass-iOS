@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TDf-Up-ni2">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -11,7 +10,7 @@
         <!--Launcher-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Launcher" id="BYZ-38-t0r" customClass="LauncherViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LauncherController" title="Launcher" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LauncherViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -382,10 +381,10 @@
             </objects>
             <point key="canvasLocation" x="965" y="989"/>
         </scene>
-        <!--AuthNavigationController-->
+        <!--LauncherNavController-->
         <scene sceneID="HYQ-jh-7sI">
             <objects>
-                <navigationController storyboardIdentifier="AuthController" title="AuthNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="TDf-Up-ni2" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LauncherNavController" title="LauncherNavController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TDf-Up-ni2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QwB-VT-dk5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

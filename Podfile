@@ -6,7 +6,8 @@ target 'Compass' do
   # use_frameworks!
 
   # Pods for Compass
-  
+  pod 'Fabric'
+  pod 'Crashlytics'
 
   target 'CompassTests' do
     inherit! :search_paths

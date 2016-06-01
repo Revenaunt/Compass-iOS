@@ -44,7 +44,8 @@ class LogInViewController: UIViewController{
             print(response.ok);
             print(response.statusCode ?? -1);
             if response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!){
-                SharedData.setUser(Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)));
+                let user = Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding))!;
+                SharedData.setUser(user);
                 print(SharedData.getUser()!.toString());
                 
                 //This right here is probably not necessary except for testing purposes
@@ -59,6 +60,7 @@ class LogInViewController: UIViewController{
                     var accountInfo = [String: String]();
                     accountInfo["email"] = email;
                     accountInfo["password"] = pass;
+                    accountInfo["token"] = user.getToken();
                     try Locksmith.saveData(accountInfo, forUserAccount: "CompassAccount");
                 }
                 catch{

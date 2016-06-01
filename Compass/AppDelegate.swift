@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 import CoreData
 import ObjectMapper
 
@@ -18,16 +20,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool{
+        //Crashlytics
+        Fabric.with([Crashlytics.self]);
+        
         //Fire the notification registration process.
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil);
         application.registerUserNotificationSettings(settings);
         application.registerForRemoteNotifications();
         
+        NSLog("didFinishLaunchingWithOptions");
         if let payload = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary{
-            print("Doin' some evil. With Love, APNs");
-            let storyboard = UIStoryboard(name: "Main", bundle: nil);
-            let vc = storyboard.instantiateViewControllerWithIdentifier("actionController");
-            window?.rootViewController = vc;
+            NSLog("Doin' some evil. With Love, APNs");
+            
+            let message = Mapper<APNsMessage>().map(payload)!;
+            if (message.isAction()){
+                let storyboard = UIStoryboard(name: "Main", bundle: nil);
+                let navController = storyboard.instantiateViewControllerWithIdentifier("LauncherNavController") as! UINavigationController;
+                window?.rootViewController = navController;
+                let launcherController = storyboard.instantiateViewControllerWithIdentifier("LauncherController");
+                let actionController = storyboard.instantiateViewControllerWithIdentifier("actionController");
+                
+                navController.pushViewController(launcherController, animated: false);
+                navController.pushViewController(actionController, animated: true);
+            }
         }
         
         return true;
@@ -51,16 +66,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject: AnyObject]){
         print("Doin' some evil in didReceiveRemoteNotification. With Love, APNs");
         print(userInfo);
-        let storyboard = UIStoryboard(name: "Main", bundle: nil);
-        let vc = storyboard.instantiateViewControllerWithIdentifier("actionController") as! ActionViewController;
         let message = Mapper<APNsMessage>().map(userInfo);
-        vc.mappingId = message!.getMappingId();
-        if let rootController = window?.rootViewController as! UINavigationController?{
-            print("This is a navigation controller");
-            rootController.pushViewController(vc, animated: true);
-        }
-        else{
-            window?.rootViewController = vc;
+        if (message!.isAction()){
+            let storyboard = UIStoryboard(name: "Main", bundle: nil);
+            let vc = storyboard.instantiateViewControllerWithIdentifier("actionController") as! ActionViewController;
+            vc.mappingId = message!.getMappingId();
+            if let rootController = window?.rootViewController as! UINavigationController?{
+                print("This is a navigation controller");
+                rootController.pushViewController(vc, animated: true);
+            }
+            else{
+                print("This is NOT a navigation controller!");
+                window?.rootViewController = vc;
+            }
         }
     }
     

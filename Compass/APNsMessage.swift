@@ -10,6 +10,8 @@ import ObjectMapper
 
 
 class APNsMessage: Mappable{
+    private let TYPE_ACTION = "action";
+    
     private var objectType: String = "";
     private var objectId: Int = -1;
     private var mappingId: Int = -1;
@@ -23,6 +25,10 @@ class APNsMessage: Mappable{
         objectType <- map["object_type"];
         objectId <- map["object_id"];
         mappingId <- map["user_mapping_id"];
+    }
+    
+    func isAction() -> Bool{
+        return objectType == TYPE_ACTION;
     }
     
     func getMappingId() -> Int{
