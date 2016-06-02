@@ -33,6 +33,8 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     
     func refresh(){
         InitialDataLoader.load(SharedData.getUser()!){ (success) in
+            self.displayedUpcoming.removeAll();
+            self.displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
             self.tableView.reloadData();
             self.refreshControl?.endRefreshing()
         }
