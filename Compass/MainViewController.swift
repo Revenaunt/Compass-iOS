@@ -1,3 +1,4 @@
+
 //
 //  MainViewController.swift
 //  Compass
@@ -8,27 +9,34 @@
 
 import UIKit
 import Locksmith
+import Just
+import ObjectMapper
 
 
 class MainViewController: UITableViewController, UIActionSheetDelegate{
+    var displayedUpcoming = [UpcomingAction]();
+    
+    
     override func viewDidLoad(){
         NotificationUtil.sendRegistrationToken();
         
         print(SharedData.getUser()?.getToken());
         
+        if (displayedUpcoming.count == 0){
+            displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
+        }
+        
         //Automatic height calculation
         tableView.rowHeight = UITableViewAutomaticDimension;
         
-        //tableView.backgroundView!.layer.zPosition -= 1;
-        
-        /*refreshControl = UIRefreshControl()
-        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        tableView.backgroundView = refreshControl;*/
+        //Refresh
         refreshControl!.addTarget(self, action: #selector(MainViewController.refresh), forControlEvents: UIControlEvents.ValueChanged);
     }
     
     func refresh(){
         InitialDataLoader.load(SharedData.getUser()!){ (success) in
+            self.displayedUpcoming.removeAll();
+            self.displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
             self.tableView.reloadData();
             self.refreshControl?.endRefreshing()
         }
@@ -39,6 +47,12 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        if (FeedTypes.isUpcomingSection(section)){
+            if (SharedData.feedData.canLoadMoreActions(displayedUpcoming.count)){
+                return displayedUpcoming.count+1;
+            }
+            return displayedUpcoming.count;
+        }
         return FeedTypes.getSectionItemCount(section);
     }
     
@@ -59,24 +73,88 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
             print("Binding feedback cell");
             cell = tableView.dequeueReusableCellWithIdentifier("FeedbackCell", forIndexPath: indexPath);
             let feedbackCell = cell as! FeedbackCell;
-            //Data.feedData.getFeedback()!.title = "What if the title is ridiculously large? What if the title is ridiculously large? What if the title is ridiculously large?";
             feedbackCell.setFeedback(SharedData.feedData.getFeedback()!);
             
         }
         else if (indexPath.section == 2){
-            print("Binding upcoming cell");
-            cell = tableView.dequeueReusableCellWithIdentifier("UpcomingCell", forIndexPath: indexPath);
-            let upcomingCell = cell as! UpcomingCell;
-            upcomingCell.bind(SharedData.feedData.getUpcoming()[indexPath.row]);
+            //The footer
+            if (indexPath.row == displayedUpcoming.count){
+                print("Binding footer");
+                cell = tableView.dequeueReusableCellWithIdentifier("FooterCell", forIndexPath: indexPath);
+                let footerCell = cell as! FooterCell;
+                footerCell.bind(self, type: FooterCell.FooterType.Upcoming);
+            }
+            else{
+                print("Binding upcoming cell");
+                cell = tableView.dequeueReusableCellWithIdentifier("UpcomingCell", forIndexPath: indexPath);
+                let upcomingCell = cell as! UpcomingCell;
+                upcomingCell.bind(SharedData.feedData.getUpcoming()[indexPath.row]);
+            }
         }
         else{
-            print("Binding goal cell");
-            cell = tableView.dequeueReusableCellWithIdentifier("FeedGoalCell", forIndexPath: indexPath);
-            let goalCell = cell as! FeedGoalCell;
-            goalCell.bind(SharedData.feedData.getGoals()[indexPath.row]);
+            //The footer
+            if (indexPath.row == SharedData.feedData.getGoals().count){
+                print("Binding footer");
+                cell = tableView.dequeueReusableCellWithIdentifier("FooterCell", forIndexPath: indexPath);
+                let footerCell = cell as! FooterCell;
+                footerCell.bind(self, type: FooterCell.FooterType.Goals);
+            }
+            else{
+                print("Binding goal cell");
+                cell = tableView.dequeueReusableCellWithIdentifier("FeedGoalCell", forIndexPath: indexPath);
+                let goalCell = cell as! FeedGoalCell;
+                goalCell.bind(SharedData.feedData.getGoals()[indexPath.row]);
+            }
         }
         
         return cell;
+    }
+    
+    func loadMoreUpcoming(){
+        let start = displayedUpcoming.count;
+        let more = SharedData.feedData.loadModeUpcoming(displayedUpcoming.count);
+        displayedUpcoming.appendContentsOf(more);
+        
+        var paths = [NSIndexPath]();
+        for i in 0...more.count-1{
+            paths.append(NSIndexPath(forRow: start+i, inSection: FeedTypes.getUpcomingSectionPosition()));
+        }
+        tableView.beginUpdates();
+        if (!SharedData.feedData.canLoadMoreActions(displayedUpcoming.count)){
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: displayedUpcoming.count-1, inSection: FeedTypes.getUpcomingSectionPosition())],
+                                             withRowAnimation: .Automatic)
+        }
+        tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
+        tableView.endUpdates();
+    }
+    
+    func loadMoreGoals(footer: FooterCell){
+        Just.get(SharedData.feedData.getNextGoalBatchUrl()!, headers: CompassUtil.getHeaderMap(SharedData.getUser()!)){ response in
+            if (response.ok){
+                let start = SharedData.feedData.getGoals().count;
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
+                let uga = Mapper<ParserModels.UserGoalArray>().map(result)!;
+                if (uga.goals!.count > 0){
+                    SharedData.feedData.addGoals(uga.goals!, nextGoalBatchUrl: uga.next);
+                }
+                var paths = [NSIndexPath]();
+                for i in 0...uga.goals!.count-1{
+                    paths.append(NSIndexPath(forRow: start+i, inSection: FeedTypes.getGoalsSectionPosition()));
+                }
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.beginUpdates();
+                    if (!SharedData.feedData.canLoadMoreGoals()){
+                        self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: SharedData.feedData.getGoals().count-1, inSection: FeedTypes.getGoalsSectionPosition())],
+                                                        withRowAnimation: .Automatic)
+                    }
+                    else{
+                        footer.end();
+                    }
+                    self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
+                    self.tableView.endUpdates();
+                });
+            }
+        }
     }
     
     @IBAction func addTap(sender: AnyObject){
@@ -96,7 +174,6 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
-        print("Height for: \(indexPath.section), \(indexPath.row)");
         if (indexPath.section == 0){
             
         }

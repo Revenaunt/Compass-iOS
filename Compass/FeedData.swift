@@ -11,6 +11,8 @@ import ObjectMapper
 
 //No need to extend TDCBase
 class FeedData: Mappable, CustomStringConvertible{
+    private let LOAD_MORE_COUNT = 3;
+    
     private var progress: Progress? = nil;
     private var actionFeedback: ActionFeedback? = nil;
     private var upNextAction: UpcomingAction? = nil;
@@ -31,6 +33,13 @@ class FeedData: Mappable, CustomStringConvertible{
         progress <- map["progress"];
         actionFeedback <- map["action_feedback"];
         upcomingActions <- map["upcoming"];
+        var upcoming = [UpcomingAction]();
+        for action in upcomingActions{
+            if (action.isUserAction()){
+                upcoming.append(action);
+            }
+        }
+        upcomingActions = upcoming;
         
         if (upcomingActions.count > 0){
             upNextAction = upcomingActions.removeAtIndex(0) as UpcomingAction;
@@ -57,16 +66,29 @@ class FeedData: Mappable, CustomStringConvertible{
         return goals;
     }
     
-    func addGoals(goals: [Goal]){
+    func addGoals(goals: [Goal], nextGoalBatchUrl: String?){
         self.goals.appendContentsOf(goals);
-    }
-    
-    func setNextGoalBatchUrl(url: String?){
-        nextGoalBatchUrl = url;
+        self.nextGoalBatchUrl = nextGoalBatchUrl;
     }
     
     func getNextGoalBatchUrl() -> String?{
         return nextGoalBatchUrl;
+    }
+    
+    func canLoadMoreActions(displayedUpcoming: Int) -> Bool{
+        return displayedUpcoming < upcomingActions.count;
+    }
+    
+    func loadModeUpcoming(displayedUpcoming: Int) -> [UpcomingAction]{
+        var batch = [UpcomingAction]();
+        while (batch.count < LOAD_MORE_COUNT && canLoadMoreActions(displayedUpcoming + batch.count)){
+            batch.append(upcomingActions[displayedUpcoming+batch.count]);
+        }
+        return batch;
+    }
+    
+    func canLoadMoreGoals() -> Bool{
+        return nextGoalBatchUrl != nil;
     }
     
     var description: String{

@@ -41,7 +41,14 @@ class InitialDataLoader{
         Just.get(API.getFeedDataUrl(), headers: CompassUtil.getHeaderMap(user!)){ (response) in
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                SharedData.feedData = (Mapper<ParserModels.FeedDataArray>().map(result)?.feedData![0])!;
+                let feedData = (Mapper<ParserModels.FeedDataArray>().map(result)?.feedData![0])!;
+                var upcoming = [UpcomingAction]();
+                for action in feedData.getUpcoming(){
+                    if (action.isUserAction()){
+                        upcoming.append(action);
+                    }
+                }
+                SharedData.feedData = feedData;
                 fetchUserGoals();
             }
             else{
@@ -56,7 +63,8 @@ class InitialDataLoader{
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
                 let goals = (Mapper<ParserModels.CustomGoalArray>().map(result)?.goals)!
                 if (goals.count > 0){
-                    SharedData.feedData.addGoals(goals);
+                    //TODO this needs to be fixed eventually
+                    SharedData.feedData.addGoals(goals, nextGoalBatchUrl: nil);
                     //success();
                 }
                 //else{
@@ -73,10 +81,9 @@ class InitialDataLoader{
         Just.get(API.getUserGoalsUrl(), headers: CompassUtil.getHeaderMap(user!)){ response in
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                let goals = (Mapper<ParserModels.UserGoalArray>().map(result)?.goals)!
-                if (goals.count > 0){
-                    SharedData.feedData.addGoals(goals);
-                    
+                let uga = Mapper<ParserModels.UserGoalArray>().map(result)!;
+                if (uga.goals!.count > 0){
+                    SharedData.feedData.addGoals(uga.goals!, nextGoalBatchUrl: uga.next);
                 }
                 success();
             }

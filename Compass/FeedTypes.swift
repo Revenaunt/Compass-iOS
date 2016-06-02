@@ -79,6 +79,9 @@ class FeedTypes{
                 return SharedData.feedData.getUpcoming().count;
             
             case getGoalsSectionPosition():
+                if (SharedData.feedData.canLoadMoreGoals()){
+                    return SharedData.feedData.getGoals().count+1;
+                }
                 return SharedData.feedData.getGoals().count;
             
             default:
