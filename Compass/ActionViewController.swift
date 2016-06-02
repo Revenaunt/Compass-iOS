@@ -15,6 +15,7 @@ import Nuke
 class ActionViewController: UIViewController{
     //Data
     var upcomingAction: UpcomingAction? = nil;
+    var notificationId: Int = -1;
     var mappingId: Int = -1;
     
     //UI components
@@ -134,7 +135,29 @@ class ActionViewController: UIViewController{
     }
     
     @IBAction func later(){
-        
+        let alert = UIAlertController(title: "Later", message: "", preferredStyle: UIAlertControllerStyle.Alert);
+        alert.addAction(UIAlertAction(title: "In an hour", style: UIAlertActionStyle.Default, handler: { action in
+            let date = NSDate(timeIntervalSinceNow: 3600);
+            let components = NSCalendar.currentCalendar().components([.Year, .Month, .Day, .Hour, .Minute], fromDate: date);
+            
+            self.snooze(components.year, month: components.month, day: components.day,
+                hour: components.hour, minute: components.minute);
+            
+            self.navigationController!.popViewControllerAnimated(true);
+        }));
+        alert.addAction(UIAlertAction(title: "This time tomorrow", style: UIAlertActionStyle.Default, handler: { action in
+            let date = NSDate(timeIntervalSinceNow: 24*3600);
+            let components = NSCalendar.currentCalendar().components([.Year, .Month, .Day, .Hour, .Minute], fromDate: date);
+            
+            self.snooze(components.year, month: components.month, day: components.day,
+                hour: components.hour, minute: components.minute);
+            
+            self.navigationController!.popViewControllerAnimated(true);
+        }));
+        alert.addAction(UIAlertAction(title: "Someday", style: UIAlertActionStyle.Default, handler: { action in
+            self.navigationController!.popViewControllerAnimated(true);
+        }));
+        presentViewController(alert, animated: true, completion: nil);
     }
     
     @IBAction func gotIt(){
@@ -143,5 +166,20 @@ class ActionViewController: UIViewController{
         if (navigationController != nil){
             navigationController!.popViewControllerAnimated(true);
         }
+    }
+    
+    func snooze(year: Int, month: Int, day: Int, hour:Int, minute: Int){
+        let monthString = month < 10 ? "0\(month)" : "\(month)";
+        let dayString = day < 10 ? "0\(day)" : "\(day)";
+        let hourString = hour < 10 ? "0\(hour)" : "\(hour)";
+        let minuteString = minute < 10 ? "0\(minute)" : "\(minute)";
+        
+        let date = "\(year)-\(monthString)-\(dayString)";
+        let time = "\(hourString):\(minuteString)";
+        
+        print(date + " " + time);
+        
+        Just.put(API.getPutSnoozeUrl(notificationId), json: API.getPutSnoozeBody(date, time: time),
+                 headers: SharedData.getUser()!.getHeaderMap());
     }
 }

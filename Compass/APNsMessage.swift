@@ -12,6 +12,7 @@ import ObjectMapper
 class APNsMessage: Mappable{
     private let TYPE_ACTION = "action";
     
+    private var notificationId: Int = -1;
     private var objectType: String = "";
     private var objectId: Int = -1;
     private var mappingId: Int = -1;
@@ -22,9 +23,14 @@ class APNsMessage: Mappable{
     }
     
     func mapping(map: Map){
+        notificationId <- map["id"];
         objectType <- map["object_type"];
         objectId <- map["object_id"];
         mappingId <- map["user_mapping_id"];
+    }
+    
+    func getNotificationId() -> Int{
+        return notificationId;
     }
     
     func isAction() -> Bool{

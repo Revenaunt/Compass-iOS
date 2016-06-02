@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                     //Create the action controller and immediately push
                     let actionController = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionViewController;
                     actionController.mappingId = message.getMappingId();
+                    actionController.notificationId = message.getNotificationId();
                     navController.pushViewController(actionController, animated: false);
                 }
             }
@@ -76,15 +77,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             let message = Mapper<APNsMessage>().map(userInfo);
             if (message!.isAction()){
                 let storyboard = UIStoryboard(name: "Main", bundle: nil);
-                let vc = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionViewController;
-                vc.mappingId = message!.getMappingId();
+                let actionController = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionViewController;
+                actionController.mappingId = message!.getMappingId();
+                actionController.notificationId = message!.getNotificationId();
                 if let rootController = window?.rootViewController as! UINavigationController?{
                     print("This is a navigation controller");
-                    rootController.pushViewController(vc, animated: true);
+                    rootController.pushViewController(actionController, animated: true);
                 }
                 else{
                     print("This is NOT a navigation controller!");
-                    window?.rootViewController = vc;
+                    window?.rootViewController = actionController;
                 }
             }
         }
