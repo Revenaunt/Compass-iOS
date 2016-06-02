@@ -24,6 +24,7 @@ class FooterCell: UITableViewCell{
         else if (type == FooterType.Goals){
             seeMoreButton.hidden = true;
             activity.hidden = false;
+            activity.startAnimating();
             delegate?.loadMoreGoals(self);
         }
     }

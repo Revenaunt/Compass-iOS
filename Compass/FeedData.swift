@@ -66,12 +66,9 @@ class FeedData: Mappable, CustomStringConvertible{
         return goals;
     }
     
-    func addGoals(goals: [Goal]){
+    func addGoals(goals: [Goal], nextGoalBatchUrl: String?){
         self.goals.appendContentsOf(goals);
-    }
-    
-    func setNextGoalBatchUrl(url: String?){
-        nextGoalBatchUrl = url;
+        self.nextGoalBatchUrl = nextGoalBatchUrl;
     }
     
     func getNextGoalBatchUrl() -> String?{
@@ -88,6 +85,10 @@ class FeedData: Mappable, CustomStringConvertible{
             batch.append(upcomingActions[displayedUpcoming+batch.count]);
         }
         return batch;
+    }
+    
+    func canLoadMoreGoals() -> Bool{
+        return nextGoalBatchUrl != nil;
     }
     
     var description: String{

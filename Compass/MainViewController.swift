@@ -9,6 +9,8 @@
 
 import UIKit
 import Locksmith
+import Just
+import ObjectMapper
 
 
 class MainViewController: UITableViewController, UIActionSheetDelegate{
@@ -90,10 +92,19 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
             }
         }
         else{
-            print("Binding goal cell");
-            cell = tableView.dequeueReusableCellWithIdentifier("FeedGoalCell", forIndexPath: indexPath);
-            let goalCell = cell as! FeedGoalCell;
-            goalCell.bind(SharedData.feedData.getGoals()[indexPath.row]);
+            //The footer
+            if (indexPath.row == SharedData.feedData.getGoals().count){
+                print("Binding footer");
+                cell = tableView.dequeueReusableCellWithIdentifier("FooterCell", forIndexPath: indexPath);
+                let footerCell = cell as! FooterCell;
+                footerCell.bind(self, type: FooterCell.FooterType.Goals);
+            }
+            else{
+                print("Binding goal cell");
+                cell = tableView.dequeueReusableCellWithIdentifier("FeedGoalCell", forIndexPath: indexPath);
+                let goalCell = cell as! FeedGoalCell;
+                goalCell.bind(SharedData.feedData.getGoals()[indexPath.row]);
+            }
         }
         
         return cell;
@@ -106,13 +117,11 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         
         var paths = [NSIndexPath]();
         for i in 0...more.count-1{
-            print("Inserting: \((start+i))");
-            paths.append(NSIndexPath(forRow: start+i, inSection: 2));
+            paths.append(NSIndexPath(forRow: start+i, inSection: FeedTypes.getUpcomingSectionPosition()));
         }
         tableView.beginUpdates();
         if (!SharedData.feedData.canLoadMoreActions(displayedUpcoming.count)){
-            print("Deleting: \(displayedUpcoming.count-1)");
-            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: displayedUpcoming.count-1, inSection: 2)],
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: displayedUpcoming.count-1, inSection: FeedTypes.getUpcomingSectionPosition())],
                                              withRowAnimation: .Automatic)
         }
         tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
@@ -120,7 +129,32 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     func loadMoreGoals(footer: FooterCell){
-        
+        Just.get(SharedData.feedData.getNextGoalBatchUrl()!, headers: CompassUtil.getHeaderMap(SharedData.getUser()!)){ response in
+            if (response.ok){
+                let start = SharedData.feedData.getGoals().count;
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
+                let uga = Mapper<ParserModels.UserGoalArray>().map(result)!;
+                if (uga.goals!.count > 0){
+                    SharedData.feedData.addGoals(uga.goals!, nextGoalBatchUrl: uga.next);
+                }
+                var paths = [NSIndexPath]();
+                for i in 0...uga.goals!.count-1{
+                    paths.append(NSIndexPath(forRow: start+i, inSection: FeedTypes.getGoalsSectionPosition()));
+                }
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.beginUpdates();
+                    if (!SharedData.feedData.canLoadMoreGoals()){
+                        self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: SharedData.feedData.getGoals().count-1, inSection: FeedTypes.getGoalsSectionPosition())],
+                                                        withRowAnimation: .Automatic)
+                    }
+                    else{
+                        footer.end();
+                    }
+                    self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
+                    self.tableView.endUpdates();
+                });
+            }
+        }
     }
     
     @IBAction func addTap(sender: AnyObject){
