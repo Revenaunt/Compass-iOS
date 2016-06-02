@@ -41,7 +41,14 @@ class InitialDataLoader{
         Just.get(API.getFeedDataUrl(), headers: CompassUtil.getHeaderMap(user!)){ (response) in
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                SharedData.feedData = (Mapper<ParserModels.FeedDataArray>().map(result)?.feedData![0])!;
+                let feedData = (Mapper<ParserModels.FeedDataArray>().map(result)?.feedData![0])!;
+                var upcoming = [UpcomingAction]();
+                for action in feedData.getUpcoming(){
+                    if (action.isUserAction()){
+                        upcoming.append(action);
+                    }
+                }
+                SharedData.feedData = feedData;
                 fetchUserGoals();
             }
             else{

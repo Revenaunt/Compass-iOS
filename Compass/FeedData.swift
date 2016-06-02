@@ -31,6 +31,13 @@ class FeedData: Mappable, CustomStringConvertible{
         progress <- map["progress"];
         actionFeedback <- map["action_feedback"];
         upcomingActions <- map["upcoming"];
+        var upcoming = [UpcomingAction]();
+        for action in upcomingActions{
+            if (action.isUserAction()){
+                upcoming.append(action);
+            }
+        }
+        upcomingActions = upcoming;
         
         if (upcomingActions.count > 0){
             upNextAction = upcomingActions.removeAtIndex(0) as UpcomingAction;
