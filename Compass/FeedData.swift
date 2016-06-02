@@ -11,6 +11,8 @@ import ObjectMapper
 
 //No need to extend TDCBase
 class FeedData: Mappable, CustomStringConvertible{
+    private let LOAD_MORE_COUNT = 3;
+    
     private var progress: Progress? = nil;
     private var actionFeedback: ActionFeedback? = nil;
     private var upNextAction: UpcomingAction? = nil;
@@ -74,6 +76,18 @@ class FeedData: Mappable, CustomStringConvertible{
     
     func getNextGoalBatchUrl() -> String?{
         return nextGoalBatchUrl;
+    }
+    
+    func canLoadMoreActions(displayedUpcoming: Int) -> Bool{
+        return displayedUpcoming < upcomingActions.count;
+    }
+    
+    func loadModeUpcoming(displayedUpcoming: Int) -> [UpcomingAction]{
+        var batch = [UpcomingAction]();
+        while (batch.count < LOAD_MORE_COUNT && canLoadMoreActions(displayedUpcoming + batch.count)){
+            batch.append(upcomingActions[displayedUpcoming+batch.count]);
+        }
+        return batch;
     }
     
     var description: String{

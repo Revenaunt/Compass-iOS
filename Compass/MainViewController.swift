@@ -1,3 +1,4 @@
+
 //
 //  MainViewController.swift
 //  Compass
@@ -11,19 +12,22 @@ import Locksmith
 
 
 class MainViewController: UITableViewController, UIActionSheetDelegate{
+    var displayedUpcoming = [UpcomingAction]();
+    
+    
     override func viewDidLoad(){
         NotificationUtil.sendRegistrationToken();
         
         print(SharedData.getUser()?.getToken());
         
+        if (displayedUpcoming.count == 0){
+            displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
+        }
+        
         //Automatic height calculation
         tableView.rowHeight = UITableViewAutomaticDimension;
         
-        //tableView.backgroundView!.layer.zPosition -= 1;
-        
-        /*refreshControl = UIRefreshControl()
-        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        tableView.backgroundView = refreshControl;*/
+        //Refresh
         refreshControl!.addTarget(self, action: #selector(MainViewController.refresh), forControlEvents: UIControlEvents.ValueChanged);
     }
     
@@ -39,6 +43,12 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        if (FeedTypes.isUpcomingSection(section)){
+            if (SharedData.feedData.canLoadMoreActions(displayedUpcoming.count)){
+                return displayedUpcoming.count+1;
+            }
+            return displayedUpcoming.count;
+        }
         return FeedTypes.getSectionItemCount(section);
     }
     
@@ -59,15 +69,23 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
             print("Binding feedback cell");
             cell = tableView.dequeueReusableCellWithIdentifier("FeedbackCell", forIndexPath: indexPath);
             let feedbackCell = cell as! FeedbackCell;
-            //Data.feedData.getFeedback()!.title = "What if the title is ridiculously large? What if the title is ridiculously large? What if the title is ridiculously large?";
             feedbackCell.setFeedback(SharedData.feedData.getFeedback()!);
             
         }
         else if (indexPath.section == 2){
-            print("Binding upcoming cell");
-            cell = tableView.dequeueReusableCellWithIdentifier("UpcomingCell", forIndexPath: indexPath);
-            let upcomingCell = cell as! UpcomingCell;
-            upcomingCell.bind(SharedData.feedData.getUpcoming()[indexPath.row]);
+            //The footer
+            if (indexPath.row == displayedUpcoming.count){
+                print("Binding footer");
+                cell = tableView.dequeueReusableCellWithIdentifier("FooterCell", forIndexPath: indexPath);
+                let footerCell = cell as! FooterCell;
+                footerCell.bind(self, type: FooterCell.FooterType.Upcoming);
+            }
+            else{
+                print("Binding upcoming cell");
+                cell = tableView.dequeueReusableCellWithIdentifier("UpcomingCell", forIndexPath: indexPath);
+                let upcomingCell = cell as! UpcomingCell;
+                upcomingCell.bind(SharedData.feedData.getUpcoming()[indexPath.row]);
+            }
         }
         else{
             print("Binding goal cell");
@@ -77,6 +95,30 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         }
         
         return cell;
+    }
+    
+    func loadMoreUpcoming(){
+        let start = displayedUpcoming.count;
+        let more = SharedData.feedData.loadModeUpcoming(displayedUpcoming.count);
+        displayedUpcoming.appendContentsOf(more);
+        
+        var paths = [NSIndexPath]();
+        for i in 0...more.count-1{
+            print("Inserting: \((start+i))");
+            paths.append(NSIndexPath(forRow: start+i, inSection: 2));
+        }
+        tableView.beginUpdates();
+        if (!SharedData.feedData.canLoadMoreActions(displayedUpcoming.count)){
+            print("Deleting: \(displayedUpcoming.count-1)");
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: displayedUpcoming.count-1, inSection: 2)],
+                                             withRowAnimation: .Automatic)
+        }
+        tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
+        tableView.endUpdates();
+    }
+    
+    func loadMoreGoals(footer: FooterCell){
+        
     }
     
     @IBAction func addTap(sender: AnyObject){
@@ -96,7 +138,6 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
-        print("Height for: \(indexPath.section), \(indexPath.row)");
         if (indexPath.section == 0){
             
         }

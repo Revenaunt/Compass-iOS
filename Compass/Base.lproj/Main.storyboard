@@ -459,7 +459,7 @@
             <objects>
                 <tableViewController title="Main" id="hvk-pI-Gwh" customClass="MainViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" id="IMT-KW-c44">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -722,6 +722,42 @@
                                     <outlet property="title" destination="HIi-zB-gFW" id="Hac-tb-gDj"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FooterCell" rowHeight="47" id="VhU-zq-ODk" customClass="FooterCell" customModule="Compass" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="545" width="600" height="47"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VhU-zq-ODk" id="29R-CU-hV8">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="46"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAe-vm-VGf">
+                                            <rect key="frame" x="8" y="8" width="584" height="30"/>
+                                            <state key="normal" title="SEE MORE"/>
+                                            <connections>
+                                                <action selector="seeMore" destination="VhU-zq-ODk" eventType="touchUpInside" id="dJd-8U-HjK"/>
+                                            </connections>
+                                        </button>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jqS-l4-qoE">
+                                            <rect key="frame" x="290" y="13" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="hcv-Lq-P5z"/>
+                                                <constraint firstAttribute="width" constant="20" id="qNV-8b-H0l"/>
+                                            </constraints>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="jqS-l4-qoE" firstAttribute="centerY" secondItem="29R-CU-hV8" secondAttribute="centerY" id="8Mo-aI-uQU"/>
+                                        <constraint firstItem="kAe-vm-VGf" firstAttribute="leading" secondItem="29R-CU-hV8" secondAttribute="leadingMargin" id="NNv-Xo-A1C"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="kAe-vm-VGf" secondAttribute="bottom" id="Olq-Tv-SnX"/>
+                                        <constraint firstItem="kAe-vm-VGf" firstAttribute="trailing" secondItem="29R-CU-hV8" secondAttribute="trailingMargin" id="axb-GR-tcc"/>
+                                        <constraint firstItem="jqS-l4-qoE" firstAttribute="centerX" secondItem="29R-CU-hV8" secondAttribute="centerX" id="dNf-JB-sgI"/>
+                                        <constraint firstItem="kAe-vm-VGf" firstAttribute="top" secondItem="29R-CU-hV8" secondAttribute="topMargin" id="hYj-52-jWO"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="activity" destination="jqS-l4-qoE" id="Bsf-1B-WAu"/>
+                                    <outlet property="seeMoreButton" destination="kAe-vm-VGf" id="SO2-6a-B2R"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="hvk-pI-Gwh" id="11O-cs-QK7"/>
@@ -735,6 +771,8 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="800"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="iVK-pB-5ga">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
@@ -752,7 +790,7 @@
             <objects>
                 <tableViewController title="What Interests You?" id="DYE-he-MmB" customClass="ChooseCategoryViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="117" sectionHeaderHeight="28" sectionFooterHeight="28" id="r7B-Gp-mCq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
