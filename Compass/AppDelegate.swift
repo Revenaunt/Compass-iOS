@@ -9,6 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
+import Locksmith
 import CoreData
 import ObjectMapper
 
@@ -30,19 +31,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         
         NSLog("didFinishLaunchingWithOptions");
         if let payload = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary{
-            NSLog("Doin' some evil. With Love, APNs");
-            
-            let message = Mapper<APNsMessage>().map(payload)!;
-            if (message.isAction()){
-                //Create the navigation controller and set as root
-                let storyboard = UIStoryboard(name: "Main", bundle: nil);
-                let navController = storyboard.instantiateViewControllerWithIdentifier("LauncherNavController") as! UINavigationController;
-                window?.rootViewController = navController;
+            let dictionary = Locksmith.loadDataForUserAccount("CompassAccount");
+            if (dictionary != nil && dictionary!["token"] != nil){
+                NSLog("Doin' some evil. With Love, APNs");
                 
-                //Create the action controller and immediately push
-                let actionController = storyboard.instantiateViewControllerWithIdentifier("actionController") as! ActionViewController;
-                actionController.mappingId = message.getMappingId();
-                navController.pushViewController(actionController, animated: false);
+                let message = Mapper<APNsMessage>().map(payload)!;
+                if (message.isAction()){
+                    //Create the navigation controller and set as root
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil);
+                    let navController = storyboard.instantiateViewControllerWithIdentifier("LauncherNavController") as! UINavigationController;
+                    window?.rootViewController = navController;
+                    
+                    //Create the action controller and immediately push
+                    let actionController = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionViewController;
+                    actionController.mappingId = message.getMappingId();
+                    navController.pushViewController(actionController, animated: false);
+                }
             }
         }
         
@@ -67,18 +71,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject: AnyObject]){
         print("Doin' some evil in didReceiveRemoteNotification. With Love, APNs");
         print(userInfo);
-        let message = Mapper<APNsMessage>().map(userInfo);
-        if (message!.isAction()){
-            let storyboard = UIStoryboard(name: "Main", bundle: nil);
-            let vc = storyboard.instantiateViewControllerWithIdentifier("actionController") as! ActionViewController;
-            vc.mappingId = message!.getMappingId();
-            if let rootController = window?.rootViewController as! UINavigationController?{
-                print("This is a navigation controller");
-                rootController.pushViewController(vc, animated: true);
-            }
-            else{
-                print("This is NOT a navigation controller!");
-                window?.rootViewController = vc;
+        let dictionary = Locksmith.loadDataForUserAccount("CompassAccount");
+        if (dictionary != nil && dictionary!["token"] != nil){
+            let message = Mapper<APNsMessage>().map(userInfo);
+            if (message!.isAction()){
+                let storyboard = UIStoryboard(name: "Main", bundle: nil);
+                let vc = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionViewController;
+                vc.mappingId = message!.getMappingId();
+                if let rootController = window?.rootViewController as! UINavigationController?{
+                    print("This is a navigation controller");
+                    rootController.pushViewController(vc, animated: true);
+                }
+                else{
+                    print("This is NOT a navigation controller!");
+                    window?.rootViewController = vc;
+                }
             }
         }
     }

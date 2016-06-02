@@ -80,8 +80,14 @@ class ActionViewController: UIViewController{
                     self.scrollView.contentSize = self.masterContainer.frame.size;
                 });
                 
-                //Fetch category and reward
-                self.fetchCategory(action!.getPrimaryCategoryId());
+                //Fetch the hero
+                let category = SharedData.getCategory(action!.getPrimaryCategoryId());
+                if (category != nil && category!.getImageUrl().characters.count != 0){
+                    Nuke.taskWith(NSURL(string: category!.getImageUrl())!){
+                        self.hero.image = $0.image;
+                        }.resume();
+                }
+                //Fetch the reward
                 self.fetchReward();
             }
         };
@@ -91,7 +97,7 @@ class ActionViewController: UIViewController{
         Just.get(API.getUserCategoryUrl(categoryId), headers: SharedData.getUser()!.getHeaderMap()) { (response) in
             if (response.ok){
                 let category = Mapper<ParserModels.UserCategoryArray>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!)?.categories![0];
-                if (category!.getIconUrl().characters.count != 0){
+                if (category!.getImageUrl().characters.count != 0){
                     Nuke.taskWith(NSURL(string: category!.getImageUrl())!){
                         self.hero.image = $0.image;
                     }.resume();
