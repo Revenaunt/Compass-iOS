@@ -15,8 +15,8 @@ class ActionContent: TDCContent{
     private var htmlMoreInfo: String = "";
     private var externalResource: String = "";
     private var externalResourceName: String = "";
-    private var trigger: Trigger? = nil;
     private var behaviorId: Int = -1;
+    private var behaviorTitle: String = "";
     
     
     required init?(_ map: Map){
@@ -31,7 +31,11 @@ class ActionContent: TDCContent{
         htmlMoreInfo <- map["html_more_info"];
         externalResource <- map["external_resource"];
         externalResourceName <- map["external_resource_name"];
-        trigger <- map["default_trigger"];
         behaviorId <- map["behavior"];
+        behaviorTitle <- map["behavior_title"];
+    }
+    
+    func getBehaviorTitle() -> String{
+        return behaviorTitle;
     }
 }

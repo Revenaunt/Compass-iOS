@@ -159,6 +159,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                     var accountInfo = [String: String]();
                     accountInfo["email"] = user.getEmail();
                     accountInfo["password"] = user.getPassword();
+                    accountInfo["token"] = user.getToken();
                     try Locksmith.saveData(accountInfo, forUserAccount: "CompassAccount");
                 }
                 catch{

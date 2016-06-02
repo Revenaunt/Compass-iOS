@@ -23,6 +23,19 @@ class ParserModels{
         }
     }
     
+    class UserCategoryArray: Mappable{
+        var categories: [UserCategory]? = nil;
+        
+        
+        required init?(_ map: Map){
+            
+        }
+        
+        func mapping(map: Map){
+            categories <- map["results"];
+        }
+    }
+    
     class GoalContentArray: Mappable{
         var goals: [GoalContent]? = nil;
         var next: String? = nil;

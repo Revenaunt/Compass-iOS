@@ -28,4 +28,20 @@ class UserAction: Action{
         primaryGoalId <- map["primary_goal"];
         primaryCategoryId <- map["primary_category"];
     }
+    
+    func getPrimaryCategoryId() -> Int{
+        return primaryCategoryId;
+    }
+    
+    func getTitle() -> String{
+        return action!.getTitle();
+    }
+    
+    func getDescription() -> String{
+        return action!.getDescription();
+    }
+    
+    func getBehaviorTitle() -> String{
+        return action!.getBehaviorTitle();
+    }
 }

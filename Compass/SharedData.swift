@@ -6,7 +6,7 @@
 //  Copyright © 2016 Tennessee Data Commons. All rights reserved.
 //
 
-import Foundation
+import Locksmith
 
 
 class SharedData{
@@ -55,6 +55,9 @@ class SharedData{
     }
     
     class func getUser() -> User?{
+        if (user == nil){
+            return User(token: Locksmith.loadDataForUserAccount("CompassAccount")!["token"] as! String);
+        }
         return user;
     }
     

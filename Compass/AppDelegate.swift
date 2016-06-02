@@ -7,7 +7,11 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
+import Locksmith
 import CoreData
+import ObjectMapper
 
 
 @UIApplicationMain
@@ -17,10 +21,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool{
+        //Crashlytics
+        Fabric.with([Crashlytics.self]);
+        
         //Fire the notification registration process.
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil);
         application.registerUserNotificationSettings(settings);
         application.registerForRemoteNotifications();
+        
+        NSLog("didFinishLaunchingWithOptions");
+        if let payload = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary{
+            let dictionary = Locksmith.loadDataForUserAccount("CompassAccount");
+            if (dictionary != nil && dictionary!["token"] != nil){
+                NSLog("Doin' some evil. With Love, APNs");
+                
+                let message = Mapper<APNsMessage>().map(payload)!;
+                if (message.isAction()){
+                    //Create the navigation controller and set as root
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil);
+                    let navController = storyboard.instantiateViewControllerWithIdentifier("LauncherNavController") as! UINavigationController;
+                    window?.rootViewController = navController;
+                    
+                    //Create the action controller and immediately push
+                    let actionController = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionViewController;
+                    actionController.mappingId = message.getMappingId();
+                    actionController.notificationId = message.getNotificationId();
+                    navController.pushViewController(actionController, animated: false);
+                }
+            }
+        }
         
         return true;
     }
@@ -40,9 +69,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         NotificationUtil.sendRegistrationToken();
     }
     
-    
-    
-    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject: AnyObject]){
+        print("Doin' some evil in didReceiveRemoteNotification. With Love, APNs");
+        print(userInfo);
+        let dictionary = Locksmith.loadDataForUserAccount("CompassAccount");
+        if (dictionary != nil && dictionary!["token"] != nil){
+            let message = Mapper<APNsMessage>().map(userInfo);
+            if (message!.isAction()){
+                let storyboard = UIStoryboard(name: "Main", bundle: nil);
+                let actionController = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionViewController;
+                actionController.mappingId = message!.getMappingId();
+                actionController.notificationId = message!.getNotificationId();
+                if let rootController = window?.rootViewController as! UINavigationController?{
+                    print("This is a navigation controller");
+                    rootController.pushViewController(actionController, animated: true);
+                }
+                else{
+                    print("This is NOT a navigation controller!");
+                    window?.rootViewController = actionController;
+                }
+            }
+        }
+    }
     
     
     

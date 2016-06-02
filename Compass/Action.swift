@@ -12,6 +12,7 @@ import ObjectMapper
 class Action: UserContent{
     private var trigger: Trigger? = nil;
     private var nextReminder: String = "";
+    private var goalTitle: String = "";
     
     
     required init?(_ map: Map){
@@ -23,5 +24,6 @@ class Action: UserContent{
         
         trigger <- map["trigger"];
         nextReminder <- map["next_reminder"];
+        goalTitle <- map["goal_title"];
     }
 }

@@ -24,7 +24,7 @@ class LauncherViewController: UIViewController{
         print(API.STAGING);
         
         let dictionary = Locksmith.loadDataForUserAccount("CompassAccount");
-        if dictionary != nil && (dictionary!["email"] as! String).characters.count > 0{
+        if (dictionary != nil && dictionary!["email"] != nil){
             let email = dictionary!["email"] as! String;
             let password = dictionary!["password"] as! String;
             

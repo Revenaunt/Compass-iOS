@@ -141,6 +141,11 @@ class API{
         return body;
     }
     
+    //Actions
+    static func getActionUrl(actionMappingId: Int) -> String{
+        return postProcess("\(BASE_URL)users/actions/\(actionMappingId)/");
+    }
+    
     
     /*---------------*
      * MISCELLANEOUS *
@@ -148,6 +153,27 @@ class API{
     
     static func getRandomRewardUrl() -> String{
         return postProcess(BASE_URL + "rewards/?random=1");
+    }
+    
+    static func getPostActionReportUrl(actionId: Int) -> String{
+        return postProcess("\(BASE_URL)users/actions/\(actionId)/complete/");
+    }
+    
+    static func getPostActionReportBody(state: String) -> [String: String]{
+        var body = [String: String]();
+        body["state"] = state;
+        return body;
+    }
+    
+    static func getPutSnoozeUrl(notificationId: Int) -> String{
+        return postProcess("\(BASE_URL)notifications/\(notificationId)/");
+    }
+    
+    static func getPutSnoozeBody(date: String, time: String) -> [String: String]{
+        var body = [String: String]();
+        body["date"] = date;
+        body["time"] = time;
+        return body;
     }
 }
 

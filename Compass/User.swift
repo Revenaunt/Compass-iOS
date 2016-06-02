@@ -37,6 +37,11 @@ class User: TDCBase{
         super.init(id: -1);
     }
     
+    init(token: String){
+        super.init(id: -1);
+        self.token = token;
+    }
+    
     func setPassword(password: String){
         self.password = password;
     }
