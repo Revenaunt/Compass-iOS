@@ -16,7 +16,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     var category: CategoryContent!;
     
     private var goals = [GoalContent]();
-    private var activityCell: UITableViewCell? = nil;
+    private var activityCell: LibraryLoadingCell? = nil;
     
     private var loading: Bool = false;
     private var next: String? = nil;
@@ -76,25 +76,30 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding)!;
                 let gca = Mapper<ParserModels.GoalContentArray>().map(result)!;
-                let start = self.goals.count;
-                self.goals.appendContentsOf(gca.goals!);
-                self.next = gca.next;
-                if (API.STAGING && self.next != nil && (self.next?.hasPrefix("https"))!){
-                    self.next = "http" + (self.next?.substringFromIndex((self.next?.startIndex.advancedBy(5))!))!;
+                if (gca.goals?.count == 0){
+                    self.activityCell?.displayMessage();
                 }
-                var paths = [NSIndexPath]();
-                for i in 0...gca.goals!.count-1{
-                    paths.append(NSIndexPath(forRow: start+i, inSection: 2));
-                }
-                print("Next url: \(self.next)");
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.tableView.beginUpdates()
-                    if (self.next == nil){
-                        self.tableView.deleteSections(NSIndexSet(index: 3), withRowAnimation: .Automatic);
+                else{
+                    let start = self.goals.count;
+                    self.goals.appendContentsOf(gca.goals!);
+                    self.next = gca.next;
+                    if (API.STAGING && self.next != nil && (self.next?.hasPrefix("https"))!){
+                        self.next = "http" + (self.next?.substringFromIndex((self.next?.startIndex.advancedBy(5))!))!;
                     }
-                    self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
-                    self.tableView.endUpdates();
-                });
+                    var paths = [NSIndexPath]();
+                    for i in 0...gca.goals!.count-1{
+                        paths.append(NSIndexPath(forRow: start+i, inSection: 2));
+                    }
+                    print("Next url: \(self.next)");
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView.beginUpdates()
+                        if (self.next == nil){
+                            self.tableView.deleteSections(NSIndexSet(index: 3), withRowAnimation: .Automatic);
+                        }
+                        self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
+                        self.tableView.endUpdates();
+                    });
+                }
             }
             self.loading = false;
         }
@@ -135,7 +140,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
         else{
             if (activityCell == nil){
                 cell = tableView.dequeueReusableCellWithIdentifier("ProgressCell", forIndexPath: indexPath);
-                activityCell = cell;
+                activityCell = cell as? LibraryLoadingCell;
             }
             else{
                 cell = activityCell!;

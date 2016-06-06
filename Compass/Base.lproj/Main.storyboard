@@ -1152,7 +1152,7 @@
                                     <segue destination="i24-uW-uw0" kind="show" identifier="ShowGoalFromLibrary" id="yRs-pB-MUP"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ProgressCell" rowHeight="44" id="6L1-tB-IBB">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ProgressCell" rowHeight="44" id="6L1-tB-IBB" customClass="LibraryLoadingCell" customModule="Compass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="727" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6L1-tB-IBB" id="OjN-vv-GEF">
@@ -1162,12 +1162,26 @@
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KJ2-RC-bTp">
                                             <rect key="frame" x="290" y="12" width="20" height="20"/>
                                         </activityIndicatorView>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have selected all goals in this category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CpN-WL-euF">
+                                            <rect key="frame" x="8" y="8" width="584" height="27"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="KJ2-RC-bTp" firstAttribute="centerY" secondItem="OjN-vv-GEF" secondAttribute="centerY" id="0MV-0n-Mgq"/>
+                                        <constraint firstItem="CpN-WL-euF" firstAttribute="leading" secondItem="OjN-vv-GEF" secondAttribute="leadingMargin" id="AyY-ph-CU3"/>
+                                        <constraint firstItem="CpN-WL-euF" firstAttribute="top" secondItem="OjN-vv-GEF" secondAttribute="topMargin" id="ByH-tm-0xc"/>
+                                        <constraint firstItem="CpN-WL-euF" firstAttribute="trailing" secondItem="OjN-vv-GEF" secondAttribute="trailingMargin" id="J1g-6g-sCg"/>
                                         <constraint firstItem="KJ2-RC-bTp" firstAttribute="centerX" secondItem="OjN-vv-GEF" secondAttribute="centerX" id="ekI-fW-TFu"/>
+                                        <constraint firstItem="CpN-WL-euF" firstAttribute="bottom" secondItem="OjN-vv-GEF" secondAttribute="bottomMargin" id="xtI-zP-kCf"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="activityIndicator" destination="KJ2-RC-bTp" id="lke-WP-kyF"/>
+                                    <outlet property="message" destination="CpN-WL-euF" id="B2r-9T-NNb"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
