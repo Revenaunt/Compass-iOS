@@ -798,7 +798,6 @@
                                 <connections>
                                     <outlet property="categoryImage" destination="ucm-lY-xKg" id="5Nj-vT-scI"/>
                                     <outlet property="categoryTitle" destination="uyj-c7-3Vt" id="fBP-gZ-ZOt"/>
-                                    <segue destination="ZbA-Qt-cmz" kind="show" identifier="ShowGoalLibraryFromCategory" id="lfx-aJ-PgK"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -807,6 +806,9 @@
                             <outlet property="delegate" destination="DYE-he-MmB" id="rzG-Tr-IFc"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="ZbA-Qt-cmz" kind="show" identifier="ShowGoalLibraryFromCategory" id="k7y-SJ-VTq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ab7-OR-t0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1178,7 +1180,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgY-vc-aWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1824" y="3860"/>
+            <point key="canvasLocation" x="1812" y="3760"/>
         </scene>
         <!--Goal View Controller-->
         <scene sceneID="TZL-9A-xSa">
@@ -1339,7 +1341,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nG7-R6-NYO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2755" y="3860"/>
+            <point key="canvasLocation" x="2757" y="3760"/>
         </scene>
         <!--Main Navigation-->
         <scene sceneID="T72-Z4-8oh">

@@ -30,6 +30,12 @@ class ChooseCategoryViewController: UITableViewController{
         return cell;
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        //navigationController!.popViewControllerAnimated(false);
+        let cell = tableView.cellForRowAtIndexPath(indexPath);
+        performSegueWithIdentifier("ShowGoalLibraryFromCategory", sender: cell);
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         if (segue.identifier == "ShowGoalLibraryFromCategory"){
             let goalLibraryController = segue.destinationViewController as! GoalLibraryViewController;
