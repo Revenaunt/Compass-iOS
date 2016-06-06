@@ -399,61 +399,6 @@
             </objects>
             <point key="canvasLocation" x="-825" y="557"/>
         </scene>
-        <!--On Boarding Survey-->
-        <scene sceneID="Kdc-zL-Kp9">
-            <objects>
-                <viewController storyboardIdentifier="OnBoardingSurvey" title="On Boarding Survey" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aCt-qz-8sw" customClass="OnBoardingSurveyViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="lsv-lt-Zfx"/>
-                        <viewControllerLayoutGuide type="bottom" id="eQw-fN-IIB"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="baX-VK-epI">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3sM-HZ-ENe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-825" y="1939"/>
-        </scene>
-        <!--Main-->
-        <scene sceneID="3yi-jO-2Op">
-            <objects>
-                <viewController title="Main" id="hNP-gb-ptZ" customClass="MainViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pHg-VX-ePz"/>
-                        <viewControllerLayoutGuide type="bottom" id="mRv-F2-0ss"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="UlM-zM-NUb">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="XnI-YL-Qc9"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BEo-wK-iDZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-13" y="2853"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="IaZ-mO-aZR">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kVJ-6K-jwU" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Nf-Jl-ING">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="hNP-gb-ptZ" kind="relationship" relationship="rootViewController" id="PdE-Em-LKF"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nxc-FZ-i37" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-825" y="2853"/>
-        </scene>
         <!--Main-->
         <scene sceneID="UuE-Hv-zPa">
             <objects>

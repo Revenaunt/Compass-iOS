@@ -34,7 +34,6 @@
 		545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BF1CC695F50037FAEF /* TDCBase.swift */; };
 		545D98C21CC697100037FAEF /* TDCContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C11CC697100037FAEF /* TDCContent.swift */; };
 		545D98C41CC69A890037FAEF /* ParserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C31CC69A890037FAEF /* ParserModels.swift */; };
-		545D98C61CC69F690037FAEF /* OnBoardingSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C51CC69F690037FAEF /* OnBoardingSurveyViewController.swift */; };
 		546114DA1CF386C6007BBD1B /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546114D91CF386C6007BBD1B /* GoalViewController.swift */; };
 		5467E9B01CC534D00088E417 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9AF1CC534D00088E417 /* User.swift */; };
 		5467E9B41CC5551F0088E417 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9B31CC5551F0088E417 /* SharedData.swift */; };
@@ -131,7 +130,6 @@
 		545D98BF1CC695F50037FAEF /* TDCBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCBase.swift; sourceTree = "<group>"; };
 		545D98C11CC697100037FAEF /* TDCContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCContent.swift; sourceTree = "<group>"; };
 		545D98C31CC69A890037FAEF /* ParserModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserModels.swift; sourceTree = "<group>"; };
-		545D98C51CC69F690037FAEF /* OnBoardingSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingSurveyViewController.swift; sourceTree = "<group>"; };
 		546114D91CF386C6007BBD1B /* GoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
 		5467E9AF1CC534D00088E417 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5467E9B31CC5551F0088E417 /* SharedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
@@ -256,7 +254,6 @@
 				5480310E1CB6B27F00112807 /* LauncherViewController.swift */,
 				547C46711CBC2D2900953735 /* SignUpViewController.swift */,
 				5449E5F11CBD646E0017629E /* LogInViewController.swift */,
-				545D98C51CC69F690037FAEF /* OnBoardingSurveyViewController.swift */,
 				54010E141CC6D31A009FB013 /* MainViewController.swift */,
 				544614201CC927CE00F2B441 /* ChooseCategoryViewController.swift */,
 				544614261CC9719800F2B441 /* GoalLibraryViewController.swift */,
@@ -683,7 +680,6 @@
 				544614231CC92C5400F2B441 /* CategoryCell.swift in Sources */,
 				545627321CF4B029007C3731 /* Reward.swift in Sources */,
 				5480310F1CB6B27F00112807 /* LauncherViewController.swift in Sources */,
-				545D98C61CC69F690037FAEF /* OnBoardingSurveyViewController.swift in Sources */,
 				5468F8531CCEB7D100D5769B /* Action.swift in Sources */,
 				5448276A1CCA88E500BBC062 /* GoalCell.swift in Sources */,
 				5488FC211CFDEF2900E758C1 /* ActionViewController.swift in Sources */,

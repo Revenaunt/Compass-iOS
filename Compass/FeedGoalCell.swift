@@ -16,7 +16,6 @@ class FeedGoalCell: UITableViewCell{
     @IBOutlet weak var title: UILabel!
     
     func bind(goal: Goal){
-        
         iconContainer.layer.cornerRadius = iconContainer.frame.size.width/2;
         iconContainer.clipsToBounds = true;
         if (goal is CustomGoal){

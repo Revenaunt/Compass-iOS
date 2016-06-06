@@ -190,6 +190,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        print(indexPath);
         switch (indexPath.section){
             case 0, 2:
                 if (SharedData.feedData.getUpcoming()[indexPath.row].isUserAction()){
@@ -207,7 +208,9 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         if (segue.identifier == "ShowActionFromFeed"){
             let actionController = segue.destinationViewController as! ActionViewController;
             if (sender as? UpNextCell) != nil{
-                actionController.upcomingAction = SharedData.feedData.getUpNextAction();
+                if let upNext = SharedData.feedData.getUpNextAction(){
+                    actionController.upcomingAction = upNext;
+                }
             }
             else if let selectedCell = sender as? UpcomingCell{
                 let indexPath = tableView.indexPathForCell(selectedCell);

@@ -11,6 +11,7 @@ import UIKit
 
 class ChooseCategoryViewController: UITableViewController{
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
+        //One section, the list of categories
         return 1;
     }
     

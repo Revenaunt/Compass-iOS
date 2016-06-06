@@ -13,7 +13,7 @@ import Nuke
 
 
 class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
-    var category: CategoryContent? = nil;
+    var category: CategoryContent!;
     
     private var goals = [GoalContent]();
     private var activityCell: UITableViewCell? = nil;
@@ -30,7 +30,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
         super.viewDidLoad();
         
         //Load first batch of goalz
-        next = API.getGoalsUrl(category!);
+        next = API.getGoalsUrl(category);
         loadMore();
         
         //Automatic height calculation
@@ -43,7 +43,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
             if (goalWasAdded){
                 //Add the goal
                 Just.post(API.getPostGoalUrl(selectedGoal!), headers: SharedData.getUser()!.getHeaderMap(),
-                          json: API.getPostGoalBody(category!)){ (response) in
+                          json: API.getPostGoalBody(category)){ (response) in
                             if (response.ok){
                                 print("Goal posted successfully");
                             }
@@ -114,17 +114,17 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
         if (indexPath.section == 0){
             cell = tableView.dequeueReusableCellWithIdentifier("HeaderHeroCell", forIndexPath: indexPath);
             let instance = cell as! CategoryHeaderCell;
-            instance.setHeader(category!);
+            instance.setHeader(category);
         }
         else if (indexPath.section == 1){
             cell = tableView.dequeueReusableCellWithIdentifier("CategoryDescriptionCell", forIndexPath: indexPath);
             let instance = cell as! CategoryDescriptionCell;
-            instance.setCategory(category!);
+            instance.setCategory(category);
         }
         else if (indexPath.section == 2){
             cell = tableView.dequeueReusableCellWithIdentifier("GoalCell", forIndexPath: indexPath);
             let instance = cell as! GoalCell;
-            instance.setContent(goals[indexPath.row], category: category!);
+            instance.setContent(goals[indexPath.row], category: category);
             
         }
         else{
@@ -171,7 +171,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
                 selectedGoal = goals[selectedGoalIndex];
                 goalWasAdded = false;
                 goalController.delegate = self;
-                goalController.category = category!;
+                goalController.category = category;
                 goalController.goal = selectedGoal;
             }
         }
