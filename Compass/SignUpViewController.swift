@@ -11,6 +11,7 @@ import Just
 import ObjectMapper;
 import Locksmith;
 
+
 class SignUpViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var address: UITextField!
@@ -21,6 +22,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var activity: UIActivityIndicatorView!
+    
+    @IBOutlet weak var privacyPolicyButton: UIButton!
+    @IBOutlet weak var termsOfServiceButton: UIButton!
     
     
     override func viewDidLoad(){
@@ -139,6 +143,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     private func signUp(email: String, password: String, firstName: String, lastName: String){
         signUpButton.hidden = true;
         activity.hidden = false;
+        privacyPolicyButton.hidden = true;
+        termsOfServiceButton.hidden = true;
         
         Just.post(API.getSignUpUrl(), data: API.getSignUpBody(email, password: password, firstName: firstName, lastName: lastName)){ (response) in
             if response.ok{
@@ -176,7 +182,17 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
             else{
                 self.signUpButton.hidden = false;
                 self.activity.hidden = true;
+                self.privacyPolicyButton.hidden = false;
+                self.termsOfServiceButton.hidden = false;
             }
         }
+    }
+    
+    @IBAction func privacyPolicy(){
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://app.tndata.org/privacy/")!);
+    }
+    
+    @IBAction func termsOfService(){
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://app.tndata.org/terms/")!);
     }
 }

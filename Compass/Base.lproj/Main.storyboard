@@ -195,11 +195,29 @@
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vfn-cd-tD0">
                                         <rect key="frame" x="270" y="132" width="20" height="20"/>
                                     </activityIndicatorView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdz-TW-tBJ">
+                                        <rect key="frame" x="457" y="207" width="95" height="30"/>
+                                        <state key="normal" title="Privacy Policy"/>
+                                        <connections>
+                                            <action selector="privacyPolicy" destination="rzO-Rp-uL9" eventType="touchUpInside" id="VT4-L3-P0U"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTI-uL-ps7">
+                                        <rect key="frame" x="436" y="245" width="116" height="30"/>
+                                        <state key="normal" title="Terms of Service"/>
+                                        <connections>
+                                            <action selector="termsOfService" destination="rzO-Rp-uL9" eventType="touchUpInside" id="D7F-dO-sMP"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="DTI-uL-ps7" secondAttribute="bottom" constant="8" id="2o7-TI-Ffa"/>
                                     <constraint firstItem="qes-aX-r4M" firstAttribute="centerY" secondItem="5gv-0k-urn" secondAttribute="centerY" id="F95-Ys-CAX"/>
                                     <constraint firstItem="qes-aX-r4M" firstAttribute="centerX" secondItem="5gv-0k-urn" secondAttribute="centerX" id="HYD-R2-OI4"/>
+                                    <constraint firstAttribute="trailing" secondItem="DTI-uL-ps7" secondAttribute="trailing" constant="8" id="Qtt-QB-abd"/>
+                                    <constraint firstAttribute="trailing" secondItem="kdz-TW-tBJ" secondAttribute="trailing" constant="8" id="YAy-jJ-nwe"/>
+                                    <constraint firstItem="DTI-uL-ps7" firstAttribute="top" secondItem="kdz-TW-tBJ" secondAttribute="bottom" constant="8" id="aBT-ei-i2N"/>
                                     <constraint firstItem="vfn-cd-tD0" firstAttribute="centerY" secondItem="5gv-0k-urn" secondAttribute="centerY" id="ccr-cK-Lwb"/>
                                     <constraint firstItem="vfn-cd-tD0" firstAttribute="centerX" secondItem="5gv-0k-urn" secondAttribute="centerX" id="ops-fP-Fwz"/>
                                 </constraints>
@@ -254,7 +272,9 @@
                         <outlet property="lastName" destination="Yfp-EQ-Gh8" id="4ZD-dg-xfg"/>
                         <outlet property="password" destination="JVS-Hm-ZfM" id="JhV-5d-tXM"/>
                         <outlet property="passwordCheck" destination="g26-4p-rn8" id="I6k-v6-m7L"/>
+                        <outlet property="privacyPolicyButton" destination="kdz-TW-tBJ" id="p9Q-M7-Ber"/>
                         <outlet property="signUpButton" destination="qes-aX-r4M" id="8rW-rd-bhi"/>
+                        <outlet property="termsOfServiceButton" destination="DTI-uL-ps7" id="q9x-38-gwk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gtZ-YC-Xrq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -408,7 +428,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpNextCell" rowHeight="110" id="9ZF-eR-FAx" customClass="UpNextCell" customModule="Compass" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UpNextCell" rowHeight="110" id="9ZF-eR-FAx" customClass="UpNextCell" customModule="Compass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9ZF-eR-FAx" id="AGd-cE-Q6D">
@@ -503,7 +523,7 @@
                                     <outlet property="time" destination="Koo-Aj-XK2" id="bqt-ni-5U4"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedbackCell" rowHeight="138" id="wug-8K-Pxu" customClass="FeedbackCell" customModule="Compass" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedbackCell" rowHeight="138" id="wug-8K-Pxu" customClass="FeedbackCell" customModule="Compass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="202" width="600" height="138"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wug-8K-Pxu" id="mxv-qL-aSh">
@@ -562,7 +582,7 @@
                                     <outlet property="title" destination="esv-Mr-qqO" id="5Jt-WJ-rwB"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpcomingCell" rowHeight="105" id="lbd-71-qxq" customClass="UpcomingCell" customModule="Compass" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UpcomingCell" rowHeight="105" id="lbd-71-qxq" customClass="UpcomingCell" customModule="Compass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="340" width="600" height="105"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lbd-71-qxq" id="LSN-Od-JU1">
@@ -607,7 +627,7 @@
                                     <outlet property="time" destination="tSP-8g-6kW" id="1RT-XT-JBH"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedGoalCell" rowHeight="100" id="RoT-1z-5rg" customClass="FeedGoalCell" customModule="Compass" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedGoalCell" rowHeight="100" id="RoT-1z-5rg" customClass="FeedGoalCell" customModule="Compass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="445" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RoT-1z-5rg" id="NdQ-zH-vPz">
@@ -667,7 +687,7 @@
                                     <outlet property="title" destination="HIi-zB-gFW" id="Hac-tb-gDj"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FooterCell" rowHeight="47" id="VhU-zq-ODk" customClass="FooterCell" customModule="Compass" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FooterCell" rowHeight="47" id="VhU-zq-ODk" customClass="FooterCell" customModule="Compass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="545" width="600" height="47"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VhU-zq-ODk" id="29R-CU-hV8">
