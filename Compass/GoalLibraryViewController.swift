@@ -57,8 +57,13 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
                 let alert = UIAlertController(title: "You're awesome", message: description, preferredStyle: UIAlertControllerStyle.Alert);
                 alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default, handler: { action in
                     self.goals.removeAtIndex(self.selectedGoalIndex);
-                    let indexPath = NSIndexPath(forRow: self.selectedGoalIndex, inSection: 2);
-                    self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade);
+                    if (self.goals.isEmpty){
+                        self.navigationController?.popViewControllerAnimated(true);
+                    }
+                    else{
+                        let indexPath = NSIndexPath(forRow: self.selectedGoalIndex, inSection: 2);
+                        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade);
+                    }
                 }));
                 presentViewController(alert, animated: true, completion: nil);
             }
