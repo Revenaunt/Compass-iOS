@@ -10,18 +10,23 @@ import UIKit
 
 
 class ChooseCategoryViewController: UITableViewController{
+    //Retrieve the list of filtered categories just once
+    private let categories = SharedData.filteredCategories;
+    
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         //One section, the list of categories
         return 1;
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return SharedData.publicCategories.count;
+        //As many rows as categories there are
+        return categories.count;
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as! CategoryCell;
-        cell.setCategory(SharedData.publicCategories[indexPath.row]);
+        cell.setCategory(categories[indexPath.row]);
         return cell;
     }
     
@@ -30,7 +35,7 @@ class ChooseCategoryViewController: UITableViewController{
             let goalLibraryController = segue.destinationViewController as! GoalLibraryViewController;
             if let selectedCell = sender as? CategoryCell{
                 let indexPath = tableView.indexPathForCell(selectedCell);
-                goalLibraryController.category = SharedData.publicCategories[indexPath!.row];
+                goalLibraryController.category = categories[indexPath!.row];
             }
         }
     }

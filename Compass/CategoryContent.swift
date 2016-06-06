@@ -18,6 +18,8 @@ class CategoryContent: TDCContent{
     private var secondaryColor: String = "";
     
     private var packagedContent: Bool = false;
+    private var featured: Bool = false;
+    private var selectedByDefault: Bool = false;
     
     
     required init?(_ map: Map){
@@ -31,6 +33,8 @@ class CategoryContent: TDCContent{
         color <- map["color"];
         secondaryColor <- map["secondary_color"];
         packagedContent <- map["packaged_content"];
+        featured <- map["featured"];
+        selectedByDefault <- map["selected_by_default"];
     }
     
     
@@ -46,6 +50,18 @@ class CategoryContent: TDCContent{
     
     func getParsedColor() -> UIColor{
         return UIColor(hexString: color);
+    }
+    
+    func isPackagedContent() -> Bool{
+        return packagedContent;
+    }
+    
+    func isFeatured() -> Bool{
+        return featured;
+    }
+    
+    func isSelectedByDefault() -> Bool{
+        return selectedByDefault;
     }
     
     func toString() -> String{

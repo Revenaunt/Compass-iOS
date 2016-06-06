@@ -32,6 +32,23 @@ class SharedData{
         }
     };
     
+    static var filteredCategories: [CategoryContent]{
+        get{
+            var featured = [CategoryContent]();
+            var regular = [CategoryContent]();
+            for (_, category) in internalCategoryMap{
+                if (category.isFeatured()){
+                    featured.append(category);
+                }
+                else if (!category.isSelectedByDefault()){
+                    regular.append(category);
+                }
+            }
+            featured.appendContentsOf(regular);
+            return featured;
+        }
+    }
+    
     //Stored procedures, used to distribute the instances
     static var feedData: FeedData{
         get{
