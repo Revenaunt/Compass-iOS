@@ -1159,11 +1159,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KJ2-RC-bTp">
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KJ2-RC-bTp">
                                             <rect key="frame" x="290" y="12" width="20" height="20"/>
                                         </activityIndicatorView>
-                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have selected all goals in this category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CpN-WL-euF">
-                                            <rect key="frame" x="8" y="8" width="584" height="27"/>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have selected all goals in this category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="CpN-WL-euF">
+                                            <rect key="frame" x="22" y="8" width="556" height="27"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -1171,9 +1172,9 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="KJ2-RC-bTp" firstAttribute="centerY" secondItem="OjN-vv-GEF" secondAttribute="centerY" id="0MV-0n-Mgq"/>
-                                        <constraint firstItem="CpN-WL-euF" firstAttribute="leading" secondItem="OjN-vv-GEF" secondAttribute="leadingMargin" id="AyY-ph-CU3"/>
+                                        <constraint firstItem="CpN-WL-euF" firstAttribute="leading" secondItem="OjN-vv-GEF" secondAttribute="leadingMargin" constant="14" id="AyY-ph-CU3"/>
                                         <constraint firstItem="CpN-WL-euF" firstAttribute="top" secondItem="OjN-vv-GEF" secondAttribute="topMargin" id="ByH-tm-0xc"/>
-                                        <constraint firstItem="CpN-WL-euF" firstAttribute="trailing" secondItem="OjN-vv-GEF" secondAttribute="trailingMargin" id="J1g-6g-sCg"/>
+                                        <constraint firstItem="CpN-WL-euF" firstAttribute="trailing" secondItem="OjN-vv-GEF" secondAttribute="trailingMargin" constant="-14" id="J1g-6g-sCg"/>
                                         <constraint firstItem="KJ2-RC-bTp" firstAttribute="centerX" secondItem="OjN-vv-GEF" secondAttribute="centerX" id="ekI-fW-TFu"/>
                                         <constraint firstItem="CpN-WL-euF" firstAttribute="bottom" secondItem="OjN-vv-GEF" secondAttribute="bottomMargin" id="xtI-zP-kCf"/>
                                     </constraints>

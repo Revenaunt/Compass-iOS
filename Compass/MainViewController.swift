@@ -20,7 +20,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     override func viewDidLoad(){
         NotificationUtil.sendRegistrationToken();
         
-        print(SharedData.getUser()?.getToken());
+        print(SharedData.user.getToken());
         
         if (displayedUpcoming.count == 0){
             displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
@@ -34,7 +34,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     func refresh(){
-        InitialDataLoader.load(SharedData.getUser()!){ (success) in
+        InitialDataLoader.load(SharedData.user){ (success) in
             self.displayedUpcoming.removeAll();
             self.displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
             self.tableView.reloadData();
@@ -129,7 +129,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     func loadMoreGoals(footer: FooterCell){
-        Just.get(SharedData.feedData.getNextGoalBatchUrl()!, headers: CompassUtil.getHeaderMap(SharedData.getUser()!)){ response in
+        Just.get(SharedData.feedData.getNextGoalBatchUrl()!, headers: SharedData.user.getHeaderMap()){ response in
             if (response.ok){
                 let start = SharedData.feedData.getGoals().count;
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);

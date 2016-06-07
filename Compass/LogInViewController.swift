@@ -44,9 +44,8 @@ class LogInViewController: UIViewController{
             print(response.ok);
             print(response.statusCode ?? -1);
             if response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!){
-                let user = Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding))!;
-                SharedData.setUser(user);
-                print(SharedData.getUser()!.toString());
+                SharedData.user = Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding))!;
+                print(SharedData.user);
                 
                 //This right here is probably not necessary except for testing purposes
                 do{
@@ -60,7 +59,7 @@ class LogInViewController: UIViewController{
                     var accountInfo = [String: String]();
                     accountInfo["email"] = email;
                     accountInfo["password"] = pass;
-                    accountInfo["token"] = user.getToken();
+                    accountInfo["token"] = SharedData.user.getToken();
                     try Locksmith.saveData(accountInfo, forUserAccount: "CompassAccount");
                 }
                 catch{
@@ -68,7 +67,7 @@ class LogInViewController: UIViewController{
                     print(error);
                 }
                 
-                InitialDataLoader.load(SharedData.getUser()!){ (success) in
+                InitialDataLoader.load(SharedData.user){ (success) in
                     if (success){
                         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
                         let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");

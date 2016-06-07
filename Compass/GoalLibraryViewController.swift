@@ -29,7 +29,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     override func viewDidLoad(){
         super.viewDidLoad();
         
-        //Load first batch of goalz
+        //Load first batch of goals
         next = API.getGoalsUrl(category);
         loadMore();
         
@@ -42,7 +42,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
         if (selectedGoal != nil){
             if (goalWasAdded){
                 //Add the goal
-                Just.post(API.getPostGoalUrl(selectedGoal!), headers: SharedData.getUser()!.getHeaderMap(),
+                Just.post(API.getPostGoalUrl(selectedGoal!), headers: SharedData.user.getHeaderMap(),
                           json: API.getPostGoalBody(category)){ (response) in
                             if (response.ok){
                                 print("Goal posted successfully");
@@ -72,7 +72,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     
     private func loadMore(){
         loading = true;
-        Just.get(next!, headers: SharedData.getUser()!.getHeaderMap()){ (response) in
+        Just.get(next!, headers: SharedData.user.getHeaderMap()){ (response) in
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding)!;
                 let gca = Mapper<ParserModels.GoalContentArray>().map(result)!;

@@ -150,8 +150,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
             if response.ok{
                 let user = Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding))!;
                 user.setPassword(password);
-                SharedData.setUser(user);
-                print(user.toString());
+                SharedData.user = user;
+                print(user);
                 
                 //This right here is probably not necessary except for testing purposes
                 do{
@@ -173,7 +173,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                     print(error);
                 }
                 
-                InitialDataLoader.load(SharedData.getUser()!){ (success) in
+                InitialDataLoader.load(SharedData.user){ (success) in
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
                     let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
                     UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
