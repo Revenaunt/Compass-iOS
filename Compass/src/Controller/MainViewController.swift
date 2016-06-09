@@ -119,9 +119,10 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         for i in 0...more.count-1{
             paths.append(NSIndexPath(forRow: start+i, inSection: FeedTypes.getUpcomingSectionPosition()));
         }
+        print("Count: \(displayedUpcoming.count)");
         tableView.beginUpdates();
         if (!SharedData.feedData.canLoadMoreActions(displayedUpcoming.count)){
-            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: displayedUpcoming.count-1, inSection: FeedTypes.getUpcomingSectionPosition())],
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: start, inSection: FeedTypes.getUpcomingSectionPosition())],
                                              withRowAnimation: .Automatic)
         }
         tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
