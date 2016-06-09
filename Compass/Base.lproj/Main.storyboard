@@ -788,7 +788,7 @@
                                                 <constraint firstAttribute="width" constant="100" id="uWa-x9-iaR"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category title" textAlignment="natural" lineBreakMode="tailTruncation" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="uyj-c7-3Vt">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="uyj-c7-3Vt">
                                             <rect key="frame" x="116" y="47" width="476" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -799,16 +799,10 @@
                                         <constraint firstItem="uyj-c7-3Vt" firstAttribute="leading" secondItem="ucm-lY-xKg" secondAttribute="trailing" constant="8" id="0J8-Hk-HbI"/>
                                         <constraint firstItem="uyj-c7-3Vt" firstAttribute="centerY" secondItem="IpL-gi-fyP" secondAttribute="centerY" id="50t-Uj-JRH"/>
                                         <constraint firstItem="uyj-c7-3Vt" firstAttribute="trailing" secondItem="IpL-gi-fyP" secondAttribute="trailingMargin" id="MwR-Uz-rnC"/>
-                                        <constraint firstItem="uyj-c7-3Vt" firstAttribute="centerX" secondItem="IpL-gi-fyP" secondAttribute="centerX" id="OXf-ta-sR7"/>
                                         <constraint firstItem="ucm-lY-xKg" firstAttribute="top" secondItem="IpL-gi-fyP" secondAttribute="topMargin" id="Rlk-LP-1lE"/>
                                         <constraint firstItem="ucm-lY-xKg" firstAttribute="leading" secondItem="IpL-gi-fyP" secondAttribute="leadingMargin" id="aP6-w1-k0f"/>
                                         <constraint firstItem="ucm-lY-xKg" firstAttribute="bottom" secondItem="IpL-gi-fyP" secondAttribute="bottomMargin" id="fce-vP-9BD"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="OXf-ta-sR7"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="categoryImage" destination="ucm-lY-xKg" id="5Nj-vT-scI"/>
