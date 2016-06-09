@@ -71,9 +71,11 @@ class LauncherViewController: UIViewController{
     }
     
     private func showMenu(){
-        activityIndicator.hidden = true;
-        signUp.hidden = false;
-        logIn.hidden = false;
+        dispatch_async(dispatch_get_main_queue(), {
+            self.activityIndicator.hidden = true;
+            self.signUp.hidden = false;
+            self.logIn.hidden = false;
+        });
     }
 }
 

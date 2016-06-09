@@ -91,6 +91,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         }
         else if (textField == lastName){
             lastName.resignFirstResponder();
+            signUpTapped();
         }
         return true;
     }
@@ -132,18 +133,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func onTap(sender: AnyObject){
-        address.resignFirstResponder()
-        password.resignFirstResponder()
-        passwordCheck.resignFirstResponder()
-        firstName.resignFirstResponder()
-        lastName.resignFirstResponder()
+        address.resignFirstResponder();
+        password.resignFirstResponder();
+        passwordCheck.resignFirstResponder();
+        firstName.resignFirstResponder();
+        lastName.resignFirstResponder();
     }
     
     private func signUp(email: String, password: String, firstName: String, lastName: String){
-        signUpButton.hidden = true;
-        activity.hidden = false;
-        privacyPolicyButton.hidden = true;
-        termsOfServiceButton.hidden = true;
+        toggleMenu(false);
         
         Just.post(API.getSignUpUrl(), data: API.getSignUpBody(email, password: password, firstName: firstName, lastName: lastName)){ (response) in
             if response.ok{
@@ -179,10 +177,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                 }
             }
             else{
-                self.signUpButton.hidden = false;
-                self.activity.hidden = true;
-                self.privacyPolicyButton.hidden = false;
-                self.termsOfServiceButton.hidden = false;
+                self.toggleMenu(true);
             }
         }
     }
@@ -193,5 +188,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func termsOfService(){
         UIApplication.sharedApplication().openURL(NSURL(string: "https://app.tndata.org/terms/")!);
+    }
+    
+    private func toggleMenu(showButtons: Bool){
+        dispatch_async(dispatch_get_main_queue(), {
+            self.signUpButton.hidden = !showButtons;
+            self.activity.hidden = showButtons;
+            self.privacyPolicyButton.hidden = !showButtons;
+            self.termsOfServiceButton.hidden = !showButtons;
+        });
     }
 }
