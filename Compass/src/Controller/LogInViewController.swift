@@ -12,7 +12,7 @@ import ObjectMapper
 import Locksmith
 
 
-class LogInViewController: UIViewController{
+class LogInViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
@@ -33,6 +33,21 @@ class LogInViewController: UIViewController{
         navigationController?.setNavigationBarHidden(false, animated: animated);
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        if textField == emailField{
+            passwordField.becomeFirstResponder();
+        }
+        else if (textField == passwordField){
+            passwordField.resignFirstResponder();
+            onLogInTap();
+        }
+        return true;
+    }
+    
+    @IBAction func onTap(sender: AnyObject){
+        emailField.resignFirstResponder();
+        passwordField.resignFirstResponder();
+    }
     
     @IBAction func onLogInTap(){
         toggleMenu(false);
@@ -86,7 +101,9 @@ class LogInViewController: UIViewController{
     }
     
     private func toggleMenu(showButton: Bool){
-        logInButton.hidden = !showButton;
-        indicator.hidden = showButton;
+        dispatch_async(dispatch_get_main_queue(), {
+            self.logInButton.hidden = !showButton;
+            self.indicator.hidden = showButton;
+        });
     }
 }

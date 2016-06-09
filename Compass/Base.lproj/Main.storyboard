@@ -316,7 +316,10 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qxf-7A-XKi" userLabel="Email">
                                         <rect key="frame" x="8" y="45" width="584" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="8ag-XI-7iu" id="hFK-Yy-aFg"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgl-iP-nG6">
                                         <rect key="frame" x="8" y="91" width="93" height="21"/>
@@ -327,7 +330,10 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3VM-MO-sDx" userLabel="Password">
                                         <rect key="frame" x="8" y="120" width="584" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="8ag-XI-7iu" id="Rlb-gg-gzL"/>
+                                        </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4xF-nj-Saj" userLabel="Button Container">
                                         <rect key="frame" x="8" y="158" width="584" height="170"/>
@@ -378,6 +384,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="E5i-AF-xEL" secondAttribute="trailing" constant="-20" id="HN2-4T-YI5"/>
                             <constraint firstItem="E5i-AF-xEL" firstAttribute="top" secondItem="D7o-vA-dyZ" secondAttribute="bottom" id="UeM-27-gNi"/>
@@ -387,6 +394,9 @@
                             <constraint firstItem="D7o-vA-dyZ" firstAttribute="top" secondItem="S2A-bP-7zQ" secondAttribute="bottom" id="pBr-Zz-MDV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="D7o-vA-dyZ" secondAttribute="trailing" constant="-20" id="usb-eG-CPN"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="rSi-zY-8OT" appends="YES" id="evd-6q-hX7"/>
+                        </connections>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="800"/>
@@ -398,6 +408,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjz-FU-PBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="rSi-zY-8OT">
+                    <connections>
+                        <action selector="onTap:" destination="8ag-XI-7iu" id="yCs-Fg-tJO"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="965" y="989"/>
         </scene>

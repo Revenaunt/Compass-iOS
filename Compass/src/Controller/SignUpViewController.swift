@@ -13,7 +13,6 @@ import Locksmith;
 
 
 class SignUpViewController: UIViewController, UITextFieldDelegate{
-    
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var passwordCheck: UITextField!
@@ -79,21 +78,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     
     func textFieldShouldReturn(textField: UITextField) -> Bool{
         if textField == address{
-            password.becomeFirstResponder()
+            password.becomeFirstResponder();
         }
         else if textField == password{
-            passwordCheck.becomeFirstResponder()
+            passwordCheck.becomeFirstResponder();
         }
         else if textField == passwordCheck{
-            firstName.becomeFirstResponder()
+            firstName.becomeFirstResponder();
         }
         else if textField == firstName{
-            lastName.becomeFirstResponder()
+            lastName.becomeFirstResponder();
         }
         else if (textField == lastName){
-            lastName.resignFirstResponder()
+            lastName.resignFirstResponder();
         }
-        return true
+        return true;
     }
     
     @IBAction func signUpTapped(){

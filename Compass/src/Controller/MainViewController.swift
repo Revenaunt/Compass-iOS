@@ -78,7 +78,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         }
         else if (indexPath.section == 2){
             //The footer
-            if (indexPath.row == displayedUpcoming.count){
+            if (indexPath.row == displayedUpcoming.count && SharedData.feedData.canLoadMoreActions(displayedUpcoming.count)){
                 print("Binding footer");
                 cell = tableView.dequeueReusableCellWithIdentifier("FooterCell", forIndexPath: indexPath);
                 let footerCell = cell as! FooterCell;
