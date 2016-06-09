@@ -16,8 +16,6 @@ class LauncherViewController: UIViewController{
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var signUp: UIButton!
     @IBOutlet weak var logIn: UIButton!
-    
-    var test: Bool = true;
 
     
     override func viewDidLoad(){
@@ -80,4 +78,3 @@ class LauncherViewController: UIViewController{
         });
     }
 }
-
