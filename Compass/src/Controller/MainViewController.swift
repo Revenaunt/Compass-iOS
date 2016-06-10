@@ -20,7 +20,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     override func viewDidLoad(){
         NotificationUtil.sendRegistrationToken();
         
-        print(SharedData.getUser()?.getToken());
+        print(SharedData.user.getToken());
         
         if (displayedUpcoming.count == 0){
             displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
@@ -34,7 +34,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     func refresh(){
-        InitialDataLoader.load(SharedData.getUser()!){ (success) in
+        InitialDataLoader.load(SharedData.user){ (success) in
             self.displayedUpcoming.removeAll();
             self.displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
             self.tableView.reloadData();
@@ -78,7 +78,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         }
         else if (indexPath.section == 2){
             //The footer
-            if (indexPath.row == displayedUpcoming.count){
+            if (indexPath.row == displayedUpcoming.count && SharedData.feedData.canLoadMoreActions(displayedUpcoming.count)){
                 print("Binding footer");
                 cell = tableView.dequeueReusableCellWithIdentifier("FooterCell", forIndexPath: indexPath);
                 let footerCell = cell as! FooterCell;
@@ -119,9 +119,10 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         for i in 0...more.count-1{
             paths.append(NSIndexPath(forRow: start+i, inSection: FeedTypes.getUpcomingSectionPosition()));
         }
+        print("Count: \(displayedUpcoming.count)");
         tableView.beginUpdates();
         if (!SharedData.feedData.canLoadMoreActions(displayedUpcoming.count)){
-            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: displayedUpcoming.count-1, inSection: FeedTypes.getUpcomingSectionPosition())],
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: start, inSection: FeedTypes.getUpcomingSectionPosition())],
                                              withRowAnimation: .Automatic)
         }
         tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
@@ -129,7 +130,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     func loadMoreGoals(footer: FooterCell){
-        Just.get(SharedData.feedData.getNextGoalBatchUrl()!, headers: CompassUtil.getHeaderMap(SharedData.getUser()!)){ response in
+        Just.get(SharedData.feedData.getNextGoalBatchUrl()!, headers: SharedData.user.getHeaderMap()){ response in
             if (response.ok){
                 let start = SharedData.feedData.getGoals().count;
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
@@ -190,8 +191,15 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        print(indexPath);
         switch (indexPath.section){
-            case 0, 2:
+            case 0:
+                if (SharedData.feedData.getUpNextAction() != nil){
+                    performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
+                }
+                break;
+            
+            case 2:
                 if (SharedData.feedData.getUpcoming()[indexPath.row].isUserAction()){
                     performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
                 }
@@ -207,7 +215,9 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         if (segue.identifier == "ShowActionFromFeed"){
             let actionController = segue.destinationViewController as! ActionViewController;
             if (sender as? UpNextCell) != nil{
-                actionController.upcomingAction = SharedData.feedData.getUpNextAction();
+                if let upNext = SharedData.feedData.getUpNextAction(){
+                    actionController.upcomingAction = upNext;
+                }
             }
             else if let selectedCell = sender as? UpcomingCell{
                 let indexPath = tableView.indexPathForCell(selectedCell);

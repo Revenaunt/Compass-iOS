@@ -9,7 +9,7 @@
 import ObjectMapper
 
 
-class User: TDCBase{
+class User: TDCBase, CustomStringConvertible{
     //Profile information
     private var profileId: Int = 0;
     private var email: String = "";
@@ -83,11 +83,13 @@ class User: TDCBase{
         degree <- map["has_degree"];
     }
     
-    func toString() -> String{
-        return fullName + "(uid: \(getId()), pid: \(profileId)), \(email), " + (needsOnBoarding ? "needs on-boarding" : "doesn't need onboarding");
-    }
-    
     func getHeaderMap() -> [String: String]{
         return ["Authorization": "Token \(token)"];
+    }
+    
+    var description: String{
+        let idSec = "(uid: \(getId()), pid: \(profileId))";
+        let onBoardingSec = "\(needsOnBoarding ? "needs on-boarding" : "doesn't need onboarding")";
+        return "\(fullName) \(idSec), \(email), \(onBoardingSec)";
     }
 }

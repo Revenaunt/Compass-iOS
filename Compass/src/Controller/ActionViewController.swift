@@ -65,7 +65,7 @@ class ActionViewController: UIViewController{
         }
         
         //Fetch the action
-        Just.get(API.getActionUrl(mappingId), headers: SharedData.getUser()!.getHeaderMap()) { (response) in
+        Just.get(API.getActionUrl(mappingId), headers: SharedData.user.getHeaderMap()) { (response) in
             if (response.ok){
                 //Parse and populate
                 let action = Mapper<UserAction>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
@@ -95,7 +95,7 @@ class ActionViewController: UIViewController{
     }
     
     private func fetchCategory(categoryId: Int){
-        Just.get(API.getUserCategoryUrl(categoryId), headers: SharedData.getUser()!.getHeaderMap()) { (response) in
+        Just.get(API.getUserCategoryUrl(categoryId), headers: SharedData.user.getHeaderMap()) { (response) in
             if (response.ok){
                 let category = Mapper<ParserModels.UserCategoryArray>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!)?.categories![0];
                 if (category!.getImageUrl().characters.count != 0){
@@ -162,7 +162,7 @@ class ActionViewController: UIViewController{
     
     @IBAction func gotIt(){
         Just.post(API.getPostActionReportUrl(mappingId), json: API.getPostActionReportBody("completed"),
-                  headers: SharedData.getUser()!.getHeaderMap());
+                  headers: SharedData.user.getHeaderMap());
         if (navigationController != nil){
             navigationController!.popViewControllerAnimated(true);
         }
@@ -180,6 +180,6 @@ class ActionViewController: UIViewController{
         print(date + " " + time);
         
         Just.put(API.getPutSnoozeUrl(notificationId), json: API.getPutSnoozeBody(date, time: time),
-                 headers: SharedData.getUser()!.getHeaderMap());
+                 headers: SharedData.user.getHeaderMap());
     }
 }

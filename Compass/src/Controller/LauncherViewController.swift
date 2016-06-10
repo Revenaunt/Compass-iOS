@@ -35,9 +35,9 @@ class LauncherViewController: UIViewController{
                 print(response.ok);
                 print(response.statusCode ?? -1);
                 if response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!){
-                    SharedData.setUser(Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)));
-                    print(SharedData.getUser()!.toString());
-                    InitialDataLoader.load(SharedData.getUser()!){ (success) in
+                    SharedData.user = Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding))!;
+                    print(SharedData.user);
+                    InitialDataLoader.load(SharedData.user){ (success) in
                         if (success){
                             print(SharedData.feedData);
                             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
@@ -71,9 +71,10 @@ class LauncherViewController: UIViewController{
     }
     
     private func showMenu(){
-        activityIndicator.hidden = true;
-        signUp.hidden = false;
-        logIn.hidden = false;
+        dispatch_async(dispatch_get_main_queue(), {
+            self.activityIndicator.hidden = true;
+            self.signUp.hidden = false;
+            self.logIn.hidden = false;
+        });
     }
 }
-

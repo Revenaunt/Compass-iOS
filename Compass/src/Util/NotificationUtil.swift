@@ -21,9 +21,9 @@ class NotificationUtil{
         print("NotificationUtil: trying to send the registration token to the api...");
         //The only case in which we'd need to send the token to the API would be when the
         //  token has been set and the user has already logged in.
-        if (apnsToken != nil && SharedData.hasUser()){
+        if (apnsToken != nil && SharedData.isUserLoggedIn()){
             print("NotificationUtil: sending the token.");
-            Just.post(API.getPostRegistrationUrl(), headers: SharedData.getUser()!.getHeaderMap(),
+            Just.post(API.getPostRegistrationUrl(), headers: SharedData.user.getHeaderMap(),
                       json: API.getPostRegistrationBody(apnsToken!)){ (response) in
                         if (response.ok){
                             print("NotificationUtil: token delivered");

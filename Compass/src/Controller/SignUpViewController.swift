@@ -11,8 +11,8 @@ import Just
 import ObjectMapper;
 import Locksmith;
 
+
 class SignUpViewController: UIViewController, UITextFieldDelegate{
-    
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var passwordCheck: UITextField!
@@ -21,6 +21,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var activity: UIActivityIndicatorView!
+    
+    @IBOutlet weak var privacyPolicyButton: UIButton!
+    @IBOutlet weak var termsOfServiceButton: UIButton!
     
     
     override func viewDidLoad(){
@@ -75,21 +78,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     
     func textFieldShouldReturn(textField: UITextField) -> Bool{
         if textField == address{
-            password.becomeFirstResponder()
+            password.becomeFirstResponder();
         }
         else if textField == password{
-            passwordCheck.becomeFirstResponder()
+            passwordCheck.becomeFirstResponder();
         }
         else if textField == passwordCheck{
-            firstName.becomeFirstResponder()
+            firstName.becomeFirstResponder();
         }
         else if textField == firstName{
-            lastName.becomeFirstResponder()
+            lastName.becomeFirstResponder();
         }
         else if (textField == lastName){
-            lastName.resignFirstResponder()
+            lastName.resignFirstResponder();
+            signUpTapped();
         }
-        return true
+        return true;
     }
     
     @IBAction func signUpTapped(){
@@ -129,23 +133,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func onTap(sender: AnyObject){
-        address.resignFirstResponder()
-        password.resignFirstResponder()
-        passwordCheck.resignFirstResponder()
-        firstName.resignFirstResponder()
-        lastName.resignFirstResponder()
+        address.resignFirstResponder();
+        password.resignFirstResponder();
+        passwordCheck.resignFirstResponder();
+        firstName.resignFirstResponder();
+        lastName.resignFirstResponder();
     }
     
     private func signUp(email: String, password: String, firstName: String, lastName: String){
-        signUpButton.hidden = true;
-        activity.hidden = false;
+        toggleMenu(false);
         
         Just.post(API.getSignUpUrl(), data: API.getSignUpBody(email, password: password, firstName: firstName, lastName: lastName)){ (response) in
             if response.ok{
                 let user = Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding))!;
                 user.setPassword(password);
-                SharedData.setUser(user);
-                print(user.toString());
+                SharedData.user = user;
+                print(user);
                 
                 //This right here is probably not necessary except for testing purposes
                 do{
@@ -167,16 +170,32 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                     print(error);
                 }
                 
-                InitialDataLoader.load(SharedData.getUser()!){ (success) in
+                InitialDataLoader.load(SharedData.user){ (success) in
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
                     let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
                     UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
                 }
             }
             else{
-                self.signUpButton.hidden = false;
-                self.activity.hidden = true;
+                self.toggleMenu(true);
             }
         }
+    }
+    
+    @IBAction func privacyPolicy(){
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://app.tndata.org/privacy/")!);
+    }
+    
+    @IBAction func termsOfService(){
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://app.tndata.org/terms/")!);
+    }
+    
+    private func toggleMenu(showButtons: Bool){
+        dispatch_async(dispatch_get_main_queue(), {
+            self.signUpButton.hidden = !showButtons;
+            self.activity.hidden = showButtons;
+            self.privacyPolicyButton.hidden = !showButtons;
+            self.termsOfServiceButton.hidden = !showButtons;
+        });
     }
 }

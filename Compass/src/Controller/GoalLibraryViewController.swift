@@ -13,10 +13,10 @@ import Nuke
 
 
 class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
-    var category: CategoryContent? = nil;
+    var category: CategoryContent!;
     
     private var goals = [GoalContent]();
-    private var activityCell: UITableViewCell? = nil;
+    private var activityCell: LibraryLoadingCell? = nil;
     
     private var loading: Bool = false;
     private var next: String? = nil;
@@ -29,8 +29,8 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     override func viewDidLoad(){
         super.viewDidLoad();
         
-        //Load first batch of goalz
-        next = API.getGoalsUrl(category!);
+        //Load first batch of goals
+        next = API.getGoalsUrl(category);
         loadMore();
         
         //Automatic height calculation
@@ -42,8 +42,8 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
         if (selectedGoal != nil){
             if (goalWasAdded){
                 //Add the goal
-                Just.post(API.getPostGoalUrl(selectedGoal!), headers: SharedData.getUser()!.getHeaderMap(),
-                          json: API.getPostGoalBody(category!)){ (response) in
+                Just.post(API.getPostGoalUrl(selectedGoal!), headers: SharedData.user.getHeaderMap(),
+                          json: API.getPostGoalBody(category)){ (response) in
                             if (response.ok){
                                 print("Goal posted successfully");
                             }
@@ -57,8 +57,13 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
                 let alert = UIAlertController(title: "You're awesome", message: description, preferredStyle: UIAlertControllerStyle.Alert);
                 alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default, handler: { action in
                     self.goals.removeAtIndex(self.selectedGoalIndex);
-                    let indexPath = NSIndexPath(forRow: self.selectedGoalIndex, inSection: 2);
-                    self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade);
+                    if (self.goals.isEmpty){
+                        self.navigationController?.popViewControllerAnimated(true);
+                    }
+                    else{
+                        let indexPath = NSIndexPath(forRow: self.selectedGoalIndex, inSection: 2);
+                        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade);
+                    }
                 }));
                 presentViewController(alert, animated: true, completion: nil);
             }
@@ -67,29 +72,34 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     
     private func loadMore(){
         loading = true;
-        Just.get(next!, headers: SharedData.getUser()!.getHeaderMap()){ (response) in
+        Just.get(next!, headers: SharedData.user.getHeaderMap()){ (response) in
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding)!;
                 let gca = Mapper<ParserModels.GoalContentArray>().map(result)!;
-                let start = self.goals.count;
-                self.goals.appendContentsOf(gca.goals!);
-                self.next = gca.next;
-                if (API.STAGING && self.next != nil && (self.next?.hasPrefix("https"))!){
-                    self.next = "http" + (self.next?.substringFromIndex((self.next?.startIndex.advancedBy(5))!))!;
+                if (gca.goals?.count == 0){
+                    self.activityCell?.displayMessage();
                 }
-                var paths = [NSIndexPath]();
-                for i in 0...gca.goals!.count-1{
-                    paths.append(NSIndexPath(forRow: start+i, inSection: 2));
-                }
-                print("Next url: \(self.next)");
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.tableView.beginUpdates()
-                    if (self.next == nil){
-                        self.tableView.deleteSections(NSIndexSet(index: 3), withRowAnimation: .Automatic);
+                else{
+                    let start = self.goals.count;
+                    self.goals.appendContentsOf(gca.goals!);
+                    self.next = gca.next;
+                    if (API.STAGING && self.next != nil && (self.next?.hasPrefix("https"))!){
+                        self.next = "http" + (self.next?.substringFromIndex((self.next?.startIndex.advancedBy(5))!))!;
                     }
-                    self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
-                    self.tableView.endUpdates();
-                });
+                    var paths = [NSIndexPath]();
+                    for i in 0...gca.goals!.count-1{
+                        paths.append(NSIndexPath(forRow: start+i, inSection: 2));
+                    }
+                    print("Next url: \(self.next)");
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView.beginUpdates()
+                        if (self.next == nil){
+                            self.tableView.deleteSections(NSIndexSet(index: 3), withRowAnimation: .Automatic);
+                        }
+                        self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
+                        self.tableView.endUpdates();
+                    });
+                }
             }
             self.loading = false;
         }
@@ -114,23 +124,23 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
         if (indexPath.section == 0){
             cell = tableView.dequeueReusableCellWithIdentifier("HeaderHeroCell", forIndexPath: indexPath);
             let instance = cell as! CategoryHeaderCell;
-            instance.setHeader(category!);
+            instance.setHeader(category);
         }
         else if (indexPath.section == 1){
             cell = tableView.dequeueReusableCellWithIdentifier("CategoryDescriptionCell", forIndexPath: indexPath);
             let instance = cell as! CategoryDescriptionCell;
-            instance.setCategory(category!);
+            instance.setCategory(category);
         }
         else if (indexPath.section == 2){
             cell = tableView.dequeueReusableCellWithIdentifier("GoalCell", forIndexPath: indexPath);
             let instance = cell as! GoalCell;
-            instance.setContent(goals[indexPath.row], category: category!);
+            instance.setContent(goals[indexPath.row], category: category);
             
         }
         else{
             if (activityCell == nil){
                 cell = tableView.dequeueReusableCellWithIdentifier("ProgressCell", forIndexPath: indexPath);
-                activityCell = cell;
+                activityCell = cell as? LibraryLoadingCell;
             }
             else{
                 cell = activityCell!;
@@ -171,7 +181,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
                 selectedGoal = goals[selectedGoalIndex];
                 goalWasAdded = false;
                 goalController.delegate = self;
-                goalController.category = category!;
+                goalController.category = category;
                 goalController.goal = selectedGoal;
             }
         }

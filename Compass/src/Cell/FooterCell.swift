@@ -10,8 +10,8 @@ import UIKit
 
 
 class FooterCell: UITableViewCell{
-    var delegate: MainViewController? = nil;
-    var type: FooterType? = nil;
+    private var delegate: MainViewController!;
+    private var type: FooterType!;
     
     @IBOutlet weak var seeMoreButton: UIButton!
     @IBOutlet weak var activity: UIActivityIndicatorView!
@@ -19,13 +19,13 @@ class FooterCell: UITableViewCell{
     
     @IBAction func seeMore(){
         if (type == FooterType.Upcoming){
-            delegate?.loadMoreUpcoming();
+            delegate.loadMoreUpcoming();
         }
         else if (type == FooterType.Goals){
             seeMoreButton.hidden = true;
             activity.hidden = false;
             activity.startAnimating();
-            delegate?.loadMoreGoals(self);
+            delegate.loadMoreGoals(self);
         }
     }
     

@@ -14,11 +14,11 @@ import ObjectMapper
 
 class GoalViewController: UIViewController, UIScrollViewDelegate{
     //Delegate
-    var delegate: GoalAddedDelegate? = nil;
+    var delegate: GoalAddedDelegate!;
     
     //Data
-    var category: CategoryContent?;
-    var goal: GoalContent?;
+    var category: CategoryContent!;
+    var goal: GoalContent!;
     
     var imageViewProcessed = false;
     
@@ -43,11 +43,11 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
     
     override func viewDidLoad(){
         //Background color of the header
-        header.layer.backgroundColor = category!.getParsedColor().CGColor;
+        header.layer.backgroundColor = category.getParsedColor().CGColor;
         
         //Header image
-        if (category!.getIconUrl().characters.count != 0){
-            Nuke.taskWith(NSURL(string: category!.getIconUrl())!){
+        if (category.getIconUrl().characters.count != 0){
+            Nuke.taskWith(NSURL(string: category.getIconUrl())!){
                 //For some reason, in the second run, the frame object reports a wrong height,
                 //  to fix that, header image is forced to layout to calculate the actual
                 //  height respecting its constraints, and only then we set the corner radius
@@ -60,8 +60,8 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
         }
         
         //Goal information
-        goalTitle.text = goal?.getTitle();
-        goalDescription.text = goal?.getDescription();
+        goalTitle.text = goal.getTitle();
+        goalDescription.text = goal.getDescription();
         
         //Reward content
         //Extract the relevant constraints before they get removed
@@ -120,9 +120,7 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
     }
     
     @IBAction func yesImIn(){
-        if (delegate != nil){
-            delegate?.goalAdded();
-        }
+        delegate.goalAdded();
         navigationController!.popViewControllerAnimated(true);
     }
 }
