@@ -888,8 +888,8 @@
 				New_Setting = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.getcompass.Compass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/BridgingHeader.h";
+				PROVISIONING_PROFILE = "ee4c26bc-3bc8-4e2a-96e0-3356e2075236";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -898,8 +898,8 @@
 			baseConfigurationReference = 9B6FC9C1A1D3C82D77E62546 /* Pods-Compass.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -910,8 +910,8 @@
 				New_Setting = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.getcompass.Compass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/BridgingHeader.h";
+				PROVISIONING_PROFILE = "15de93e2-6806-4102-aafc-7ebc96eead1f";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
