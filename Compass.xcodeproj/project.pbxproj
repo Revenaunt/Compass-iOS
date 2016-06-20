@@ -34,6 +34,7 @@
 		545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BF1CC695F50037FAEF /* TDCBase.swift */; };
 		545D98C21CC697100037FAEF /* TDCContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C11CC697100037FAEF /* TDCContent.swift */; };
 		545D98C41CC69A890037FAEF /* ParserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C31CC69A890037FAEF /* ParserModels.swift */; };
+		5460E4111D18172A00A4FBAB /* OnBoardingCategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5460E4101D18172A00A4FBAB /* OnBoardingCategoryController.swift */; };
 		546114DA1CF386C6007BBD1B /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546114D91CF386C6007BBD1B /* GoalViewController.swift */; };
 		5467E9B01CC534D00088E417 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9AF1CC534D00088E417 /* User.swift */; };
 		5467E9B41CC5551F0088E417 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9B31CC5551F0088E417 /* SharedData.swift */; };
@@ -66,7 +67,6 @@
 		548031301CB6B27F00112807 /* CompassUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480312F1CB6B27F00112807 /* CompassUITests.swift */; };
 		5488FC211CFDEF2900E758C1 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5488FC201CFDEF2900E758C1 /* ActionViewController.swift */; };
 		5488FC231CFDF9EF00E758C1 /* UserCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5488FC221CFDF9EF00E758C1 /* UserCategory.swift */; };
-		5493554D1D147B4C00F325A4 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493554C1D147B4C00F325A4 /* OnBoardingViewController.swift */; };
 		5493554F1D14920600F325A4 /* OnBoardingCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493554E1D14920600F325A4 /* OnBoardingCategoryCell.swift */; };
 		54F60F591CC7F11A00D1424D /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F60F581CC7F11A00D1424D /* CircleProgressView.swift */; };
 		54F60F5C1CC80C7400D1424D /* UpNextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F60F5B1CC80C7400D1424D /* UpNextCell.swift */; };
@@ -133,6 +133,7 @@
 		545D98BF1CC695F50037FAEF /* TDCBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCBase.swift; sourceTree = "<group>"; };
 		545D98C11CC697100037FAEF /* TDCContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCContent.swift; sourceTree = "<group>"; };
 		545D98C31CC69A890037FAEF /* ParserModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserModels.swift; sourceTree = "<group>"; };
+		5460E4101D18172A00A4FBAB /* OnBoardingCategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCategoryController.swift; sourceTree = "<group>"; };
 		546114D91CF386C6007BBD1B /* GoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
 		5467E9AF1CC534D00088E417 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5467E9B31CC5551F0088E417 /* SharedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
@@ -171,7 +172,6 @@
 		548031311CB6B27F00112807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5488FC201CFDEF2900E758C1 /* ActionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
 		5488FC221CFDF9EF00E758C1 /* UserCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCategory.swift; sourceTree = "<group>"; };
-		5493554C1D147B4C00F325A4 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		5493554E1D14920600F325A4 /* OnBoardingCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCategoryCell.swift; sourceTree = "<group>"; };
 		54F60F581CC7F11A00D1424D /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		54F60F5B1CC80C7400D1424D /* UpNextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpNextCell.swift; sourceTree = "<group>"; };
@@ -278,7 +278,7 @@
 				5449E5F11CBD646E0017629E /* LogInViewController.swift */,
 				54010E141CC6D31A009FB013 /* MainViewController.swift */,
 				547C46711CBC2D2900953735 /* SignUpViewController.swift */,
-				5493554C1D147B4C00F325A4 /* OnBoardingViewController.swift */,
+				5460E4101D18172A00A4FBAB /* OnBoardingCategoryController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -721,7 +721,6 @@
 				5468F8591CCEC1ED00D5769B /* InitialDataLoader.swift in Sources */,
 				5468F8511CCEB7B200D5769B /* UserAction.swift in Sources */,
 				5468F84D1CCEB45000D5769B /* Trigger.swift in Sources */,
-				5493554D1D147B4C00F325A4 /* OnBoardingViewController.swift in Sources */,
 				5443355D1CD01B0A00EB066E /* UserGoal.swift in Sources */,
 				5468F84F1CCEB6C600D5769B /* UserContent.swift in Sources */,
 				5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */,
@@ -731,6 +730,7 @@
 				54010E151CC6D31A009FB013 /* MainViewController.swift in Sources */,
 				5448276C1CCA956000BBC062 /* CategoryHeaderCell.swift in Sources */,
 				5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */,
+				5460E4111D18172A00A4FBAB /* OnBoardingCategoryController.swift in Sources */,
 				5424E98D1CE4EA330016B4DD /* NotificationUtil.swift in Sources */,
 				5467E9B01CC534D00088E417 /* User.swift in Sources */,
 				547AF1BC1CFF34F7008EC34F /* APNsMessage.swift in Sources */,
