@@ -9,11 +9,11 @@
 import UIKit
 
 
-class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoalAddedDelegate{
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nextButton: UIButton!
     
     let categoryLists = SharedData.filteredCategoryLists;
-    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return categoryLists.count;
@@ -35,6 +35,27 @@ class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
         return 100;
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        //navigationController!.popViewControllerAnimated(false);
+        let cell = tableView.cellForRowAtIndexPath(indexPath);
+        performSegueWithIdentifier("GoalLibraryFromOnBoarding", sender: cell);
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "GoalLibraryFromOnBoarding"){
+            let goalLibraryController = segue.destinationViewController as! GoalLibraryViewController;
+            if let selectedCell = sender as? OnBoardingCategoryCell{
+                let indexPath = tableView.indexPathForCell(selectedCell)!;
+                goalLibraryController.category = categoryLists[indexPath.section][indexPath.row];
+                goalLibraryController.goalAddedDelegate = self;
+            }
+        }
+    }
+    
+    func goalAdded(){
+        nextButton.setTitle("Finish", forState: .Normal);
     }
     
     @IBAction func onNextTapped(){

@@ -521,6 +521,8 @@
                     <navigationItem key="navigationItem" id="3lF-Wm-v7J"/>
                     <connections>
                         <outlet property="nextButton" destination="jOt-I8-ish" id="9cJ-ag-Td6"/>
+                        <outlet property="tableView" destination="o27-Ra-YuB" id="o05-eA-cia"/>
+                        <segue destination="ZbA-Qt-cmz" kind="show" identifier="GoalLibraryFromOnBoarding" id="hYs-3k-Sn0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vg9-OO-CJV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -532,7 +534,7 @@
             <objects>
                 <tableViewController title="Main" id="hvk-pI-Gwh" customClass="MainViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" id="IMT-KW-c44">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -844,8 +846,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="800"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="iVK-pB-5ga">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
@@ -856,14 +856,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="teD-m8-TBF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13" y="3710"/>
+            <point key="canvasLocation" x="-13" y="2764"/>
         </scene>
         <!--What Interests You?-->
         <scene sceneID="b8y-kQ-j17">
             <objects>
                 <tableViewController title="What Interests You?" id="DYE-he-MmB" customClass="ChooseCategoryViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="117" sectionHeaderHeight="28" sectionFooterHeight="28" id="r7B-Gp-mCq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -914,7 +914,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ab7-OR-t0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="937" y="3710"/>
+            <point key="canvasLocation" x="965" y="2764"/>
         </scene>
         <!--Activity-->
         <scene sceneID="VgW-3N-gx5">
@@ -1109,7 +1109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eb9-EM-G73" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13" y="4743"/>
+            <point key="canvasLocation" x="-13" y="3683"/>
         </scene>
         <!--Choose a Goal-->
         <scene sceneID="WnW-O5-DDw">
@@ -1297,7 +1297,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgY-vc-aWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1812" y="3760"/>
+            <point key="canvasLocation" x="1828" y="2914"/>
         </scene>
         <!--Goal View Controller-->
         <scene sceneID="TZL-9A-xSa">
@@ -1458,7 +1458,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nG7-R6-NYO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2757" y="3760"/>
+            <point key="canvasLocation" x="2625" y="2914"/>
         </scene>
         <!--Main Navigation-->
         <scene sceneID="T72-Z4-8oh">
@@ -1476,7 +1476,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="axu-Yk-pjF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-825" y="3710"/>
+            <point key="canvasLocation" x="-825" y="2764"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fvl-lc-7Le">
@@ -1502,4 +1502,7 @@
         <image name="DeSoto Bridge" width="150" height="29"/>
         <image name="TDC Master" width="400" height="267"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="hYs-3k-Sn0"/>
+    </inferredMetricsTieBreakers>
 </document>
