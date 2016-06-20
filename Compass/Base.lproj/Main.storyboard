@@ -446,12 +446,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What do you want to do? You can browse more goals inside the app." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oQ-aY-pUc">
-                                <rect key="frame" x="20" y="72" width="560" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOt-I8-ish">
                                 <rect key="frame" x="285" y="562" width="30" height="30"/>
                                 <state key="normal" title="Skip"/>
@@ -504,22 +498,30 @@
                                     <outlet property="delegate" destination="tL1-7H-YM5" id="Yqk-fn-f2J"/>
                                 </connections>
                             </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="What do you want to do? You can browse more goals inside the app." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sK-iv-Fwv">
+                                <rect key="frame" x="0.0" y="64" width="600" height="38"/>
+                                <color key="backgroundColor" red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="jOt-I8-ish" firstAttribute="top" secondItem="o27-Ra-YuB" secondAttribute="bottom" constant="8" id="DAb-Tw-9WE"/>
                             <constraint firstItem="o27-Ra-YuB" firstAttribute="trailing" secondItem="Dld-0T-s3D" secondAttribute="trailingMargin" constant="20" id="Eog-Y4-YVn"/>
                             <constraint firstItem="jOt-I8-ish" firstAttribute="centerX" secondItem="Dld-0T-s3D" secondAttribute="centerX" id="IP5-mE-0Hr"/>
-                            <constraint firstItem="o27-Ra-YuB" firstAttribute="top" secondItem="3oQ-aY-pUc" secondAttribute="bottom" constant="8" id="MlG-Ee-gSa"/>
+                            <constraint firstItem="0sK-iv-Fwv" firstAttribute="top" secondItem="4Ri-z6-ix2" secondAttribute="bottom" id="KGj-4k-Fls"/>
                             <constraint firstItem="o27-Ra-YuB" firstAttribute="leading" secondItem="Dld-0T-s3D" secondAttribute="leadingMargin" constant="-20" id="PX8-Zw-MMM"/>
-                            <constraint firstItem="3oQ-aY-pUc" firstAttribute="top" secondItem="4Ri-z6-ix2" secondAttribute="bottom" constant="8" id="VCV-rG-sy8"/>
+                            <constraint firstItem="o27-Ra-YuB" firstAttribute="top" secondItem="0sK-iv-Fwv" secondAttribute="bottom" id="Q0N-6x-LsU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0sK-iv-Fwv" secondAttribute="trailing" constant="-20" id="Xbr-Nk-4wP"/>
                             <constraint firstItem="ddM-Vl-ERK" firstAttribute="top" secondItem="jOt-I8-ish" secondAttribute="bottom" constant="8" id="flf-jL-CWb"/>
-                            <constraint firstItem="3oQ-aY-pUc" firstAttribute="trailing" secondItem="Dld-0T-s3D" secondAttribute="trailingMargin" id="mTY-FI-VAl"/>
-                            <constraint firstItem="3oQ-aY-pUc" firstAttribute="leading" secondItem="Dld-0T-s3D" secondAttribute="leadingMargin" id="nC3-lJ-wue"/>
+                            <constraint firstItem="0sK-iv-Fwv" firstAttribute="leading" secondItem="Dld-0T-s3D" secondAttribute="leadingMargin" constant="-20" id="yq6-Jb-HbJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3lF-Wm-v7J"/>
                     <connections>
+                        <outlet property="explanation" destination="0sK-iv-Fwv" id="JRV-Nl-Rcs"/>
                         <outlet property="nextButton" destination="jOt-I8-ish" id="9cJ-ag-Td6"/>
                         <outlet property="tableView" destination="o27-Ra-YuB" id="o05-eA-cia"/>
                         <segue destination="ZbA-Qt-cmz" kind="show" identifier="GoalLibraryFromOnBoarding" id="hYs-3k-Sn0"/>

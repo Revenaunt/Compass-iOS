@@ -10,10 +10,16 @@ import UIKit
 
 
 class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoalAddedDelegate{
+    @IBOutlet weak var explanation: UITextView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nextButton: UIButton!
     
     let categoryLists = SharedData.filteredCategoryLists;
+    
+    
+    override func viewDidLoad(){
+        explanation.textContainerInset = UIEdgeInsetsMake(14, 20, 14, 20);
+    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return categoryLists.count;
