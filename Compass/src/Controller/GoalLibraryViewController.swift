@@ -14,6 +14,7 @@ import Nuke
 
 class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     var category: CategoryContent!;
+    var goalAddedDelegate: GoalAddedDelegate?;
     
     private var goals = [GoalContent]();
     private var activityCell: LibraryLoadingCell? = nil;
@@ -189,6 +190,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     
     func goalAdded(){
         goalWasAdded = true;
+        goalAddedDelegate?.goalAdded();
     }
 }
 

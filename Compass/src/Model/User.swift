@@ -19,7 +19,7 @@ class User: TDCBase, CustomStringConvertible{
     private var fullName: String = "";
     private var token: String = "";
     private var dateJoined: String = "";
-    private var needsOnBoarding: Bool = true;
+    private var needsOnBoardingVar: Bool = true;
     
     //Profile answers
     private var zipCode: String = "";
@@ -46,6 +46,14 @@ class User: TDCBase, CustomStringConvertible{
         self.password = password;
     }
     
+    func onBoardingComplete(){
+        needsOnBoardingVar = false;
+    }
+    
+    func getProfileId() -> Int{
+        return profileId;
+    }
+    
     func getEmail() -> String{
         return email;
     }
@@ -56,6 +64,10 @@ class User: TDCBase, CustomStringConvertible{
     
     func getToken() -> String{
         return token;
+    }
+    
+    func needsOnBoarding() -> Bool{
+        return needsOnBoardingVar;
     }
     
     required init?(_ map: Map){
@@ -72,7 +84,7 @@ class User: TDCBase, CustomStringConvertible{
         fullName <- map["full_name"];
         token <- map["token"];
         dateJoined <- map["dateJoined"];
-        needsOnBoarding <- map["needs_onboarding"];
+        needsOnBoardingVar <- map["needs_onboarding"];
         
         zipCode <- map["zipcode"];
         birthday <- map["birthday"];
@@ -89,7 +101,7 @@ class User: TDCBase, CustomStringConvertible{
     
     var description: String{
         let idSec = "(uid: \(getId()), pid: \(profileId))";
-        let onBoardingSec = "\(needsOnBoarding ? "needs on-boarding" : "doesn't need onboarding")";
+        let onBoardingSec = "\(needsOnBoardingVar ? "needs" : "doesn't need") on-boarding";
         return "\(fullName) \(idSec), \(email), \(onBoardingSec)";
     }
 }

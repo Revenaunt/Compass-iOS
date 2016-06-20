@@ -31,21 +31,26 @@ class LauncherViewController: UIViewController{
             print(email);
             print(password);
             
-            Just.post(API.getLogInUrl(), data: API.getLogInBody(email, password: password)){ (response) in
+            Just.post(API.getLogInUrl(), json: API.getLogInBody(email, password: password)){ (response) in
                 print(response.ok);
                 print(response.statusCode ?? -1);
                 if response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!){
                     SharedData.user = Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding))!;
                     print(SharedData.user);
-                    InitialDataLoader.load(SharedData.user){ (success) in
-                        if (success){
-                            print(SharedData.feedData);
-                            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                            let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
-                            UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
-                        }
-                        else{
-                            self.showMenu()
+                    if (SharedData.user.needsOnBoarding()){
+                        self.fetchCategories();
+                    }
+                    else{
+                        InitialDataLoader.load(SharedData.user){ (success) in
+                            if (success){
+                                print(SharedData.feedData);
+                                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+                                let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
+                                UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+                            }
+                            else{
+                                self.showMenu()
+                            }
                         }
                     }
                 }
@@ -76,5 +81,26 @@ class LauncherViewController: UIViewController{
             self.signUp.hidden = false;
             self.logIn.hidden = false;
         });
+    }
+    
+    private func fetchCategories(){
+        Just.get(API.getCategoriesUrl()){ (response) in
+            if (response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!)){
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
+                SharedData.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
+                for category in SharedData.publicCategories{
+                    print(category.toString());
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("OnBoardingNavController");
+                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+                });
+            }
+            else{
+                self.showMenu();
+            }
+        }
     }
 }

@@ -55,7 +55,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         let email = emailField.text!;
         let pass = passwordField.text!;
         
-        Just.post(API.getLogInUrl(), data: API.getLogInBody(email, password: pass)){ (response) in
+        Just.post(API.getLogInUrl(), json: API.getLogInBody(email, password: pass)){ (response) in
             print(response.ok);
             print(response.statusCode ?? -1);
             if response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!){
