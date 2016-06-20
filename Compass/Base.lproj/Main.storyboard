@@ -437,7 +437,7 @@
         <!--On-boarding-->
         <scene sceneID="IP2-jg-fZw">
             <objects>
-                <viewController title="On-boarding" id="tL1-7H-YM5" customClass="OnBoardingCategoryController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnBoardingCategoryController" title="On-boarding" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tL1-7H-YM5" customClass="OnBoardingCategoryController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Ri-z6-ix2"/>
                         <viewControllerLayoutGuide type="bottom" id="ddM-Vl-ERK"/>
@@ -446,12 +446,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What do you want to do? You can browse more goals inside the app." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oQ-aY-pUc">
-                                <rect key="frame" x="20" y="72" width="560" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOt-I8-ish">
                                 <rect key="frame" x="285" y="562" width="30" height="30"/>
                                 <state key="normal" title="Skip"/>
@@ -463,7 +457,7 @@
                                 <rect key="frame" x="0.0" y="102" width="600" height="452"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OnBoardingCategoryCell" rowHeight="117" id="ZsN-yP-FgW" customClass="OnBoardingCategoryCell" customModule="Compass" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OnBoardingCategoryCell" rowHeight="117" id="ZsN-yP-FgW" customClass="OnBoardingCategoryCell" customModule="Compass" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="117"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZsN-yP-FgW" id="7tY-M1-qFp">
@@ -504,22 +498,30 @@
                                     <outlet property="delegate" destination="tL1-7H-YM5" id="Yqk-fn-f2J"/>
                                 </connections>
                             </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="What do you want to do? You can browse more goals inside the app." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sK-iv-Fwv">
+                                <rect key="frame" x="0.0" y="64" width="600" height="38"/>
+                                <color key="backgroundColor" red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="jOt-I8-ish" firstAttribute="top" secondItem="o27-Ra-YuB" secondAttribute="bottom" constant="8" id="DAb-Tw-9WE"/>
                             <constraint firstItem="o27-Ra-YuB" firstAttribute="trailing" secondItem="Dld-0T-s3D" secondAttribute="trailingMargin" constant="20" id="Eog-Y4-YVn"/>
                             <constraint firstItem="jOt-I8-ish" firstAttribute="centerX" secondItem="Dld-0T-s3D" secondAttribute="centerX" id="IP5-mE-0Hr"/>
-                            <constraint firstItem="o27-Ra-YuB" firstAttribute="top" secondItem="3oQ-aY-pUc" secondAttribute="bottom" constant="8" id="MlG-Ee-gSa"/>
+                            <constraint firstItem="0sK-iv-Fwv" firstAttribute="top" secondItem="4Ri-z6-ix2" secondAttribute="bottom" id="KGj-4k-Fls"/>
                             <constraint firstItem="o27-Ra-YuB" firstAttribute="leading" secondItem="Dld-0T-s3D" secondAttribute="leadingMargin" constant="-20" id="PX8-Zw-MMM"/>
-                            <constraint firstItem="3oQ-aY-pUc" firstAttribute="top" secondItem="4Ri-z6-ix2" secondAttribute="bottom" constant="8" id="VCV-rG-sy8"/>
+                            <constraint firstItem="o27-Ra-YuB" firstAttribute="top" secondItem="0sK-iv-Fwv" secondAttribute="bottom" id="Q0N-6x-LsU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0sK-iv-Fwv" secondAttribute="trailing" constant="-20" id="Xbr-Nk-4wP"/>
                             <constraint firstItem="ddM-Vl-ERK" firstAttribute="top" secondItem="jOt-I8-ish" secondAttribute="bottom" constant="8" id="flf-jL-CWb"/>
-                            <constraint firstItem="3oQ-aY-pUc" firstAttribute="trailing" secondItem="Dld-0T-s3D" secondAttribute="trailingMargin" id="mTY-FI-VAl"/>
-                            <constraint firstItem="3oQ-aY-pUc" firstAttribute="leading" secondItem="Dld-0T-s3D" secondAttribute="leadingMargin" id="nC3-lJ-wue"/>
+                            <constraint firstItem="0sK-iv-Fwv" firstAttribute="leading" secondItem="Dld-0T-s3D" secondAttribute="leadingMargin" constant="-20" id="yq6-Jb-HbJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3lF-Wm-v7J"/>
                     <connections>
+                        <outlet property="explanation" destination="0sK-iv-Fwv" id="JRV-Nl-Rcs"/>
                         <outlet property="nextButton" destination="jOt-I8-ish" id="9cJ-ag-Td6"/>
                         <outlet property="tableView" destination="o27-Ra-YuB" id="o05-eA-cia"/>
                         <segue destination="ZbA-Qt-cmz" kind="show" identifier="GoalLibraryFromOnBoarding" id="hYs-3k-Sn0"/>
@@ -841,7 +843,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="0Wz-kC-kbu">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="MiY-Xs-VZg">
+                        <barButtonItem key="rightBarButtonItem" title="ADD" id="MiY-Xs-VZg">
                             <connections>
                                 <action selector="addTap:" destination="hvk-pI-Gwh" id="X4v-Do-3ef"/>
                             </connections>
@@ -1510,10 +1512,10 @@
             </objects>
             <point key="canvasLocation" x="-825" y="2764"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--On-boarding-->
         <scene sceneID="fvl-lc-7Le">
             <objects>
-                <navigationController storyboardIdentifier="OnBoardingNavController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6Tm-L0-TFE" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="OnBoardingNavController" title="On-boarding" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6Tm-L0-TFE" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LPS-SR-Vhy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

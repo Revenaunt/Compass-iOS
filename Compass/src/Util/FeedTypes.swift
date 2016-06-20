@@ -36,7 +36,7 @@ class FeedTypes{
     }
     
     static func isFeedbackSection(section: Int) -> Bool{
-        return hasFeedback() && getFeedbackSectionPosition() == section;
+        return getFeedbackSectionPosition() == section;
     }
     
     static func hasUpcoming() -> Bool{
@@ -56,7 +56,7 @@ class FeedTypes{
     }
     
     static func getGoalsSectionPosition() -> Int{
-        return getUpcomingSectionPosition() + (hasUpcoming() ? 1 : 0);
+        return getUpcomingSectionPosition() + 1;
     }
     
     static func isGoalsSectionPosition(section: Int) -> Bool{
@@ -73,7 +73,7 @@ class FeedTypes{
                 return 1;
             
             case getFeedbackSectionPosition():
-                return FeedTypes.hasFeedback() ? 1 : 0;
+                return hasFeedback() ? 1 : 0;
             
             case getUpcomingSectionPosition():
                 return SharedData.feedData.getUpcoming().count;

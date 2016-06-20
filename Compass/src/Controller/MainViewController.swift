@@ -145,7 +145,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
                 dispatch_async(dispatch_get_main_queue(), {
                     self.tableView.beginUpdates();
                     if (!SharedData.feedData.canLoadMoreGoals()){
-                        self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: SharedData.feedData.getGoals().count-1, inSection: FeedTypes.getGoalsSectionPosition())],
+                        self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: start, inSection: FeedTypes.getGoalsSectionPosition())],
                                                         withRowAnimation: .Automatic)
                     }
                     else{
@@ -159,7 +159,8 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     @IBAction func addTap(sender: AnyObject){
-        let addSheet = UIAlertController(title: "Choose an option", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet);
+        self.performSegueWithIdentifier("Library", sender: self);
+        /*let addSheet = UIAlertController(title: "Choose an option", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet);
         addSheet.addAction(UIAlertAction(title: "Search goals", style: .Default){ action in
             do{
                 try Locksmith.deleteDataForUserAccount("CompassAccount");
@@ -171,7 +172,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         addSheet.addAction(UIAlertAction(title: "Browse goals", style: .Default){ action in
             self.performSegueWithIdentifier("Library", sender: self);
         });
-        presentViewController(addSheet, animated: true, completion: nil);
+        presentViewController(addSheet, animated: true, completion: nil);*/
     }
     
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{

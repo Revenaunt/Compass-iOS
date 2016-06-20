@@ -10,7 +10,6 @@ import Just
 import ObjectMapper
 
 
-
 class InitialDataLoader{
     private static var user: User? = nil;
     private static var callback: ((Bool)) -> Void = { success in };

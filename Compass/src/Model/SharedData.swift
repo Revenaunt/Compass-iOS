@@ -38,23 +38,40 @@ class SharedData{
         }
     };
     
+    //Splits an ordered list of categories into groups
+    private static func splitInGroups(categories: [CategoryContent]) -> [[CategoryContent]]{
+        //Stick the categories into individual lists grouped by group.
+        var categoryLists = [[CategoryContent]]();
+        var categoryList = [CategoryContent]();
+        //Set the current group as the first one, we don't want to be appending first
+        //  thing because arrays are value types, not reference types.
+        var currentGroup = categories[0].getGroup();
+        for category in categories{
+            if (currentGroup != category.getGroup()){
+                categoryLists.append(categoryList);
+                categoryList = [CategoryContent]();
+                currentGroup = category.getGroup();
+            }
+            categoryList.append(category);
+        }
+        categoryLists.append(categoryList);
+        
+        return categoryLists;
+    }
+    
     //Returns a list of non-default categories, starting with all the featured ones.
-    static var filteredCategories: [CategoryContent]{
+    static var nonDefaultCategoryLists: [[CategoryContent]]{
         get{
-            var featured = [CategoryContent]();
-            var regular = [CategoryContent]();
-            //Classify featured and non-default others
+            //Stick all the featured categories not selected by default in an array.
+            var categories = [CategoryContent]();
             for (_, category) in internalCategoryMap{
-                if (category.isFeatured()){
-                    featured.append(category);
-                }
-                else if (!category.isSelectedByDefault()){
-                    regular.append(category);
+                if (!category.isSelectedByDefault()){
+                    categories.append(category);
                 }
             }
             
             //Sort them by group and title.
-            /*featured.sortInPlace({
+            categories.sortInPlace({
                 if ($0.getGroup() < $1.getGroup()){
                     if ($0.getGroup() == -1){
                         return false;
@@ -68,11 +85,9 @@ class SharedData{
                     return false;
                 }
                 return $0.getTitle() < $1.getTitle();
-            });*/
+            });
             
-            //Featured go first
-            featured.appendContentsOf(regular);
-            return featured;
+            return splitInGroups(categories);
         }
     }
     
@@ -98,24 +113,7 @@ class SharedData{
             });
             
             print("Featured: \(featured.count)");
-            
-            //Stick the categories into individual lists grouped by group.
-            var categoryLists = [[CategoryContent]]();
-            var categoryList = [CategoryContent]();
-            //Set the current group as the first one, we don't want to be appending first
-            //  thing because arrays are value types, not reference types.
-            var currentGroup = featured[0].getGroup();
-            for category in featured{
-                if (currentGroup != category.getGroup()){
-                    categoryLists.append(categoryList);
-                    categoryList = [CategoryContent]();
-                    currentGroup = category.getGroup();
-                }
-                categoryList.append(category);
-            }
-            categoryLists.append(categoryList);
- 
-            return categoryLists;
+            return splitInGroups(featured);
         }
     }
     

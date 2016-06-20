@@ -11,22 +11,26 @@ import UIKit
 
 class ChooseCategoryViewController: UITableViewController{
     //Retrieve the list of filtered categories just once
-    private let categories = SharedData.filteredCategories;
+    private let categoryLists = SharedData.nonDefaultCategoryLists;
     
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         //One section, the list of categories
-        return 1;
+        return categoryLists.count;
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         //As many rows as categories there are
-        return categories.count;
+        return categoryLists[section].count;
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+        return categoryLists[section][0].getGroupName();
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as! CategoryCell;
-        cell.setCategory(categories[indexPath.row]);
+        cell.setCategory(categoryLists[indexPath.section][indexPath.row]);
         return cell;
     }
     
@@ -40,8 +44,8 @@ class ChooseCategoryViewController: UITableViewController{
         if (segue.identifier == "ShowGoalLibraryFromCategory"){
             let goalLibraryController = segue.destinationViewController as! GoalLibraryViewController;
             if let selectedCell = sender as? CategoryCell{
-                let indexPath = tableView.indexPathForCell(selectedCell);
-                goalLibraryController.category = categories[indexPath!.row];
+                let indexPath = tableView.indexPathForCell(selectedCell)!;
+                goalLibraryController.category = categoryLists[indexPath.section][indexPath.row];
             }
         }
     }
