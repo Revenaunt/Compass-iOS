@@ -891,7 +891,7 @@
 			baseConfigurationReference = 4C0E0A6802662DB5A8DF34AD /* Pods-Compass.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ismael Alonso (JGRBHQ353T)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ismael Alonso (JGRBHQ353T)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -914,7 +914,7 @@
 			baseConfigurationReference = 9B6FC9C1A1D3C82D77E62546 /* Pods-Compass.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Tennessee Data Commons (3LXVG22MWC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tennessee Data Commons (3LXVG22MWC)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
