@@ -145,7 +145,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
                 dispatch_async(dispatch_get_main_queue(), {
                     self.tableView.beginUpdates();
                     if (!SharedData.feedData.canLoadMoreGoals()){
-                        self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: SharedData.feedData.getGoals().count-1, inSection: FeedTypes.getGoalsSectionPosition())],
+                        self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: start, inSection: FeedTypes.getGoalsSectionPosition())],
                                                         withRowAnimation: .Automatic)
                     }
                     else{
