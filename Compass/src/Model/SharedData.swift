@@ -52,9 +52,70 @@ class SharedData{
                     regular.append(category);
                 }
             }
+            
+            //Sort them by group and title.
+            /*featured.sortInPlace({
+                if ($0.getGroup() < $1.getGroup()){
+                    if ($0.getGroup() == -1){
+                        return false;
+                    }
+                    return true;
+                }
+                if ($0.getGroup() > $1.getGroup()){
+                    if ($1.getGroup() == -1){
+                        return true;
+                    }
+                    return false;
+                }
+                return $0.getTitle() < $1.getTitle();
+            });*/
+            
             //Featured go first
             featured.appendContentsOf(regular);
             return featured;
+        }
+    }
+    
+    static var filteredCategoryLists: [[CategoryContent]]{
+        get{
+            //Stick all the featured categories not selected by default in an array.
+            var featured = [CategoryContent]();
+            for (_, category) in internalCategoryMap{
+                if (category.isFeatured() && !category.isSelectedByDefault()){
+                    featured.append(category);
+                }
+            }
+            
+            //Sort them by group and title.
+            featured.sortInPlace({
+                if ($0.getGroup() < $1.getGroup()){
+                    return true;
+                }
+                if ($0.getGroup() > $1.getGroup()){
+                    return false;
+                }
+                return $0.getTitle() < $1.getTitle();
+            });
+            
+            print("Featured: \(featured.count)");
+            
+            //Stick the categories into individual lists grouped by group.
+            var categoryLists = [[CategoryContent]]();
+            var categoryList = [CategoryContent]();
+            //Set the current group as the first one, we don't want to be appending first
+            //  thing because arrays are value types, not reference types.
+            var currentGroup = featured[0].getGroup();
+            for category in featured{
+                if (currentGroup != category.getGroup()){
+                    categoryLists.append(categoryList);
+                    categoryList = [CategoryContent]();
+                    currentGroup = category.getGroup();
+                }
+                categoryList.append(category);
+            }
+            categoryLists.append(categoryList);
+ 
+            return categoryLists;
         }
     }
     

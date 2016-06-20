@@ -18,7 +18,8 @@ class CategoryContent: TDCContent{
     private var secondaryColor: String = "";
     
     private var packagedContent: Bool = false;
-    private var featured: Bool = false;
+    private var group: Int = -1;
+    private var groupName: String = "";
     private var selectedByDefault: Bool = false;
     
     
@@ -33,7 +34,8 @@ class CategoryContent: TDCContent{
         color <- map["color"];
         secondaryColor <- map["secondary_color"];
         packagedContent <- map["packaged_content"];
-        featured <- map["featured"];
+        group <- map["grouping"]
+        groupName <- map["grouping_name"];
         selectedByDefault <- map["selected_by_default"];
     }
     
@@ -56,8 +58,16 @@ class CategoryContent: TDCContent{
         return packagedContent;
     }
     
+    func getGroup() -> Int{
+        return group;
+    }
+    
+    func getGroupName() -> String{
+        return groupName;
+    }
+    
     func isFeatured() -> Bool{
-        return featured;
+        return group != -1;
     }
     
     func isSelectedByDefault() -> Bool{

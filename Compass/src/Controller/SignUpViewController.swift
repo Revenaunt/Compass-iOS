@@ -143,7 +143,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     private func signUp(email: String, password: String, firstName: String, lastName: String){
         toggleMenu(false);
         
-        Just.post(API.getSignUpUrl(), data: API.getSignUpBody(email, password: password, firstName: firstName, lastName: lastName)){ (response) in
+        Just.post(API.getSignUpUrl(), json: API.getSignUpBody(email, password: password, firstName: firstName, lastName: lastName)){ (response) in
             if response.ok{
                 let user = Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding))!;
                 user.setPassword(password);
@@ -170,11 +170,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                     print(error);
                 }
                 
-                InitialDataLoader.load(SharedData.user){ (success) in
-                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
-                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
-                }
+                self.fetchCategories();
             }
             else{
                 self.toggleMenu(true);
@@ -197,5 +193,26 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
             self.privacyPolicyButton.hidden = !showButtons;
             self.termsOfServiceButton.hidden = !showButtons;
         });
+    }
+    
+    private func fetchCategories(){
+        Just.get(API.getCategoriesUrl()){ (response) in
+            if (response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!)){
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
+                SharedData.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
+                for category in SharedData.publicCategories{
+                    print(category.toString());
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("OnBoardingController");
+                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+                });
+            }
+            else{
+                self.toggleMenu(true);
+            }
+        }
     }
 }
