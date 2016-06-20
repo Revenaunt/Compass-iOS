@@ -437,7 +437,7 @@
         <!--On-boarding-->
         <scene sceneID="IP2-jg-fZw">
             <objects>
-                <viewController title="On-boarding" id="tL1-7H-YM5" customClass="OnBoardingCategoryController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnBoardingCategoryController" title="On-boarding" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tL1-7H-YM5" customClass="OnBoardingCategoryController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Ri-z6-ix2"/>
                         <viewControllerLayoutGuide type="bottom" id="ddM-Vl-ERK"/>
@@ -457,7 +457,7 @@
                                 <rect key="frame" x="0.0" y="102" width="600" height="452"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OnBoardingCategoryCell" rowHeight="117" id="ZsN-yP-FgW" customClass="OnBoardingCategoryCell" customModule="Compass" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OnBoardingCategoryCell" rowHeight="117" id="ZsN-yP-FgW" customClass="OnBoardingCategoryCell" customModule="Compass" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="117"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZsN-yP-FgW" id="7tY-M1-qFp">
@@ -1512,10 +1512,10 @@
             </objects>
             <point key="canvasLocation" x="-825" y="2764"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--On-boarding-->
         <scene sceneID="fvl-lc-7Le">
             <objects>
-                <navigationController storyboardIdentifier="OnBoardingNavController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6Tm-L0-TFE" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="OnBoardingNavController" title="On-boarding" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6Tm-L0-TFE" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LPS-SR-Vhy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
