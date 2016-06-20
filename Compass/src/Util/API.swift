@@ -6,6 +6,9 @@
 //  Copyright © 2016 Tennessee Data Commons. All rights reserved.
 //
 
+import Foundation
+
+
 class API{
     
     //#if DEBUG
@@ -144,6 +147,22 @@ class API{
     //Actions
     static func getActionUrl(actionMappingId: Int) -> String{
         return postProcess("\(BASE_URL)users/actions/\(actionMappingId)/");
+    }
+    
+    
+    /*--------------*
+     * USER PROFILE *
+     *--------------*/
+    
+    static func getPutUserProfileUrl(user: User) -> String{
+        return "\(BASE_URL)users/profile/\(user.getProfileId())/";
+    }
+    
+    static func getPutUserProfileBody(user: User) -> [String: String]{
+        var body = [String: String]();
+        body["timezone"] = NSTimeZone.defaultTimeZone().name;
+        body["needs_onboarding"] = "\(user.needsOnBoarding())";
+        return body;
     }
     
     

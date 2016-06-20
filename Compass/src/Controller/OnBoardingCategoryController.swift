@@ -59,6 +59,7 @@ class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func onNextTapped(){
-        
+        SharedData.user.onBoardingComplete();
+        performSegueWithIdentifier("LoadingFromOnBoarding", sender: nil);
     }
 }

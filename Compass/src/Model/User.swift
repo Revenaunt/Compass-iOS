@@ -46,6 +46,14 @@ class User: TDCBase, CustomStringConvertible{
         self.password = password;
     }
     
+    func onBoardingComplete(){
+        needsOnBoardingVar = false;
+    }
+    
+    func getProfileId() -> Int{
+        return profileId;
+    }
+    
     func getEmail() -> String{
         return email;
     }

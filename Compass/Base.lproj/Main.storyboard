@@ -523,6 +523,7 @@
                         <outlet property="nextButton" destination="jOt-I8-ish" id="9cJ-ag-Td6"/>
                         <outlet property="tableView" destination="o27-Ra-YuB" id="o05-eA-cia"/>
                         <segue destination="ZbA-Qt-cmz" kind="show" identifier="GoalLibraryFromOnBoarding" id="hYs-3k-Sn0"/>
+                        <segue destination="s6O-Vo-T1w" kind="show" identifier="LoadingFromOnBoarding" id="t7w-QZ-93q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vg9-OO-CJV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -857,6 +858,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="teD-m8-TBF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-13" y="2764"/>
+        </scene>
+        <!--Loading Controller-->
+        <scene sceneID="JDs-oE-er6">
+            <objects>
+                <viewController id="s6O-Vo-T1w" customClass="LoadingController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Shl-Np-IWz"/>
+                        <viewControllerLayoutGuide type="bottom" id="OL3-j9-Qij"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="L7R-wR-gYr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="l9C-eF-Zzs">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="Iy1-qL-4UF"/>
+                                    <constraint firstAttribute="height" constant="20" id="mXP-Y3-UiU"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="l9C-eF-Zzs" firstAttribute="centerX" secondItem="L7R-wR-gYr" secondAttribute="centerX" id="Wkt-Xl-PfS"/>
+                            <constraint firstItem="l9C-eF-Zzs" firstAttribute="centerY" secondItem="L7R-wR-gYr" secondAttribute="centerY" id="tj5-5n-ruy"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FNB-Gx-Zwi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="965" y="1984"/>
         </scene>
         <!--What Interests You?-->
         <scene sceneID="b8y-kQ-j17">
