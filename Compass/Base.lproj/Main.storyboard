@@ -843,7 +843,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="0Wz-kC-kbu">
-                        <barButtonItem key="rightBarButtonItem" title="ADD" id="MiY-Xs-VZg">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="MiY-Xs-VZg">
                             <connections>
                                 <action selector="addTap:" destination="hvk-pI-Gwh" id="X4v-Do-3ef"/>
                             </connections>
