@@ -43,9 +43,13 @@ class LauncherViewController: UIViewController{
                     else{
                         InitialDataLoader.load(SharedData.user){ (success) in
                             if (success){
-                                print(SharedData.feedData);
+                                let needsOnboarding = SharedData.user.needsOnBoarding()
+                                var mainController = "MainNavigationController"
+                                if needsOnboarding {
+                                    mainController = "OnBoardingNavigationController"
+                                }
                                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                                let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
+                                let viewController = mainStoryboard.instantiateViewControllerWithIdentifier(mainController);
                                 UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
                             }
                             else{
