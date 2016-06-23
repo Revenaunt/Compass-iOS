@@ -92,7 +92,7 @@ class FeedTypes{
     static func getSectionHeaderTitle(section: Int) -> String{
         switch (section){
             case getUpNextSectionPosition():
-                return "Up Next";
+                return "Up next";
             
             case getFeedbackSectionPosition():
                 return "";
@@ -101,7 +101,7 @@ class FeedTypes{
                 return hasUpcoming() ? "Upcoming" : "";
             
             case getGoalsSectionPosition():
-                return hasGoals() ? "My Goals" : "";
+                return hasGoals() ? "My goals" : "";
             
             default:
                 return "";
