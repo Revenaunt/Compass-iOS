@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Nuke
 
 
 class OnBoardingCategoryCell: UITableViewCell{
@@ -18,6 +19,12 @@ class OnBoardingCategoryCell: UITableViewCell{
         categoryImage.layer.cornerRadius = categoryImage.frame.size.width/2;
         categoryImage.clipsToBounds = true;
         categoryImage.image = UIImage(named: CompassUtil.getCategoryTileAssetName(category));
+        if (category.getIconUrl().characters.count != 0){
+            Nuke.taskWith(NSURL(string: category.getIconUrl())!){
+                let image = $0.image;
+                self.categoryImage.image = image;
+                }.resume();
+        }
         categoryTitle.text = category.getTitle();
     }
 }
