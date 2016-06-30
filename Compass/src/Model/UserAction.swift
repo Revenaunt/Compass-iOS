@@ -44,4 +44,8 @@ class UserAction: Action{
     func getBehaviorTitle() -> String{
         return action!.getBehaviorTitle();
     }
+    
+    func getBehaviorDescription() -> String {
+        return action!.getBehaviorDescription()
+    }
 }
