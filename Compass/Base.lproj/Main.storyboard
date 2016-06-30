@@ -965,7 +965,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04q-yZ-bk5">
                                 <rect key="frame" x="0.0" y="304" width="600" height="296"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badge Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7g-cI-ODt">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badge Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7g-cI-ODt">
                                         <rect key="frame" x="8" y="16" width="584" height="27"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1017,6 +1017,12 @@
                             <constraint firstItem="Y6R-aO-6Sh" firstAttribute="top" secondItem="l7p-FE-hEC" secondAttribute="topMargin" id="lvN-to-k2m"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="badgeDescription" destination="TIG-z7-Mjz" id="3XG-fY-GM8"/>
+                        <outlet property="description" destination="TIG-z7-Mjz" id="7He-JN-7Uh"/>
+                        <outlet property="image" destination="qRf-6l-eAg" id="JeM-o4-bRe"/>
+                        <outlet property="name" destination="F7g-cI-ODt" id="UzK-yS-Gn0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RI6-Rg-PT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

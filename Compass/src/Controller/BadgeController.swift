@@ -10,5 +10,10 @@ import UIKit
 
 
 class BadgeController: UIViewController{
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    //Apparently, description is a superclass variable
+    @IBOutlet weak var badgeDescription: UILabel!
     
+    var badge: Badge!;
 }
