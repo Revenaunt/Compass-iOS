@@ -950,6 +950,78 @@
             </objects>
             <point key="canvasLocation" x="965" y="2764"/>
         </scene>
+        <!--BadgeController-->
+        <scene sceneID="F7H-Zp-fpq">
+            <objects>
+                <viewController title="BadgeController" id="5Lm-Yv-rqI" customClass="BadgeController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kx8-Dj-vag"/>
+                        <viewControllerLayoutGuide type="bottom" id="r5I-Zj-1gI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="l7p-FE-hEC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04q-yZ-bk5">
+                                <rect key="frame" x="0.0" y="304" width="600" height="296"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badge Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7g-cI-ODt">
+                                        <rect key="frame" x="8" y="16" width="584" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badge description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIG-z7-Mjz">
+                                        <rect key="frame" x="75" y="51" width="450" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="F7g-cI-ODt" firstAttribute="leading" secondItem="04q-yZ-bk5" secondAttribute="leading" constant="8" id="AbN-Cl-hEy"/>
+                                    <constraint firstItem="TIG-z7-Mjz" firstAttribute="top" secondItem="F7g-cI-ODt" secondAttribute="bottom" constant="8" id="E1z-QW-ewG"/>
+                                    <constraint firstItem="TIG-z7-Mjz" firstAttribute="leading" secondItem="04q-yZ-bk5" secondAttribute="leading" constant="75" id="MPN-Ze-zFS"/>
+                                    <constraint firstAttribute="trailing" secondItem="TIG-z7-Mjz" secondAttribute="trailing" constant="75" id="X5e-du-v3l"/>
+                                    <constraint firstItem="F7g-cI-ODt" firstAttribute="top" secondItem="04q-yZ-bk5" secondAttribute="top" constant="16" id="Z1O-JU-tiv"/>
+                                    <constraint firstAttribute="trailing" secondItem="F7g-cI-ODt" secondAttribute="trailing" constant="8" id="ZGn-Ol-o7I"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y6R-aO-6Sh">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="296"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qRf-6l-eAg">
+                                        <rect key="frame" x="200" y="48" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="qRf-6l-eAg" secondAttribute="height" multiplier="1:1" id="pRN-VD-NUK"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="qRf-6l-eAg" firstAttribute="top" secondItem="Y6R-aO-6Sh" secondAttribute="top" constant="48" id="178-ZF-Dv8"/>
+                                    <constraint firstItem="qRf-6l-eAg" firstAttribute="centerX" secondItem="Y6R-aO-6Sh" secondAttribute="centerX" id="B7p-XQ-1tu"/>
+                                    <constraint firstItem="qRf-6l-eAg" firstAttribute="centerY" secondItem="Y6R-aO-6Sh" secondAttribute="centerY" id="NpC-bT-bm0"/>
+                                    <constraint firstAttribute="bottom" secondItem="qRf-6l-eAg" secondAttribute="bottom" constant="48" id="xhZ-tn-dQu"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="04q-yZ-bk5" firstAttribute="leading" secondItem="l7p-FE-hEC" secondAttribute="leadingMargin" constant="-20" id="1sb-oH-W9g"/>
+                            <constraint firstItem="r5I-Zj-1gI" firstAttribute="top" secondItem="04q-yZ-bk5" secondAttribute="bottom" id="4uB-UU-w3S"/>
+                            <constraint firstItem="04q-yZ-bk5" firstAttribute="height" secondItem="Y6R-aO-6Sh" secondAttribute="height" id="J13-K8-v6Q"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="04q-yZ-bk5" secondAttribute="trailing" constant="-20" id="PWJ-O6-Zvz"/>
+                            <constraint firstItem="Y6R-aO-6Sh" firstAttribute="leading" secondItem="l7p-FE-hEC" secondAttribute="leadingMargin" constant="-20" id="QaZ-WB-prW"/>
+                            <constraint firstItem="04q-yZ-bk5" firstAttribute="top" secondItem="Y6R-aO-6Sh" secondAttribute="bottom" constant="8" id="R06-E8-h02"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Y6R-aO-6Sh" secondAttribute="trailing" constant="-20" id="WKR-kk-T4e"/>
+                            <constraint firstItem="Y6R-aO-6Sh" firstAttribute="top" secondItem="l7p-FE-hEC" secondAttribute="topMargin" id="lvN-to-k2m"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RI6-Rg-PT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-825" y="4673"/>
+        </scene>
         <!--Activity-->
         <scene sceneID="VgW-3N-gx5">
             <objects>
