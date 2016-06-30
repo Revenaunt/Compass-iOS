@@ -798,6 +798,7 @@
                                     <outlet property="icon" destination="yyy-qY-qTA" id="grT-vl-TaO"/>
                                     <outlet property="iconContainer" destination="y5G-wZ-pFo" id="dzU-VW-S6r"/>
                                     <outlet property="title" destination="HIi-zB-gFW" id="Hac-tb-gDj"/>
+                                    <segue destination="i24-uW-uw0" kind="show" identifier="ShowGoalFromFeed" id="LmS-o8-yYE"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FooterCell" rowHeight="47" id="VhU-zq-ODk" customClass="FooterCell" customModule="Compass" customModuleProvider="target">
@@ -948,7 +949,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ab7-OR-t0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="965" y="2764"/>
+            <point key="canvasLocation" x="965" y="2765"/>
         </scene>
         <!--Activity-->
         <scene sceneID="VgW-3N-gx5">
@@ -1480,6 +1481,7 @@
                     </view>
                     <connections>
                         <outlet property="author" destination="Qp9-d4-3b2" id="Cgr-oQ-X3k"/>
+                        <outlet property="buttonContainer" destination="f7G-u9-0cN" id="G6G-Cc-eOI"/>
                         <outlet property="contentContainer" destination="BNQ-lf-ZsP" id="Oew-bi-daA"/>
                         <outlet property="goalDescription" destination="WIO-Rd-lcj" id="orB-c7-As3"/>
                         <outlet property="goalTitle" destination="RzE-Jh-Vy3" id="udf-R4-nXm"/>
@@ -1537,6 +1539,7 @@
         <image name="TDC Master" width="400" height="267"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hYs-3k-Sn0"/>
+        <segue reference="LmS-o8-yYE"/>
+        <segue reference="k7y-SJ-VTq"/>
     </inferredMetricsTieBreakers>
 </document>

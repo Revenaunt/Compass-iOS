@@ -19,6 +19,7 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
     //Data
     var category: CategoryContent!;
     var goal: GoalContent!;
+    var fromFeed = false   // Are we launching this from the feed?
     
     var imageViewProcessed = false;
     
@@ -36,6 +37,8 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet var reward: UILabel!
     @IBOutlet var author: UILabel!
     
+    @IBOutlet weak var buttonContainer: UIView!
+    
     private var rewardHeaderConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
     private var rewardConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
     private var authorConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
@@ -43,7 +46,7 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
     
     override func viewDidLoad(){
         //Background color of the header
-        header.layer.backgroundColor = category.getParsedColor().CGColor;
+        header.layer.backgroundColor = category.getParsedColor().CGColor
         
         //Header image
         if (category.getIconUrl().characters.count != 0){
@@ -62,6 +65,12 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
         //Goal information
         goalTitle.text = goal.getTitle();
         goalDescription.text = goal.getDescription();
+        
+        // If we're showing this goal from the feed, the user has already
+        // selected the goal, so we don't need to display these buttons
+        if fromFeed {
+            buttonContainer.hidden = true
+        }
         
         //Reward content
         //Extract the relevant constraints before they get removed

@@ -192,7 +192,6 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        print(indexPath);
         switch (indexPath.section){
             case 0:
                 if (SharedData.feedData.getUpNextAction() != nil){
@@ -206,6 +205,12 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
                 }
                 break;
             
+            case 3:
+                let goalCount = SharedData.feedData.getGoals().count
+                if goalCount < indexPath.row {
+                    performSegueWithIdentifier("ShowGoalFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
+                }
+                break;
             default:
                 break;
         }
@@ -213,6 +218,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        
         if (segue.identifier == "ShowActionFromFeed"){
             let actionController = segue.destinationViewController as! ActionViewController;
             if (sender as? UpNextCell) != nil{
@@ -223,6 +229,20 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
             else if let selectedCell = sender as? UpcomingCell{
                 let indexPath = tableView.indexPathForCell(selectedCell);
                 actionController.upcomingAction = SharedData.feedData.getUpcoming()[indexPath!.row];
+            }
+        }
+        else if (segue.identifier == "ShowGoalFromFeed") {
+            if let selectedCell = sender as? FeedGoalCell {
+                let indexPath = tableView.indexPathForCell(selectedCell)
+                if let userGoal = SharedData.feedData.getGoals()[indexPath!.row] as? UserGoal {
+                    let goalController = segue.destinationViewController as! GoalViewController
+                    let goal = userGoal.getGoal()
+                    let category = SharedData.getCategory((userGoal.getPrimaryCategoryId()))
+                    
+                    goalController.goal = goal
+                    goalController.category = category
+                    goalController.fromFeed = true
+                }
             }
         }
     }
