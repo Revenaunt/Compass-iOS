@@ -17,6 +17,8 @@ class ActionViewController: UIViewController{
     var upcomingAction: UpcomingAction? = nil;
     var notificationId: Int = -1;
     var mappingId: Int = -1;
+    var behaviorDescription: String = ""
+    var behaviorTitle: String = ""
     
     //UI components
     @IBOutlet weak var scrollView: UIScrollView!
@@ -24,7 +26,7 @@ class ActionViewController: UIViewController{
     @IBOutlet weak var hero: UIImageView!
     @IBOutlet var actionContainer: UIView!
     @IBOutlet weak var actionTitle: UILabel!
-    @IBOutlet weak var behaviorTitle: UILabel!
+    @IBOutlet weak var behaviorButton: UIButton!
     @IBOutlet weak var actionDescription: UILabel!
     @IBOutlet weak var laterButton: UIButton!
     @IBOutlet var rewardContainer: UIView!
@@ -36,7 +38,7 @@ class ActionViewController: UIViewController{
     var rewardConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
     var authorConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
     
-    
+
     override func viewDidLoad(){
         //Backup the constraints
         for constraint in masterContainer.constraints{
@@ -72,7 +74,9 @@ class ActionViewController: UIViewController{
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     self.actionTitle.text = action!.getTitle();
-                    self.behaviorTitle.text = action!.getBehaviorTitle();
+                    self.behaviorTitle = action!.getBehaviorTitle()
+                    self.behaviorButton.setTitle(action!.getBehaviorTitle(), forState: UIControlState.Normal)
+                    self.behaviorDescription = action!.getBehaviorDescription();
                     self.actionDescription.text = action!.getDescription();
                     self.masterContainer.addSubview(self.actionContainer);
                     self.masterContainer.addConstraints(self.actionConstraints);
@@ -92,6 +96,48 @@ class ActionViewController: UIViewController{
                 self.fetchReward();
             }
         };
+    }
+    
+    @IBAction func displayBehaviorDetails(sender: AnyObject) {
+        let alertController = UIAlertController(title: behaviorTitle, message: behaviorDescription, preferredStyle: .ActionSheet)
+
+        // HACK for changing the style of alerts. NOte the coment about this being private API usage.
+        // http://stackoverflow.com/a/26949674/182778
+        // Doing the below also looks terrible.
+        /*
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.Left
+        
+        let titleText = NSMutableAttributedString(
+            string: behaviorTitle.text!,
+            attributes: [
+                NSParagraphStyleAttributeName: paragraphStyle,
+                //NSFontAttributeName : UIFont.preferredFontForTextStyle(UIFontTextStyleTitle1),
+                //NSForegroundColorAttributeName : UIColor.darkGrayColor()
+            ]
+        )
+        
+        let messageText = NSMutableAttributedString(
+            string: behaviorDescription,
+            attributes: [
+                NSParagraphStyleAttributeName: paragraphStyle,
+                //NSFontAttributeName : UIFont.preferredFontForTextStyle(UIFontTextStyleBody),
+                //NSForegroundColorAttributeName : UIColor.darkGrayColor()
+            ]
+        )
+        alertController.setValue(messageText, forKey: "attributedMessage")
+        alertController.setValue(titleText, forKey: "attributedTitle")
+        */
+        
+        // Wire up OK action and present the alert.
+        let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+            // OK doesn't do anything.
+        }
+        alertController.addAction(OKAction)
+        
+        self.presentViewController(alertController, animated: true) {
+            // Neither does presenting the alert.
+        }
     }
     
     private func fetchCategory(categoryId: Int){
