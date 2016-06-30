@@ -30,6 +30,7 @@
 		5448276F1CCAC37600BBC062 /* Nuke.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5448276D1CCAC36A00BBC062 /* Nuke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5449E5F11CBD646E0017629E /* LogInViewController.swift */; };
 		545627321CF4B029007C3731 /* Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545627311CF4B029007C3731 /* Reward.swift */; };
+		545C639B1D259AC500F48C15 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545C639A1D259AC500F48C15 /* Badge.swift */; };
 		545D98BE1CC68C820037FAEF /* CategoryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BD1CC68C820037FAEF /* CategoryContent.swift */; };
 		545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BF1CC695F50037FAEF /* TDCBase.swift */; };
 		545D98C21CC697100037FAEF /* TDCContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C11CC697100037FAEF /* TDCContent.swift */; };
@@ -130,6 +131,7 @@
 		5448276D1CCAC36A00BBC062 /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
 		5449E5F11CBD646E0017629E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		545627311CF4B029007C3731 /* Reward.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reward.swift; sourceTree = "<group>"; };
+		545C639A1D259AC500F48C15 /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		545D98BD1CC68C820037FAEF /* CategoryContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryContent.swift; sourceTree = "<group>"; };
 		545D98BF1CC695F50037FAEF /* TDCBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCBase.swift; sourceTree = "<group>"; };
 		545D98C11CC697100037FAEF /* TDCContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCContent.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				5488FC221CFDF9EF00E758C1 /* UserCategory.swift */,
 				5468F84E1CCEB6C600D5769B /* UserContent.swift */,
 				5443355C1CD01B0A00EB066E /* UserGoal.swift */,
+				545C639A1D259AC500F48C15 /* Badge.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -719,6 +722,7 @@
 				5468F8471CCEAA8700D5769B /* UpcomingCell.swift in Sources */,
 				547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */,
 				54010E131CC6C398009FB013 /* CompassUtil.swift in Sources */,
+				545C639B1D259AC500F48C15 /* Badge.swift in Sources */,
 				544335591CD018DF00EB066E /* Goal.swift in Sources */,
 				5460E4131D1821C500A4FBAB /* LoadingController.swift in Sources */,
 				544614211CC927CE00F2B441 /* ChooseCategoryViewController.swift in Sources */,
