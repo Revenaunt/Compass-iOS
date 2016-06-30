@@ -46,9 +46,7 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
     
     override func viewDidLoad(){
         //Background color of the header
-        if let color = category?.getParsedColor().CGColor {
-            header.layer.backgroundColor = color
-        }
+        header.layer.backgroundColor = category.getParsedColor().CGColor
         
         //Header image
         if (category.getIconUrl().characters.count != 0){
