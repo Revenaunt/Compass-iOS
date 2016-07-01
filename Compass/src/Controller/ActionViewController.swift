@@ -99,35 +99,21 @@ class ActionViewController: UIViewController{
     }
     
     @IBAction func displayBehaviorDetails(sender: AnyObject) {
-        let alertController = UIAlertController(title: behaviorTitle, message: behaviorDescription, preferredStyle: .ActionSheet)
+        //let alertController = UIAlertController(title: behaviorTitle, message: behaviorDescription, preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: behaviorTitle, message: behaviorDescription, preferredStyle: .Alert)
 
-        // HACK for changing the style of alerts. NOte the coment about this being private API usage.
+        // HACK for changing the style of alerts. Note the comment about this being private API usage.
         // http://stackoverflow.com/a/26949674/182778
-        // Doing the below also looks terrible.
-        /*
+
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = NSTextAlignment.Left
-        
-        let titleText = NSMutableAttributedString(
-            string: behaviorTitle.text!,
-            attributes: [
-                NSParagraphStyleAttributeName: paragraphStyle,
-                //NSFontAttributeName : UIFont.preferredFontForTextStyle(UIFontTextStyleTitle1),
-                //NSForegroundColorAttributeName : UIColor.darkGrayColor()
-            ]
-        )
-        
+        paragraphStyle.alignment = NSTextAlignment.Justified
         let messageText = NSMutableAttributedString(
             string: behaviorDescription,
             attributes: [
                 NSParagraphStyleAttributeName: paragraphStyle,
-                //NSFontAttributeName : UIFont.preferredFontForTextStyle(UIFontTextStyleBody),
-                //NSForegroundColorAttributeName : UIColor.darkGrayColor()
             ]
         )
         alertController.setValue(messageText, forKey: "attributedMessage")
-        alertController.setValue(titleText, forKey: "attributedTitle")
-        */
         
         // Wire up OK action and present the alert.
         let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
