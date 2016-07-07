@@ -966,7 +966,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WkA-6K-knu">
                                 <rect key="frame" x="0.0" y="64" width="600" height="836"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hgj-DZ-wFC" userLabel="Master Container">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hgj-DZ-wFC" userLabel="Master Container">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="702"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2O-zK-2h6" userLabel="Image Container">
@@ -985,7 +985,7 @@
                                                     <constraint firstItem="4vm-sO-jYA" firstAttribute="leading" secondItem="V2O-zK-2h6" secondAttribute="leading" id="qnQ-X4-XW9"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="np3-Uk-l0v" userLabel="Action Container">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="np3-Uk-l0v" userLabel="Action Container">
                                                 <rect key="frame" x="28" y="430" width="544" height="133"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACTION TITLE" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36V-sI-Bi6">
@@ -994,19 +994,21 @@
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Behavior title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mo-2M-RPF">
-                                                        <rect key="frame" x="0.0" y="32" width="544" height="20"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action description" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDb-Oa-LVE">
-                                                        <rect key="frame" x="0.0" y="60" width="544" height="21"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAW-gx-nRQ">
+                                                        <rect key="frame" x="0.0" y="32" width="544" height="29"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <state key="normal" title="Behavior Button"/>
+                                                        <connections>
+                                                            <action selector="displayBehaviorDetails:" destination="Q9M-9N-CVz" eventType="touchUpInside" id="7Jf-LE-vUi"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Action description" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDb-Oa-LVE">
+                                                        <rect key="frame" x="0.0" y="64" width="544" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TIP-67-qLi" userLabel="Button Container">
+                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TIP-67-qLi" userLabel="Button Container">
                                                         <rect key="frame" x="398" y="93" width="146" height="40"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCG-yJ-L4f">
@@ -1039,21 +1041,21 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="wDb-Oa-LVE" firstAttribute="top" secondItem="2Mo-2M-RPF" secondAttribute="bottom" constant="8" id="0yk-yn-lEa"/>
                                                     <constraint firstItem="TIP-67-qLi" firstAttribute="top" secondItem="wDb-Oa-LVE" secondAttribute="bottom" constant="12" id="45U-vv-Hkt"/>
-                                                    <constraint firstItem="2Mo-2M-RPF" firstAttribute="top" secondItem="36V-sI-Bi6" secondAttribute="bottom" constant="8" id="5lh-Bv-vul"/>
+                                                    <constraint firstItem="UAW-gx-nRQ" firstAttribute="leading" secondItem="np3-Uk-l0v" secondAttribute="leading" id="A9n-aM-tpT"/>
                                                     <constraint firstAttribute="trailing" secondItem="wDb-Oa-LVE" secondAttribute="trailing" id="BQt-8J-vgv"/>
-                                                    <constraint firstItem="2Mo-2M-RPF" firstAttribute="leading" secondItem="np3-Uk-l0v" secondAttribute="leading" id="FPY-z8-UnQ"/>
                                                     <constraint firstItem="36V-sI-Bi6" firstAttribute="top" secondItem="np3-Uk-l0v" secondAttribute="top" id="U7q-F7-3O7"/>
                                                     <constraint firstItem="wDb-Oa-LVE" firstAttribute="leading" secondItem="np3-Uk-l0v" secondAttribute="leading" id="WMZ-Aq-hUV"/>
                                                     <constraint firstAttribute="bottom" secondItem="TIP-67-qLi" secondAttribute="bottom" id="bAf-kq-T2G"/>
                                                     <constraint firstItem="36V-sI-Bi6" firstAttribute="leading" secondItem="np3-Uk-l0v" secondAttribute="leading" id="c74-xk-iZM"/>
                                                     <constraint firstAttribute="trailing" secondItem="36V-sI-Bi6" secondAttribute="trailing" id="c81-BH-pc2"/>
-                                                    <constraint firstAttribute="trailing" secondItem="2Mo-2M-RPF" secondAttribute="trailing" id="jzj-03-l6q"/>
+                                                    <constraint firstItem="wDb-Oa-LVE" firstAttribute="top" secondItem="UAW-gx-nRQ" secondAttribute="bottom" constant="8" id="hRD-SQ-4zO"/>
+                                                    <constraint firstAttribute="trailing" secondItem="UAW-gx-nRQ" secondAttribute="trailing" id="jT6-ms-cr0"/>
+                                                    <constraint firstItem="UAW-gx-nRQ" firstAttribute="top" secondItem="36V-sI-Bi6" secondAttribute="bottom" constant="8" id="mTN-FM-m5Y"/>
                                                     <constraint firstAttribute="trailing" secondItem="TIP-67-qLi" secondAttribute="trailing" id="zBN-ei-tCQ"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdY-zy-ufX" userLabel="Reward Container">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EdY-zy-ufX" userLabel="Reward Container">
                                                 <rect key="frame" x="28" y="593" width="544" height="79"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reward header" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYN-O8-PJ7">
@@ -1131,7 +1133,7 @@
                         <outlet property="actionContainer" destination="np3-Uk-l0v" id="jkI-QI-xxO"/>
                         <outlet property="actionDescription" destination="wDb-Oa-LVE" id="0T0-Z8-X4c"/>
                         <outlet property="actionTitle" destination="36V-sI-Bi6" id="xSG-c6-Dbi"/>
-                        <outlet property="behaviorTitle" destination="2Mo-2M-RPF" id="gwh-er-Vic"/>
+                        <outlet property="behaviorButton" destination="UAW-gx-nRQ" id="RFy-qw-7nZ"/>
                         <outlet property="hero" destination="4vm-sO-jYA" id="ZEP-ig-FJ3"/>
                         <outlet property="laterButton" destination="HCG-yJ-L4f" id="Iyl-wN-8N9"/>
                         <outlet property="masterContainer" destination="Hgj-DZ-wFC" id="DKf-a2-rIa"/>
@@ -1144,7 +1146,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eb9-EM-G73" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13" y="3683"/>
+            <point key="canvasLocation" x="-104" y="3679"/>
         </scene>
         <!--Choose a Goal-->
         <scene sceneID="WnW-O5-DDw">
@@ -1343,11 +1345,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Etd-ZR-fi9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WzL-vf-zrj">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="836" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWg-1j-2Xn">
-                                <rect key="frame" x="0.0" y="64" width="600" height="836"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNQ-lf-ZsP" userLabel="Master Container">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="674"/>

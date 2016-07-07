@@ -17,7 +17,7 @@ class ActionContent: TDCContent{
     private var externalResourceName: String = "";
     private var behaviorId: Int = -1;
     private var behaviorTitle: String = "";
-    
+    private var behaviorDescription: String = "";
     
     required init?(_ map: Map){
         super.init(map)
@@ -33,9 +33,14 @@ class ActionContent: TDCContent{
         externalResourceName <- map["external_resource_name"];
         behaviorId <- map["behavior"];
         behaviorTitle <- map["behavior_title"];
+        behaviorDescription <- map["behavior_description"];
     }
     
     func getBehaviorTitle() -> String{
         return behaviorTitle;
+    }
+    
+    func getBehaviorDescription() -> String {
+        return behaviorDescription
     }
 }
