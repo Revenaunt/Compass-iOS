@@ -1630,6 +1630,72 @@
             </objects>
             <point key="canvasLocation" x="-13" y="2764"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="WLR-O5-Cgl">
+            <objects>
+                <tableViewController title="Settings" id="WYf-pu-YIe" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="DTl-u4-RUg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="Y3B-2j-Lu9">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Hx6-yn-Ra4">
+                                        <rect key="frame" x="0.0" y="99" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hx6-yn-Ra4" id="kCo-du-pfQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="g8D-up-zxD">
+                                        <rect key="frame" x="0.0" y="143" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g8D-up-zxD" id="Qfg-dy-v4K">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aQ9-Aa-FB5">
+                                        <rect key="frame" x="0.0" y="187" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aQ9-Aa-FB5" id="sCa-Ix-8wx">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="WYf-pu-YIe" id="cgA-Em-LVy"/>
+                            <outlet property="delegate" destination="WYf-pu-YIe" id="4hX-vo-Dpu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="Zts-PZ-ikO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZQO-Ba-O4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-13" y="3536"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="xbD-fs-JQ1">
+            <objects>
+                <navigationController title="Settings" id="Swo-yG-l60" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="36T-dI-8Al"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R5s-A3-VhS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="WYf-pu-YIe" kind="relationship" relationship="rootViewController" id="gNr-3l-fQU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DbX-eU-Usx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-825" y="3536"/>
+        </scene>
         <!--On-boarding-->
         <scene sceneID="fvl-lc-7Le">
             <objects>
@@ -1676,6 +1742,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="Swo-yG-l60" kind="relationship" relationship="viewControllers" id="yGX-JO-7VQ"/>
                         <segue destination="MAO-en-efw" kind="relationship" relationship="viewControllers" id="tqa-m4-eWt"/>
                     </connections>
                 </tabBarController>
@@ -1688,6 +1755,7 @@
         <image name="Compass Launcher" width="150" height="175"/>
         <image name="DeSoto Bridge" width="150" height="29"/>
         <image name="Feed" width="24" height="24"/>
+        <image name="Settings" width="24" height="24"/>
         <image name="TDC Master" width="400" height="267"/>
     </resources>
     <inferredMetricsTieBreakers>
