@@ -218,7 +218,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
-        
+        segue.destinationViewController.hidesBottomBarWhenPushed = true;
         if (segue.identifier == "ShowActionFromFeed"){
             let actionController = segue.destinationViewController as! ActionViewController;
             if (sender as? UpNextCell) != nil{

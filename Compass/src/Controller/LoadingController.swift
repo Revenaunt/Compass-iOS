@@ -36,7 +36,7 @@ class LoadingController: UIViewController{
             if (success){
                 print(SharedData.feedData);
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController");
+                let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainTabBarController");
                 UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
             }
         }
