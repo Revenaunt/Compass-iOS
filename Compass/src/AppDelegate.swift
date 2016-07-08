@@ -34,9 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             let dictionary = Locksmith.loadDataForUserAccount("CompassAccount");
             if (dictionary != nil && dictionary!["token"] != nil){
                 NSLog("Doin' some evil. With Love, APNs");
+                print(payload);
                 
                 let message = Mapper<APNsMessage>().map(payload)!;
-                if (message.isAction()){
+                if (message.isActionMessage()){
                     //Create the navigation controller and set as root
                     let storyboard = UIStoryboard(name: "Main", bundle: nil);
                     let navController = storyboard.instantiateViewControllerWithIdentifier("LauncherNavController") as! UINavigationController;
@@ -47,6 +48,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                     actionController.mappingId = message.getMappingId();
                     actionController.notificationId = message.getNotificationId();
                     navController.pushViewController(actionController, animated: false);
+                }
+                else if (message.isBadgeMessage()){
+                    //Create the navigation controller and set as root
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil);
+                    let navController = storyboard.instantiateViewControllerWithIdentifier("LauncherNavController") as! UINavigationController;
+                    window?.rootViewController = navController;
+                    
+                    //Create the badge controller and immediately push
+                    let badgeController = storyboard.instantiateViewControllerWithIdentifier("BadgeController") as! BadgeController;
+                    badgeController.badge = message.getBadge();
+                    print(message.getBadge());
+                    navController.pushViewController(badgeController, animated: false);
                 }
             }
         }
@@ -74,12 +87,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         print(userInfo);
         let dictionary = Locksmith.loadDataForUserAccount("CompassAccount");
         if (dictionary != nil && dictionary!["token"] != nil){
-            let message = Mapper<APNsMessage>().map(userInfo);
-            if (message!.isAction()){
+            let message = Mapper<APNsMessage>().map(userInfo)!;
+            print("The message was parsed properly");
+            if (message.isActionMessage()){
                 let storyboard = UIStoryboard(name: "Main", bundle: nil);
                 let actionController = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionViewController;
-                actionController.mappingId = message!.getMappingId();
-                actionController.notificationId = message!.getNotificationId();
+                actionController.mappingId = message.getMappingId();
+                actionController.notificationId = message.getNotificationId();
                 if let rootController = window?.rootViewController as! UINavigationController?{
                     print("This is a navigation controller");
                     rootController.pushViewController(actionController, animated: true);
@@ -87,6 +101,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                 else{
                     print("This is NOT a navigation controller!");
                     window?.rootViewController = actionController;
+                }
+            }
+            else if (message.isBadgeMessage()){
+                let storyboard = UIStoryboard(name: "Main", bundle: nil);
+                let badgeController = storyboard.instantiateViewControllerWithIdentifier("BadgeController") as! BadgeController;
+                badgeController.badge = message.getBadge();
+                print(message.getBadge());
+                if let rootController = window?.rootViewController as! UINavigationController?{
+                    print("This is a navigation controller");
+                    rootController.pushViewController(badgeController, animated: true);
+                }
+                else{
+                    print("This is NOT a navigation controller!");
+                    window?.rootViewController = badgeController;
                 }
             }
         }
