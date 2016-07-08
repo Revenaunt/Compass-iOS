@@ -11,6 +11,7 @@ import Nuke
 
 
 class BadgeController: UIViewController{
+    @IBOutlet weak var imageContainer: UIView!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var name: UILabel!
     //Apparently, description is a superclass variable
@@ -29,6 +30,9 @@ class BadgeController: UIViewController{
             self.image.layer.cornerRadius = self.image.frame.height/2;
             self.image.clipsToBounds = true;
             self.image.image = $0.image;
+            
+            self.imageContainer.layer.cornerRadius = self.imageContainer.frame.size.width/2;
+            self.imageContainer.hidden = false;
         }.resume();
         
         name.text = badge.getName();

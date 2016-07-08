@@ -1012,18 +1012,30 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y6R-aO-6Sh">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="264"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qRf-6l-eAg">
-                                        <rect key="frame" x="216" y="48" width="168" height="168"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhO-fA-GPR">
+                                        <rect key="frame" x="200" y="32" width="200" height="200"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qRf-6l-eAg">
+                                                <rect key="frame" x="24" y="24" width="152" height="152"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="qRf-6l-eAg" secondAttribute="height" multiplier="1:1" id="pRN-VD-NUK"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="qRf-6l-eAg" secondAttribute="height" multiplier="1:1" id="pRN-VD-NUK"/>
+                                            <constraint firstAttribute="bottom" secondItem="qRf-6l-eAg" secondAttribute="bottom" constant="24" id="4Sq-Ql-cfm"/>
+                                            <constraint firstItem="qRf-6l-eAg" firstAttribute="leading" secondItem="lhO-fA-GPR" secondAttribute="leading" constant="24" id="Lki-OK-6r8"/>
+                                            <constraint firstAttribute="trailing" secondItem="qRf-6l-eAg" secondAttribute="trailing" constant="24" id="Qwb-x9-RVp"/>
+                                            <constraint firstAttribute="width" secondItem="lhO-fA-GPR" secondAttribute="height" multiplier="1:1" id="mjc-O3-kqI"/>
+                                            <constraint firstItem="qRf-6l-eAg" firstAttribute="top" secondItem="lhO-fA-GPR" secondAttribute="top" constant="24" id="vwG-zt-gmc"/>
                                         </constraints>
-                                    </imageView>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="qRf-6l-eAg" firstAttribute="top" secondItem="Y6R-aO-6Sh" secondAttribute="top" constant="48" id="178-ZF-Dv8"/>
-                                    <constraint firstItem="qRf-6l-eAg" firstAttribute="centerX" secondItem="Y6R-aO-6Sh" secondAttribute="centerX" id="B7p-XQ-1tu"/>
-                                    <constraint firstItem="qRf-6l-eAg" firstAttribute="centerY" secondItem="Y6R-aO-6Sh" secondAttribute="centerY" id="NpC-bT-bm0"/>
-                                    <constraint firstAttribute="bottom" secondItem="qRf-6l-eAg" secondAttribute="bottom" constant="48" id="xhZ-tn-dQu"/>
+                                    <constraint firstItem="lhO-fA-GPR" firstAttribute="centerX" secondItem="Y6R-aO-6Sh" secondAttribute="centerX" id="0LE-qf-LWJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="lhO-fA-GPR" secondAttribute="bottom" constant="32" id="Mk1-OX-gRN"/>
+                                    <constraint firstItem="lhO-fA-GPR" firstAttribute="top" secondItem="Y6R-aO-6Sh" secondAttribute="top" constant="32" id="lcz-6Q-5on"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1043,6 +1055,7 @@
                     <connections>
                         <outlet property="badgeDescription" destination="TIG-z7-Mjz" id="DNS-Sf-VWm"/>
                         <outlet property="image" destination="qRf-6l-eAg" id="JeM-o4-bRe"/>
+                        <outlet property="imageContainer" destination="lhO-fA-GPR" id="hFj-sc-bzQ"/>
                         <outlet property="name" destination="F7g-cI-ODt" id="UzK-yS-Gn0"/>
                     </connections>
                 </viewController>
