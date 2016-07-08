@@ -44,7 +44,7 @@ class LauncherViewController: UIViewController{
                         InitialDataLoader.load(SharedData.user){ (success) in
                             if (success){
                                 let needsOnboarding = SharedData.user.needsOnBoarding()
-                                var mainController = "MainNavigationController"
+                                var mainController = "MainTabBarController"
                                 if needsOnboarding {
                                     mainController = "OnBoardingNavigationController"
                                 }
