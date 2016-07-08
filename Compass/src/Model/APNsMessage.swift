@@ -12,7 +12,7 @@ import ObjectMapper
 class APNsMessage: Mappable{
     //Notification message types
     private let TYPE_ACTION = "action";
-    private let TYPE_BADGE = "badge";
+    private let TYPE_BADGE = "award";
     
     //Common fields
     private var notificationId: Int = -1;
