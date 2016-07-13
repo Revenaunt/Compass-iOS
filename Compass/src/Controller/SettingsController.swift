@@ -39,6 +39,9 @@ class SettingsController: UITableViewController{
             else if (indexPath.row == 1){
                 UIApplication.sharedApplication().openURL(NSURL(string: "https://app.tndata.org/privacy/")!);
             }
+            else if (indexPath.row == 2){
+                performSegueWithIdentifier("ShowSources", sender: self);
+            }
         }
     }
 }

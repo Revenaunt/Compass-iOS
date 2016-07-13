@@ -862,6 +862,62 @@
             </objects>
             <point key="canvasLocation" x="799" y="2764"/>
         </scene>
+        <!--Sources-->
+        <scene sceneID="2af-PA-2oM">
+            <objects>
+                <tableViewController title="Sources" id="3id-bH-52F" customClass="SourcesController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="83" sectionHeaderHeight="28" sectionFooterHeight="28" id="P7d-2G-9CG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SourceCell" rowHeight="83" id="PsL-yc-yn1" customClass="SourceCell" customModule="Compass" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="83"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PsL-yc-yn1" id="GcC-kj-7eK">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="82"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJo-sF-74y">
+                                            <rect key="frame" x="8" y="8" width="584" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Url" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GL-ev-IuI">
+                                            <rect key="frame" x="8" y="40" width="584" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="6GL-ev-IuI" firstAttribute="top" secondItem="rJo-sF-74y" secondAttribute="bottom" constant="8" id="I6T-dX-fGZ"/>
+                                        <constraint firstItem="rJo-sF-74y" firstAttribute="leading" secondItem="GcC-kj-7eK" secondAttribute="leadingMargin" id="J1b-b5-kLg"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="6GL-ev-IuI" secondAttribute="bottom" id="Pha-sQ-fr1"/>
+                                        <constraint firstItem="6GL-ev-IuI" firstAttribute="top" secondItem="rJo-sF-74y" secondAttribute="bottom" constant="8" id="VCS-v6-BC9"/>
+                                        <constraint firstItem="rJo-sF-74y" firstAttribute="top" secondItem="GcC-kj-7eK" secondAttribute="topMargin" id="XQ0-d9-Y4D"/>
+                                        <constraint firstItem="6GL-ev-IuI" firstAttribute="trailing" secondItem="GcC-kj-7eK" secondAttribute="trailingMargin" id="ZWD-SO-dk3"/>
+                                        <constraint firstItem="6GL-ev-IuI" firstAttribute="leading" secondItem="GcC-kj-7eK" secondAttribute="leadingMargin" id="fLo-Cr-RHP"/>
+                                        <constraint firstItem="rJo-sF-74y" firstAttribute="trailing" secondItem="GcC-kj-7eK" secondAttribute="trailingMargin" id="tO4-g0-8i0"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="caption" destination="rJo-sF-74y" id="Ien-LK-NaX"/>
+                                    <outlet property="url" destination="6GL-ev-IuI" id="3RT-Ke-QfT"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3id-bH-52F" id="BNz-aa-4yz"/>
+                            <outlet property="delegate" destination="3id-bH-52F" id="B7f-Yp-iFN"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZcR-Le-bIL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="807" y="3537"/>
+        </scene>
         <!--Loading Controller-->
         <scene sceneID="JDs-oE-er6">
             <objects>
@@ -1259,7 +1315,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eb9-EM-G73" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="799" y="3686"/>
+            <point key="canvasLocation" x="1826" y="3686"/>
         </scene>
         <!--Choose a Goal-->
         <scene sceneID="WnW-O5-DDw">
@@ -1780,6 +1836,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="Zts-PZ-ikO"/>
+                    <connections>
+                        <segue destination="3id-bH-52F" kind="show" identifier="ShowSources" id="kAV-bk-KEL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZQO-Ba-O4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
