@@ -18,6 +18,7 @@ class SourcesController: UITableViewController{
         sources.append(Source(caption: "\"Stay strong with Compass\" messaging inspired by the work of the Character Lab. Thanks, Dr. Duckworth!", url: "https://characterlab.org/resources"));
         sources.append(Source(caption: "Illustrations: Michael Cook (Cookicons)", url: "http://cookicons.co"));
         sources.append(Source(caption: "Icons: designed by flaticon", url: "http://www.flaticon.com"));
+        sources.append(Source(caption: "Misc art: designed by freepik", url: "http://www.freepik.com"));
         sources.append(Source(caption: "Just", url: "https://github.com/justhttp/Just"));
         sources.append(Source(caption: "Object Mapper", url: "https://github.com/Hearst-DD/ObjectMapper"));
         sources.append(Source(caption: "Locksmith", url: "https://github.com/matthewpalmer/Locksmith/"));
