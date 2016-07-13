@@ -160,19 +160,6 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     
     @IBAction func addTap(sender: AnyObject){
         self.performSegueWithIdentifier("Library", sender: self);
-        /*let addSheet = UIAlertController(title: "Choose an option", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet);
-        addSheet.addAction(UIAlertAction(title: "Search goals", style: .Default){ action in
-            do{
-                try Locksmith.deleteDataForUserAccount("CompassAccount");
-            }
-            catch{
-                
-            }
-        });
-        addSheet.addAction(UIAlertAction(title: "Browse goals", style: .Default){ action in
-            self.performSegueWithIdentifier("Library", sender: self);
-        });
-        presentViewController(addSheet, animated: true, completion: nil);*/
     }
     
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
