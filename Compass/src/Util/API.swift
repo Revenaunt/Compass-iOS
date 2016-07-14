@@ -204,6 +204,10 @@ class API{
         body["time"] = time;
         return body;
     }
+    
+    static func getAwardsUrl() -> String{
+        return postProcess(BASE_URL + "awards/");
+    }
 }
 
 

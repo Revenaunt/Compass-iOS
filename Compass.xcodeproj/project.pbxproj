@@ -53,6 +53,9 @@
 		5468F8571CCEBF7C00D5769B /* UpcomingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8561CCEBF7C00D5769B /* UpcomingAction.swift */; };
 		5468F8591CCEC1ED00D5769B /* InitialDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8581CCEC1ED00D5769B /* InitialDataLoader.swift */; };
 		546F69291D37F56E0070D73A /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F69281D37F56E0070D73A /* MainController.swift */; };
+		546F692B1D382F4B0070D73A /* AwardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F692A1D382F4B0070D73A /* AwardsController.swift */; };
+		546F692D1D382F7C0070D73A /* AwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F692C1D382F7C0070D73A /* AwardCell.swift */; };
+		546F692F1D3832080070D73A /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F692E1D3832080070D73A /* Award.swift */; };
 		5475BDEF1CC153F100D80D3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475BDEE1CC153F100D80D3E /* API.swift */; };
 		5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; };
 		5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -159,6 +162,9 @@
 		5468F8561CCEBF7C00D5769B /* UpcomingAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingAction.swift; sourceTree = "<group>"; };
 		5468F8581CCEC1ED00D5769B /* InitialDataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialDataLoader.swift; sourceTree = "<group>"; };
 		546F69281D37F56E0070D73A /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		546F692A1D382F4B0070D73A /* AwardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardsController.swift; sourceTree = "<group>"; };
+		546F692C1D382F7C0070D73A /* AwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardCell.swift; sourceTree = "<group>"; };
+		546F692E1D3832080070D73A /* Award.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
 		5475BDE81CC1426800D80D3E /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
 		5475BDEE1CC153F100D80D3E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5475BDF01CC16E9300D80D3E /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/iOS/Just.framework; sourceTree = "<group>"; };
@@ -265,6 +271,7 @@
 				5468F84E1CCEB6C600D5769B /* UserContent.swift */,
 				5443355C1CD01B0A00EB066E /* UserGoal.swift */,
 				545C639A1D259AC500F48C15 /* Badge.swift */,
+				546F692E1D3832080070D73A /* Award.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,6 +306,7 @@
 				547A60881D36B43B006FE596 /* SettingsController.swift */,
 				547A608A1D36BB35006FE596 /* SourcesController.swift */,
 				546F69281D37F56E0070D73A /* MainController.swift */,
+				546F692A1D382F4B0070D73A /* AwardsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -384,6 +392,7 @@
 				5468F8461CCEAA8700D5769B /* UpcomingCell.swift */,
 				5493554E1D14920600F325A4 /* OnBoardingCategoryCell.swift */,
 				547A608C1D36C0AF006FE596 /* SourceCell.swift */,
+				546F692C1D382F7C0070D73A /* AwardCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -723,6 +732,7 @@
 				54109D1F1D25BD25000FC309 /* BadgeController.swift in Sources */,
 				545627321CF4B029007C3731 /* Reward.swift in Sources */,
 				5480310F1CB6B27F00112807 /* LauncherViewController.swift in Sources */,
+				546F692B1D382F4B0070D73A /* AwardsController.swift in Sources */,
 				5468F8531CCEB7D100D5769B /* Action.swift in Sources */,
 				5448276A1CCA88E500BBC062 /* GoalCell.swift in Sources */,
 				5493554F1D14920600F325A4 /* OnBoardingCategoryCell.swift in Sources */,
@@ -735,10 +745,12 @@
 				545D98C21CC697100037FAEF /* TDCContent.swift in Sources */,
 				5477AB751D00BE9E0075A25D /* FooterCell.swift in Sources */,
 				5488FC231CFDF9EF00E758C1 /* UserCategory.swift in Sources */,
+				546F692D1D382F7C0070D73A /* AwardCell.swift in Sources */,
 				54F60F591CC7F11A00D1424D /* CircleProgressView.swift in Sources */,
 				5468F8471CCEAA8700D5769B /* UpcomingCell.swift in Sources */,
 				547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */,
 				547A608D1D36C0AF006FE596 /* SourceCell.swift in Sources */,
+				546F692F1D3832080070D73A /* Award.swift in Sources */,
 				54010E131CC6C398009FB013 /* CompassUtil.swift in Sources */,
 				545C639B1D259AC500F48C15 /* Badge.swift in Sources */,
 				544335591CD018DF00EB066E /* Goal.swift in Sources */,

@@ -1871,13 +1871,13 @@
         <!--Awards-->
         <scene sceneID="tu7-kP-GnF">
             <objects>
-                <tableViewController title="Awards" id="Wyt-o7-4wn" sceneMemberID="viewController">
+                <tableViewController title="Awards" id="Wyt-o7-4wn" customClass="AwardsController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="117" sectionHeaderHeight="28" sectionFooterHeight="28" id="U5X-KQ-P3O">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="117" id="dYM-f7-Keh">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AwardCell" rowHeight="117" id="dYM-f7-Keh" customClass="AwardCell" customModule="Compass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="117"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dYM-f7-Keh" id="Rbl-NP-Yqg">
@@ -1940,7 +1940,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="5Lm-Yv-rqI" kind="show" id="cyA-IH-g4Q"/>
+                                    <outlet property="badgeDescription" destination="Tjm-vQ-avl" id="98d-en-jix"/>
+                                    <outlet property="badgeImage" destination="Xb4-65-gEh" id="7Ma-RM-udJ"/>
+                                    <outlet property="badgeName" destination="Qeb-WZ-IBs" id="Vn7-yV-Ja9"/>
+                                    <segue destination="5Lm-Yv-rqI" kind="show" identifier="ShowBadge" id="cyA-IH-g4Q"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
