@@ -12,6 +12,14 @@ import Locksmith
 
 
 class SettingsController: UITableViewController{
+    @IBOutlet weak var versionName: UILabel!
+    
+    
+    override func viewDidLoad(){
+        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String;
+        versionName.text = version;
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         if (indexPath.section == 0){
             print("General");
