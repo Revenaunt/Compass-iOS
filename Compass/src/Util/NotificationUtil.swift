@@ -6,6 +6,7 @@
 //  Copyright © 2016 Tennessee Data Commons. All rights reserved.
 //
 
+import Foundation
 import Just
 
 
@@ -15,6 +16,9 @@ class NotificationUtil{
     
     class func setApnsToken(token: String){
         apnsToken = token;
+        
+        let defaults = NSUserDefaults.standardUserDefaults();
+        defaults.setObject(apnsToken, forKey: "APNsToken");
     }
     
     class func sendRegistrationToken(){
