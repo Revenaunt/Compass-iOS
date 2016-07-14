@@ -6,6 +6,7 @@
 //  Copyright © 2016 Tennessee Data Commons. All rights reserved.
 //
 
+import Foundation
 import Just
 
 
@@ -15,6 +16,9 @@ class NotificationUtil{
     
     class func setApnsToken(token: String){
         apnsToken = token;
+        
+        let defaults = NSUserDefaults.standardUserDefaults();
+        defaults.setObject(apnsToken, forKey: "APNsToken");
     }
     
     class func sendRegistrationToken(){
@@ -32,10 +36,6 @@ class NotificationUtil{
                             print("NotificationUtil: token not delivered(\(response.statusCode))");
                         }
             };
-            
-            //To prevent unnecessary network traffic set the token reference to nil once
-            //  it has been sent.
-            apnsToken = nil;
         }
         else{
             print("NotificationUtil: token not sent, either already sent or user isn't logged in");

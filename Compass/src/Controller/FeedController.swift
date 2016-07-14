@@ -13,15 +13,11 @@ import Just
 import ObjectMapper
 
 
-class MainViewController: UITableViewController, UIActionSheetDelegate{
+class FeedController: UITableViewController, UIActionSheetDelegate{
     var displayedUpcoming = [UpcomingAction]();
     
     
     override func viewDidLoad(){
-        NotificationUtil.sendRegistrationToken();
-        
-        print(SharedData.user.getToken());
-        
         if (displayedUpcoming.count == 0){
             displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
         }
@@ -30,7 +26,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         tableView.rowHeight = UITableViewAutomaticDimension;
         
         //Refresh
-        refreshControl!.addTarget(self, action: #selector(MainViewController.refresh), forControlEvents: UIControlEvents.ValueChanged);
+        refreshControl!.addTarget(self, action: #selector(FeedController.refresh), forControlEvents: UIControlEvents.ValueChanged);
     }
     
     func refresh(){
@@ -160,19 +156,6 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
     
     @IBAction func addTap(sender: AnyObject){
         self.performSegueWithIdentifier("Library", sender: self);
-        /*let addSheet = UIAlertController(title: "Choose an option", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet);
-        addSheet.addAction(UIAlertAction(title: "Search goals", style: .Default){ action in
-            do{
-                try Locksmith.deleteDataForUserAccount("CompassAccount");
-            }
-            catch{
-                
-            }
-        });
-        addSheet.addAction(UIAlertAction(title: "Browse goals", style: .Default){ action in
-            self.performSegueWithIdentifier("Library", sender: self);
-        });
-        presentViewController(addSheet, animated: true, completion: nil);*/
     }
     
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{

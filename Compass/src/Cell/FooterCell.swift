@@ -10,7 +10,7 @@ import UIKit
 
 
 class FooterCell: UITableViewCell{
-    private var delegate: MainViewController!;
+    private var delegate: FeedController!;
     private var type: FooterType!;
     
     @IBOutlet weak var seeMoreButton: UIButton!
@@ -29,7 +29,7 @@ class FooterCell: UITableViewCell{
         }
     }
     
-    func bind(delegate: MainViewController, type: FooterType){
+    func bind(delegate: FeedController, type: FooterType){
         self.delegate = delegate;
         self.type = type;
     }

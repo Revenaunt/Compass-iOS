@@ -80,6 +80,16 @@ class API{
         return body;
     }
     
+    static func getLogOutUrl() -> String{
+        return postProcess(BASE_URL + "auth/logout/");
+    }
+    
+    static func getLogOutBody(regId: String) -> [String: String]{
+        var body = [String: String]();
+        body["registration_id"] = regId;
+        return body;
+    }
+    
     
     /*------------------------------*
      * APPLICATION DATA AND LIBRARY *
