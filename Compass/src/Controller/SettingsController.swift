@@ -25,6 +25,7 @@ class SettingsController: UITableViewController{
             print("General");
             if (indexPath.row == 0){
                 
+                tableView.deselectRowAtIndexPath(indexPath, animated: true);
             }
             else if (indexPath.row == 1){
                 do{
@@ -51,9 +52,11 @@ class SettingsController: UITableViewController{
             print("About");
             if (indexPath.row == 0){
                 UIApplication.sharedApplication().openURL(NSURL(string: "https://app.tndata.org/terms/")!);
+                tableView.deselectRowAtIndexPath(indexPath, animated: true);
             }
             else if (indexPath.row == 1){
                 UIApplication.sharedApplication().openURL(NSURL(string: "https://app.tndata.org/privacy/")!);
+                tableView.deselectRowAtIndexPath(indexPath, animated: true);
             }
             else if (indexPath.row == 2){
                 performSegueWithIdentifier("ShowSources", sender: self);
