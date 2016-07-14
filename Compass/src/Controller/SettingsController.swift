@@ -24,7 +24,9 @@ class SettingsController: UITableViewController{
         if (indexPath.section == 0){
             print("General");
             if (indexPath.row == 0){
-                
+                if let appSettings = NSURL(string: UIApplicationOpenSettingsURLString){
+                    UIApplication.sharedApplication().openURL(appSettings)
+                }
                 tableView.deselectRowAtIndexPath(indexPath, animated: true);
             }
             else if (indexPath.row == 1){
