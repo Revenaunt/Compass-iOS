@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Just
 import Locksmith
 
 
@@ -19,6 +20,13 @@ class SettingsController: UITableViewController{
             }
             else if (indexPath.row == 1){
                 do{
+                    //Send the logout request
+                    let defaults = NSUserDefaults.standardUserDefaults();
+                    let token = defaults.objectForKey("APNsToken") as? String;
+                    if (token != nil){
+                        Just.post(API.getLogOutUrl(), headers: SharedData.user.getHeaderMap(),
+                                  json: API.getLogOutBody(token!));
+                    }
                     //Remove the user info
                     try Locksmith.deleteDataForUserAccount("CompassAccount");
                     //Back to the login screen

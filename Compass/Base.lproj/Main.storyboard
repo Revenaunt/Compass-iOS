@@ -532,10 +532,10 @@
             </objects>
             <point key="canvasLocation" x="-13" y="1984"/>
         </scene>
-        <!--Main-->
+        <!--Feed-->
         <scene sceneID="UuE-Hv-zPa">
             <objects>
-                <tableViewController title="Main" id="hvk-pI-Gwh" customClass="MainViewController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Feed" id="hvk-pI-Gwh" customClass="FeedController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" id="IMT-KW-c44">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1897,10 +1897,10 @@
             </objects>
             <point key="canvasLocation" x="-825" y="4709"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Controller-->
         <scene sceneID="FVk-1h-eq2">
             <objects>
-                <tabBarController storyboardIdentifier="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2xA-kZ-HOK" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2xA-kZ-HOK" customClass="MainController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="w4O-Wf-tyk">
                         <autoresizingMask key="autoresizingMask"/>

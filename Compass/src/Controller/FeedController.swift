@@ -13,15 +13,11 @@ import Just
 import ObjectMapper
 
 
-class MainViewController: UITableViewController, UIActionSheetDelegate{
+class FeedController: UITableViewController, UIActionSheetDelegate{
     var displayedUpcoming = [UpcomingAction]();
     
     
     override func viewDidLoad(){
-        NotificationUtil.sendRegistrationToken();
-        
-        print(SharedData.user.getToken());
-        
         if (displayedUpcoming.count == 0){
             displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
         }
@@ -30,7 +26,7 @@ class MainViewController: UITableViewController, UIActionSheetDelegate{
         tableView.rowHeight = UITableViewAutomaticDimension;
         
         //Refresh
-        refreshControl!.addTarget(self, action: #selector(MainViewController.refresh), forControlEvents: UIControlEvents.ValueChanged);
+        refreshControl!.addTarget(self, action: #selector(FeedController.refresh), forControlEvents: UIControlEvents.ValueChanged);
     }
     
     func refresh(){
