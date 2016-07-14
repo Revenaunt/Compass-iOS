@@ -24,8 +24,6 @@ class SourcesController: UITableViewController{
         sources.append(Source(caption: "Locksmith", url: "https://github.com/matthewpalmer/Locksmith/"));
         sources.append(Source(caption: "Nuke", url: "https://github.com/kean/Nuke"));
         
-        
-        
         //Automatic height calculation
         tableView.rowHeight = UITableViewAutomaticDimension;
     }
