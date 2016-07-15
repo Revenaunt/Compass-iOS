@@ -23,7 +23,7 @@ class AwardsController: UITableViewController{
                     self.awards = aa.awards!;
                 }
                 var paths = [NSIndexPath]();
-                for i in 0...self.awards.count-1{
+                for i in 0..<self.awards.count{
                     paths.append(NSIndexPath(forRow: i, inSection: 0));
                 }
                 dispatch_async(dispatch_get_main_queue(), {
