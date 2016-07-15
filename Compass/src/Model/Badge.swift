@@ -15,6 +15,8 @@ class Badge: TDCBase{
     private var imageUrl: String = "";
     private var userCount: Int = -1;
     
+    var isNew: Bool = false;
+    
     
     required init?(_ map: Map){
         super.init(map);

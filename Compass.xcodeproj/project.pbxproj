@@ -67,6 +67,7 @@
 		547AF1BC1CFF34F7008EC34F /* APNsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547AF1BB1CFF34F7008EC34F /* APNsMessage.swift */; };
 		547C466D1CBBF9EC00953735 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547C466C1CBBF9EC00953735 /* Locksmith.framework */; };
 		547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547C46711CBC2D2900953735 /* SignUpViewController.swift */; };
+		547E56D31D397A1D00572A29 /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E56D21D397A1D00572A29 /* DefaultsManager.swift */; };
 		5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480310C1CB6B27F00112807 /* AppDelegate.swift */; };
 		5480310F1CB6B27F00112807 /* LauncherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480310E1CB6B27F00112807 /* LauncherViewController.swift */; };
 		548031121CB6B27F00112807 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 548031101CB6B27F00112807 /* Main.storyboard */; };
@@ -176,6 +177,7 @@
 		547AF1BB1CFF34F7008EC34F /* APNsMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNsMessage.swift; sourceTree = "<group>"; };
 		547C466C1CBBF9EC00953735 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
 		547C46711CBC2D2900953735 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		547E56D21D397A1D00572A29 /* DefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
 		548031091CB6B27F00112807 /* Compass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Compass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5480310C1CB6B27F00112807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5480310E1CB6B27F00112807 /* LauncherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				5468F8581CCEC1ED00D5769B /* InitialDataLoader.swift */,
 				5424E98C1CE4EA330016B4DD /* NotificationUtil.swift */,
 				545D98C31CC69A890037FAEF /* ParserModels.swift */,
+				547E56D21D397A1D00572A29 /* DefaultsManager.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -776,6 +779,7 @@
 				547AF1BC1CFF34F7008EC34F /* APNsMessage.swift in Sources */,
 				545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */,
 				5443355B1CD019C200EB066E /* CustomGoal.swift in Sources */,
+				547E56D31D397A1D00572A29 /* DefaultsManager.swift in Sources */,
 				544335571CCFC5B800EB066E /* FeedTypes.swift in Sources */,
 				546114DA1CF386C6007BBD1B /* GoalViewController.swift in Sources */,
 				5468F8571CCEBF7C00D5769B /* UpcomingAction.swift in Sources */,
