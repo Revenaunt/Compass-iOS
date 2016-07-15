@@ -94,13 +94,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                 let actionController = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionViewController;
                 actionController.mappingId = message.getMappingId();
                 actionController.notificationId = message.getNotificationId();
-                if let rootController = window?.rootViewController as! UINavigationController?{
-                    print("This is a navigation controller");
-                    rootController.pushViewController(actionController, animated: true);
-                }
-                else{
-                    print("This is NOT a navigation controller!");
-                    window?.rootViewController = actionController;
+                if let rootController = window?.rootViewController as? MainController{
+                    rootController.selectedIndex = 1;
+                    if let navController = rootController.viewControllers![1] as? UINavigationController{
+                        navController.pushViewController(actionController, animated: true);
+                    }
                 }
             }
             else if (message.isBadgeMessage()){
@@ -108,13 +106,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                 let badgeController = storyboard.instantiateViewControllerWithIdentifier("BadgeController") as! BadgeController;
                 badgeController.badge = message.getBadge();
                 print(message.getBadge());
-                if let rootController = window?.rootViewController as! UINavigationController?{
-                    print("This is a navigation controller");
-                    rootController.pushViewController(badgeController, animated: true);
-                }
-                else{
-                    print("This is NOT a navigation controller!");
-                    window?.rootViewController = badgeController;
+                if let rootController = window?.rootViewController as? MainController{
+                    if (UIApplication.sharedApplication().applicationState == UIApplicationState.Active){
+                        //rootController.tabBar.items![2].
+                    }
+                    else{
+                        rootController.selectedIndex = 2;
+                        if let navController = rootController.viewControllers![2] as? UINavigationController{
+                            navController.pushViewController(badgeController, animated: true);
+                        }
+                    }
                 }
             }
         }

@@ -1008,10 +1008,10 @@
             </objects>
             <point key="canvasLocation" x="1705" y="3536"/>
         </scene>
-        <!--BadgeController-->
+        <!--Badge Controller-->
         <scene sceneID="F7H-Zp-fpq">
             <objects>
-                <viewController storyboardIdentifier="BadgeController" title="BadgeController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5Lm-Yv-rqI" customClass="BadgeController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BadgeController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5Lm-Yv-rqI" customClass="BadgeController" customModule="Compass" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kx8-Dj-vag"/>
                         <viewControllerLayoutGuide type="bottom" id="r5I-Zj-1gI"/>
