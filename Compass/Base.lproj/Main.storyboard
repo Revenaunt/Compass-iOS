@@ -1079,7 +1079,6 @@
                         <color key="backgroundColor" red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="04q-yZ-bk5" firstAttribute="leading" secondItem="l7p-FE-hEC" secondAttribute="leadingMargin" constant="-20" id="1sb-oH-W9g"/>
-                            <constraint firstItem="04q-yZ-bk5" firstAttribute="bottom" secondItem="r5I-Zj-1gI" secondAttribute="top" id="4uB-UU-w3S"/>
                             <constraint firstItem="04q-yZ-bk5" firstAttribute="height" secondItem="Y6R-aO-6Sh" secondAttribute="height" id="J13-K8-v6Q"/>
                             <constraint firstAttribute="trailingMargin" secondItem="04q-yZ-bk5" secondAttribute="trailing" constant="-20" id="PWJ-O6-Zvz"/>
                             <constraint firstItem="Y6R-aO-6Sh" firstAttribute="leading" secondItem="l7p-FE-hEC" secondAttribute="leadingMargin" constant="-20" id="QaZ-WB-prW"/>
@@ -1088,11 +1087,6 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Y6R-aO-6Sh" secondAttribute="trailing" constant="-20" id="WKR-kk-T4e"/>
                             <constraint firstItem="Y6R-aO-6Sh" firstAttribute="top" secondItem="l7p-FE-hEC" secondAttribute="topMargin" id="lvN-to-k2m"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="4uB-UU-w3S"/>
-                            </mask>
-                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
