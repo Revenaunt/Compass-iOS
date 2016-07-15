@@ -1017,11 +1017,11 @@
                         <viewControllerLayoutGuide type="bottom" id="r5I-Zj-1gI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="l7p-FE-hEC">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04q-yZ-bk5">
-                                <rect key="frame" x="0.0" y="272" width="600" height="264"/>
+                                <rect key="frame" x="0.0" y="248" width="600" height="239"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badge Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7g-cI-ODt">
                                         <rect key="frame" x="8" y="16" width="584" height="27"/>
@@ -1036,7 +1036,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1442368892" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="F7g-cI-ODt" firstAttribute="leading" secondItem="04q-yZ-bk5" secondAttribute="leading" constant="8" id="AbN-Cl-hEy"/>
                                     <constraint firstItem="TIG-z7-Mjz" firstAttribute="top" secondItem="F7g-cI-ODt" secondAttribute="bottom" constant="8" id="E1z-QW-ewG"/>
@@ -1047,13 +1046,13 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y6R-aO-6Sh">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="264"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
                                 <subviews>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhO-fA-GPR">
-                                        <rect key="frame" x="200" y="32" width="200" height="200"/>
+                                        <rect key="frame" x="212" y="32" width="176" height="176"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qRf-6l-eAg">
-                                                <rect key="frame" x="24" y="24" width="152" height="152"/>
+                                                <rect key="frame" x="24" y="24" width="128" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="qRf-6l-eAg" secondAttribute="height" multiplier="1:1" id="pRN-VD-NUK"/>
                                                 </constraints>
@@ -1088,7 +1087,7 @@
                             <constraint firstItem="Y6R-aO-6Sh" firstAttribute="top" secondItem="l7p-FE-hEC" secondAttribute="topMargin" id="lvN-to-k2m"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="badgeDescription" destination="TIG-z7-Mjz" id="DNS-Sf-VWm"/>
                         <outlet property="image" destination="qRf-6l-eAg" id="JeM-o4-bRe"/>
@@ -1965,6 +1964,7 @@
                 <navigationController title="Awards" automaticallyAdjustsScrollViewInsets="NO" id="Knb-4L-r58" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Awards" image="Awards" id="Nry-fI-Lr8"/>
                     <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="m23-ko-zFB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

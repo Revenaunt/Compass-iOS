@@ -22,15 +22,15 @@ class BadgeController: UIViewController{
     
     override func viewDidLoad(){
         Nuke.taskWith(NSURL(string: badge.getImageUrl())!){
-            self.imageContainer.setNeedsLayout();
-            self.imageContainer.layoutIfNeeded();
-            self.imageContainer.layer.cornerRadius = self.imageContainer.frame.size.width/2;
-            self.imageContainer.hidden = false;
-            
             self.image.image = $0.image;
         }.resume();
         
         name.text = badge.getName();
         badgeDescription.text = badge.getDescription();
+    }
+    
+    override func viewDidAppear(animated: Bool){
+        imageContainer.layer.cornerRadius = imageContainer.frame.size.width/2;
+        imageContainer.hidden = false;
     }
 }
