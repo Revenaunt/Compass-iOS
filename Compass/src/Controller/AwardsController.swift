@@ -51,6 +51,7 @@ class AwardsController: UITableViewController{
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        segue.destinationViewController.hidesBottomBarWhenPushed = true;
         if let selectedCell = sender as? AwardCell{
             if (segue.identifier == "ShowBadge"){
                 let badgeController = segue.destinationViewController as! BadgeController;
