@@ -10,10 +10,10 @@ import Foundation
 
 
 class DefaultsManager{
-    private let newBadgeIdArrayKey = "new_badges";
+    private static let newBadgeIdArrayKey = "new_badges";
     
     
-    func addNewAward(badge: Badge){
+    static func addNewAward(badge: Badge){
         let defaults = NSUserDefaults.standardUserDefaults();
         var badgeIds = [Int]();
         if let storedArray = defaults.arrayForKey(newBadgeIdArrayKey) as? [Int]{
@@ -24,7 +24,7 @@ class DefaultsManager{
         defaults.setObject(badgeIds, forKey: newBadgeIdArrayKey);
     }
     
-    func getNewAwardCount() -> Int{
+    static func getNewAwardCount() -> Int{
         let defaults = NSUserDefaults.standardUserDefaults();
         if let badgeIds = defaults.arrayForKey(newBadgeIdArrayKey){
             return badgeIds.count;
@@ -32,7 +32,7 @@ class DefaultsManager{
         return 0;
     }
     
-    func getNewAwardArray() -> [Int]{
+    static func getNewAwardArray() -> [Int]{
         let defaults = NSUserDefaults.standardUserDefaults();
         if let storedArray = defaults.arrayForKey(newBadgeIdArrayKey) as? [Int]{
             return storedArray;

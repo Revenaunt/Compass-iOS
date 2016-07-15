@@ -108,9 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                 print(message.getBadge());
                 if let rootController = window?.rootViewController as? MainController{
                     if (UIApplication.sharedApplication().applicationState == UIApplicationState.Active){
-                        let defaults = NSUserDefaults.standardUserDefaults();
                         
-                        //rootController.tabBar.items![2].
                     }
                     else{
                         rootController.selectedIndex = 2;
