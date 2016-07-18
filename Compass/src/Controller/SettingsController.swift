@@ -12,10 +12,12 @@ import Locksmith
 
 
 class SettingsController: UITableViewController{
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var versionName: UILabel!
     
     
     override func viewDidLoad(){
+        userName.text = SharedData.user.getFullName();
         let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String;
         versionName.text = version;
     }
