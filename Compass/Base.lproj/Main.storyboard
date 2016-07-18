@@ -1706,17 +1706,26 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igO-io-fUc">
-                                                    <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                                    <rect key="frame" x="8" y="11" width="64" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjS-9m-eq8">
+                                                    <rect key="frame" x="80" y="11" width="506" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="xjS-9m-eq8" firstAttribute="leading" secondItem="igO-io-fUc" secondAttribute="trailing" constant="8" id="6pY-vo-KxA"/>
                                                 <constraint firstItem="igO-io-fUc" firstAttribute="leading" secondItem="Qfg-dy-v4K" secondAttribute="leadingMargin" id="JLI-hC-INv"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="igO-io-fUc" secondAttribute="bottom" constant="3" id="U2V-or-ePh"/>
+                                                <constraint firstItem="xjS-9m-eq8" firstAttribute="top" secondItem="Qfg-dy-v4K" secondAttribute="topMargin" constant="3" id="Yyb-qw-37o"/>
                                                 <constraint firstItem="igO-io-fUc" firstAttribute="top" secondItem="Qfg-dy-v4K" secondAttribute="topMargin" constant="3" id="Z3i-wi-QEd"/>
-                                                <constraint firstItem="igO-io-fUc" firstAttribute="trailing" secondItem="Qfg-dy-v4K" secondAttribute="trailingMargin" id="kkN-ef-UKT"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="xjS-9m-eq8" secondAttribute="bottom" constant="3" id="ZeO-dj-7Nz"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="xjS-9m-eq8" secondAttribute="trailing" constant="6" id="dMj-jH-cB7"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1798,7 +1807,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Version name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EeB-zB-f56">
-                                                    <rect key="frame" x="73" y="11" width="519" height="21"/>
+                                                    <rect key="frame" x="73" y="11" width="513" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -1811,7 +1820,7 @@
                                                 <constraint firstItem="f6h-bo-Y8p" firstAttribute="leading" secondItem="w36-M7-BSk" secondAttribute="leadingMargin" id="S01-xy-OhA"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="f6h-bo-Y8p" secondAttribute="bottom" constant="3" id="qHy-IW-fmU"/>
                                                 <constraint firstItem="EeB-zB-f56" firstAttribute="top" secondItem="w36-M7-BSk" secondAttribute="topMargin" constant="3" id="tf3-XI-MdI"/>
-                                                <constraint firstItem="EeB-zB-f56" firstAttribute="trailing" secondItem="w36-M7-BSk" secondAttribute="trailingMargin" id="x7l-8J-rJH"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="EeB-zB-f56" secondAttribute="trailing" constant="6" id="x7l-8J-rJH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1825,6 +1834,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="Zts-PZ-ikO"/>
                     <connections>
+                        <outlet property="userName" destination="xjS-9m-eq8" id="14T-zD-VVc"/>
                         <outlet property="versionName" destination="EeB-zB-f56" id="ba1-te-78b"/>
                         <segue destination="3id-bH-52F" kind="show" identifier="ShowSources" id="kAV-bk-KEL"/>
                     </connections>
@@ -1833,10 +1843,10 @@
             </objects>
             <point key="canvasLocation" x="863" y="2761"/>
         </scene>
-        <!--Settings-->
+        <!--Settings Navigation-->
         <scene sceneID="xbD-fs-JQ1">
             <objects>
-                <navigationController title="Settings" id="Swo-yG-l60" sceneMemberID="viewController">
+                <navigationController title="Settings Navigation" id="Swo-yG-l60" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="36T-dI-8Al"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="R5s-A3-VhS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

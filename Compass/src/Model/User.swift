@@ -62,6 +62,10 @@ class User: TDCBase, CustomStringConvertible{
         return password;
     }
     
+    func getFullName() -> String{
+        return fullName;
+    }
+    
     func getToken() -> String{
         return token;
     }
