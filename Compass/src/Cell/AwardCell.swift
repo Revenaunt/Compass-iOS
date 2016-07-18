@@ -11,6 +11,7 @@ import Nuke
 
 
 class AwardCell: UITableViewCell{
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var badgeName: UILabel!
     @IBOutlet weak var badgeDescription: UILabel!
@@ -25,5 +26,11 @@ class AwardCell: UITableViewCell{
         }
         badgeName.text = badge.getName();
         badgeDescription.text = badge.getDescription();
+        if (badge.isNew){
+            container.backgroundColor = UIColor(colorLiteralRed: 0.9, green: 0.9, blue: 0.9, alpha: 1);
+        }
+        else{
+            container.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 1);
+        }
     }
 }

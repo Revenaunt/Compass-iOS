@@ -40,6 +40,7 @@ class SettingsController: UITableViewController{
                     }
                     //Remove the user info
                     try Locksmith.deleteDataForUserAccount("CompassAccount");
+                    DefaultsManager.emptyNewAwardsRecords();
                     //Back to the login screen
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
                     let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("LauncherNavController");

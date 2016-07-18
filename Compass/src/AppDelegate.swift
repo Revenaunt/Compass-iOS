@@ -116,6 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                                 if let awardsController = controller as? AwardsController{
                                     message.getBadge().isNew = true;
                                     awardsController.addBadge(message.getBadge());
+                                    break;
                                 }
                             }
                         }

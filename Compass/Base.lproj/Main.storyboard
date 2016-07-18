@@ -1914,7 +1914,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="Qeb-WZ-IBs" firstAttribute="leading" secondItem="c0N-MM-UiF" secondAttribute="leading" constant="8" id="7Qv-iW-0rH"/>
                                                 <constraint firstAttribute="bottom" secondItem="Tjm-vQ-avl" secondAttribute="bottom" constant="8" id="BOy-Ke-GAr"/>
@@ -1943,6 +1943,7 @@
                                     <outlet property="badgeDescription" destination="Tjm-vQ-avl" id="98d-en-jix"/>
                                     <outlet property="badgeImage" destination="Xb4-65-gEh" id="7Ma-RM-udJ"/>
                                     <outlet property="badgeName" destination="Qeb-WZ-IBs" id="Vn7-yV-Ja9"/>
+                                    <outlet property="container" destination="Rbl-NP-Yqg" id="0EV-T0-d45"/>
                                     <segue destination="5Lm-Yv-rqI" kind="show" identifier="ShowBadge" id="cyA-IH-g4Q"/>
                                 </connections>
                             </tableViewCell>
@@ -1958,10 +1959,10 @@
             </objects>
             <point key="canvasLocation" x="863" y="4316"/>
         </scene>
-        <!--Awards-->
+        <!--Awards Navigation-->
         <scene sceneID="fPf-x5-46A">
             <objects>
-                <navigationController title="Awards" automaticallyAdjustsScrollViewInsets="NO" id="Knb-4L-r58" sceneMemberID="viewController">
+                <navigationController title="Awards Navigation" automaticallyAdjustsScrollViewInsets="NO" id="Knb-4L-r58" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Awards" image="Awards" id="Nry-fI-Lr8"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

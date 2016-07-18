@@ -32,7 +32,7 @@ class DefaultsManager{
         }
     }
     
-    static func emptyNewAward(){
+    static func emptyNewAwardsRecords(){
         NSUserDefaults.standardUserDefaults().setObject([Int](), forKey: newBadgeIdArrayKey);
     }
     

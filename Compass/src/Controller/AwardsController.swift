@@ -20,9 +20,12 @@ class AwardsController: UITableViewController{
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding)!;
                 let aa = Mapper<ParserModels.AwardArray>().map(result)!;
                 if (aa.awards != nil){
+                    let newAwards = DefaultsManager.getNewAwardArray();
                     self.badges.removeAll();
                     for (award) in aa.awards!{
-                        self.badges.append(award.badge!);
+                        let badge = award.badge!
+                        badge.isNew = newAwards.contains(badge.getId());
+                        self.badges.append(badge);
                     }
                 }
                 var paths = [NSIndexPath]();
@@ -46,6 +49,16 @@ class AwardsController: UITableViewController{
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("AwardCell", forIndexPath: indexPath) as! AwardCell;
         cell.bind(badges[indexPath.row]);
+        if (badges[indexPath.row].isNew){
+            DefaultsManager.removeNewAward(badges[indexPath.row]);
+            let newAwardCount = DefaultsManager.getNewAwardCount();
+            if (newAwardCount == 0){
+                tabBarController!.tabBar.items?[2].badgeValue = nil;
+            }
+            else{
+                tabBarController!.tabBar.items?[2].badgeValue = "\(newAwardCount)";
+            }
+        }
         return cell;
     }
     
@@ -58,14 +71,23 @@ class AwardsController: UITableViewController{
         if let selectedCell = sender as? AwardCell{
             if (segue.identifier == "ShowBadge"){
                 let badgeController = segue.destinationViewController as! BadgeController;
-                let indexPath = tableView.indexPathForCell(selectedCell);
-                badgeController.badge = badges[indexPath!.row];
+                let indexPath = tableView.indexPathForCell(selectedCell)!;
+                let badge = badges[indexPath.row];
+                badge.isNew = false;
+                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic);
+                badgeController.badge = badge;
             }
         }
     }
     
     func addBadge(badge: Badge){
-        badges.append(badge);
-        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: badges.count-1, inSection: 0)], withRowAnimation: .Automatic);
+        if (badges.contains(badge)){
+            badges.filter{ $0 == badge }[0].isNew = true;
+            tableView.reloadData();
+        }
+        else{
+            badges.append(badge);
+            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: badges.count-1, inSection: 0)], withRowAnimation: .Automatic);
+        }
     }
 }
