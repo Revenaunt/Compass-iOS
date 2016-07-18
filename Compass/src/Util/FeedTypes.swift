@@ -101,7 +101,7 @@ class FeedTypes{
                 return hasUpcoming() ? "Upcoming" : "";
             
             case getGoalsSectionPosition():
-                return hasGoals() ? "My goals" : "";
+                return hasGoals() ? "Your goals" : "";
             
             default:
                 return "";
