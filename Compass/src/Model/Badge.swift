@@ -9,11 +9,13 @@
 import ObjectMapper
 
 
-class Badge: TDCBase{
+class Badge: TDCBase, Equatable{
     private var name: String = "";
     private var description: String = "";
     private var imageUrl: String = "";
     private var userCount: Int = -1;
+    
+    var isNew: Bool = false;
     
     
     required init?(_ map: Map){
@@ -43,4 +45,9 @@ class Badge: TDCBase{
     func getUserCount() -> Int{
         return userCount;
     }
+
+}
+    
+func ==(lhs: Badge, rhs: Badge) -> Bool{
+    return lhs.getId() == rhs.getId();
 }

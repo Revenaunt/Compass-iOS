@@ -94,27 +94,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                 let actionController = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionViewController;
                 actionController.mappingId = message.getMappingId();
                 actionController.notificationId = message.getNotificationId();
-                if let rootController = window?.rootViewController as! UINavigationController?{
-                    print("This is a navigation controller");
-                    rootController.pushViewController(actionController, animated: true);
-                }
-                else{
-                    print("This is NOT a navigation controller!");
-                    window?.rootViewController = actionController;
+                if let rootController = window?.rootViewController as? MainController{
+                    rootController.selectedIndex = 1;
+                    if let navController = rootController.viewControllers![1] as? UINavigationController{
+                        navController.pushViewController(actionController, animated: true);
+                    }
                 }
             }
             else if (message.isBadgeMessage()){
-                let storyboard = UIStoryboard(name: "Main", bundle: nil);
-                let badgeController = storyboard.instantiateViewControllerWithIdentifier("BadgeController") as! BadgeController;
-                badgeController.badge = message.getBadge();
-                print(message.getBadge());
-                if let rootController = window?.rootViewController as! UINavigationController?{
-                    print("This is a navigation controller");
-                    rootController.pushViewController(badgeController, animated: true);
-                }
-                else{
-                    print("This is NOT a navigation controller!");
-                    window?.rootViewController = badgeController;
+                if let rootController = window?.rootViewController as? MainController{
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil);
+                    let badgeController = storyboard.instantiateViewControllerWithIdentifier("BadgeController") as! BadgeController;
+                    badgeController.badge = message.getBadge();
+                    print(message.getBadge());
+                    if (UIApplication.sharedApplication().applicationState == UIApplicationState.Active){
+                        DefaultsManager.addNewAward(message.getBadge());
+                        let newBadges = DefaultsManager.getNewAwardCount();
+                        rootController.tabBar.items![2].badgeValue = "\(newBadges)";
+                        if let navController = rootController.viewControllers![2] as? UINavigationController{
+                            for (controller) in navController.viewControllers{
+                                if let awardsController = controller as? AwardsController{
+                                    message.getBadge().isNew = true;
+                                    awardsController.addBadge(message.getBadge());
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else{
+                        rootController.selectedIndex = 2;
+                        if let navController = rootController.viewControllers![2] as? UINavigationController{
+                            navController.pushViewController(badgeController, animated: true);
+                        }
+                    }
                 }
             }
         }
