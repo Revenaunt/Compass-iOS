@@ -102,13 +102,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                 }
             }
             else if (message.isBadgeMessage()){
-                let storyboard = UIStoryboard(name: "Main", bundle: nil);
-                let badgeController = storyboard.instantiateViewControllerWithIdentifier("BadgeController") as! BadgeController;
-                badgeController.badge = message.getBadge();
-                print(message.getBadge());
                 if let rootController = window?.rootViewController as? MainController{
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil);
+                    let badgeController = storyboard.instantiateViewControllerWithIdentifier("BadgeController") as! BadgeController;
+                    badgeController.badge = message.getBadge();
+                    print(message.getBadge());
                     if (UIApplication.sharedApplication().applicationState == UIApplicationState.Active){
-                        
+                        DefaultsManager.addNewAward(message.getBadge());
+                        let newBadges = DefaultsManager.getNewAwardCount();
+                        rootController.tabBar.items![2].badgeValue = "\(newBadges)";
+                        if let navController = rootController.viewControllers![2] as? UINavigationController{
+                            for (controller) in navController.viewControllers{
+                                if let awardsController = controller as? AwardsController{
+                                    message.getBadge().isNew = true;
+                                    awardsController.addBadge(message.getBadge());
+                                }
+                            }
+                        }
                     }
                     else{
                         rootController.selectedIndex = 2;

@@ -24,6 +24,18 @@ class DefaultsManager{
         defaults.setObject(badgeIds, forKey: newBadgeIdArrayKey);
     }
     
+    static func removeNewAward(badge: Badge){
+        let defaults = NSUserDefaults.standardUserDefaults();
+        if let storedArray = defaults.arrayForKey(newBadgeIdArrayKey) as? [Int]{
+            let newArray = storedArray.filter{ $0 != badge.getId() };
+            defaults.setObject(newArray, forKey: newBadgeIdArrayKey);
+        }
+    }
+    
+    static func emptyNewAward(){
+        NSUserDefaults.standardUserDefaults().setObject([Int](), forKey: newBadgeIdArrayKey);
+    }
+    
     static func getNewAwardCount() -> Int{
         let defaults = NSUserDefaults.standardUserDefaults();
         if let badgeIds = defaults.arrayForKey(newBadgeIdArrayKey){

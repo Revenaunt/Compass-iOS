@@ -12,7 +12,7 @@ import ObjectMapper
 
 
 class AwardsController: UITableViewController{
-    private var awards: [Award] = [Award]();
+    private var badges: [Badge] = [Badge]();
     
     override func viewDidLoad(){
         Just.get(API.getAwardsUrl(), headers: SharedData.user.getHeaderMap()){ (response) in
@@ -20,10 +20,13 @@ class AwardsController: UITableViewController{
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding)!;
                 let aa = Mapper<ParserModels.AwardArray>().map(result)!;
                 if (aa.awards != nil){
-                    self.awards = aa.awards!;
+                    self.badges.removeAll();
+                    for (award) in aa.awards!{
+                        self.badges.append(award.badge!);
+                    }
                 }
                 var paths = [NSIndexPath]();
-                for i in 0..<self.awards.count{
+                for i in 0..<self.badges.count{
                     paths.append(NSIndexPath(forRow: i, inSection: 0));
                 }
                 dispatch_async(dispatch_get_main_queue(), {
@@ -37,12 +40,12 @@ class AwardsController: UITableViewController{
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return awards.count;
+        return badges.count;
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("AwardCell", forIndexPath: indexPath) as! AwardCell;
-        cell.bind(awards[indexPath.row].badge!);
+        cell.bind(badges[indexPath.row]);
         return cell;
     }
     
@@ -56,8 +59,13 @@ class AwardsController: UITableViewController{
             if (segue.identifier == "ShowBadge"){
                 let badgeController = segue.destinationViewController as! BadgeController;
                 let indexPath = tableView.indexPathForCell(selectedCell);
-                badgeController.badge = awards[indexPath!.row].badge;
+                badgeController.badge = badges[indexPath!.row];
             }
         }
+    }
+    
+    func addBadge(badge: Badge){
+        badges.append(badge);
+        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: badges.count-1, inSection: 0)], withRowAnimation: .Automatic);
     }
 }
