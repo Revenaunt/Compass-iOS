@@ -18,6 +18,7 @@ class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITab
     
     
     override func viewDidLoad(){
+        navigationItem.setHidesBackButton(true, animated: true);
         explanation.textContainerInset = UIEdgeInsetsMake(14, 20, 14, 20);
     }
     
@@ -44,7 +45,6 @@ class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        //navigationController!.popViewControllerAnimated(false);
         let cell = tableView.cellForRowAtIndexPath(indexPath);
         performSegueWithIdentifier("GoalLibraryFromOnBoarding", sender: cell);
     }

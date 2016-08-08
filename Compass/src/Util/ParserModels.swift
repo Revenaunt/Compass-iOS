@@ -119,4 +119,17 @@ class ParserModels{
             awards <- map["results"];
         }
     }
+    
+    class OrganizationArray: Mappable{
+        var organizations: [Organization]? = nil;
+        
+        
+        required init?(_ map: Map){
+            
+        }
+        
+        func mapping(map: Map){
+            organizations <- map["results"];
+        }
+    }
 }

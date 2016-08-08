@@ -13,6 +13,8 @@
 		54010E131CC6C398009FB013 /* CompassUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54010E121CC6C398009FB013 /* CompassUtil.swift */; };
 		54010E151CC6D31A009FB013 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54010E141CC6D31A009FB013 /* FeedController.swift */; };
 		54109D1F1D25BD25000FC309 /* BadgeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54109D1E1D25BD25000FC309 /* BadgeController.swift */; };
+		5415C9431D58FB1700E01054 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5415C9421D58FB1700E01054 /* Organization.swift */; };
+		5415C9451D59020A00E01054 /* OrganizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5415C9441D59020A00E01054 /* OrganizationCell.swift */; };
 		5424E98D1CE4EA330016B4DD /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5424E98C1CE4EA330016B4DD /* NotificationUtil.swift */; };
 		544335571CCFC5B800EB066E /* FeedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544335561CCFC5B800EB066E /* FeedTypes.swift */; };
 		544335591CD018DF00EB066E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544335581CD018DF00EB066E /* Goal.swift */; };
@@ -79,6 +81,7 @@
 		5488FC211CFDEF2900E758C1 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5488FC201CFDEF2900E758C1 /* ActionViewController.swift */; };
 		5488FC231CFDF9EF00E758C1 /* UserCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5488FC221CFDF9EF00E758C1 /* UserCategory.swift */; };
 		5493554F1D14920600F325A4 /* OnBoardingCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493554E1D14920600F325A4 /* OnBoardingCategoryCell.swift */; };
+		54AAD9881D58E7C300AB41E5 /* OrganizationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AAD9871D58E7C300AB41E5 /* OrganizationsController.swift */; };
 		54F60F591CC7F11A00D1424D /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F60F581CC7F11A00D1424D /* CircleProgressView.swift */; };
 		54F60F5C1CC80C7400D1424D /* UpNextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F60F5B1CC80C7400D1424D /* UpNextCell.swift */; };
 		6CC3A5F08D855A98FEA253CF /* libPods-Compass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5187931E5C5935638D9AA5F /* libPods-Compass.a */; };
@@ -125,6 +128,8 @@
 		54010E121CC6C398009FB013 /* CompassUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassUtil.swift; sourceTree = "<group>"; };
 		54010E141CC6D31A009FB013 /* FeedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		54109D1E1D25BD25000FC309 /* BadgeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeController.swift; sourceTree = "<group>"; };
+		5415C9421D58FB1700E01054 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		5415C9441D59020A00E01054 /* OrganizationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationCell.swift; sourceTree = "<group>"; };
 		5424E98C1CE4EA330016B4DD /* NotificationUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
 		544335561CCFC5B800EB066E /* FeedTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTypes.swift; sourceTree = "<group>"; };
 		544335581CD018DF00EB066E /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
@@ -195,6 +200,7 @@
 		5488FC201CFDEF2900E758C1 /* ActionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
 		5488FC221CFDF9EF00E758C1 /* UserCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCategory.swift; sourceTree = "<group>"; };
 		5493554E1D14920600F325A4 /* OnBoardingCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCategoryCell.swift; sourceTree = "<group>"; };
+		54AAD9871D58E7C300AB41E5 /* OrganizationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationsController.swift; sourceTree = "<group>"; };
 		54F60F581CC7F11A00D1424D /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		54F60F5B1CC80C7400D1424D /* UpNextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpNextCell.swift; sourceTree = "<group>"; };
 		8A270F9BCE981D16FE828B73 /* Pods-CompassUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompassUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CompassUITests/Pods-CompassUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -274,6 +280,7 @@
 				5443355C1CD01B0A00EB066E /* UserGoal.swift */,
 				545C639A1D259AC500F48C15 /* Badge.swift */,
 				546F692E1D3832080070D73A /* Award.swift */,
+				5415C9421D58FB1700E01054 /* Organization.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -310,6 +317,7 @@
 				547A608A1D36BB35006FE596 /* SourcesController.swift */,
 				546F69281D37F56E0070D73A /* MainController.swift */,
 				546F692A1D382F4B0070D73A /* AwardsController.swift */,
+				54AAD9871D58E7C300AB41E5 /* OrganizationsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -396,6 +404,7 @@
 				5493554E1D14920600F325A4 /* OnBoardingCategoryCell.swift */,
 				547A608C1D36C0AF006FE596 /* SourceCell.swift */,
 				546F692C1D382F7C0070D73A /* AwardCell.swift */,
+				5415C9441D59020A00E01054 /* OrganizationCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -739,8 +748,10 @@
 				5468F8531CCEB7D100D5769B /* Action.swift in Sources */,
 				5448276A1CCA88E500BBC062 /* GoalCell.swift in Sources */,
 				5493554F1D14920600F325A4 /* OnBoardingCategoryCell.swift in Sources */,
+				5415C9431D58FB1700E01054 /* Organization.swift in Sources */,
 				547966371D0628D5006846E1 /* LibraryLoadingCell.swift in Sources */,
 				5488FC211CFDEF2900E758C1 /* ActionViewController.swift in Sources */,
+				5415C9451D59020A00E01054 /* OrganizationCell.swift in Sources */,
 				54F60F5C1CC80C7400D1424D /* UpNextCell.swift in Sources */,
 				547A608B1D36BB35006FE596 /* SourcesController.swift in Sources */,
 				548031151CB6B27F00112807 /* Compass.xcdatamodeld in Sources */,
@@ -768,6 +779,7 @@
 				5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */,
 				5468F8451CCEA68500D5769B /* FeedbackCell.swift in Sources */,
 				5475BDEF1CC153F100D80D3E /* API.swift in Sources */,
+				54AAD9881D58E7C300AB41E5 /* OrganizationsController.swift in Sources */,
 				544614271CC9719800F2B441 /* GoalLibraryViewController.swift in Sources */,
 				54010E151CC6D31A009FB013 /* FeedController.swift in Sources */,
 				5448276C1CCA956000BBC062 /* CategoryHeaderCell.swift in Sources */,
