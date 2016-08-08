@@ -208,6 +208,24 @@ class API{
     static func getAwardsUrl() -> String{
         return postProcess(BASE_URL + "awards/");
     }
+    
+    class URL{
+        static func getOrganizations() -> String{
+            return "\(BASE_URL)organizations/";
+        }
+        
+        static func postOrganization() -> String{
+            return "\(BASE_URL)organizations/members/";
+        }
+    }
+    
+    class BODY{
+        static func postOrganization(organization: Organization) -> [String: AnyObject]{
+            var body = [String: AnyObject]();
+            body["organization"] = organization.getId();
+            return body;
+        }
+    }
 }
 
 

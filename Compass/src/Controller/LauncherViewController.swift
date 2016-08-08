@@ -43,9 +43,9 @@ class LauncherViewController: UIViewController{
                     else{
                         InitialDataLoader.load(SharedData.user){ (success) in
                             if (success){
-                                let needsOnboarding = SharedData.user.needsOnBoarding()
+                                let needsOnboarding = SharedData.user.needsOnBoarding();
                                 var mainController = "MainTabBarController"
-                                if needsOnboarding {
+                                if needsOnboarding{
                                     mainController = "OnBoardingNavigationController"
                                 }
                                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
