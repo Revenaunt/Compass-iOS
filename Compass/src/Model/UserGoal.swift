@@ -10,15 +10,22 @@ import ObjectMapper
 
 
 class UserGoal: Goal{
+    let Type: String = "UserGoal";
+    
     var goal: GoalContent? = nil;
     var primaryCategoryId: Int = -1;
     var progress: FeedData.Progress? = nil;
     
     
     override func mapping(map: Map){
+        super.mapping(map);
         goal <- map["goal"];
         primaryCategoryId <- map["primary_category"];
         progress <- map ["progress"];
+    }
+    
+    override func getType() -> String{
+        return Type;
     }
     
     func getGoal() -> GoalContent{

@@ -9,7 +9,7 @@
 import ObjectMapper
 
 
-class Badge: TDCBase, Equatable{
+class Badge: TDCBase{
     private var name: String = "";
     private var description: String = "";
     private var imageUrl: String = "";

@@ -9,6 +9,7 @@
 
 class FeedTypes{
     private static var feedData: FeedData = FeedData();
+    private static var updatingGoals: Bool = false;
     
     
     static func setDataSource(feedData: FeedData){
@@ -101,10 +102,14 @@ class FeedTypes{
                 return hasUpcoming() ? "Upcoming" : "";
             
             case getGoalsSectionPosition():
-                return hasGoals() ? "Your goals" : "";
+                return (hasGoals() || updatingGoals) ? "Your goals" : "";
             
             default:
                 return "";
         }
+    }
+    
+    static func setUpdatingGoals(updating: Bool){
+        updatingGoals = updating;
     }
 }

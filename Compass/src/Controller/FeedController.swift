@@ -15,6 +15,10 @@ import ObjectMapper
 
 class FeedController: UITableViewController, UIActionSheetDelegate{
     var displayedUpcoming = [UpcomingAction]();
+    var selectedGoal: UserGoal? = nil;
+    var selectedGoalIndex: Int? = nil;
+    
+    var goalsFooterCell: FooterCell? = nil;
     
     
     override func viewDidLoad(){
@@ -27,6 +31,37 @@ class FeedController: UITableViewController, UIActionSheetDelegate{
         
         //Refresh
         refreshControl!.addTarget(self, action: #selector(FeedController.refresh), forControlEvents: UIControlEvents.ValueChanged);
+    }
+    
+    override func viewDidAppear(animated: Bool){
+        if (selectedGoal != nil && selectedGoalIndex != nil){
+            let goals = SharedData.feedData.getGoals();
+            
+            if (goals.count == 0 && goalsFooterCell != nil){
+                FeedTypes.setUpdatingGoals(true);
+            }
+            
+            if (selectedGoalIndex! >= goals.count){
+                removeGoalFromFeed(selectedGoalIndex!);
+            }
+            else{
+                if (goals[selectedGoalIndex!] != selectedGoal!){
+                    removeGoalFromFeed(selectedGoalIndex!);
+                }
+            }
+        }
+        selectedGoal = nil;
+        selectedGoalIndex = nil;
+    }
+    
+    func removeGoalFromFeed(index: Int){
+        tableView.beginUpdates();
+        tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: selectedGoalIndex!, inSection:3)], withRowAnimation: .Automatic);
+        tableView.endUpdates();
+        
+        if (SharedData.feedData.getGoals().count == 0 && goalsFooterCell != nil){
+            goalsFooterCell?.seeMore();
+        }
     }
     
     func refresh(){
@@ -92,8 +127,8 @@ class FeedController: UITableViewController, UIActionSheetDelegate{
             if (indexPath.row == SharedData.feedData.getGoals().count){
                 print("Binding footer");
                 cell = tableView.dequeueReusableCellWithIdentifier("FooterCell", forIndexPath: indexPath);
-                let footerCell = cell as! FooterCell;
-                footerCell.bind(self, type: FooterCell.FooterType.Goals);
+                goalsFooterCell = cell as? FooterCell;
+                goalsFooterCell!.bind(self, type: FooterCell.FooterType.Goals);
             }
             else{
                 print("Binding goal cell");
@@ -142,13 +177,15 @@ class FeedController: UITableViewController, UIActionSheetDelegate{
                     self.tableView.beginUpdates();
                     if (!SharedData.feedData.canLoadMoreGoals()){
                         self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: start, inSection: FeedTypes.getGoalsSectionPosition())],
-                                                        withRowAnimation: .Automatic)
+                            withRowAnimation: .Automatic);
+                        self.goalsFooterCell = nil;
                     }
                     else{
                         footer.end();
                     }
                     self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
                     self.tableView.endUpdates();
+                    FeedTypes.setUpdatingGoals(false);
                 });
             }
         }
@@ -214,16 +251,21 @@ class FeedController: UITableViewController, UIActionSheetDelegate{
                 actionController.upcomingAction = SharedData.feedData.getUpcoming()[indexPath!.row];
             }
         }
-        else if (segue.identifier == "ShowGoalFromFeed") {
-            if let selectedCell = sender as? FeedGoalCell {
-                let indexPath = tableView.indexPathForCell(selectedCell)
-                if let userGoal = SharedData.feedData.getGoals()[indexPath!.row] as? UserGoal {
-                    let goalController = segue.destinationViewController as! GoalViewController
-                    let goal = userGoal.getGoal()
-                    let category = SharedData.getCategory((userGoal.getPrimaryCategoryId()))
+        else if (segue.identifier == "ShowGoalFromFeed"){
+            if let selectedCell = sender as? FeedGoalCell{
+                let indexPath = tableView.indexPathForCell(selectedCell);
+                if let userGoal = SharedData.feedData.getGoals()[indexPath!.row] as? UserGoal{
+                    let goalController = segue.destinationViewController as! GoalViewController;
+                    let goal = userGoal.getGoal();
+                    let category = SharedData.getCategory((userGoal.getPrimaryCategoryId()));
                     
-                    goalController.goal = goal
-                    goalController.category = category
+                    selectedGoal = userGoal;
+                    selectedGoalIndex = indexPath?.row;
+                    print(selectedGoalIndex);
+                    
+                    goalController.goal = goal;
+                    goalController.category = category;
+                    goalController.userGoal = userGoal;
                     goalController.fromFeed = true
                 }
             }

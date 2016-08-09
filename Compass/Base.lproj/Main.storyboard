@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TDf-Up-ni2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TDf-Up-ni2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -1493,11 +1493,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Etd-ZR-fi9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WzL-vf-zrj">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="836" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWg-1j-2Xn">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="787"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNQ-lf-ZsP" userLabel="Master Container">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="674"/>
@@ -1580,6 +1580,13 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJL-Ab-IM3">
+                                                <rect key="frame" x="511" y="500" width="61" height="30"/>
+                                                <state key="normal" title="REMOVE"/>
+                                                <connections>
+                                                    <action selector="remove" destination="i24-uW-uw0" eventType="touchUpInside" id="2fb-fl-nmE"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1599,11 +1606,15 @@
                                             <constraint firstItem="8jn-BA-7Ve" firstAttribute="leading" secondItem="BNQ-lf-ZsP" secondAttribute="leading" constant="4" id="UoG-MX-NEz"/>
                                             <constraint firstAttribute="trailing" secondItem="RzE-Jh-Vy3" secondAttribute="trailing" constant="28" id="VO2-Tj-Pwd"/>
                                             <constraint firstAttribute="bottom" secondItem="f7G-u9-0cN" secondAttribute="bottom" priority="250" constant="30" id="VXm-Nb-vGw"/>
+                                            <constraint firstAttribute="bottom" secondItem="DJL-Ab-IM3" secondAttribute="bottom" priority="250" constant="30" id="ZfL-4N-SRg"/>
+                                            <constraint firstItem="rPB-gY-DIT" firstAttribute="top" secondItem="DJL-Ab-IM3" secondAttribute="bottom" constant="35" id="aPh-Gf-ENq"/>
                                             <constraint firstItem="8jn-BA-7Ve" firstAttribute="top" secondItem="BNQ-lf-ZsP" secondAttribute="top" id="aSF-u2-hFm"/>
+                                            <constraint firstItem="DJL-Ab-IM3" firstAttribute="top" secondItem="WIO-Rd-lcj" secondAttribute="bottom" constant="17" id="apE-Zq-RtP"/>
                                             <constraint firstAttribute="trailing" secondItem="WIO-Rd-lcj" secondAttribute="trailing" constant="28" id="ftb-Aj-bLw"/>
                                             <constraint firstAttribute="trailing" secondItem="7kX-Ii-MQD" secondAttribute="trailing" constant="28" id="iEt-Pf-VtU"/>
                                             <constraint firstItem="Qp9-d4-3b2" firstAttribute="leading" secondItem="BNQ-lf-ZsP" secondAttribute="leading" constant="28" id="m9H-3M-ylw"/>
                                             <constraint firstItem="f7G-u9-0cN" firstAttribute="top" secondItem="WIO-Rd-lcj" secondAttribute="bottom" constant="12" id="sdh-x6-G7v"/>
+                                            <constraint firstAttribute="trailing" secondItem="DJL-Ab-IM3" secondAttribute="trailing" constant="28" id="tFc-6b-lMJ"/>
                                             <constraint firstAttribute="bottom" secondItem="7kX-Ii-MQD" secondAttribute="bottom" priority="250" constant="56" id="uTI-fv-V7Z"/>
                                             <constraint firstItem="Qp9-d4-3b2" firstAttribute="top" secondItem="7kX-Ii-MQD" secondAttribute="bottom" constant="8" id="veT-Uf-LvD"/>
                                         </constraints>
@@ -1629,6 +1640,8 @@
                             <constraint firstItem="BNQ-lf-ZsP" firstAttribute="width" secondItem="WzL-vf-zrj" secondAttribute="width" id="w3F-fg-qEn"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="900"/>
                     <connections>
                         <outlet property="author" destination="Qp9-d4-3b2" id="Cgr-oQ-X3k"/>
                         <outlet property="buttonContainer" destination="f7G-u9-0cN" id="G6G-Cc-eOI"/>
@@ -1637,6 +1650,7 @@
                         <outlet property="goalTitle" destination="RzE-Jh-Vy3" id="udf-R4-nXm"/>
                         <outlet property="header" destination="8jn-BA-7Ve" id="G5A-YS-LfH"/>
                         <outlet property="headerImage" destination="ejE-or-JT5" id="Xjp-Ys-Hfq"/>
+                        <outlet property="removeButton" destination="DJL-Ab-IM3" id="wsW-jx-9Cg"/>
                         <outlet property="reward" destination="7kX-Ii-MQD" id="Ppr-hI-iRa"/>
                         <outlet property="rewardHeader" destination="rPB-gY-DIT" id="g5j-yB-RTz"/>
                         <outlet property="scrollView" destination="lWg-1j-2Xn" id="qwQ-tB-NQV"/>
@@ -1644,7 +1658,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nG7-R6-NYO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2654" y="4316"/>
+            <point key="canvasLocation" x="2654" y="4466"/>
         </scene>
         <!--Feed-->
         <scene sceneID="T72-Z4-8oh">
