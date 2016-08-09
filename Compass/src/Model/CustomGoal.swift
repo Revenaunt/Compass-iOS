@@ -10,8 +10,14 @@ import ObjectMapper
 
 
 class CustomGoal: Goal{
+    let Type = "CustomGoal";
+    
     var title: String = "";
     
+    
+    override func getType() -> String{
+        return Type;
+    }
     
     override func mapping(map: Map){
         super.mapping(map);

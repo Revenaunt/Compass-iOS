@@ -71,6 +71,15 @@ class FeedData: Mappable, CustomStringConvertible{
         self.nextGoalBatchUrl = nextGoalBatchUrl;
     }
     
+    func removeGoal(goal: Goal){
+        let index = goals.indexOf{
+            $0 == goal;
+        };
+        if (index != nil){
+            goals.removeAtIndex(index!);
+        }
+    }
+    
     func getNextGoalBatchUrl() -> String?{
         return nextGoalBatchUrl;
     }

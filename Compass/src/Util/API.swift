@@ -210,6 +210,15 @@ class API{
     }
     
     class URL{
+        static func deleteGoal(goal: Goal) -> String{
+            if (goal is UserGoal){
+                return "\(BASE_URL)users/goals/\(goal.getId())/";
+            }
+            else{
+                return "\(BASE_URL)users/customgoals/\(goal.getId())/";
+            }
+        }
+        
         static func getOrganizations() -> String{
             return "\(BASE_URL)organizations/";
         }

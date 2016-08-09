@@ -19,7 +19,8 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
     //Data
     var category: CategoryContent!;
     var goal: GoalContent!;
-    var fromFeed = false   // Are we launching this from the feed?
+    var userGoal: UserGoal? = nil;
+    var fromFeed = false;   // Are we launching this from the feed?
     
     var imageViewProcessed = false;
     
@@ -38,6 +39,7 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet var author: UILabel!
     
     @IBOutlet weak var buttonContainer: UIView!
+    @IBOutlet weak var removeButton: UIButton!
     
     private var rewardHeaderConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
     private var rewardConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
@@ -69,7 +71,8 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
         // If we're showing this goal from the feed, the user has already
         // selected the goal, so we don't need to display these buttons
         if fromFeed {
-            buttonContainer.hidden = true
+            buttonContainer.hidden = true;
+            removeButton.hidden = false;
         }
         
         //Reward content
@@ -131,6 +134,16 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
     @IBAction func yesImIn(){
         delegate.goalAdded();
         navigationController!.popViewControllerAnimated(true);
+    }
+    
+    @IBAction func remove(){
+        if (userGoal != nil){
+            Just.delete(API.URL.deleteGoal(userGoal!), headers: SharedData.user.getHeaderMap()){ (response) in
+                
+            };
+            SharedData.feedData.removeGoal(userGoal!);
+            navigationController!.popViewControllerAnimated(true);
+        }
     }
 }
 

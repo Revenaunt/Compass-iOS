@@ -9,7 +9,7 @@
 import ObjectMapper
 
 
-class TDCBase: Mappable{
+class TDCBase: Mappable, Equatable{
     private var id: Int = -1;
     
     
@@ -21,6 +21,10 @@ class TDCBase: Mappable{
         return id;
     }
     
+    func getType() -> String{
+        return "";
+    }
+    
     required init?(_ map: Map){
         
     }
@@ -28,4 +32,9 @@ class TDCBase: Mappable{
     func mapping(map: Map){
         id <- map["id"];
     }
+}
+
+//For equatable, checks types and ids for equality
+func ==(lhs: TDCBase, rhs: TDCBase) -> Bool{
+    return lhs.getType() == rhs.getType() && lhs.getId() == rhs.getId();
 }
