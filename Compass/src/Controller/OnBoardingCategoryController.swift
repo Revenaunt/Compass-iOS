@@ -18,7 +18,6 @@ class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITab
     
     
     override func viewDidLoad(){
-        navigationItem.setHidesBackButton(true, animated: true);
         explanation.textContainerInset = UIEdgeInsetsMake(14, 20, 14, 20);
     }
     
