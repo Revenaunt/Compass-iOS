@@ -615,67 +615,8 @@
                                     <outlet property="goal" destination="0cM-Oc-MYx" id="knF-m5-5d8"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedbackCell" rowHeight="138" id="wug-8K-Pxu" customClass="FeedbackCell" customModule="Compass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="203" width="600" height="138"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wug-8K-Pxu" id="mxv-qL-aSh">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="137"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IdG-7j-xsg" userLabel="Image Container">
-                                            <rect key="frame" x="16" y="8" width="80" height="80"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LNa-zO-S5f">
-                                                    <rect key="frame" x="10" y="10" width="60" height="60"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="4T5-cv-mZx"/>
-                                                        <constraint firstAttribute="width" constant="60" id="fTm-Dc-uIf"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="80" id="bOv-mH-1aJ"/>
-                                                <constraint firstItem="LNa-zO-S5f" firstAttribute="centerY" secondItem="IdG-7j-xsg" secondAttribute="centerY" id="qnx-RD-76a"/>
-                                                <constraint firstItem="LNa-zO-S5f" firstAttribute="centerX" secondItem="IdG-7j-xsg" secondAttribute="centerX" id="rXO-ie-31s"/>
-                                                <constraint firstAttribute="width" constant="80" id="vmo-Oc-hjh"/>
-                                            </constraints>
-                                        </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reward" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tei-o4-Y2j">
-                                            <rect key="frame" x="24" y="96" width="552" height="25"/>
-                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Feedback" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esv-Mr-qqO">
-                                            <rect key="frame" x="104" y="8" width="472" height="80"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="tei-o4-Y2j" secondAttribute="bottom" constant="8" id="0b0-bn-dcs"/>
-                                        <constraint firstItem="IdG-7j-xsg" firstAttribute="top" secondItem="mxv-qL-aSh" secondAttribute="topMargin" id="D2Q-Ld-GSd"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" secondItem="IdG-7j-xsg" secondAttribute="height" id="Drn-Dq-Wih"/>
-                                        <constraint firstItem="esv-Mr-qqO" firstAttribute="leading" secondItem="IdG-7j-xsg" secondAttribute="trailing" constant="8" id="Q65-BH-YuN"/>
-                                        <constraint firstItem="esv-Mr-qqO" firstAttribute="height" secondItem="IdG-7j-xsg" secondAttribute="height" id="S94-xo-LxY"/>
-                                        <constraint firstItem="esv-Mr-qqO" firstAttribute="top" secondItem="mxv-qL-aSh" secondAttribute="topMargin" id="X3j-47-EO9"/>
-                                        <constraint firstItem="tei-o4-Y2j" firstAttribute="leading" secondItem="mxv-qL-aSh" secondAttribute="leadingMargin" constant="16" id="abf-am-LTA"/>
-                                        <constraint firstItem="tei-o4-Y2j" firstAttribute="trailing" secondItem="mxv-qL-aSh" secondAttribute="trailingMargin" constant="-16" id="buG-9t-7qw"/>
-                                        <constraint firstItem="IdG-7j-xsg" firstAttribute="leading" secondItem="mxv-qL-aSh" secondAttribute="leadingMargin" constant="8" id="cUU-P0-gQa"/>
-                                        <constraint firstItem="esv-Mr-qqO" firstAttribute="trailing" secondItem="mxv-qL-aSh" secondAttribute="trailingMargin" constant="-16" id="gsc-jb-ken"/>
-                                        <constraint firstItem="tei-o4-Y2j" firstAttribute="top" secondItem="esv-Mr-qqO" secondAttribute="bottom" constant="8" id="hvU-5C-1H0"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="icon" destination="LNa-zO-S5f" id="wcC-V6-8wV"/>
-                                    <outlet property="subtitle" destination="tei-o4-Y2j" id="ia6-1j-6sH"/>
-                                    <outlet property="title" destination="esv-Mr-qqO" id="5Jt-WJ-rwB"/>
-                                </connections>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UpcomingCell" rowHeight="105" id="lbd-71-qxq" customClass="UpcomingCell" customModule="Compass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="341" width="600" height="105"/>
+                                <rect key="frame" x="0.0" y="203" width="600" height="105"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lbd-71-qxq" id="LSN-Od-JU1">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="104"/>
@@ -720,7 +661,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedGoalCell" rowHeight="100" id="RoT-1z-5rg" customClass="FeedGoalCell" customModule="Compass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="446" width="600" height="100"/>
+                                <rect key="frame" x="0.0" y="308" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RoT-1z-5rg" id="NdQ-zH-vPz">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
@@ -781,7 +722,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FooterCell" rowHeight="47" id="VhU-zq-ODk" customClass="FooterCell" customModule="Compass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="546" width="600" height="47"/>
+                                <rect key="frame" x="0.0" y="408" width="600" height="47"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VhU-zq-ODk" id="29R-CU-hV8">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="46"/>

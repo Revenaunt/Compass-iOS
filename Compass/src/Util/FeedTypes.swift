@@ -29,7 +29,7 @@ class FeedTypes{
     }
     
     static func hasFeedback() -> Bool{
-        return hasUpNextAction() && feedData.getFeedback() != nil;
+        return hasUpNextAction() && false;
     }
     
     static func getFeedbackSectionPosition() -> Int{

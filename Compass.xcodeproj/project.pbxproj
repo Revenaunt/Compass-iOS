@@ -30,6 +30,7 @@
 		5446E3121D622DF6009E661F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5446E3111D622DF6009E661F /* Charts.framework */; };
 		5446E3131D622E27009E661F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5446E3111D622DF6009E661F /* Charts.framework */; };
 		5446E3141D622E27009E661F /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5446E3111D622DF6009E661F /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5446E3161D624BEE009E661F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5446E3151D624BEE009E661F /* Extensions.swift */; };
 		5448276A1CCA88E500BBC062 /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544827691CCA88E500BBC062 /* GoalCell.swift */; };
 		5448276C1CCA956000BBC062 /* CategoryHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448276B1CCA956000BBC062 /* CategoryHeaderCell.swift */; };
 		5448276E1CCAC36A00BBC062 /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5448276D1CCAC36A00BBC062 /* Nuke.framework */; };
@@ -46,7 +47,6 @@
 		546114DA1CF386C6007BBD1B /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546114D91CF386C6007BBD1B /* GoalViewController.swift */; };
 		5467E9B01CC534D00088E417 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9AF1CC534D00088E417 /* User.swift */; };
 		5467E9B41CC5551F0088E417 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9B31CC5551F0088E417 /* SharedData.swift */; };
-		5468F8451CCEA68500D5769B /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8441CCEA68500D5769B /* FeedbackCell.swift */; };
 		5468F8471CCEAA8700D5769B /* UpcomingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8461CCEAA8700D5769B /* UpcomingCell.swift */; };
 		5468F8491CCEB09600D5769B /* FeedGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8481CCEB09600D5769B /* FeedGoalCell.swift */; };
 		5468F84B1CCEB20600D5769B /* ActionContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F84A1CCEB20600D5769B /* ActionContent.swift */; };
@@ -146,6 +146,7 @@
 		544614261CC9719800F2B441 /* GoalLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalLibraryViewController.swift; sourceTree = "<group>"; };
 		544614281CC971D000F2B441 /* CategoryDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDescriptionCell.swift; sourceTree = "<group>"; };
 		5446E3111D622DF6009E661F /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
+		5446E3151D624BEE009E661F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		544827691CCA88E500BBC062 /* GoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
 		5448276B1CCA956000BBC062 /* CategoryHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryHeaderCell.swift; sourceTree = "<group>"; };
 		5448276D1CCAC36A00BBC062 /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
@@ -161,7 +162,6 @@
 		546114D91CF386C6007BBD1B /* GoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
 		5467E9AF1CC534D00088E417 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5467E9B31CC5551F0088E417 /* SharedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
-		5468F8441CCEA68500D5769B /* FeedbackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
 		5468F8461CCEAA8700D5769B /* UpcomingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingCell.swift; sourceTree = "<group>"; };
 		5468F8481CCEB09600D5769B /* FeedGoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedGoalCell.swift; sourceTree = "<group>"; };
 		5468F84A1CCEB20600D5769B /* ActionContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionContent.swift; sourceTree = "<group>"; };
@@ -302,6 +302,7 @@
 				5424E98C1CE4EA330016B4DD /* NotificationUtil.swift */,
 				545D98C31CC69A890037FAEF /* ParserModels.swift */,
 				547E56D21D397A1D00572A29 /* DefaultsManager.swift */,
+				5446E3151D624BEE009E661F /* Extensions.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -403,7 +404,6 @@
 				544614281CC971D000F2B441 /* CategoryDescriptionCell.swift */,
 				5448276B1CCA956000BBC062 /* CategoryHeaderCell.swift */,
 				5468F8481CCEB09600D5769B /* FeedGoalCell.swift */,
-				5468F8441CCEA68500D5769B /* FeedbackCell.swift */,
 				5477AB741D00BE9E0075A25D /* FooterCell.swift */,
 				544827691CCA88E500BBC062 /* GoalCell.swift */,
 				547966361D0628D5006846E1 /* LibraryLoadingCell.swift */,
@@ -785,7 +785,6 @@
 				5443355D1CD01B0A00EB066E /* UserGoal.swift in Sources */,
 				5468F84F1CCEB6C600D5769B /* UserContent.swift in Sources */,
 				5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */,
-				5468F8451CCEA68500D5769B /* FeedbackCell.swift in Sources */,
 				5475BDEF1CC153F100D80D3E /* API.swift in Sources */,
 				54AAD9881D58E7C300AB41E5 /* OrganizationsController.swift in Sources */,
 				544614271CC9719800F2B441 /* GoalLibraryViewController.swift in Sources */,
@@ -800,6 +799,7 @@
 				545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */,
 				5443355B1CD019C200EB066E /* CustomGoal.swift in Sources */,
 				547E56D31D397A1D00572A29 /* DefaultsManager.swift in Sources */,
+				5446E3161D624BEE009E661F /* Extensions.swift in Sources */,
 				544335571CCFC5B800EB066E /* FeedTypes.swift in Sources */,
 				546114DA1CF386C6007BBD1B /* GoalViewController.swift in Sources */,
 				5468F8571CCEBF7C00D5769B /* UpcomingAction.swift in Sources */,
