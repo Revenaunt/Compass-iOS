@@ -27,6 +27,9 @@
 		544614251CC9495C00F2B441 /* GoalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544614241CC9495C00F2B441 /* GoalContent.swift */; };
 		544614271CC9719800F2B441 /* GoalLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544614261CC9719800F2B441 /* GoalLibraryViewController.swift */; };
 		544614291CC971D000F2B441 /* CategoryDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544614281CC971D000F2B441 /* CategoryDescriptionCell.swift */; };
+		5446E3121D622DF6009E661F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5446E3111D622DF6009E661F /* Charts.framework */; };
+		5446E3131D622E27009E661F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5446E3111D622DF6009E661F /* Charts.framework */; };
+		5446E3141D622E27009E661F /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5446E3111D622DF6009E661F /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5448276A1CCA88E500BBC062 /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544827691CCA88E500BBC062 /* GoalCell.swift */; };
 		5448276C1CCA956000BBC062 /* CategoryHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448276B1CCA956000BBC062 /* CategoryHeaderCell.swift */; };
 		5448276E1CCAC36A00BBC062 /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5448276D1CCAC36A00BBC062 /* Nuke.framework */; };
@@ -113,6 +116,7 @@
 			files = (
 				5448276F1CCAC37600BBC062 /* Nuke.framework in Embed Frameworks */,
 				54010E111CC6BAA2009FB013 /* Locksmith.framework in Embed Frameworks */,
+				5446E3141D622E27009E661F /* Charts.framework in Embed Frameworks */,
 				54437C941CC58D0700D5035C /* ObjectMapper.framework in Embed Frameworks */,
 				5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */,
 			);
@@ -141,6 +145,7 @@
 		544614241CC9495C00F2B441 /* GoalContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalContent.swift; sourceTree = "<group>"; };
 		544614261CC9719800F2B441 /* GoalLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalLibraryViewController.swift; sourceTree = "<group>"; };
 		544614281CC971D000F2B441 /* CategoryDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDescriptionCell.swift; sourceTree = "<group>"; };
+		5446E3111D622DF6009E661F /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 		544827691CCA88E500BBC062 /* GoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
 		5448276B1CCA956000BBC062 /* CategoryHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryHeaderCell.swift; sourceTree = "<group>"; };
 		5448276D1CCAC36A00BBC062 /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
@@ -219,6 +224,8 @@
 				5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */,
 				54437C931CC58CFF00D5035C /* ObjectMapper.framework in Frameworks */,
 				547C466D1CBBF9EC00953735 /* Locksmith.framework in Frameworks */,
+				5446E3131D622E27009E661F /* Charts.framework in Frameworks */,
+				5446E3121D622DF6009E661F /* Charts.framework in Frameworks */,
 				5448276E1CCAC36A00BBC062 /* Nuke.framework in Frameworks */,
 				6CC3A5F08D855A98FEA253CF /* libPods-Compass.a in Frameworks */,
 			);
@@ -336,6 +343,7 @@
 				547C466C1CBBF9EC00953735 /* Locksmith.framework */,
 				5448276D1CCAC36A00BBC062 /* Nuke.framework */,
 				54437C921CC58CFF00D5035C /* ObjectMapper.framework */,
+				5446E3111D622DF6009E661F /* Charts.framework */,
 			);
 			sourceTree = "<group>";
 		};
