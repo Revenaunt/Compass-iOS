@@ -104,7 +104,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate{
             print("Binding feedback cell");
             cell = tableView.dequeueReusableCellWithIdentifier("StreaksCell", forIndexPath: indexPath);
             let streaksCell = cell as! StreaksCell;
-            streaksCell.setStreaks(SharedData.feedData.getStreaks());
+            streaksCell.setStreaks(SharedData.feedData.getStreaks()!);
             
         }
         else if (indexPath.section == 2){

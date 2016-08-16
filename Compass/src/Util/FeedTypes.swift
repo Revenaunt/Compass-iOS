@@ -28,6 +28,10 @@ class FeedTypes{
         return getUpNextSectionPosition() == section;
     }
     
+    static func hasStreaks() -> Bool{
+        return feedData.getStreaks() != nil && feedData.getStreaks()!.count != 0;
+    }
+    
     static func getStreaksSectionPosition() -> Int{
         return getUpNextSectionPosition() + 1;
     }
@@ -70,7 +74,7 @@ class FeedTypes{
                 return 1;
             
             case getStreaksSectionPosition():
-                return 1;
+                return hasStreaks() ? 1 : 0;
             
             case getUpcomingSectionPosition():
                 return SharedData.feedData.getUpcoming().count;
@@ -92,7 +96,7 @@ class FeedTypes{
                 return "";
             
             case getStreaksSectionPosition():
-                return "Weekly progress";
+                return hasStreaks() ? "Weekly progress" : "";
             
             case getUpcomingSectionPosition():
                 return hasUpcoming() ? "Upcoming" : "";

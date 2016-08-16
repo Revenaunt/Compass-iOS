@@ -14,7 +14,7 @@ class FeedData: Mappable, CustomStringConvertible{
     private let LOAD_MORE_COUNT = 3;
     
     private var progress: Progress? = nil;
-    private var streaks: [Streak] = [Streak]();
+    private var streaks: [Streak]? = nil;
     private var upNextAction: UpcomingAction? = nil;
     private var upcomingActions: [UpcomingAction] = [UpcomingAction]();
     private var goals: [Goal] = [Goal]();
@@ -32,9 +32,6 @@ class FeedData: Mappable, CustomStringConvertible{
     func mapping(map: Map){
         progress <- map["progress"];
         streaks <- map["streaks"];
-        for streak in streaks{
-            print("\(streak.getDay()): \(streak.getCount())");
-        }
         upcomingActions <- map["upcoming"];
         var upcoming = [UpcomingAction]();
         for action in upcomingActions{
@@ -57,7 +54,7 @@ class FeedData: Mappable, CustomStringConvertible{
         return upNextAction;
     }
     
-    func getStreaks() -> [Streak]{
+    func getStreaks() -> [Streak]?{
         return streaks;
     }
     
