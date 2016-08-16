@@ -20,6 +20,7 @@ class User: TDCBase, CustomStringConvertible{
     private var token: String = "";
     private var dateJoined: String = "";
     private var needsOnBoardingVar: Bool = true;
+    private var dailyNotificationLimit = 0;
     
     //Profile answers
     private var zipCode: String = "";
@@ -44,6 +45,10 @@ class User: TDCBase, CustomStringConvertible{
     
     func setPassword(password: String){
         self.password = password;
+    }
+    
+    func setDailyNotificationLimit(dailyNotificationLimit: Int){
+        self.dailyNotificationLimit = dailyNotificationLimit;
     }
     
     func onBoardingComplete(){
@@ -74,6 +79,10 @@ class User: TDCBase, CustomStringConvertible{
         return needsOnBoardingVar;
     }
     
+    func getDailyNotificationLimit() -> Int{
+        return dailyNotificationLimit;
+    }
+    
     required init?(_ map: Map){
         super.init(map);
     }
@@ -89,6 +98,7 @@ class User: TDCBase, CustomStringConvertible{
         token <- map["token"];
         dateJoined <- map["dateJoined"];
         needsOnBoardingVar <- map["needs_onboarding"];
+        dailyNotificationLimit <- map["maximum_daily_notifications"];
         
         zipCode <- map["zipcode"];
         birthday <- map["birthday"];
