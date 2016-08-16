@@ -12,7 +12,7 @@ import Foundation
 class API{
     
     //#if DEBUG
-        static let STAGING = false;
+        static let STAGING = true;
     //#else
     //    static let STAGING = false;
     //#endif

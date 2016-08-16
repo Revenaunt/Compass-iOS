@@ -27,9 +27,6 @@
 		544614251CC9495C00F2B441 /* GoalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544614241CC9495C00F2B441 /* GoalContent.swift */; };
 		544614271CC9719800F2B441 /* GoalLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544614261CC9719800F2B441 /* GoalLibraryViewController.swift */; };
 		544614291CC971D000F2B441 /* CategoryDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544614281CC971D000F2B441 /* CategoryDescriptionCell.swift */; };
-		5446E3121D622DF6009E661F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5446E3111D622DF6009E661F /* Charts.framework */; };
-		5446E3131D622E27009E661F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5446E3111D622DF6009E661F /* Charts.framework */; };
-		5446E3141D622E27009E661F /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5446E3111D622DF6009E661F /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5446E3161D624BEE009E661F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5446E3151D624BEE009E661F /* Extensions.swift */; };
 		5448276A1CCA88E500BBC062 /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544827691CCA88E500BBC062 /* GoalCell.swift */; };
 		5448276C1CCA956000BBC062 /* CategoryHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448276B1CCA956000BBC062 /* CategoryHeaderCell.swift */; };
@@ -84,6 +81,9 @@
 		5488FC211CFDEF2900E758C1 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5488FC201CFDEF2900E758C1 /* ActionViewController.swift */; };
 		5488FC231CFDF9EF00E758C1 /* UserCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5488FC221CFDF9EF00E758C1 /* UserCategory.swift */; };
 		5493554F1D14920600F325A4 /* OnBoardingCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493554E1D14920600F325A4 /* OnBoardingCategoryCell.swift */; };
+		5499C9BF1D6259B800DBAF6C /* StreaksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5499C9BE1D6259B800DBAF6C /* StreaksCell.swift */; };
+		5499C9C01D62674F00DBAF6C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5446E3111D622DF6009E661F /* Charts.framework */; };
+		5499C9C11D62674F00DBAF6C /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5446E3111D622DF6009E661F /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54AAD9881D58E7C300AB41E5 /* OrganizationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AAD9871D58E7C300AB41E5 /* OrganizationsController.swift */; };
 		54F60F591CC7F11A00D1424D /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F60F581CC7F11A00D1424D /* CircleProgressView.swift */; };
 		54F60F5C1CC80C7400D1424D /* UpNextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F60F5B1CC80C7400D1424D /* UpNextCell.swift */; };
@@ -116,7 +116,7 @@
 			files = (
 				5448276F1CCAC37600BBC062 /* Nuke.framework in Embed Frameworks */,
 				54010E111CC6BAA2009FB013 /* Locksmith.framework in Embed Frameworks */,
-				5446E3141D622E27009E661F /* Charts.framework in Embed Frameworks */,
+				5499C9C11D62674F00DBAF6C /* Charts.framework in Embed Frameworks */,
 				54437C941CC58D0700D5035C /* ObjectMapper.framework in Embed Frameworks */,
 				5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */,
 			);
@@ -205,6 +205,7 @@
 		5488FC201CFDEF2900E758C1 /* ActionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
 		5488FC221CFDF9EF00E758C1 /* UserCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCategory.swift; sourceTree = "<group>"; };
 		5493554E1D14920600F325A4 /* OnBoardingCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCategoryCell.swift; sourceTree = "<group>"; };
+		5499C9BE1D6259B800DBAF6C /* StreaksCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreaksCell.swift; sourceTree = "<group>"; };
 		54AAD9871D58E7C300AB41E5 /* OrganizationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationsController.swift; sourceTree = "<group>"; };
 		54F60F581CC7F11A00D1424D /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		54F60F5B1CC80C7400D1424D /* UpNextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpNextCell.swift; sourceTree = "<group>"; };
@@ -224,8 +225,7 @@
 				5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */,
 				54437C931CC58CFF00D5035C /* ObjectMapper.framework in Frameworks */,
 				547C466D1CBBF9EC00953735 /* Locksmith.framework in Frameworks */,
-				5446E3131D622E27009E661F /* Charts.framework in Frameworks */,
-				5446E3121D622DF6009E661F /* Charts.framework in Frameworks */,
+				5499C9C01D62674F00DBAF6C /* Charts.framework in Frameworks */,
 				5448276E1CCAC36A00BBC062 /* Nuke.framework in Frameworks */,
 				6CC3A5F08D855A98FEA253CF /* libPods-Compass.a in Frameworks */,
 			);
@@ -413,6 +413,7 @@
 				547A608C1D36C0AF006FE596 /* SourceCell.swift */,
 				546F692C1D382F7C0070D73A /* AwardCell.swift */,
 				5415C9441D59020A00E01054 /* OrganizationCell.swift */,
+				5499C9BE1D6259B800DBAF6C /* StreaksCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -800,6 +801,7 @@
 				5443355B1CD019C200EB066E /* CustomGoal.swift in Sources */,
 				547E56D31D397A1D00572A29 /* DefaultsManager.swift in Sources */,
 				5446E3161D624BEE009E661F /* Extensions.swift in Sources */,
+				5499C9BF1D6259B800DBAF6C /* StreaksCell.swift in Sources */,
 				544335571CCFC5B800EB066E /* FeedTypes.swift in Sources */,
 				546114DA1CF386C6007BBD1B /* GoalViewController.swift in Sources */,
 				5468F8571CCEBF7C00D5769B /* UpcomingAction.swift in Sources */,
