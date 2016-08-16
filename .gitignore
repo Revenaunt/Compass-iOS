@@ -50,7 +50,7 @@ Compass/info.plist
 # Pods/
 
 # Carthage
-Carthage/Checkouts/
+Carthage/
 
 # fastlane
 #

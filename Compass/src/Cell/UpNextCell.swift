@@ -9,10 +9,8 @@
 import UIKit
 
 class UpNextCell: UITableViewCell {
-    @IBOutlet weak var progressIndicator: CircleProgressView!
     @IBOutlet weak var action: UILabel!
     @IBOutlet weak var goal: UILabel!
-    @IBOutlet weak var time: UILabel!
     
     
     override func awakeFromNib() {
@@ -27,7 +25,6 @@ class UpNextCell: UITableViewCell {
     }
     
     func bind(upNext: UpcomingAction?, progress: FeedData.Progress){
-        progressIndicator.setProgress(Double(progress.getProgressPercentage())/100, animated: true);
         if (upNext == nil){
             if (progress.getTotalActions() == 0){
                 action.text = "No activities selected for today";
@@ -37,12 +34,10 @@ class UpNextCell: UITableViewCell {
                 action.text = "No activities remaining today";
                 goal.text = "See you tomorrow";
             }
-            time.text = ""
         }
         else{
             action.text = upNext!.getTitle();
             goal.text = upNext!.getGoalTitle();
-            time.text = upNext!.getTriggerDisplay();
         }
     }
 }

@@ -14,7 +14,7 @@ class FeedData: Mappable, CustomStringConvertible{
     private let LOAD_MORE_COUNT = 3;
     
     private var progress: Progress? = nil;
-    private var actionFeedback: ActionFeedback? = nil;
+    private var streaks: [Streak]? = nil;
     private var upNextAction: UpcomingAction? = nil;
     private var upcomingActions: [UpcomingAction] = [UpcomingAction]();
     private var goals: [Goal] = [Goal]();
@@ -31,7 +31,7 @@ class FeedData: Mappable, CustomStringConvertible{
     
     func mapping(map: Map){
         progress <- map["progress"];
-        actionFeedback <- map["action_feedback"];
+        streaks <- map["streaks"];
         upcomingActions <- map["upcoming"];
         var upcoming = [UpcomingAction]();
         for action in upcomingActions{
@@ -54,8 +54,8 @@ class FeedData: Mappable, CustomStringConvertible{
         return upNextAction;
     }
     
-    func getFeedback() -> ActionFeedback?{
-        return actionFeedback;
+    func getStreaks() -> [Streak]?{
+        return streaks;
     }
     
     func getUpcoming() -> [UpcomingAction]{
@@ -101,7 +101,7 @@ class FeedData: Mappable, CustomStringConvertible{
     }
     
     var description: String{
-        return "Feed Data: \(upNextAction != nil ? "has" : "doesn't have") up next, \(actionFeedback != nil ? "has" : "doesn't have") feedback, \(upcomingActions.count) actions, \(goals.count) goals";
+        return "Feed Data: \(upNextAction != nil ? "has" : "doesn't have") up next, \(upcomingActions.count) actions, \(goals.count) goals";
     }
     
     
@@ -148,13 +148,10 @@ class FeedData: Mappable, CustomStringConvertible{
         }
     }
     
-    class ActionFeedback: Mappable{
-        private var title: String = "";
-        private var subtitle: String = "";
-        private var iconId: Int = -1;
-        
-        private var goalId: Int = -1;
-        private var goalType: String = "";
+    
+    class Streak: Mappable{
+        private var count: Int = 0;
+        private var day: String = "";
         
         
         required init?(_ map: Map){
@@ -162,37 +159,16 @@ class FeedData: Mappable, CustomStringConvertible{
         }
         
         internal func mapping(map: Map){
-            title <- map["title"];
-            subtitle <- map["subtitle"];
-            iconId <- map["icon"];
+            count <- map["count"];
+            day <- map["day"];
         }
         
-        func getTitle() -> String{
-            return title;
+        func getCount() -> Int{
+            return count;
         }
         
-        func getSubtitle() -> String{
-            return subtitle;
-        }
-        
-        func getIconResourceName() -> String{
-            return "Feedback \(iconId)";
-        }
-        
-        func setGoal(/* UpcomingAction */){
-            //TODO
-        }
-        
-        func getGoalId() -> Int{
-            return goalId;
-        }
-        
-        func hasUserGoal() -> Bool{
-            return goalType == "usergoal";
-        }
-        
-        func hasCustomGoal() -> Bool{
-            return goalType == "customgoal";
+        func getDay() -> String{
+            return day[0];
         }
     }
 }

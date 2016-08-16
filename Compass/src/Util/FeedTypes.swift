@@ -28,16 +28,16 @@ class FeedTypes{
         return getUpNextSectionPosition() == section;
     }
     
-    static func hasFeedback() -> Bool{
-        return hasUpNextAction() && feedData.getFeedback() != nil;
+    static func hasStreaks() -> Bool{
+        return feedData.getStreaks() != nil && feedData.getStreaks()!.count != 0;
     }
     
-    static func getFeedbackSectionPosition() -> Int{
+    static func getStreaksSectionPosition() -> Int{
         return getUpNextSectionPosition() + 1;
     }
     
-    static func isFeedbackSection(section: Int) -> Bool{
-        return getFeedbackSectionPosition() == section;
+    static func isStreaksSection(section: Int) -> Bool{
+        return getStreaksSectionPosition() == section;
     }
     
     static func hasUpcoming() -> Bool{
@@ -45,7 +45,7 @@ class FeedTypes{
     }
     
     static func getUpcomingSectionPosition() -> Int{
-        return getFeedbackSectionPosition() + 1;
+        return getStreaksSectionPosition() + 1;
     }
     
     static func isUpcomingSection(section: Int) -> Bool{
@@ -73,8 +73,8 @@ class FeedTypes{
             case getUpNextSectionPosition():
                 return 1;
             
-            case getFeedbackSectionPosition():
-                return hasFeedback() ? 1 : 0;
+            case getStreaksSectionPosition():
+                return hasStreaks() ? 1 : 0;
             
             case getUpcomingSectionPosition():
                 return SharedData.feedData.getUpcoming().count;
@@ -93,10 +93,10 @@ class FeedTypes{
     static func getSectionHeaderTitle(section: Int) -> String{
         switch (section){
             case getUpNextSectionPosition():
-                return "Up next";
-            
-            case getFeedbackSectionPosition():
                 return "";
+            
+            case getStreaksSectionPosition():
+                return hasStreaks() ? "Weekly progress" : "";
             
             case getUpcomingSectionPosition():
                 return hasUpcoming() ? "Upcoming" : "";
