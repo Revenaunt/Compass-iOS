@@ -12,5 +12,5 @@ This project requires [cocoapods](https://cocoapods.org) and
 
 - (*cocoapods*) install with `sudo gem install cocoapods` then run `pod install`
 - (*Carthage*) install with `brew update`, then `brew install carthage`, then
-  run `carthage update`
+  run `carthage update --platform iOS`
 

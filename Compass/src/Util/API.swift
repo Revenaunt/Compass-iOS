@@ -172,6 +172,7 @@ class API{
         var body = [String: String]();
         body["timezone"] = NSTimeZone.defaultTimeZone().name;
         body["needs_onboarding"] = "\(user.needsOnBoarding())";
+        body["maximum_daily_notifications"] = "\(user.getDailyNotificationLimit())";
         return body;
     }
     
@@ -210,6 +211,10 @@ class API{
     }
     
     class URL{
+        static func userAccount() -> String{
+            return "\(BASE_URL)users/accounts/";
+        }
+        
         static func deleteGoal(goal: Goal) -> String{
             if (goal is UserGoal){
                 return "\(BASE_URL)users/goals/\(goal.getId())/";
