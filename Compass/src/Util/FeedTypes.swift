@@ -89,7 +89,7 @@ class FeedTypes{
     static func getSectionHeaderTitle(section: Int) -> String{
         switch (section){
             case getUpNextSectionPosition():
-                return "Up next";
+                return "";
             
             case getStreaksSectionPosition():
                 return "Weekly progress";
