@@ -194,7 +194,9 @@ class ActionViewController: UIViewController{
     
     @IBAction func gotIt(){
         Just.post(API.getPostActionReportUrl(mappingId), json: API.getPostActionReportBody("completed"),
-                  headers: SharedData.user.getHeaderMap());
+                  headers: SharedData.user.getHeaderMap()){ response in
+                    
+        };
         if (navigationController != nil){
             navigationController!.popViewControllerAnimated(true);
         }

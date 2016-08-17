@@ -200,6 +200,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate{
             
         }
         else if (indexPath.section == 1){
+            return  200;
             //return FeedbackCell.getCellHeight(SharedData.feedData.getFeedback()!);
         }
         else if (indexPath.section == 2){

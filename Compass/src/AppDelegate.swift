@@ -24,6 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         //Crashlytics
         Fabric.with([Crashlytics.self]);
         
+        #if DEBUG
+            print("debug");
+        #else
+            print("release");
+        #endif
+        
         //Fire the notification registration process.
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil);
         application.registerUserNotificationSettings(settings);

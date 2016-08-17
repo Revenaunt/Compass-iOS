@@ -17,16 +17,16 @@ class StreaksCell: UITableViewCell{
     func setStreaks(streaks: [FeedData.Streak]){
         var streakCounts: [BarChartDataEntry] = [];
         var days: [String] = [];
-        var max: Double = 0;
+        var max: Int = 0;
         
         for i in 0 ..< streaks.count{
-            let streakCount = Double(streaks[i].getCount());
+            let streakCount = streaks[i].getCount() == 0 ? 0.1 : Double(streaks[i].getCount());
             let count = BarChartDataEntry(value: streakCount, xIndex: i);
             streakCounts.append(count);
             days.append(streaks[i].getDay());
             
-            if (streakCount > max){
-                max = streakCount;
+            if (streaks[i].getCount() > max){
+                max = streaks[i].getCount();
             }
         }
         
@@ -39,8 +39,16 @@ class StreaksCell: UITableViewCell{
         chartData.setValueFormatter(formatter);
         chart.data = chartData;
         
-        chart.rightAxis.enabled = false;
+        
+        
+        if (max == 0){
+            chart.leftAxis.axisMaxValue = 1.0;
+        }
+        else{
+            chart.leftAxis.axisMaxValue = Double(max)*1.25;
+        }
         chart.leftAxis.enabled = false;
+        chart.rightAxis.enabled = false;
         
         chart.xAxis.labelPosition = .Bottom;
         chart.xAxis.drawGridLinesEnabled = false;
@@ -49,5 +57,6 @@ class StreaksCell: UITableViewCell{
         chart.descriptionText = "";
         chart.legend.enabled = false;
         chart.animate(xAxisDuration: 0.5, yAxisDuration: 1.0);
+        
     }
 }
