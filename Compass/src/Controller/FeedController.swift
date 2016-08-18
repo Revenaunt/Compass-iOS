@@ -220,6 +220,10 @@ class FeedController: UITableViewController, UIActionSheetDelegate{
                 }
                 break;
             
+            case 1:
+                tableView.deselectRowAtIndexPath(indexPath, animated: true);
+                break;
+            
             case 2:
                 if (SharedData.feedData.getUpcoming()[indexPath.row].isUserAction()){
                     performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));

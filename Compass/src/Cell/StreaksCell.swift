@@ -56,6 +56,7 @@ class StreaksCell: UITableViewCell{
         
         chart.descriptionText = "";
         chart.legend.enabled = false;
+        chart.userInteractionEnabled = false;
         chart.animate(xAxisDuration: 0.5, yAxisDuration: 1.0);
         
     }
