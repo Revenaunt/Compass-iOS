@@ -50,6 +50,18 @@ class SettingsController: UITableViewController{
                 tableView.deselectRowAtIndexPath(indexPath, animated: true);
             }
             else if (indexPath.row == 1){
+                let recipient = "feedback@tndata.org";
+                let subject = "Compass Feedback";
+                let string = "mailto:?to=\(recipient)&subject=\(subject)";
+                let set = NSCharacterSet.URLQueryAllowedCharacterSet();
+                let encodedString = string.stringByAddingPercentEncodingWithAllowedCharacters(set)!;
+                print("before");
+                let url = NSURL(string: encodedString)!;
+                print("after");
+                UIApplication.sharedApplication().openURL(url);
+                tableView.deselectRowAtIndexPath(indexPath, animated: true);
+            }
+            else if (indexPath.row == 2){
                 do{
                     //Send the logout request
                     let defaults = NSUserDefaults.standardUserDefaults();
