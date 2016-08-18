@@ -14,6 +14,7 @@ import Nuke
 
 class ActionViewController: UIViewController{
     //Data
+    var delegate: ActionDelegate? = nil;
     var upcomingAction: UpcomingAction? = nil;
     var notificationId: Int = -1;
     var mappingId: Int = -1;
@@ -62,6 +63,7 @@ class ActionViewController: UIViewController{
         
         //Either the mappingId is set or the upcomingAction is set (xor), select the propper mappingId
         if (upcomingAction != nil){
+            print("HAYO!");
             laterButton.hidden = true;
             mappingId = upcomingAction!.getId();
         }
@@ -70,6 +72,7 @@ class ActionViewController: UIViewController{
         Just.get(API.getActionUrl(mappingId), headers: SharedData.user.getHeaderMap()) { (response) in
             if (response.ok){
                 //Parse and populate
+                print("Hello!");
                 let action = Mapper<UserAction>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
                 
                 dispatch_async(dispatch_get_main_queue(), {
@@ -197,6 +200,9 @@ class ActionViewController: UIViewController{
                   headers: SharedData.user.getHeaderMap()){ response in
                     
         };
+        if (delegate != nil){
+            delegate!.onDidIt();
+        }
         if (navigationController != nil){
             navigationController!.popViewControllerAnimated(true);
         }
@@ -216,4 +222,8 @@ class ActionViewController: UIViewController{
         Just.put(API.getPutSnoozeUrl(notificationId), json: API.getPutSnoozeBody(date, time: time),
                  headers: SharedData.user.getHeaderMap());
     }
+}
+
+protocol ActionDelegate{
+    func onDidIt();
 }

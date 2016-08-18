@@ -13,8 +13,10 @@ import Just
 import ObjectMapper
 
 
-class FeedController: UITableViewController, UIActionSheetDelegate{
+class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelegate{
     var displayedUpcoming = [UpcomingAction]();
+    var didIt: Bool = false;
+    var selectedActionIndex: Int = -1;
     var selectedGoal: UserGoal? = nil;
     var selectedGoalIndex: Int? = nil;
     
@@ -34,6 +36,17 @@ class FeedController: UITableViewController, UIActionSheetDelegate{
     }
     
     override func viewDidAppear(animated: Bool){
+        if (didIt){
+            SharedData.feedData.didIt(selectedActionIndex);
+            displayedUpcoming = SharedData.feedData.getUpcoming(displayedUpcoming.count-1);
+            if (displayedUpcoming.count == 0){
+                displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
+            }
+            didIt = false;
+            selectedActionIndex = -1;
+            tableView.reloadData();
+        }
+        
         if (selectedGoal != nil && selectedGoalIndex != nil){
             let goals = SharedData.feedData.getGoals();
             
@@ -52,6 +65,10 @@ class FeedController: UITableViewController, UIActionSheetDelegate{
         }
         selectedGoal = nil;
         selectedGoalIndex = nil;
+    }
+    
+    func onDidIt(){
+        didIt = true;
     }
     
     func removeGoalFromFeed(index: Int){
@@ -245,13 +262,16 @@ class FeedController: UITableViewController, UIActionSheetDelegate{
         segue.destinationViewController.hidesBottomBarWhenPushed = true;
         if (segue.identifier == "ShowActionFromFeed"){
             let actionController = segue.destinationViewController as! ActionViewController;
+            actionController.delegate = self;
             if (sender as? UpNextCell) != nil{
                 if let upNext = SharedData.feedData.getUpNextAction(){
                     actionController.upcomingAction = upNext;
+                    selectedActionIndex = -1;
                 }
             }
             else if let selectedCell = sender as? UpcomingCell{
                 let indexPath = tableView.indexPathForCell(selectedCell);
+                selectedActionIndex = indexPath!.row;
                 actionController.upcomingAction = SharedData.feedData.getUpcoming()[indexPath!.row];
             }
         }
