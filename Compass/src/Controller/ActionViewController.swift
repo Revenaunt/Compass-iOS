@@ -25,14 +25,13 @@ class ActionViewController: UIViewController{
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var masterContainer: UIView!
     @IBOutlet weak var hero: UIImageView!
-    @IBOutlet var actionContainer: UIView!
-    @IBOutlet weak var actionTitle: UILabel!
-    @IBOutlet weak var behaviorButton: UIButton!
-    @IBOutlet weak var actionDescription: UILabel!
+    @IBOutlet var actionTitle: UILabel!
+    @IBOutlet var behaviorButton: UIButton!
+    @IBOutlet var actionDescription: UILabel!
+    @IBOutlet var buttonContainer: UIView!
     @IBOutlet weak var laterButton: UIButton!
-    @IBOutlet var rewardContainer: UIView!
-    @IBOutlet weak var rewardHeader: UILabel!
-    @IBOutlet weak var rewardContent: UILabel!
+    @IBOutlet var rewardHeader: UILabel!
+    @IBOutlet var rewardContent: UILabel!
     @IBOutlet var rewardAuthor: UILabel!
     
     var actionConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
@@ -43,27 +42,28 @@ class ActionViewController: UIViewController{
     override func viewDidLoad(){
         //Backup the constraints
         for constraint in masterContainer.constraints{
-            if (constraint.firstItem === rewardContainer || constraint.secondItem === rewardContainer){
+            if (belongsTo(constraint, view: rewardAuthor)){
+                authorConstraints.append(constraint);
+            }
+            else if (belongsTo(constraint, view: rewardHeader) || belongsTo(constraint, view: rewardContent)){
                 rewardConstraints.append(constraint);
             }
-            else if (constraint.firstItem === actionContainer || constraint.secondItem === actionContainer){
+            else{
                 actionConstraints.append(constraint);
-            }
-        }
-        for constraint in rewardContainer.constraints{
-            if (constraint.firstItem === rewardAuthor || constraint.secondItem === rewardAuthor){
-                authorConstraints.append(constraint);
             }
         }
         
         //Remove all items from the master containes (except for the header) and the author
-        actionContainer.removeFromSuperview();
-        rewardContainer.removeFromSuperview();
+        actionTitle.removeFromSuperview();
+        behaviorButton.removeFromSuperview();
+        actionDescription.removeFromSuperview();
+        buttonContainer.removeFromSuperview();
+        rewardHeader.removeFromSuperview();
+        rewardContent.removeFromSuperview();
         rewardAuthor.removeFromSuperview();
         
         //Either the mappingId is set or the upcomingAction is set (xor), select the propper mappingId
         if (upcomingAction != nil){
-            print("HAYO!");
             laterButton.hidden = true;
             mappingId = upcomingAction!.getId();
         }
@@ -72,33 +72,41 @@ class ActionViewController: UIViewController{
         Just.get(API.getActionUrl(mappingId), headers: SharedData.user.getHeaderMap()) { (response) in
             if (response.ok){
                 //Parse and populate
-                print("Hello!");
+                print(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
                 let action = Mapper<UserAction>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     self.actionTitle.text = action!.getTitle();
-                    self.behaviorTitle = action!.getBehaviorTitle()
-                    self.behaviorButton.setTitle(action!.getBehaviorTitle(), forState: UIControlState.Normal)
+                    self.behaviorTitle = action!.getBehaviorTitle();
+                    self.behaviorButton.setTitle(action!.getBehaviorTitle(), forState: UIControlState.Normal);
                     self.behaviorDescription = action!.getBehaviorDescription();
                     self.actionDescription.text = action!.getDescription();
-                    self.masterContainer.addSubview(self.actionContainer);
+                    
+                    self.masterContainer.addSubview(self.actionTitle);
+                    self.masterContainer.addSubview(self.behaviorButton);
+                    self.masterContainer.addSubview(self.actionDescription);
+                    self.masterContainer.addSubview(self.buttonContainer);
                     self.masterContainer.addConstraints(self.actionConstraints);
                     self.masterContainer.setNeedsLayout();
                     self.masterContainer.layoutIfNeeded();
                     self.scrollView.contentSize = self.masterContainer.frame.size;
+                    
+                    //Fetch the reward
+                    self.fetchReward();
                 });
-                
                 //Fetch the hero
                 let category = SharedData.getCategory(action!.getPrimaryCategoryId());
                 if (category != nil && category!.getImageUrl().characters.count != 0){
                     Nuke.taskWith(NSURL(string: category!.getImageUrl())!){
                         self.hero.image = $0.image;
-                        }.resume();
+                    }.resume();
                 }
-                //Fetch the reward
-                self.fetchReward();
             }
         };
+    }
+    
+    private func belongsTo(constraint: NSLayoutConstraint, view: UIView) -> Bool{
+        return constraint.firstItem === view || constraint.secondItem === view;
     }
     
     @IBAction func displayBehaviorDetails(sender: AnyObject) {
@@ -152,15 +160,14 @@ class ActionViewController: UIViewController{
                 dispatch_async(dispatch_get_main_queue(), {
                     self.rewardHeader.text = rewardContent.getHeaderTitle();
                     self.rewardContent.text = rewardContent.getMessage();
-                    self.masterContainer.addSubview(self.rewardContainer);
+                    self.masterContainer.addSubview(self.rewardHeader);
+                    self.masterContainer.addSubview(self.rewardContent);
                     self.masterContainer.addConstraints(self.rewardConstraints);
                     if (rewardContent.isQuote()){
                         self.rewardAuthor.text = rewardContent.getAuthor();
-                        self.rewardContainer.addSubview(self.rewardAuthor);
-                        self.rewardContainer.addConstraints(self.authorConstraints);
+                        self.masterContainer.addSubview(self.rewardAuthor);
+                        self.masterContainer.addConstraints(self.authorConstraints);
                     }
-                    self.rewardContainer.setNeedsLayout();
-                    self.rewardContainer.layoutIfNeeded();
                     self.masterContainer.setNeedsLayout();
                     self.masterContainer.layoutIfNeeded();
                     self.scrollView.contentSize = self.masterContainer.frame.size;
