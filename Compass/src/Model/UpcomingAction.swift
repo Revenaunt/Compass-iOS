@@ -8,7 +8,11 @@
 
 import ObjectMapper
 
-
+//IMPORTANT NOTE: The reason why this class does not extend TDCBase is because it
+//  ain't got an id. This model is special in the sense that it is an abstraction
+//  bundling information about several models. The id comes in a field named
+//  `action_id` as opposed to the regular `id` that TDCBase parses. It also means
+//  different things depending on the value of `type`
 class UpcomingAction: Mappable{
     private let USER_ACTION_TYPE = "useraction";
     private let CUSTOM_ACTION_TYPE = "customaction";
