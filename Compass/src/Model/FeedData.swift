@@ -62,6 +62,23 @@ class FeedData: Mappable, CustomStringConvertible{
         return upcomingActions;
     }
     
+    func getUpcoming(size: Int) -> [UpcomingAction]{
+        var size = size;
+        if (size > upcomingActions.count){
+            size = upcomingActions.count;
+        }
+        else if (size < 0){
+            size = 0;
+        }
+        var list = [UpcomingAction]();
+        var i = 0;
+        while (i < size){
+            list.append(upcomingActions[i]);
+            i += 1;
+        }
+        return list;
+    }
+    
     func getGoals() -> [Goal]{
         return goals;
     }
@@ -69,6 +86,21 @@ class FeedData: Mappable, CustomStringConvertible{
     func addGoals(goals: [Goal], nextGoalBatchUrl: String?){
         self.goals.appendContentsOf(goals);
         self.nextGoalBatchUrl = nextGoalBatchUrl;
+    }
+    
+    func didIt(index: Int){
+        if (index == -1){
+            if (upcomingActions.count == 0){
+                upNextAction = nil;
+            }
+            else{
+                upNextAction = upcomingActions.removeAtIndex(0) as UpcomingAction;
+            }
+        }
+        else{
+            upcomingActions.removeAtIndex(index);
+        }
+        streaks![streaks!.count-1].count += 1;
     }
     
     func removeGoal(goal: Goal){
