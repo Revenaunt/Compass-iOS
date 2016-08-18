@@ -48,7 +48,7 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
     
     override func viewDidLoad(){
         //Background color of the header
-        header.layer.backgroundColor = category.getParsedColor().CGColor
+        header.layer.backgroundColor = category.getParsedColor().CGColor;
         
         //Header image
         if (category.getIconUrl().characters.count != 0){
@@ -70,7 +70,7 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
         
         // If we're showing this goal from the feed, the user has already
         // selected the goal, so we don't need to display these buttons
-        if fromFeed {
+        if (fromFeed){
             buttonContainer.hidden = true;
             removeButton.hidden = false;
         }

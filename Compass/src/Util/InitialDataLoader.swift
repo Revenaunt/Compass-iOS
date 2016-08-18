@@ -21,7 +21,7 @@ class InitialDataLoader{
     }
     
     private static func fetchCategories(){
-        Just.get(API.getCategoriesUrl()){ (response) in
+        Just.get(API.getCategoriesUrl(), headers: user!.getHeaderMap()){ (response) in
             if (response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!)){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
                 SharedData.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
