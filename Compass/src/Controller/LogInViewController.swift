@@ -16,6 +16,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     
@@ -25,7 +26,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         logInButton.backgroundColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 1);
         //The button is white to make it visible in the storyboard, the color is changed to default here
         logInButton.setTitleColor(UIColor.init(red: 0.1, green: 0.46, blue: 0.82, alpha: 1), forState: UIControlState.Normal);
-        logInButton.layer.cornerRadius = 18;
+        logInButton.layer.cornerRadius = 4;
     }
     
     override func viewWillAppear(animated: Bool){
@@ -100,10 +101,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
         }
     }
     
-    private func toggleMenu(showButton: Bool){
+    private func toggleMenu(showButtons: Bool){
         dispatch_async(dispatch_get_main_queue(), {
-            self.logInButton.hidden = !showButton;
-            self.indicator.hidden = showButton;
+            self.logInButton.hidden = !showButtons;
+            self.forgotPasswordButton.hidden = !showButtons;
+            self.indicator.hidden = showButtons;
         });
     }
 }

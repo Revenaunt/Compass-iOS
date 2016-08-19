@@ -211,6 +211,10 @@ class API{
     }
     
     class URL{
+        static func resetPassword() -> String{
+            return "\(BASE_URL)reset-password/"
+        }
+        
         static func userAccount() -> String{
             return "\(BASE_URL)users/accounts/";
         }
@@ -234,6 +238,12 @@ class API{
     }
     
     class BODY{
+        static func resetPassword(email: String) -> [String: String]{
+            var body = [String: String]();
+            body["email"] = email;
+            return body;
+        }
+        
         static func postOrganization(organization: Organization) -> [String: AnyObject]{
             var body = [String: AnyObject]();
             body["organization"] = organization.getId();
