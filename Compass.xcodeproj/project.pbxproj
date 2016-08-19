@@ -58,6 +58,7 @@
 		546F692B1D382F4B0070D73A /* AwardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F692A1D382F4B0070D73A /* AwardsController.swift */; };
 		546F692D1D382F7C0070D73A /* AwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F692C1D382F7C0070D73A /* AwardCell.swift */; };
 		546F692F1D3832080070D73A /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F692E1D3832080070D73A /* Award.swift */; };
+		546FEBE41D678973001E8AC9 /* ResetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546FEBE31D678973001E8AC9 /* ResetController.swift */; };
 		5475BDEF1CC153F100D80D3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475BDEE1CC153F100D80D3E /* API.swift */; };
 		5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; };
 		5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -177,6 +178,7 @@
 		546F692A1D382F4B0070D73A /* AwardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardsController.swift; sourceTree = "<group>"; };
 		546F692C1D382F7C0070D73A /* AwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardCell.swift; sourceTree = "<group>"; };
 		546F692E1D3832080070D73A /* Award.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
+		546FEBE31D678973001E8AC9 /* ResetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetController.swift; sourceTree = "<group>"; };
 		5475BDE81CC1426800D80D3E /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
 		5475BDEE1CC153F100D80D3E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5475BDF01CC16E9300D80D3E /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/iOS/Just.framework; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				546F692A1D382F4B0070D73A /* AwardsController.swift */,
 				54AAD9871D58E7C300AB41E5 /* OrganizationsController.swift */,
 				547E359B1D63939600134CD9 /* PickerController.swift */,
+				546FEBE31D678973001E8AC9 /* ResetController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -787,6 +790,7 @@
 				5477AB751D00BE9E0075A25D /* FooterCell.swift in Sources */,
 				5488FC231CFDF9EF00E758C1 /* UserCategory.swift in Sources */,
 				546F692D1D382F7C0070D73A /* AwardCell.swift in Sources */,
+				546FEBE41D678973001E8AC9 /* ResetController.swift in Sources */,
 				54F60F591CC7F11A00D1424D /* CircleProgressView.swift in Sources */,
 				5468F8471CCEAA8700D5769B /* UpcomingCell.swift in Sources */,
 				547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */,
