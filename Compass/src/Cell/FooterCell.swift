@@ -32,6 +32,8 @@ class FooterCell: UITableViewCell{
     func bind(delegate: FeedController, type: FooterType){
         self.delegate = delegate;
         self.type = type;
+        seeMoreButton.hidden = false;
+        activity.hidden = true;
     }
     
     func end(){
