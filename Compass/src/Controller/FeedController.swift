@@ -197,9 +197,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
                             withRowAnimation: .Automatic);
                         self.goalsFooterCell = nil;
                     }
-                    else{
-                        footer.end();
-                    }
+                    footer.end();
                     self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
                     self.tableView.endUpdates();
                     FeedTypes.setUpdatingGoals(false);
