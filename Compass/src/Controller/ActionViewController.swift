@@ -24,6 +24,7 @@ class ActionViewController: UIViewController{
     //UI components
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var masterContainer: UIView!
+    @IBOutlet weak var imageContainer: UIView!
     @IBOutlet weak var hero: UIImageView!
     @IBOutlet var actionTitle: UILabel!
     @IBOutlet var behaviorButton: UIButton!
@@ -42,7 +43,12 @@ class ActionViewController: UIViewController{
     override func viewDidLoad(){
         //Backup the constraints
         for constraint in masterContainer.constraints{
-            if (belongsTo(constraint, view: rewardAuthor)){
+            if (belongsTo(constraint, view: imageContainer) || belongsTo(constraint, view: hero)){
+                if (belongsTo(constraint, view: actionTitle)){
+                    actionConstraints.append(constraint);
+                }
+            }
+            else if (belongsTo(constraint, view: rewardAuthor)){
                 authorConstraints.append(constraint);
             }
             else if (belongsTo(constraint, view: rewardHeader) || belongsTo(constraint, view: rewardContent)){
@@ -98,8 +104,13 @@ class ActionViewController: UIViewController{
                 let category = SharedData.getCategory(action!.getPrimaryCategoryId());
                 if (category != nil && category!.getImageUrl().characters.count != 0){
                     Nuke.taskWith(NSURL(string: category!.getImageUrl())!){
+                        print("Image loaded, onload");
                         self.hero.image = $0.image;
-                    }.resume();
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.masterContainer.setNeedsLayout();
+                            self.masterContainer.layoutIfNeeded();
+                        });
+                    }//.resume();
                 }
             }
         };
@@ -143,6 +154,7 @@ class ActionViewController: UIViewController{
                 let category = Mapper<ParserModels.UserCategoryArray>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!)?.categories![0];
                 if (category!.getImageUrl().characters.count != 0){
                     Nuke.taskWith(NSURL(string: category!.getImageUrl())!){
+                        print("Image loaded");
                         self.hero.image = $0.image;
                     }.resume();
                 }

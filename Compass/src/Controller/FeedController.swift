@@ -216,7 +216,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
         if (FeedTypes.isHeaderSection(indexPath.section)){
-            return UIScreen.mainScreen().bounds.width*2/3;
+            return UIScreen.mainScreen().bounds.width/2;
         }
         else if (FeedTypes.isStreaksSection(indexPath.section)){
             return 100;
