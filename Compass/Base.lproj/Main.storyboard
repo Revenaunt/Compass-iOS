@@ -652,8 +652,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="398" id="m2e-Cy-o3S">
+                                <rect key="frame" x="0.0" y="92" width="600" height="398"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m2e-Cy-o3S" id="OXg-hG-aoj">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="397"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TDC Master" translatesAutoresizingMaskIntoConstraints="NO" id="QJP-Nz-wbZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="401" height="267"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="QJP-Nz-wbZ" secondAttribute="height" multiplier="3:2" id="1gf-zo-79s"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="QJP-Nz-wbZ" firstAttribute="leading" secondItem="OXg-hG-aoj" secondAttribute="leadingMargin" constant="-8" id="1Av-BF-Tey"/>
+                                        <constraint firstItem="QJP-Nz-wbZ" firstAttribute="top" secondItem="OXg-hG-aoj" secondAttribute="topMargin" constant="-8" id="5gy-pi-5uw"/>
+                                        <constraint firstItem="QJP-Nz-wbZ" firstAttribute="trailing" secondItem="OXg-hG-aoj" secondAttribute="trailingMargin" constant="8" id="XR5-Hc-Am1"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="QJP-Nz-wbZ" secondAttribute="bottom" constant="-8" id="YTr-Oo-POh"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UpNextCell" rowHeight="111" id="9ZF-eR-FAx" customClass="UpNextCell" customModule="Compass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="111"/>
+                                <rect key="frame" x="0.0" y="490" width="600" height="111"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9ZF-eR-FAx" id="AGd-cE-Q6D">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="110"/>
@@ -727,7 +749,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StreaksCell" rowHeight="117" id="4Fv-lH-6eF" customClass="StreaksCell" customModule="Compass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="203" width="600" height="117"/>
+                                <rect key="frame" x="0.0" y="601" width="600" height="117"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Fv-lH-6eF" id="pmZ-MG-Uyt">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="116"/>
@@ -753,7 +775,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UpcomingCell" rowHeight="105" id="lbd-71-qxq" customClass="UpcomingCell" customModule="Compass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="320" width="600" height="105"/>
+                                <rect key="frame" x="0.0" y="718" width="600" height="105"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lbd-71-qxq" id="LSN-Od-JU1">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="104"/>
@@ -798,7 +820,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedGoalCell" rowHeight="100" id="RoT-1z-5rg" customClass="FeedGoalCell" customModule="Compass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="425" width="600" height="100"/>
+                                <rect key="frame" x="0.0" y="823" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RoT-1z-5rg" id="NdQ-zH-vPz">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
@@ -859,7 +881,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FooterCell" rowHeight="47" id="VhU-zq-ODk" customClass="FooterCell" customModule="Compass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="525" width="600" height="47"/>
+                                <rect key="frame" x="0.0" y="923" width="600" height="47"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VhU-zq-ODk" id="29R-CU-hV8">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="46"/>

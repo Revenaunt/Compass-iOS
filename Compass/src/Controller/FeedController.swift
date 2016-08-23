@@ -91,7 +91,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 4;
+        return FeedTypes.getSectionCount();
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -112,19 +112,23 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         var cell: UITableViewCell;
         
         if (indexPath.section == 0){
+            print("Binding header cell");
+            cell = tableView.dequeueReusableCellWithIdentifier("HeaderCell", forIndexPath: indexPath);
+        }
+        else if (indexPath.section == 1){
             print("Binding up next cell");
             cell = tableView.dequeueReusableCellWithIdentifier("UpNextCell", forIndexPath: indexPath);
             let upNextCell = cell as! UpNextCell;
             upNextCell.bind(SharedData.feedData.getUpNextAction(), progress: SharedData.feedData.getProgress()!);
         }
-        else if (indexPath.section == 1){
+        else if (indexPath.section == 2){
             print("Binding feedback cell");
             cell = tableView.dequeueReusableCellWithIdentifier("StreaksCell", forIndexPath: indexPath);
             let streaksCell = cell as! StreaksCell;
             streaksCell.setStreaks(SharedData.feedData.getStreaks()!);
             
         }
-        else if (indexPath.section == 2){
+        else if (indexPath.section == 3){
             //The footer
             if (indexPath.row == displayedUpcoming.count && SharedData.feedData.canLoadMoreActions(displayedUpcoming.count)){
                 print("Binding footer");
@@ -212,16 +216,13 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
         if (indexPath.section == 0){
-            
+            return UIScreen.mainScreen().bounds.width*2/3;
         }
-        else if (indexPath.section == 1){
+        else if (indexPath.section == 2){
             return  200;
             //return FeedbackCell.getCellHeight(SharedData.feedData.getFeedback()!);
         }
-        else if (indexPath.section == 2){
-            
-        }
-        else if (indexPath.section == 3){
+        else if (indexPath.section == 4){
             return 100;
         }
         return 120;
@@ -229,23 +230,23 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         switch (indexPath.section){
-            case 0:
+            case 1:
                 if (SharedData.feedData.getUpNextAction() != nil){
                     performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
                 }
                 break;
             
-            case 1:
+            case 2:
                 tableView.deselectRowAtIndexPath(indexPath, animated: true);
                 break;
             
-            case 2:
+            case 3:
                 if (SharedData.feedData.getUpcoming()[indexPath.row].isUserAction()){
                     performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
                 }
                 break;
             
-            case 3:
+            case 4:
                 let goalCount = SharedData.feedData.getGoals().count
                 if goalCount < indexPath.row {
                     performSegueWithIdentifier("ShowGoalFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
