@@ -20,6 +20,10 @@ class FeedTypes{
         return 0;
     }
     
+    static func isHeaderSection(section: Int) -> Bool{
+        return section == getHeaderSectionPosition();
+    }
+    
     static func hasUpNextAction() -> Bool{
         return feedData.getUpNextAction() != nil;
     }
@@ -64,7 +68,7 @@ class FeedTypes{
         return getUpcomingSectionPosition() + 1;
     }
     
-    static func isGoalsSectionPosition(section: Int) -> Bool{
+    static func isGoalsSection(section: Int) -> Bool{
         return getGoalsSectionPosition() == section;
     }
     
