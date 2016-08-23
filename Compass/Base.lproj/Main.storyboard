@@ -1228,7 +1228,7 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="836"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WkA-6K-knu">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WkA-6K-knu">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="787"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hgj-DZ-wFC" userLabel="Master Container">
@@ -1239,9 +1239,6 @@
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TDC Master" translatesAutoresizingMaskIntoConstraints="NO" id="4vm-sO-jYA" userLabel="Hero">
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="4vm-sO-jYA" secondAttribute="height" multiplier="2:1" id="ZSi-kU-ewn"/>
-                                                        </constraints>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1249,6 +1246,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="4vm-sO-jYA" secondAttribute="bottom" id="6oo-vy-3Xh"/>
                                                     <constraint firstAttribute="trailing" secondItem="4vm-sO-jYA" secondAttribute="trailing" id="IDF-GB-KFX"/>
                                                     <constraint firstItem="4vm-sO-jYA" firstAttribute="leading" secondItem="V2O-zK-2h6" secondAttribute="leading" id="qnQ-X4-XW9"/>
+                                                    <constraint firstAttribute="width" secondItem="V2O-zK-2h6" secondAttribute="height" multiplier="2:1" id="wWU-WT-k9i"/>
                                                     <constraint firstItem="4vm-sO-jYA" firstAttribute="top" secondItem="V2O-zK-2h6" secondAttribute="top" id="zKr-7L-kz5"/>
                                                 </constraints>
                                             </view>

@@ -74,11 +74,13 @@ class ActionViewController: UIViewController{
             mappingId = upcomingAction!.getId();
         }
         
+        print("Mapping id: \(mappingId)")
+        
         //Fetch the action
         Just.get(API.getActionUrl(mappingId), headers: SharedData.user.getHeaderMap()) { (response) in
+            print(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
             if (response.ok){
                 //Parse and populate
-                print(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
                 let action = Mapper<UserAction>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
                 
                 dispatch_async(dispatch_get_main_queue(), {
@@ -104,13 +106,8 @@ class ActionViewController: UIViewController{
                 let category = SharedData.getCategory(action!.getPrimaryCategoryId());
                 if (category != nil && category!.getImageUrl().characters.count != 0){
                     Nuke.taskWith(NSURL(string: category!.getImageUrl())!){
-                        print("Image loaded, onload");
                         self.hero.image = $0.image;
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.masterContainer.setNeedsLayout();
-                            self.masterContainer.layoutIfNeeded();
-                        });
-                    }//.resume();
+                    }.resume();
                 }
             }
         };
@@ -154,7 +151,6 @@ class ActionViewController: UIViewController{
                 let category = Mapper<ParserModels.UserCategoryArray>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!)?.categories![0];
                 if (category!.getImageUrl().characters.count != 0){
                     Nuke.taskWith(NSURL(string: category!.getImageUrl())!){
-                        print("Image loaded");
                         self.hero.image = $0.image;
                     }.resume();
                 }
