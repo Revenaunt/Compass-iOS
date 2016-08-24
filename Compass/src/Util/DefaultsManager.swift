@@ -75,16 +75,16 @@ class DefaultsManager{
     static func getFeedMarkerCount() -> Int{
         var count = 0;
         let defaults = NSUserDefaults.standardUserDefaults();
-        if (defaults.boolForKey(feedMarkerKeys[FeedMarker.General.rawValue])){
+        if (!defaults.boolForKey(feedMarkerKeys[FeedMarker.General.rawValue])){
             count += 1;
         }
-        if (defaults.boolForKey(feedMarkerKeys[FeedMarker.UpNext.rawValue])){
+        if (!defaults.boolForKey(feedMarkerKeys[FeedMarker.UpNext.rawValue])){
             count += 1;
         }
-        if (defaults.boolForKey(feedMarkerKeys[FeedMarker.Progress.rawValue])){
+        if (!defaults.boolForKey(feedMarkerKeys[FeedMarker.Progress.rawValue])){
             count += 1;
         }
-        if (defaults.boolForKey(feedMarkerKeys[FeedMarker.Add.rawValue])){
+        if (!defaults.boolForKey(feedMarkerKeys[FeedMarker.Add.rawValue])){
             count += 1;
         }
         return count;
@@ -122,6 +122,15 @@ class DefaultsManager{
             defaults.setObject(true, forKey: feedMarkerKeys[FeedMarker.Add.rawValue]);
         }
     }
+    
+    static func resetFeedValues(){
+        let defaults = NSUserDefaults.standardUserDefaults();
+        defaults.setObject(false, forKey: feedMarkerKeys[FeedMarker.General.rawValue]);
+        defaults.setObject(false, forKey: feedMarkerKeys[FeedMarker.UpNext.rawValue]);
+        defaults.setObject(false, forKey: feedMarkerKeys[FeedMarker.Progress.rawValue]);
+        defaults.setObject(false, forKey: feedMarkerKeys[FeedMarker.Add.rawValue]);
+    }
+    
     
     private static let actionMarkerKeys = ["action_general", "action_got_it"];
     enum ActionMarker: Int{
