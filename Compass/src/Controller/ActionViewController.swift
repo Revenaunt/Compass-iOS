@@ -24,6 +24,7 @@ class ActionViewController: UIViewController{
     //UI components
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var masterContainer: UIView!
+    @IBOutlet weak var imageContainer: UIView!
     @IBOutlet weak var hero: UIImageView!
     @IBOutlet var actionTitle: UILabel!
     @IBOutlet var behaviorButton: UIButton!
@@ -42,7 +43,12 @@ class ActionViewController: UIViewController{
     override func viewDidLoad(){
         //Backup the constraints
         for constraint in masterContainer.constraints{
-            if (belongsTo(constraint, view: rewardAuthor)){
+            if (belongsTo(constraint, view: imageContainer) || belongsTo(constraint, view: hero)){
+                if (belongsTo(constraint, view: actionTitle)){
+                    actionConstraints.append(constraint);
+                }
+            }
+            else if (belongsTo(constraint, view: rewardAuthor)){
                 authorConstraints.append(constraint);
             }
             else if (belongsTo(constraint, view: rewardHeader) || belongsTo(constraint, view: rewardContent)){
@@ -68,11 +74,13 @@ class ActionViewController: UIViewController{
             mappingId = upcomingAction!.getId();
         }
         
+        print("Mapping id: \(mappingId)")
+        
         //Fetch the action
         Just.get(API.getActionUrl(mappingId), headers: SharedData.user.getHeaderMap()) { (response) in
+            print(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
             if (response.ok){
                 //Parse and populate
-                print(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
                 let action = Mapper<UserAction>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
                 
                 dispatch_async(dispatch_get_main_queue(), {

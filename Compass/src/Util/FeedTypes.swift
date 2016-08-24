@@ -16,12 +16,20 @@ class FeedTypes{
         self.feedData = feedData;
     }
     
+    static func getHeaderSectionPosition() -> Int{
+        return 0;
+    }
+    
+    static func isHeaderSection(section: Int) -> Bool{
+        return section == getHeaderSectionPosition();
+    }
+    
     static func hasUpNextAction() -> Bool{
         return feedData.getUpNextAction() != nil;
     }
     
     static func getUpNextSectionPosition() -> Int{
-        return 0;
+        return getHeaderSectionPosition() + 1;
     }
     
     static func isUpNextSection(section: Int) -> Bool{
@@ -60,7 +68,7 @@ class FeedTypes{
         return getUpcomingSectionPosition() + 1;
     }
     
-    static func isGoalsSectionPosition(section: Int) -> Bool{
+    static func isGoalsSection(section: Int) -> Bool{
         return getGoalsSectionPosition() == section;
     }
     
@@ -70,6 +78,9 @@ class FeedTypes{
     
     static func getSectionItemCount(section: Int) -> Int{
         switch (section){
+            case getHeaderSectionPosition():
+                return 1;
+            
             case getUpNextSectionPosition():
                 return 1;
             
