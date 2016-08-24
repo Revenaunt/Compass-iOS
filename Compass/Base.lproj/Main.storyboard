@@ -936,6 +936,7 @@
                         <attributedString key="attributedTitle"/>
                     </refreshControl>
                     <connections>
+                        <outlet property="addItem" destination="MiY-Xs-VZg" id="xBj-ht-ohf"/>
                         <segue destination="DYE-he-MmB" kind="show" identifier="Library" id="FQ0-HY-QL2"/>
                         <segue destination="Q9M-9N-CVz" kind="show" identifier="ShowActionFromFeed" id="hTQ-xJ-UuW"/>
                     </connections>
@@ -2311,7 +2312,7 @@
         <image name="TDC Master" width="400" height="267"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="LmS-o8-yYE"/>
         <segue reference="k7y-SJ-VTq"/>
-        <segue reference="yRs-pB-MUP"/>
     </inferredMetricsTieBreakers>
 </document>

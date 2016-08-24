@@ -11,9 +11,13 @@ import UIKit
 import Locksmith
 import Just
 import ObjectMapper
+import Instructions
 
 
-class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelegate{
+class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate{
+    
+    @IBOutlet weak var addItem: UIBarButtonItem!
+    
     var displayedUpcoming = [UpcomingAction]();
     var didIt: Bool = false;
     var selectedActionIndex: Int = -1;
@@ -21,6 +25,8 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     var selectedGoalIndex: Int? = nil;
     
     var goalsFooterCell: FooterCell? = nil;
+    
+    let coachMarksController = CoachMarksController();
     
     
     override func viewDidLoad(){
@@ -33,9 +39,13 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         
         //Refresh
         refreshControl!.addTarget(self, action: #selector(FeedController.refresh), forControlEvents: UIControlEvents.ValueChanged);
+        
+        self.coachMarksController.dataSource = self;
     }
     
     override func viewDidAppear(animated: Bool){
+        coachMarksController.startOn(self);
+        
         if (didIt){
             SharedData.feedData.didIt(selectedActionIndex);
             displayedUpcoming = SharedData.feedData.getUpcoming(displayedUpcoming.count-1);
@@ -65,6 +75,23 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         }
         selectedGoal = nil;
         selectedGoalIndex = nil;
+    }
+    
+    func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{
+        return 1;
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
+        return coachMarksController.coachMarkForView(addItem.valueForKey("view") as? UIView);
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkViewsForIndex: Int, coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?){
+            let coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
+            
+            coachViews.bodyView.hintLabel.text = "Hello! I'm a Coach Mark!"
+            coachViews.bodyView.nextLabel.text = "Ok!"
+            
+            return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
     }
     
     func onDidIt(){
