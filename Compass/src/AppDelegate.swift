@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         let defaults = NSBundle.mainBundle().pathForResource("Defaults", ofType: "plist");
         let dict = NSDictionary(contentsOfFile: defaults!);
         NSUserDefaults.standardUserDefaults().registerDefaults(dict as! [String : AnyObject]);
-        DefaultsManager.resetFeedValues();
+        //DefaultsManager.resetFeedValues();
         
         //Fire the notification registration process.
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil);
