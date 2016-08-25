@@ -235,20 +235,20 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         
         switch (TourManager.getFirstUnseenFeedMarker()){
         case .General:
-            coachViews.bodyView.hintLabel.text = "This is your feed, It'll contain content queued up for you to read.";
+            coachViews.bodyView.hintLabel.text = "This is your feed. Check in occasionally for tips and to track your progress.";
             coachViews.bodyView.nextLabel.text = "Next";
             coachViews.arrowView = nil;
             
         case .UpNext:
-            coachViews.bodyView.hintLabel.text = "This is the next notification you may receive. Tap it to view more info.";
+            coachViews.bodyView.hintLabel.text = "This is a tip to help you succeed. Tap and read!";
             coachViews.bodyView.nextLabel.text = "Next";
             
         case .Progress:
-            coachViews.bodyView.hintLabel.text = "This is your daily progress. It tells you about your daily activity.";
+            coachViews.bodyView.hintLabel.text = "This is your daily progress. It helps you stay engaged with your success.";
             coachViews.bodyView.nextLabel.text = "Next";
             
         case .Add:
-            coachViews.bodyView.hintLabel.text = "Tap the (+) button to find more goals.";
+            coachViews.bodyView.hintLabel.text = "Tap the (+) button to browse for more goals.";
             coachViews.bodyView.nextLabel.text = "Finish";
             coachViews.arrowView = nil;
             
