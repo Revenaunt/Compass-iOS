@@ -106,25 +106,32 @@ class TourManager{
      * GOAL LIBRARY MARKERS *
      *----------------------*/
     
-    private static let goalLibraryMarkerKeys = ["goal_library_general"];
+    private static let goalLibraryMarkerKeys = ["goal_library_general", "goal_library_added"];
     enum GoalLibraryMarker: Int{
         case General = 0
+        case Added = 1
         case None
     }
     
-    static func getGoalLibraryMarkerCount() -> Int{
-        var count = 0;
+    //This markers are delivered in two distinct stages, one by one
+    static func getGoalLibraryMarkerCount(added: Bool) -> Int{
         let defaults = NSUserDefaults.standardUserDefaults();
         if (!defaults.boolForKey(goalLibraryMarkerKeys[GoalLibraryMarker.General.rawValue])){
-            count += 1;
+            return 1;
         }
-        return count;
+        if (added && !defaults.boolForKey(goalLibraryMarkerKeys[GoalLibraryMarker.Added.rawValue])){
+            return 1;
+        }
+        return 0;
     }
     
     static func getFirstUnseenGoalLibraryMarker() -> GoalLibraryMarker{
         let defaults = NSUserDefaults.standardUserDefaults();
         if (!defaults.boolForKey(goalLibraryMarkerKeys[GoalLibraryMarker.General.rawValue])){
             return .General;
+        }
+        if (!defaults.boolForKey(goalLibraryMarkerKeys[GoalLibraryMarker.Added.rawValue])){
+            return .Added;
         }
         return .None;
     }
@@ -133,6 +140,9 @@ class TourManager{
         let defaults = NSUserDefaults.standardUserDefaults();
         if (!defaults.boolForKey(goalLibraryMarkerKeys[GoalLibraryMarker.General.rawValue])){
             defaults.setObject(true, forKey: goalLibraryMarkerKeys[GoalLibraryMarker.General.rawValue]);
+        }
+        else if (!defaults.boolForKey(goalLibraryMarkerKeys[GoalLibraryMarker.Added.rawValue])){
+            defaults.setObject(true, forKey: goalLibraryMarkerKeys[GoalLibraryMarker.Added.rawValue]);
         }
     }
     
@@ -260,6 +270,7 @@ class TourManager{
         defaults.setObject(false, forKey: categoryMarkerKeys[CategoryMarker.Skip.rawValue]);
         
         defaults.setObject(false, forKey: goalLibraryMarkerKeys[GoalLibraryMarker.General.rawValue]);
+        defaults.setObject(false, forKey: goalLibraryMarkerKeys[GoalLibraryMarker.Added.rawValue]);
         
         defaults.setObject(false, forKey: feedMarkerKeys[FeedMarker.General.rawValue]);
         defaults.setObject(false, forKey: feedMarkerKeys[FeedMarker.UpNext.rawValue]);

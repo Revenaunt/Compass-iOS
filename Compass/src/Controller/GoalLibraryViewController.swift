@@ -10,11 +10,13 @@ import UIKit
 import Just
 import ObjectMapper
 import Nuke
+import Instructions
 
 
-class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
+class GoalLibraryViewController: UITableViewController, GoalAddedDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate{
     var category: CategoryContent!;
     var goalAddedDelegate: GoalAddedDelegate?;
+    var fromOnBoarding = false;
     
     private var goals = [GoalContent]();
     private var activityCell: LibraryLoadingCell? = nil;
@@ -26,6 +28,8 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     private var selectedGoal: GoalContent? = nil;
     private var goalWasAdded = false;
     
+    private var coachMarksController = CoachMarksController();
+    
     
     override func viewDidLoad(){
         super.viewDidLoad();
@@ -36,6 +40,11 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
         
         //Automatic height calculation
         tableView.rowHeight = UITableViewAutomaticDimension;
+        
+        //Tour
+        coachMarksController.dataSource = self;
+        coachMarksController.delegate = self;
+        coachMarksController.overlayBackgroundColor = UIColor.clearColor();
     }
     
     override func viewDidAppear(animated: Bool){
@@ -64,6 +73,12 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
                     else{
                         let indexPath = NSIndexPath(forRow: self.selectedGoalIndex, inSection: 2);
                         self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade);
+                        
+                        self.coachMarksController = CoachMarksController();
+                        self.coachMarksController.dataSource = self;
+                        self.coachMarksController.delegate = self;
+                        self.coachMarksController.overlayBackgroundColor = UIColor.clearColor();
+                        self.coachMarksController.startOn(self);
                     }
                 }));
                 presentViewController(alert, animated: true, completion: nil);
@@ -99,6 +114,8 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
                         }
                         self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
                         self.tableView.endUpdates();
+                        
+                        self.coachMarksController.startOn(self);
                     });
                 }
             }
@@ -191,6 +208,72 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate{
     func goalAdded(){
         goalWasAdded = true;
         goalAddedDelegate?.goalAdded();
+    }
+    
+    func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{
+        print(TourManager.getGoalLibraryMarkerCount(goalWasAdded));
+        return TourManager.getGoalLibraryMarkerCount(goalWasAdded);
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
+        print(coachMarksForIndex);
+        print(TourManager.getFirstUnseenGoalLibraryMarker());
+        switch (TourManager.getFirstUnseenGoalLibraryMarker()){
+        case .General:
+            let x = UIScreen.mainScreen().bounds.width/2;
+            let y = UIScreen.mainScreen().bounds.height/2-50;
+            var mark = coachMarksController.coachMarkForView();
+            mark.cutoutPath = UIBezierPath(rect: CGRect(x: x, y: y, width: 0, height: 0));
+            mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
+            coachMarksController.overlayBackgroundColor = UIColor.init(hexString: "#2196F3").colorWithAlphaComponent(0.5);
+            return mark;
+            
+        case .Added:
+            print("Getting here, this is even less bueno")
+            let x = UIScreen.mainScreen().bounds.width/2;
+            let y = UIScreen.mainScreen().bounds.height/2-50;
+            var mark = coachMarksController.coachMarkForView();
+            mark.cutoutPath = UIBezierPath(rect: CGRect(x: x, y: y, width: 0, height: 0));
+            mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
+            coachMarksController.overlayBackgroundColor = UIColor.init(hexString: "#2196F3").colorWithAlphaComponent(0.5);
+            return mark;
+            
+        default:
+            break;
+        }
+        print("Getting here, this is not bueno")
+        return coachMarksController.coachMarkForView();
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkViewsForIndex: Int, coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?){
+        
+        var coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
+        
+        switch (TourManager.getFirstUnseenGoalLibraryMarker()){
+        case .General:
+            coachViews.bodyView.hintLabel.text = "Tap the item that describes what you want to do";
+            coachViews.bodyView.nextLabel.text = "OK";
+            coachViews.arrowView = nil;
+            
+        case .Added:
+            if (fromOnBoarding){
+                coachViews.bodyView.hintLabel.text = "You can choose more content or hit back to go to onboarding and finish the process";
+            }
+            else{
+                coachViews.bodyView.hintLabel.text = "You can choose more content or hit back to go to Compass";
+            }
+            coachViews.bodyView.nextLabel.text = "OK";
+            coachViews.arrowView = nil;
+            
+        default:
+            break;
+        }
+        
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView);
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkWillDisappear: CoachMark, forIndex: Int){
+        TourManager.markFirstUnseenGoalLibraryMarker();
     }
 }
 

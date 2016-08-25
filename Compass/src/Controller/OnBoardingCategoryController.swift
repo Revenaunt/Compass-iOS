@@ -17,7 +17,7 @@ class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITab
     
     let categoryLists = SharedData.filteredCategoryLists;
     
-    let coachMarksController = CoachMarksController();
+    private let coachMarksController = CoachMarksController();
     
     
     override func viewDidLoad(){
@@ -118,6 +118,7 @@ class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITab
                 let indexPath = tableView.indexPathForCell(selectedCell)!;
                 goalLibraryController.category = categoryLists[indexPath.section][indexPath.row];
                 goalLibraryController.goalAddedDelegate = self;
+                goalLibraryController.fromOnBoarding = true;
             }
         }
     }

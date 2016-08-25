@@ -21,7 +21,7 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
     
     var organizations: [Organization] = [Organization]();
     
-    let coachMarksController = CoachMarksController();
+    private let coachMarksController = CoachMarksController();
     
     
     override func viewDidLoad(){

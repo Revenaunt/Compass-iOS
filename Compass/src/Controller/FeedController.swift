@@ -28,7 +28,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     var streaksCell: StreaksCell? = nil;
     var goalsFooterCell: FooterCell? = nil;
     
-    let coachMarksController = CoachMarksController();
+    private let coachMarksController = CoachMarksController();
     
     
     override func viewDidLoad(){
