@@ -30,10 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             print("release");
         #endif
         
-        let defaults = NSBundle.mainBundle().pathForResource("Defaults", ofType: "plist");
+        let defaults = NSBundle.mainBundle().pathForResource("TourDefaults", ofType: "plist");
         let dict = NSDictionary(contentsOfFile: defaults!);
         NSUserDefaults.standardUserDefaults().registerDefaults(dict as! [String : AnyObject]);
-        //DefaultsManager.resetFeedValues();
+        TourManager.reset();
         
         //Fire the notification registration process.
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil);

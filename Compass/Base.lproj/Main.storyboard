@@ -2122,6 +2122,7 @@
                         <outlet property="error" destination="Ifi-h1-YYv" id="bR7-Dp-PbW"/>
                         <outlet property="explanation" destination="iuc-yd-Aix" id="uGJ-je-gqI"/>
                         <outlet property="progress" destination="FFA-1S-62z" id="nqF-89-9jd"/>
+                        <outlet property="skipButton" destination="2qw-7F-RIu" id="RSc-82-A5K"/>
                         <outlet property="tableView" destination="Rae-xm-RHM" id="T3T-gJ-4ys"/>
                         <segue destination="tL1-7H-YM5" kind="show" identifier="categoriesFromOrganizations" id="mAh-qC-oht"/>
                     </connections>
