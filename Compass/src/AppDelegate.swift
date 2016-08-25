@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         let defaults = NSBundle.mainBundle().pathForResource("TourDefaults", ofType: "plist");
         let dict = NSDictionary(contentsOfFile: defaults!);
         NSUserDefaults.standardUserDefaults().registerDefaults(dict as! [String : AnyObject]);
-        TourManager.reset();
+        //TourManager.reset();
         
         //Fire the notification registration process.
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil);

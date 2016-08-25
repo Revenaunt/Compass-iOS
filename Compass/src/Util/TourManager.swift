@@ -307,6 +307,8 @@ class TourManager{
         defaults.setObject(false, forKey: goalLibraryMarkerKeys[GoalLibraryMarker.General.rawValue]);
         defaults.setObject(false, forKey: goalLibraryMarkerKeys[GoalLibraryMarker.Added.rawValue]);
         
+        defaults.setObject(false, forKey: goalMarkerKeys[GoalMarker.Add.rawValue]);
+        
         defaults.setObject(false, forKey: feedMarkerKeys[FeedMarker.General.rawValue]);
         defaults.setObject(false, forKey: feedMarkerKeys[FeedMarker.UpNext.rawValue]);
         defaults.setObject(false, forKey: feedMarkerKeys[FeedMarker.Progress.rawValue]);
