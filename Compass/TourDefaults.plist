@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>organization_general</key>
+	<false/>
+	<key>organization_skip</key>
+	<false/>
+	<key>caregory_general</key>
+	<false/>
+	<key>category_skip</key>
+	<false/>
+	<key>goal_library_general</key>
+	<false/>
 	<key>feed_general</key>
 	<false/>
 	<key>feed_up_next</key>

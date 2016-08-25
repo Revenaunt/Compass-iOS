@@ -37,10 +37,10 @@ class TourManager{
     
     static func getFirstUnseenOrganizationMarker() -> OrganizationMarker{
         let defaults = NSUserDefaults.standardUserDefaults();
-        if (!defaults.boolForKey(feedMarkerKeys[OrganizationMarker.General.rawValue])){
+        if (!defaults.boolForKey(organizationMarkerKeys[OrganizationMarker.General.rawValue])){
             return .General;
         }
-        if (!defaults.boolForKey(feedMarkerKeys[OrganizationMarker.Skip.rawValue])){
+        if (!defaults.boolForKey(organizationMarkerKeys[OrganizationMarker.Skip.rawValue])){
             return .Skip;
         }
         return .None;
@@ -48,11 +48,11 @@ class TourManager{
     
     static func markFirstUnseenOrganizationMarker(){
         let defaults = NSUserDefaults.standardUserDefaults();
-        if (!defaults.boolForKey(feedMarkerKeys[OrganizationMarker.General.rawValue])){
-            defaults.setObject(true, forKey: feedMarkerKeys[OrganizationMarker.General.rawValue]);
+        if (!defaults.boolForKey(organizationMarkerKeys[OrganizationMarker.General.rawValue])){
+            defaults.setObject(true, forKey: organizationMarkerKeys[OrganizationMarker.General.rawValue]);
         }
-        else if (!defaults.boolForKey(feedMarkerKeys[OrganizationMarker.Skip.rawValue])){
-            defaults.setObject(true, forKey: feedMarkerKeys[OrganizationMarker.Skip.rawValue]);
+        else if (!defaults.boolForKey(organizationMarkerKeys[OrganizationMarker.Skip.rawValue])){
+            defaults.setObject(true, forKey: organizationMarkerKeys[OrganizationMarker.Skip.rawValue]);
         }
     }
     

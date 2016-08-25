@@ -96,6 +96,7 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
             if (response.ok){
                 print("Posted org");
                 Just.get(API.getCategoriesUrl(), headers: SharedData.user.getHeaderMap()){ (response) in
+                    print(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
                     if (response.ok){
                         print("Fetched cats");
                         let result = String(data: response.content!, encoding:NSUTF8StringEncoding)!;
@@ -104,6 +105,8 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
                         
                         dispatch_async(dispatch_get_main_queue(), {
                             self.transitionToCategories();
+                            self.tableView.hidden = false;
+                            self.progress.hidden = true;
                         });
                     }
                 };
@@ -113,17 +116,15 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
                 print(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
             }
         };
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true);
     }
     
-    
-    
     func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{
-        print(TourManager.getOrganizationMarkerCount());
         return TourManager.getOrganizationMarkerCount();
     }
     
     func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
-        print("did i ever get called \(coachMarksForIndex)");
         switch (TourManager.getFirstUnseenOrganizationMarker()){
         case .General:
             let x = UIScreen.mainScreen().bounds.width/2;
