@@ -78,6 +78,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate, Coach
                         self.coachMarksController.dataSource = self;
                         self.coachMarksController.delegate = self;
                         self.coachMarksController.overlayBackgroundColor = UIColor.clearColor();
+                        
                         self.coachMarksController.startOn(self);
                     }
                 }));
@@ -211,13 +212,10 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate, Coach
     }
     
     func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{
-        print(TourManager.getGoalLibraryMarkerCount(goalWasAdded));
         return TourManager.getGoalLibraryMarkerCount(goalWasAdded);
     }
     
     func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
-        print(coachMarksForIndex);
-        print(TourManager.getFirstUnseenGoalLibraryMarker());
         switch (TourManager.getFirstUnseenGoalLibraryMarker()){
         case .General:
             let x = UIScreen.mainScreen().bounds.width/2;
@@ -229,7 +227,6 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate, Coach
             return mark;
             
         case .Added:
-            print("Getting here, this is even less bueno")
             let x = UIScreen.mainScreen().bounds.width/2;
             let y = UIScreen.mainScreen().bounds.height/2-50;
             var mark = coachMarksController.coachMarkForView();
@@ -241,7 +238,6 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate, Coach
         default:
             break;
         }
-        print("Getting here, this is not bueno")
         return coachMarksController.coachMarkForView();
     }
     

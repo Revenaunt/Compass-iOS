@@ -12,6 +12,10 @@
 	<false/>
 	<key>goal_library_general</key>
 	<false/>
+	<key>goal_library_added</key>
+	<false/>
+	<key>goal_add</key>
+	<false/>
 	<key>feed_general</key>
 	<false/>
 	<key>feed_up_next</key>

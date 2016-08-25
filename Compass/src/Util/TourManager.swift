@@ -148,6 +148,41 @@ class TourManager{
     
     
     /*--------------*
+     * GOAL MARKERS *
+     *--------------*/
+    
+    private static let goalMarkerKeys = ["goal_add"];
+    enum GoalMarker: Int{
+        case Add = 0
+        case None
+    }
+    
+    static func getGoalMarkerCount() -> Int{
+        var count = 0;
+        let defaults = NSUserDefaults.standardUserDefaults();
+        if (!defaults.boolForKey(goalMarkerKeys[GoalMarker.Add.rawValue])){
+            count += 1;
+        }
+        return count;
+    }
+    
+    static func getFirstUnseenGoalMarker() -> GoalMarker{
+        let defaults = NSUserDefaults.standardUserDefaults();
+        if (!defaults.boolForKey(goalMarkerKeys[GoalMarker.Add.rawValue])){
+            return .Add;
+        }
+        return .None;
+    }
+    
+    static func markFirstUnseenGoalMarker(){
+        let defaults = NSUserDefaults.standardUserDefaults();
+        if (!defaults.boolForKey(goalMarkerKeys[GoalMarker.Add.rawValue])){
+            defaults.setObject(true, forKey: goalMarkerKeys[GoalMarker.Add.rawValue]);
+        }
+    }
+    
+    
+    /*--------------*
      * FEED MARKERS *
      *--------------*/
     
