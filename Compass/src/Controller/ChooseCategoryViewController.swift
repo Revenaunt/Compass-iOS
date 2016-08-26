@@ -18,6 +18,8 @@ class ChooseCategoryViewController: UITableViewController, CoachMarksControllerD
     
     
     override func viewDidLoad(){
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        
         //Tour
         coachMarksController.dataSource = self;
         coachMarksController.delegate = self;
@@ -98,6 +100,11 @@ class ChooseCategoryViewController: UITableViewController, CoachMarksControllerD
         default:
             break;
         }
+        
+        let triggerTime = (Int64(NSEC_PER_SEC) * 1);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+            UIApplication.sharedApplication().endIgnoringInteractionEvents();
+        });
         
         return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView);
     }

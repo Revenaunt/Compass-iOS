@@ -51,6 +51,7 @@ class GoalViewController: UIViewController, UIScrollViewDelegate, CoachMarksCont
     
     
     override func viewDidLoad(){
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents();
         //Background color of the header
         header.layer.backgroundColor = category.getParsedColor().CGColor;
         
@@ -194,17 +195,21 @@ class GoalViewController: UIViewController, UIScrollViewDelegate, CoachMarksCont
     
     func coachMarksController(coachMarksController: CoachMarksController, coachMarkViewsForIndex: Int, coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?){
         
-        var coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
+        let coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
         
         switch (TourManager.getFirstUnseenGoalMarker()){
         case .Add:
             coachViews.bodyView.hintLabel.text = "Tap \"SIGN ME UP\" to begin receiving Compass tips.";
             coachViews.bodyView.nextLabel.text = "OK";
-            coachViews.arrowView = nil;
             
         default:
             break;
         }
+        
+        let triggerTime = (Int64(NSEC_PER_SEC) * 1);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+            UIApplication.sharedApplication().endIgnoringInteractionEvents();
+        });
         
         return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView);
     }
