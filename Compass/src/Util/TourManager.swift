@@ -57,14 +57,58 @@ class TourManager{
     }
     
     
+    /*------------------------------*
+     * ON BOARDING CATEGORY MARKERS *
+     *------------------------------*/
+    
+    private static let onBoardingCategoryMarkerKeys = ["ob_category_general", "ob_category_skip"];
+    enum OnBoardingCategoryMarker: Int{
+        case General = 0
+        case Skip = 1
+        case None
+    }
+    
+    static func getOnBoardingCategoryMarkerCount() -> Int{
+        var count = 0;
+        let defaults = NSUserDefaults.standardUserDefaults();
+        if (!defaults.boolForKey(onBoardingCategoryMarkerKeys[OnBoardingCategoryMarker.General.rawValue])){
+            count += 1;
+        }
+        if (!defaults.boolForKey(onBoardingCategoryMarkerKeys[OnBoardingCategoryMarker.Skip.rawValue])){
+            count += 1;
+        }
+        return count;
+    }
+    
+    static func getFirstUnseenOnBoardingCategoryMarker() -> OnBoardingCategoryMarker{
+        let defaults = NSUserDefaults.standardUserDefaults();
+        if (!defaults.boolForKey(onBoardingCategoryMarkerKeys[OnBoardingCategoryMarker.General.rawValue])){
+            return .General;
+        }
+        if (!defaults.boolForKey(onBoardingCategoryMarkerKeys[OnBoardingCategoryMarker.Skip.rawValue])){
+            return .Skip;
+        }
+        return .None;
+    }
+    
+    static func markFirstUnseenOnBoardingCategoryMarker(){
+        let defaults = NSUserDefaults.standardUserDefaults();
+        if (!defaults.boolForKey(onBoardingCategoryMarkerKeys[OnBoardingCategoryMarker.General.rawValue])){
+            defaults.setObject(true, forKey: onBoardingCategoryMarkerKeys[OnBoardingCategoryMarker.General.rawValue]);
+        }
+        else if (!defaults.boolForKey(onBoardingCategoryMarkerKeys[OnBoardingCategoryMarker.Skip.rawValue])){
+            defaults.setObject(true, forKey: onBoardingCategoryMarkerKeys[OnBoardingCategoryMarker.Skip.rawValue]);
+        }
+    }
+    
+    
     /*------------------*
      * CATEGORY MARKERS *
      *------------------*/
     
-    private static let categoryMarkerKeys = ["category_general", "category_skip"];
+    private static let categoryMarkerKeys = ["category_general"];
     enum CategoryMarker: Int{
         case General = 0
-        case Skip = 1
         case None
     }
     
@@ -72,9 +116,6 @@ class TourManager{
         var count = 0;
         let defaults = NSUserDefaults.standardUserDefaults();
         if (!defaults.boolForKey(categoryMarkerKeys[CategoryMarker.General.rawValue])){
-            count += 1;
-        }
-        if (!defaults.boolForKey(categoryMarkerKeys[CategoryMarker.Skip.rawValue])){
             count += 1;
         }
         return count;
@@ -85,9 +126,6 @@ class TourManager{
         if (!defaults.boolForKey(categoryMarkerKeys[CategoryMarker.General.rawValue])){
             return .General;
         }
-        if (!defaults.boolForKey(categoryMarkerKeys[CategoryMarker.Skip.rawValue])){
-            return .Skip;
-        }
         return .None;
     }
     
@@ -95,9 +133,6 @@ class TourManager{
         let defaults = NSUserDefaults.standardUserDefaults();
         if (!defaults.boolForKey(categoryMarkerKeys[CategoryMarker.General.rawValue])){
             defaults.setObject(true, forKey: categoryMarkerKeys[CategoryMarker.General.rawValue]);
-        }
-        else if (!defaults.boolForKey(categoryMarkerKeys[CategoryMarker.Skip.rawValue])){
-            defaults.setObject(true, forKey: categoryMarkerKeys[CategoryMarker.Skip.rawValue]);
         }
     }
     
@@ -291,8 +326,10 @@ class TourManager{
         defaults.setObject(false, forKey: organizationMarkerKeys[OrganizationMarker.General.rawValue]);
         defaults.setObject(false, forKey: organizationMarkerKeys[OrganizationMarker.Skip.rawValue]);
         
+        defaults.setObject(false, forKey: onBoardingCategoryMarkerKeys[OnBoardingCategoryMarker.General.rawValue]);
+        defaults.setObject(false, forKey: onBoardingCategoryMarkerKeys[OnBoardingCategoryMarker.Skip.rawValue]);
+        
         defaults.setObject(false, forKey: categoryMarkerKeys[CategoryMarker.General.rawValue]);
-        defaults.setObject(false, forKey: categoryMarkerKeys[CategoryMarker.Skip.rawValue]);
         
         defaults.setObject(false, forKey: goalLibraryMarkerKeys[GoalLibraryMarker.General.rawValue]);
         defaults.setObject(false, forKey: goalLibraryMarkerKeys[GoalLibraryMarker.Added.rawValue]);

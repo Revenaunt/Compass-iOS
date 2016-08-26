@@ -61,11 +61,11 @@ class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITab
     }
     
     func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{
-        return TourManager.getCategoryMarkerCount();
+        return TourManager.getOnBoardingCategoryMarkerCount();
     }
     
     func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
-        switch (TourManager.getFirstUnseenCategoryMarker()){
+        switch (TourManager.getFirstUnseenOnBoardingCategoryMarker()){
         case .General:
             let x = UIScreen.mainScreen().bounds.width/2;
             let y = UIScreen.mainScreen().bounds.height/2-50;
@@ -90,7 +90,7 @@ class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITab
         
         var coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
         
-        switch (TourManager.getFirstUnseenCategoryMarker()){
+        switch (TourManager.getFirstUnseenOnBoardingCategoryMarker()){
         case .General:
             coachViews.bodyView.hintLabel.text = "Tap the item that describes what you want to do";
             coachViews.bodyView.nextLabel.text = "Next";
@@ -108,7 +108,7 @@ class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITab
     }
     
     func coachMarksController(coachMarksController: CoachMarksController, coachMarkWillDisappear: CoachMark, forIndex: Int){
-        TourManager.markFirstUnseenCategoryMarker();
+        TourManager.markFirstUnseenOnBoardingCategoryMarker();
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
