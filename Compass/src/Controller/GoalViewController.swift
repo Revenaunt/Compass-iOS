@@ -135,6 +135,16 @@ class GoalViewController: UIViewController, UIScrollViewDelegate, CoachMarksCont
     override func viewDidAppear(animated: Bool){
         super.viewDidAppear(animated);
         
+        let container = CGRectMake(scrollView.contentOffset.x, scrollView.contentOffset.y, scrollView.frame.size.width, scrollView.frame.size.height);
+        if (CGRectIntersectsRect(signMeUpButton.frame, container)){
+            self.coachMarksController.startOn(self);
+        }
+        else{
+            scrollView.scrollRectToVisible(signMeUpButton.frame, animated: true);
+        }
+    }
+    
+    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView){
         self.coachMarksController.startOn(self);
     }
     

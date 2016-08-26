@@ -106,7 +106,14 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
                     self.scrollView.contentSize = self.masterContainer.frame.size;
                     
                     if (TourManager.getActionMarkerCount() != 0){
-                        self.scrollView.scrollRectToVisible(self.buttonContainer.frame, animated: true);
+                        let container = CGRectMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y,
+                                                   self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+                        if (CGRectIntersectsRect(self.buttonContainer.frame, container)){
+                            self.coachMarksController.startOn(self);
+                        }
+                        else{
+                            self.scrollView.scrollRectToVisible(self.buttonContainer.frame, animated: true);
+                        }
                     }
                     
                     //Fetch the reward
