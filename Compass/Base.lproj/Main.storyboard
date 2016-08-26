@@ -1376,6 +1376,7 @@
                         <outlet property="actionTitle" destination="36V-sI-Bi6" id="xSG-c6-Dbi"/>
                         <outlet property="behaviorButton" destination="UAW-gx-nRQ" id="RFy-qw-7nZ"/>
                         <outlet property="buttonContainer" destination="TIP-67-qLi" id="NXA-S2-bs0"/>
+                        <outlet property="gotItButton" destination="Jzn-un-a5O" id="lnW-rw-rQ1"/>
                         <outlet property="hero" destination="4vm-sO-jYA" id="ZEP-ig-FJ3"/>
                         <outlet property="imageContainer" destination="V2O-zK-2h6" id="d3y-HO-11L"/>
                         <outlet property="laterButton" destination="HCG-yJ-L4f" id="Iyl-wN-8N9"/>

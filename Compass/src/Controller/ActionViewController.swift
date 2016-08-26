@@ -10,9 +10,10 @@ import UIKit
 import Just
 import ObjectMapper
 import Nuke
+import Instructions
 
 
-class ActionViewController: UIViewController{
+class ActionViewController: UIViewController, CoachMarksControllerDataSource, CoachMarksControllerDelegate, UIScrollViewDelegate{
     //Data
     var delegate: ActionDelegate? = nil;
     var upcomingAction: UpcomingAction? = nil;
@@ -31,6 +32,7 @@ class ActionViewController: UIViewController{
     @IBOutlet var actionDescription: UILabel!
     @IBOutlet var buttonContainer: UIView!
     @IBOutlet weak var laterButton: UIButton!
+    @IBOutlet weak var gotItButton: UIButton!
     @IBOutlet var rewardHeader: UILabel!
     @IBOutlet var rewardContent: UILabel!
     @IBOutlet var rewardAuthor: UILabel!
@@ -38,6 +40,8 @@ class ActionViewController: UIViewController{
     var actionConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
     var rewardConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
     var authorConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
+    
+    private let coachMarksController = CoachMarksController();
     
 
     override func viewDidLoad(){
@@ -58,6 +62,8 @@ class ActionViewController: UIViewController{
                 actionConstraints.append(constraint);
             }
         }
+        
+        scrollView.delegate = self;
         
         //Remove all items from the master containes (except for the header) and the author
         actionTitle.removeFromSuperview();
@@ -99,6 +105,10 @@ class ActionViewController: UIViewController{
                     self.masterContainer.layoutIfNeeded();
                     self.scrollView.contentSize = self.masterContainer.frame.size;
                     
+                    if (TourManager.getActionMarkerCount() != 0){
+                        self.scrollView.scrollRectToVisible(self.buttonContainer.frame, animated: true);
+                    }
+                    
                     //Fetch the reward
                     self.fetchReward();
                 });
@@ -111,6 +121,15 @@ class ActionViewController: UIViewController{
                 }
             }
         };
+        
+        //Tour
+        coachMarksController.dataSource = self;
+        coachMarksController.delegate = self;
+        coachMarksController.overlayBackgroundColor = UIColor.clearColor();
+    }
+    
+    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView){
+        coachMarksController.startOn(self);
     }
     
     private func belongsTo(constraint: NSLayoutConstraint, view: UIView) -> Bool{
@@ -236,6 +255,43 @@ class ActionViewController: UIViewController{
         
         Just.put(API.getPutSnoozeUrl(notificationId), json: API.getPutSnoozeBody(date, time: time),
                  headers: SharedData.user.getHeaderMap());
+    }
+    
+    func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{
+        return TourManager.getActionMarkerCount();
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
+        switch (TourManager.getFirstUnseenActionMarker()){
+        case .GotIt:
+            var mark = coachMarksController.coachMarkForView(gotItButton);
+            mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
+            coachMarksController.overlayBackgroundColor = UIColor.init(hexString: "#2196F3").colorWithAlphaComponent(0.5);
+            return mark;
+            
+        default:
+            break;
+        }
+        return coachMarksController.coachMarkForView();
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkViewsForIndex: Int, coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?){
+        
+        let coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
+        switch (TourManager.getFirstUnseenActionMarker()){
+        case .GotIt:
+            coachViews.bodyView.hintLabel.text = "Tap here to let us know you did this.";
+            coachViews.bodyView.nextLabel.text = "OK";
+            
+        default:
+            break;
+        }
+        
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView);
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkWillDisappear: CoachMark, forIndex: Int){
+        TourManager.markFirstUnseenActionMarker();
     }
 }
 

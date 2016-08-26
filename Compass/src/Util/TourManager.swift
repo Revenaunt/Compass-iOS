@@ -251,19 +251,15 @@ class TourManager{
      * ACTION MARKERS *
      *----------------*/
     
-    private static let actionMarkerKeys = ["action_general", "action_got_it"];
+    private static let actionMarkerKeys = ["action_got_it"];
     enum ActionMarker: Int{
-        case General = 0
-        case GotIt = 1
+        case GotIt = 0
         case None
     }
     
     static func getActionMarkerCount() -> Int{
         var count = 0;
         let defaults = NSUserDefaults.standardUserDefaults();
-        if (!defaults.boolForKey(actionMarkerKeys[ActionMarker.General.rawValue])){
-            count += 1;
-        }
         if (!defaults.boolForKey(actionMarkerKeys[ActionMarker.GotIt.rawValue])){
             count += 1;
         }
@@ -272,9 +268,6 @@ class TourManager{
     
     static func getFirstUnseenActionMarker() -> ActionMarker{
         let defaults = NSUserDefaults.standardUserDefaults();
-        if (!defaults.boolForKey(actionMarkerKeys[ActionMarker.General.rawValue])){
-            return .General;
-        }
         if (!defaults.boolForKey(actionMarkerKeys[ActionMarker.GotIt.rawValue])){
             return .GotIt;
         }
@@ -283,10 +276,7 @@ class TourManager{
     
     static func markFirstUnseenActionMarker(){
         let defaults = NSUserDefaults.standardUserDefaults();
-        if (!defaults.boolForKey(actionMarkerKeys[ActionMarker.General.rawValue])){
-            defaults.setObject(true, forKey: actionMarkerKeys[ActionMarker.General.rawValue]);
-        }
-        else if (!defaults.boolForKey(actionMarkerKeys[ActionMarker.GotIt.rawValue])){
+        if (!defaults.boolForKey(actionMarkerKeys[ActionMarker.GotIt.rawValue])){
             defaults.setObject(true, forKey: actionMarkerKeys[ActionMarker.GotIt.rawValue]);
         }
     }
@@ -314,7 +304,6 @@ class TourManager{
         defaults.setObject(false, forKey: feedMarkerKeys[FeedMarker.Progress.rawValue]);
         defaults.setObject(false, forKey: feedMarkerKeys[FeedMarker.Add.rawValue]);
         
-        defaults.setObject(false, forKey: actionMarkerKeys[ActionMarker.General.rawValue]);
         defaults.setObject(false, forKey: actionMarkerKeys[ActionMarker.GotIt.rawValue]);
     }
 }
