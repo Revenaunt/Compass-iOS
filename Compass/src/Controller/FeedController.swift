@@ -32,6 +32,8 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     
     
     override func viewDidLoad(){
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        
         if (displayedUpcoming.count == 0){
             displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
         }
@@ -255,6 +257,11 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         default:
             break;
         }
+        
+        let triggerTime = (Int64(NSEC_PER_SEC) * 1);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+            UIApplication.sharedApplication().endIgnoringInteractionEvents();
+        });
         
         return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView);
     }

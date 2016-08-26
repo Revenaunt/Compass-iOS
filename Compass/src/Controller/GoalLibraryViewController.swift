@@ -34,6 +34,8 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate, Coach
     override func viewDidLoad(){
         super.viewDidLoad();
         
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        
         //Load first batch of goals
         next = API.getGoalsUrl(category);
         loadMore();
@@ -264,6 +266,11 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate, Coach
         default:
             break;
         }
+        
+        let triggerTime = (Int64(NSEC_PER_SEC) * 1);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+            UIApplication.sharedApplication().endIgnoringInteractionEvents();
+        });
         
         return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView);
     }
