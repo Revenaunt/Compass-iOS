@@ -17,7 +17,6 @@ class GoalCell: UITableViewCell{
     
     
     func setContent(goal: GoalContent, category: CategoryContent){
-        print("Color: \(category.getColor())");
         iconContainer.layer.cornerRadius = iconContainer.frame.size.width/2;
         iconContainer.clipsToBounds = true;
         iconContainer.layer.backgroundColor = category.getParsedColor().CGColor;

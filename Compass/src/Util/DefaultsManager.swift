@@ -10,6 +10,12 @@ import Foundation
 
 
 class DefaultsManager{
+    
+    
+    /*------------------------*
+     * AWARD RELATED DEFAULTS *
+     *------------------------*/
+    
     private static let newBadgeIdArrayKey = "new_badges";
     
     

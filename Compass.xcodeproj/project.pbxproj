@@ -16,6 +16,9 @@
 		5415C9431D58FB1700E01054 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5415C9421D58FB1700E01054 /* Organization.swift */; };
 		5415C9451D59020A00E01054 /* OrganizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5415C9441D59020A00E01054 /* OrganizationCell.swift */; };
 		5424E98D1CE4EA330016B4DD /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5424E98C1CE4EA330016B4DD /* NotificationUtil.swift */; };
+		5427A8F81D6E27D9000A61C0 /* Instructions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5427A8F71D6E27D9000A61C0 /* Instructions.framework */; };
+		5427A8F91D6E27D9000A61C0 /* Instructions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5427A8F71D6E27D9000A61C0 /* Instructions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5427A8FB1D6E3DED000A61C0 /* TourDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5427A8FA1D6E3DED000A61C0 /* TourDefaults.plist */; };
 		544335571CCFC5B800EB066E /* FeedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544335561CCFC5B800EB066E /* FeedTypes.swift */; };
 		544335591CD018DF00EB066E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544335581CD018DF00EB066E /* Goal.swift */; };
 		5443355B1CD019C200EB066E /* CustomGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5443355A1CD019C200EB066E /* CustomGoal.swift */; };
@@ -33,6 +36,7 @@
 		5448276E1CCAC36A00BBC062 /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5448276D1CCAC36A00BBC062 /* Nuke.framework */; };
 		5448276F1CCAC37600BBC062 /* Nuke.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5448276D1CCAC36A00BBC062 /* Nuke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5449E5F11CBD646E0017629E /* LogInViewController.swift */; };
+		544BB8421D6F741600954235 /* TourManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544BB8411D6F741600954235 /* TourManager.swift */; };
 		545627321CF4B029007C3731 /* Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545627311CF4B029007C3731 /* Reward.swift */; };
 		545C639B1D259AC500F48C15 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545C639A1D259AC500F48C15 /* Badge.swift */; };
 		545D98BE1CC68C820037FAEF /* CategoryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BD1CC68C820037FAEF /* CategoryContent.swift */; };
@@ -117,6 +121,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				5448276F1CCAC37600BBC062 /* Nuke.framework in Embed Frameworks */,
+				5427A8F91D6E27D9000A61C0 /* Instructions.framework in Embed Frameworks */,
 				54010E111CC6BAA2009FB013 /* Locksmith.framework in Embed Frameworks */,
 				5499C9C11D62674F00DBAF6C /* Charts.framework in Embed Frameworks */,
 				54437C941CC58D0700D5035C /* ObjectMapper.framework in Embed Frameworks */,
@@ -137,6 +142,8 @@
 		5415C9421D58FB1700E01054 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		5415C9441D59020A00E01054 /* OrganizationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationCell.swift; sourceTree = "<group>"; };
 		5424E98C1CE4EA330016B4DD /* NotificationUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
+		5427A8F71D6E27D9000A61C0 /* Instructions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Instructions.framework; path = Carthage/Build/iOS/Instructions.framework; sourceTree = "<group>"; };
+		5427A8FA1D6E3DED000A61C0 /* TourDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TourDefaults.plist; sourceTree = "<group>"; };
 		544335561CCFC5B800EB066E /* FeedTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTypes.swift; sourceTree = "<group>"; };
 		544335581CD018DF00EB066E /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		5443355A1CD019C200EB066E /* CustomGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGoal.swift; sourceTree = "<group>"; };
@@ -153,6 +160,7 @@
 		5448276B1CCA956000BBC062 /* CategoryHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryHeaderCell.swift; sourceTree = "<group>"; };
 		5448276D1CCAC36A00BBC062 /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
 		5449E5F11CBD646E0017629E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		544BB8411D6F741600954235 /* TourManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourManager.swift; sourceTree = "<group>"; };
 		545627311CF4B029007C3731 /* Reward.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reward.swift; sourceTree = "<group>"; };
 		545C639A1D259AC500F48C15 /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		545D98BD1CC68C820037FAEF /* CategoryContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryContent.swift; sourceTree = "<group>"; };
@@ -231,6 +239,7 @@
 				547C466D1CBBF9EC00953735 /* Locksmith.framework in Frameworks */,
 				5499C9C01D62674F00DBAF6C /* Charts.framework in Frameworks */,
 				5448276E1CCAC36A00BBC062 /* Nuke.framework in Frameworks */,
+				5427A8F81D6E27D9000A61C0 /* Instructions.framework in Frameworks */,
 				6CC3A5F08D855A98FEA253CF /* libPods-Compass.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +316,7 @@
 				545D98C31CC69A890037FAEF /* ParserModels.swift */,
 				547E56D21D397A1D00572A29 /* DefaultsManager.swift */,
 				5446E3151D624BEE009E661F /* Extensions.swift */,
+				544BB8411D6F741600954235 /* TourManager.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -339,6 +349,7 @@
 		548031001CB6B27F00112807 = {
 			isa = PBXGroup;
 			children = (
+				5427A8F71D6E27D9000A61C0 /* Instructions.framework */,
 				5480310B1CB6B27F00112807 /* Compass */,
 				548031231CB6B27F00112807 /* CompassTests */,
 				5480312E1CB6B27F00112807 /* CompassUITests */,
@@ -370,6 +381,7 @@
 				5455FBBA1D08C6B400526F74 /* src */,
 				548031161CB6B27F00112807 /* Assets.xcassets */,
 				548031131CB6B27F00112807 /* Compass.xcdatamodeld */,
+				5427A8FA1D6E3DED000A61C0 /* TourDefaults.plist */,
 				5480311B1CB6B27F00112807 /* Info.plist */,
 				548031181CB6B27F00112807 /* LaunchScreen.storyboard */,
 				548031101CB6B27F00112807 /* Main.storyboard */,
@@ -572,6 +584,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5427A8FB1D6E3DED000A61C0 /* TourDefaults.plist in Resources */,
 				5480311A1CB6B27F00112807 /* LaunchScreen.storyboard in Resources */,
 				548031171CB6B27F00112807 /* Assets.xcassets in Resources */,
 				548031121CB6B27F00112807 /* Main.storyboard in Resources */,
@@ -788,6 +801,7 @@
 				544614251CC9495C00F2B441 /* GoalContent.swift in Sources */,
 				545D98C21CC697100037FAEF /* TDCContent.swift in Sources */,
 				5477AB751D00BE9E0075A25D /* FooterCell.swift in Sources */,
+				544BB8421D6F741600954235 /* TourManager.swift in Sources */,
 				5488FC231CFDF9EF00E758C1 /* UserCategory.swift in Sources */,
 				546F692D1D382F7C0070D73A /* AwardCell.swift in Sources */,
 				546FEBE41D678973001E8AC9 /* ResetController.swift in Sources */,

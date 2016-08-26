@@ -9,15 +9,19 @@
 import UIKit;
 import Just;
 import ObjectMapper;
+import Instructions;
 
 
-class OrganizationsController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class OrganizationsController: UIViewController, UITableViewDelegate, UITableViewDataSource, CoachMarksControllerDataSource, CoachMarksControllerDelegate{
     @IBOutlet weak var explanation: UITextView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progress: UIActivityIndicatorView!
     @IBOutlet weak var error: UILabel!
+    @IBOutlet weak var skipButton: UIButton!
     
     var organizations: [Organization] = [Organization]();
+    
+    private let coachMarksController = CoachMarksController();
     
     
     override func viewDidLoad(){
@@ -25,6 +29,11 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
         
         //Automatic height calculation
         tableView.rowHeight = UITableViewAutomaticDimension;
+        
+        //Tour
+        coachMarksController.dataSource = self;
+        coachMarksController.delegate = self;
+        coachMarksController.overlayBackgroundColor = UIColor.clearColor();
         
         loadData();
     }
@@ -41,6 +50,7 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
                     self.progress.hidden = true;
                     self.tableView.hidden = false;
                     self.tableView.reloadData();
+                    self.coachMarksController.startOn(self);
                 });
             }
             else{
@@ -86,6 +96,7 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
             if (response.ok){
                 print("Posted org");
                 Just.get(API.getCategoriesUrl(), headers: SharedData.user.getHeaderMap()){ (response) in
+                    print(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
                     if (response.ok){
                         print("Fetched cats");
                         let result = String(data: response.content!, encoding:NSUTF8StringEncoding)!;
@@ -94,6 +105,8 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
                         
                         dispatch_async(dispatch_get_main_queue(), {
                             self.transitionToCategories();
+                            self.tableView.hidden = false;
+                            self.progress.hidden = true;
                         });
                     }
                 };
@@ -103,6 +116,59 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
                 print(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
             }
         };
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true);
+    }
+    
+    func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{
+        return TourManager.getOrganizationMarkerCount();
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
+        switch (TourManager.getFirstUnseenOrganizationMarker()){
+        case .General:
+            let x = UIScreen.mainScreen().bounds.width/2;
+            let y = UIScreen.mainScreen().bounds.height/2-50;
+            var mark = coachMarksController.coachMarkForView();
+            mark.cutoutPath = UIBezierPath(rect: CGRect(x: x, y: y, width: 0, height: 0));
+            mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
+            coachMarksController.overlayBackgroundColor = UIColor.init(hexString: "#2196F3").colorWithAlphaComponent(0.5);
+            return mark;
+            
+        case .Skip:
+            var mark = coachMarksController.coachMarkForView(skipButton);
+            mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
+            return mark;
+            
+        default:
+            break;
+        }
+        return coachMarksController.coachMarkForView();
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkViewsForIndex: Int, coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?){
+        
+        var coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
+        
+        switch (TourManager.getFirstUnseenOrganizationMarker()){
+        case .General:
+            coachViews.bodyView.hintLabel.text = "Review this list and tap your organization name";
+            coachViews.bodyView.nextLabel.text = "Next";
+            coachViews.arrowView = nil;
+            
+        case .Skip:
+            coachViews.bodyView.hintLabel.text = "Tap here if you want to skip";
+            coachViews.bodyView.nextLabel.text = "OK";
+            
+        default:
+            break;
+        }
+        
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView);
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkWillDisappear: CoachMark, forIndex: Int){
+        TourManager.markFirstUnseenOrganizationMarker();
     }
     
     @IBAction func retry(sender: UITapGestureRecognizer){

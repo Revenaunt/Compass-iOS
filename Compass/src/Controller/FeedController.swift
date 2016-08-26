@@ -11,16 +11,24 @@ import UIKit
 import Locksmith
 import Just
 import ObjectMapper
+import Instructions
 
 
-class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelegate{
+class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate{
+    
+    @IBOutlet weak var addItem: UIBarButtonItem!
+    
     var displayedUpcoming = [UpcomingAction]();
     var didIt: Bool = false;
     var selectedActionIndex: Int = -1;
     var selectedGoal: UserGoal? = nil;
     var selectedGoalIndex: Int? = nil;
     
+    var upNextCell: UpNextCell? = nil;
+    var streaksCell: StreaksCell? = nil;
     var goalsFooterCell: FooterCell? = nil;
+    
+    private let coachMarksController = CoachMarksController();
     
     
     override func viewDidLoad(){
@@ -33,6 +41,11 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         
         //Refresh
         refreshControl!.addTarget(self, action: #selector(FeedController.refresh), forControlEvents: UIControlEvents.ValueChanged);
+        
+        //Tour
+        coachMarksController.dataSource = self;
+        coachMarksController.delegate = self;
+        coachMarksController.overlayBackgroundColor = UIColor.clearColor();
     }
     
     override func viewDidAppear(animated: Bool){
@@ -65,6 +78,8 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         }
         selectedGoal = nil;
         selectedGoalIndex = nil;
+        
+        coachMarksController.startOn(self);
     }
     
     func onDidIt(){
@@ -119,12 +134,14 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             print("Binding up next cell");
             cell = tableView.dequeueReusableCellWithIdentifier("UpNextCell", forIndexPath: indexPath);
             let upNextCell = cell as! UpNextCell;
+            self.upNextCell = upNextCell;
             upNextCell.bind(SharedData.feedData.getUpNextAction(), progress: SharedData.feedData.getProgress()!);
         }
         else if (FeedTypes.isStreaksSection(indexPath.section)){
             print("Binding streaks cell");
             cell = tableView.dequeueReusableCellWithIdentifier("StreaksCell", forIndexPath: indexPath);
             let streaksCell = cell as! StreaksCell;
+            self.streaksCell = streaksCell;
             streaksCell.setStreaks(SharedData.feedData.getStreaks()!);
             
         }
@@ -160,6 +177,94 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         }
         
         return cell;
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+        if (FeedTypes.isHeaderSection(indexPath.section)){
+            return UIScreen.mainScreen().bounds.width/2;
+        }
+        else if (FeedTypes.isStreaksSection(indexPath.section)){
+            return 100;
+        }
+        else if (FeedTypes.isGoalsSection(indexPath.section)){
+            return 100;
+        }
+        return 120;
+    }
+    
+    func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{
+        return TourManager.getFeedMarkerCount();
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
+        print("CoackMarksForIndex \(coachMarksForIndex)");
+        switch (TourManager.getFirstUnseenFeedMarker()){
+        case .General:
+            let x = UIScreen.mainScreen().bounds.width/2;
+            let y = UIScreen.mainScreen().bounds.height/2-50;
+            var mark = coachMarksController.coachMarkForView();
+            mark.cutoutPath = UIBezierPath(rect: CGRect(x: x, y: y, width: 0, height: 0));
+            mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
+            coachMarksController.overlayBackgroundColor = UIColor.init(hexString: "#2196F3").colorWithAlphaComponent(0.5);
+            return mark;
+            
+        case .UpNext:
+            var mark = coachMarksController.coachMarkForView(upNextCell);
+            mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
+            return mark;
+            
+        case .Progress:
+            var mark = coachMarksController.coachMarkForView(streaksCell);
+            mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
+            return mark;
+            
+        case .Add:
+            var mark = coachMarksController.coachMarkForView(addItem.valueForKey("view") as? UIView);
+            mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
+            return mark;
+            
+        default:
+            break;
+        }
+        return coachMarksController.coachMarkForView(addItem.valueForKey("view") as? UIView);
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkViewsForIndex: Int, coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?){
+        
+        var coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
+        
+        switch (TourManager.getFirstUnseenFeedMarker()){
+        case .General:
+            coachViews.bodyView.hintLabel.text = "This is your feed. Check in occasionally for tips and to track your progress.";
+            coachViews.bodyView.nextLabel.text = "Next";
+            coachViews.arrowView = nil;
+            
+        case .UpNext:
+            coachViews.bodyView.hintLabel.text = "This is a tip to help you succeed. Tap and read!";
+            coachViews.bodyView.nextLabel.text = "Next";
+            
+        case .Progress:
+            coachViews.bodyView.hintLabel.text = "This is your daily progress. It helps you stay engaged with your success.";
+            coachViews.bodyView.nextLabel.text = "Next";
+            
+        case .Add:
+            coachViews.bodyView.hintLabel.text = "Tap the (+) button to browse for more goals.";
+            coachViews.bodyView.nextLabel.text = "Finish";
+            coachViews.arrowView = nil;
+            
+        default:
+            break;
+        }
+        
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView);
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkWillDisappear: CoachMark, forIndex: Int){
+        if (TourManager.getFirstUnseenFeedMarker() == TourManager.FeedMarker.UpNext){
+            let indexPath = NSIndexPath(forRow: 0, inSection: FeedTypes.getUpNextSectionPosition());
+            tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: true);
+        }
+        TourManager.markFirstUnseenFeedMarker();
     }
     
     func loadMoreUpcoming(){
@@ -214,45 +319,32 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         self.performSegueWithIdentifier("Library", sender: self);
     }
     
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
-        if (FeedTypes.isHeaderSection(indexPath.section)){
-            return UIScreen.mainScreen().bounds.width/2;
-        }
-        else if (FeedTypes.isStreaksSection(indexPath.section)){
-            return 100;
-        }
-        else if (FeedTypes.isGoalsSection(indexPath.section)){
-            return 100;
-        }
-        return 120;
-    }
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         switch (indexPath.section){
-            case FeedTypes.getUpNextSectionPosition():
-                if (SharedData.feedData.getUpNextAction() != nil){
-                    performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
-                }
-                break;
+        case FeedTypes.getUpNextSectionPosition():
+            if (SharedData.feedData.getUpNextAction() != nil){
+                performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
+            }
+            break;
             
-            case FeedTypes.getStreaksSectionPosition():
-                tableView.deselectRowAtIndexPath(indexPath, animated: true);
-                break;
+        case FeedTypes.getStreaksSectionPosition():
+            tableView.deselectRowAtIndexPath(indexPath, animated: true);
+            break;
             
-            case FeedTypes.getUpcomingSectionPosition():
-                if (SharedData.feedData.getUpcoming()[indexPath.row].isUserAction()){
-                    performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
-                }
-                break;
+        case FeedTypes.getUpcomingSectionPosition():
+            if (SharedData.feedData.getUpcoming()[indexPath.row].isUserAction()){
+                performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
+            }
+            break;
             
-            case FeedTypes.getGoalsSectionPosition():
-                let goalCount = SharedData.feedData.getGoals().count
-                if goalCount < indexPath.row {
-                    performSegueWithIdentifier("ShowGoalFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
-                }
-                break;
-            default:
-                break;
+        case FeedTypes.getGoalsSectionPosition():
+            let goalCount = SharedData.feedData.getGoals().count
+            if goalCount < indexPath.row {
+                performSegueWithIdentifier("ShowGoalFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
+            }
+            break;
+        default:
+            break;
         }
     }
     

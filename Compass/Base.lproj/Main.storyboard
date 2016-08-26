@@ -936,6 +936,7 @@
                         <attributedString key="attributedTitle"/>
                     </refreshControl>
                     <connections>
+                        <outlet property="addItem" destination="MiY-Xs-VZg" id="xBj-ht-ohf"/>
                         <segue destination="DYE-he-MmB" kind="show" identifier="Library" id="FQ0-HY-QL2"/>
                         <segue destination="Q9M-9N-CVz" kind="show" identifier="ShowActionFromFeed" id="hTQ-xJ-UuW"/>
                     </connections>
@@ -1375,6 +1376,7 @@
                         <outlet property="actionTitle" destination="36V-sI-Bi6" id="xSG-c6-Dbi"/>
                         <outlet property="behaviorButton" destination="UAW-gx-nRQ" id="RFy-qw-7nZ"/>
                         <outlet property="buttonContainer" destination="TIP-67-qLi" id="NXA-S2-bs0"/>
+                        <outlet property="gotItButton" destination="Jzn-un-a5O" id="lnW-rw-rQ1"/>
                         <outlet property="hero" destination="4vm-sO-jYA" id="ZEP-ig-FJ3"/>
                         <outlet property="imageContainer" destination="V2O-zK-2h6" id="d3y-HO-11L"/>
                         <outlet property="laterButton" destination="HCG-yJ-L4f" id="Iyl-wN-8N9"/>
@@ -1627,20 +1629,20 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f7G-u9-0cN" userLabel="Button Container">
-                                                <rect key="frame" x="381" y="395" width="219" height="40"/>
+                                                <rect key="frame" x="367" y="395" width="233" height="40"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rse-AQ-Nbt">
-                                                        <rect key="frame" x="120" y="5" width="71" height="30"/>
-                                                        <state key="normal" title="YES I'M IN"/>
-                                                        <connections>
-                                                            <action selector="yesImIn" destination="i24-uW-uw0" eventType="touchUpInside" id="XEf-kW-Gpn"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCV-RW-kLx">
                                                         <rect key="frame" x="20" y="5" width="72" height="30"/>
                                                         <state key="normal" title="NOT NOW"/>
                                                         <connections>
                                                             <action selector="notNow" destination="i24-uW-uw0" eventType="touchUpInside" id="6Gr-dM-flN"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rse-AQ-Nbt">
+                                                        <rect key="frame" x="120" y="5" width="85" height="30"/>
+                                                        <state key="normal" title="SIGN ME UP"/>
+                                                        <connections>
+                                                            <action selector="yesImIn" destination="i24-uW-uw0" eventType="touchUpInside" id="XEf-kW-Gpn"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1747,6 +1749,7 @@
                         <outlet property="reward" destination="7kX-Ii-MQD" id="Ppr-hI-iRa"/>
                         <outlet property="rewardHeader" destination="rPB-gY-DIT" id="g5j-yB-RTz"/>
                         <outlet property="scrollView" destination="lWg-1j-2Xn" id="qwQ-tB-NQV"/>
+                        <outlet property="signMeUpButton" destination="rse-AQ-Nbt" id="igA-n0-kfW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nG7-R6-NYO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2121,6 +2124,7 @@
                         <outlet property="error" destination="Ifi-h1-YYv" id="bR7-Dp-PbW"/>
                         <outlet property="explanation" destination="iuc-yd-Aix" id="uGJ-je-gqI"/>
                         <outlet property="progress" destination="FFA-1S-62z" id="nqF-89-9jd"/>
+                        <outlet property="skipButton" destination="2qw-7F-RIu" id="RSc-82-A5K"/>
                         <outlet property="tableView" destination="Rae-xm-RHM" id="T3T-gJ-4ys"/>
                         <segue destination="tL1-7H-YM5" kind="show" identifier="categoriesFromOrganizations" id="mAh-qC-oht"/>
                     </connections>
@@ -2311,7 +2315,7 @@
         <image name="TDC Master" width="400" height="267"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="k7y-SJ-VTq"/>
-        <segue reference="yRs-pB-MUP"/>
+        <segue reference="LmS-o8-yYE"/>
+        <segue reference="hYs-3k-Sn0"/>
     </inferredMetricsTieBreakers>
 </document>

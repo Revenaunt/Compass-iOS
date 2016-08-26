@@ -10,9 +10,10 @@ import UIKit
 import Nuke
 import Just
 import ObjectMapper
+import Instructions
 
 
-class GoalViewController: UIViewController, UIScrollViewDelegate{
+class GoalViewController: UIViewController, UIScrollViewDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate{
     //Delegate
     var delegate: GoalAddedDelegate!;
     
@@ -32,6 +33,7 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
     
     @IBOutlet weak var goalTitle: UILabel!
     @IBOutlet weak var goalDescription: UILabel!
+    @IBOutlet weak var signMeUpButton: UIButton!
     
     @IBOutlet weak var contentContainer: UIView!
     @IBOutlet var rewardHeader: UILabel!
@@ -44,6 +46,8 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
     private var rewardHeaderConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
     private var rewardConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
     private var authorConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
+    
+    private let coachMarksController = CoachMarksController();
     
     
     override func viewDidLoad(){
@@ -121,6 +125,27 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
                 });
             }
         }
+        
+        //Tour
+        coachMarksController.dataSource = self;
+        coachMarksController.delegate = self;
+        coachMarksController.overlayBackgroundColor = UIColor.clearColor();
+    }
+    
+    override func viewDidAppear(animated: Bool){
+        super.viewDidAppear(animated);
+        
+        let container = CGRectMake(scrollView.contentOffset.x, scrollView.contentOffset.y, scrollView.frame.size.width, scrollView.frame.size.height);
+        if (CGRectIntersectsRect(signMeUpButton.frame, container)){
+            self.coachMarksController.startOn(self);
+        }
+        else{
+            scrollView.scrollRectToVisible(signMeUpButton.frame, animated: true);
+        }
+    }
+    
+    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView){
+        self.coachMarksController.startOn(self);
     }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView, decelerate: Bool){
@@ -144,6 +169,48 @@ class GoalViewController: UIViewController, UIScrollViewDelegate{
             SharedData.feedData.removeGoal(userGoal!);
             navigationController!.popViewControllerAnimated(true);
         }
+    }
+    
+    func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{
+        if (fromFeed){
+            return 0;
+        }
+        return TourManager.getGoalMarkerCount();
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
+        switch (TourManager.getFirstUnseenGoalMarker()){
+        case .Add:
+            var mark = coachMarksController.coachMarkForView(signMeUpButton);
+            mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
+            coachMarksController.overlayBackgroundColor = UIColor.init(hexString: "#2196F3").colorWithAlphaComponent(0.5);
+            return mark;
+            
+        default:
+            break;
+        }
+        return coachMarksController.coachMarkForView();
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkViewsForIndex: Int, coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?){
+        
+        var coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
+        
+        switch (TourManager.getFirstUnseenGoalMarker()){
+        case .Add:
+            coachViews.bodyView.hintLabel.text = "Tap \"SIGN ME UP\" to begin receiving Compass tips.";
+            coachViews.bodyView.nextLabel.text = "OK";
+            coachViews.arrowView = nil;
+            
+        default:
+            break;
+        }
+        
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView);
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkWillDisappear: CoachMark, forIndex: Int){
+        TourManager.markFirstUnseenGoalMarker();
     }
 }
 
