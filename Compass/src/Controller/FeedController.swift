@@ -88,7 +88,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     
     func removeGoalFromFeed(index: Int){
         tableView.beginUpdates();
-        tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: selectedGoalIndex!, inSection:3)], withRowAnimation: .Automatic);
+        tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: selectedGoalIndex!, inSection: FeedTypes.getGoalsSectionPosition())], withRowAnimation: .Automatic);
         tableView.endUpdates();
         
         if (SharedData.feedData.getGoals().count == 0 && goalsFooterCell != nil){
