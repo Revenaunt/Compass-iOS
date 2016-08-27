@@ -45,7 +45,9 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
     
 
     override func viewDidLoad(){
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        if (TourManager.getActionMarkerCount() != 0){
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        }
         
         //Backup the constraints
         for constraint in masterContainer.constraints{

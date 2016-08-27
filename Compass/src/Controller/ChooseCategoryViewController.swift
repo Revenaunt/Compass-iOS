@@ -18,7 +18,9 @@ class ChooseCategoryViewController: UITableViewController, CoachMarksControllerD
     
     
     override func viewDidLoad(){
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        if (TourManager.getCategoryMarkerCount() != 0){
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        }
         
         //Tour
         coachMarksController.dataSource = self;

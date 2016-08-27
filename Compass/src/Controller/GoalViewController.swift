@@ -51,7 +51,10 @@ class GoalViewController: UIViewController, UIScrollViewDelegate, CoachMarksCont
     
     
     override func viewDidLoad(){
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        if (TourManager.getGoalMarkerCount() != 0){
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        }
+        
         //Background color of the header
         header.layer.backgroundColor = category.getParsedColor().CGColor;
         

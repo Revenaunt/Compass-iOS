@@ -34,7 +34,9 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate, Coach
     override func viewDidLoad(){
         super.viewDidLoad();
         
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        if (TourManager.getGoalLibraryMarkerCount(false) != 0){
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        }
         
         //Load first batch of goals
         next = API.getGoalsUrl(category);
