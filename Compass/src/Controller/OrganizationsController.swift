@@ -25,7 +25,9 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
     
     
     override func viewDidLoad(){
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        if (TourManager.getOrganizationMarkerCount() != 0){
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        }
         
         explanation.textContainerInset = UIEdgeInsetsMake(14, 20, 14, 20);
         

@@ -21,7 +21,9 @@ class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITab
     
     
     override func viewDidLoad(){
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        if (TourManager.getOnBoardingCategoryMarkerCount() != 0){
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        }
         
         explanation.textContainerInset = UIEdgeInsetsMake(14, 20, 14, 20);
         

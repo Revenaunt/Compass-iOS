@@ -32,7 +32,9 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     
     
     override func viewDidLoad(){
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        if (TourManager.getFeedMarkerCount() != 0){
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        }
         
         if (displayedUpcoming.count == 0){
             displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
