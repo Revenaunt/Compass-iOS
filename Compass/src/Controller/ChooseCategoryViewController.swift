@@ -25,7 +25,7 @@ class ChooseCategoryViewController: UITableViewController, CoachMarksControllerD
         //Tour
         coachMarksController.dataSource = self;
         coachMarksController.delegate = self;
-        coachMarksController.overlayBackgroundColor = UIColor.clearColor();
+        coachMarksController.overlay.color = UIColor.clearColor();
     }
     
     override func viewDidAppear(animated: Bool){
@@ -77,21 +77,21 @@ class ChooseCategoryViewController: UITableViewController, CoachMarksControllerD
         case .General:
             let x = UIScreen.mainScreen().bounds.width/2;
             let y = UIScreen.mainScreen().bounds.height/2-50;
-            var mark = coachMarksController.coachMarkForView();
+            var mark = coachMarksController.helper.coachMarkForView();
             mark.cutoutPath = UIBezierPath(rect: CGRect(x: x, y: y, width: 0, height: 0));
             mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
-            coachMarksController.overlayBackgroundColor = UIColor.init(hexString: "#2196F3").colorWithAlphaComponent(0.5);
+            coachMarksController.overlay.color = UIColor.init(hexString: "#2196F3").colorWithAlphaComponent(0.5);
             return mark;
             
         default:
             break;
         }
-        return coachMarksController.coachMarkForView();
+        return coachMarksController.helper.coachMarkForView();
     }
     
     func coachMarksController(coachMarksController: CoachMarksController, coachMarkViewsForIndex: Int, coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?){
         
-        var coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
+        var coachViews = coachMarksController.helper.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
         
         switch (TourManager.getFirstUnseenCategoryMarker()){
         case .General:

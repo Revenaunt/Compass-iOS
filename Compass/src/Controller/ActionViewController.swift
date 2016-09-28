@@ -136,7 +136,7 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
         //Tour
         coachMarksController.dataSource = self;
         coachMarksController.delegate = self;
-        coachMarksController.overlayBackgroundColor = UIColor.clearColor();
+        coachMarksController.overlay.color = UIColor.clearColor();
     }
     
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView){
@@ -275,20 +275,20 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
     func coachMarksController(coachMarksController: CoachMarksController, coachMarkForIndex coachMarksForIndex: Int) -> CoachMark{
         switch (TourManager.getFirstUnseenActionMarker()){
         case .GotIt:
-            var mark = coachMarksController.coachMarkForView(gotItButton);
+            var mark = coachMarksController.helper.coachMarkForView(gotItButton);
             mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
-            coachMarksController.overlayBackgroundColor = UIColor.init(hexString: "#2196F3").colorWithAlphaComponent(0.5);
+            coachMarksController.overlay.color = UIColor.init(hexString: "#2196F3").colorWithAlphaComponent(0.5);
             return mark;
             
         default:
             break;
         }
-        return coachMarksController.coachMarkForView();
+        return coachMarksController.helper.coachMarkForView();
     }
     
     func coachMarksController(coachMarksController: CoachMarksController, coachMarkViewsForIndex: Int, coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?){
         
-        let coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
+        let coachViews = coachMarksController.helper.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
         switch (TourManager.getFirstUnseenActionMarker()){
         case .GotIt:
             coachViews.bodyView.hintLabel.text = "Tap here to let us know you did this.";

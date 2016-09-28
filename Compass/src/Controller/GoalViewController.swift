@@ -133,7 +133,7 @@ class GoalViewController: UIViewController, UIScrollViewDelegate, CoachMarksCont
         //Tour
         coachMarksController.dataSource = self;
         coachMarksController.delegate = self;
-        coachMarksController.overlayBackgroundColor = UIColor.clearColor();
+        coachMarksController.overlay.color = UIColor.clearColor();
     }
     
     override func viewDidAppear(animated: Bool){
@@ -185,20 +185,20 @@ class GoalViewController: UIViewController, UIScrollViewDelegate, CoachMarksCont
     func coachMarksController(coachMarksController: CoachMarksController, coachMarkForIndex coachMarksForIndex: Int) -> CoachMark{
         switch (TourManager.getFirstUnseenGoalMarker()){
         case .Add:
-            var mark = coachMarksController.coachMarkForView(signMeUpButton);
+            var mark = coachMarksController.helper.coachMarkForView(signMeUpButton);
             mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
-            coachMarksController.overlayBackgroundColor = UIColor.init(hexString: "#2196F3").colorWithAlphaComponent(0.5);
+            coachMarksController.overlay.color = UIColor.init(hexString: "#2196F3").colorWithAlphaComponent(0.5);
             return mark;
             
         default:
             break;
         }
-        return coachMarksController.coachMarkForView();
+        return coachMarksController.helper.coachMarkForView();
     }
     
     func coachMarksController(coachMarksController: CoachMarksController, coachMarkViewsForIndex: Int, coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?){
         
-        let coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
+        let coachViews = coachMarksController.helper.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
         
         switch (TourManager.getFirstUnseenGoalMarker()){
         case .Add:
