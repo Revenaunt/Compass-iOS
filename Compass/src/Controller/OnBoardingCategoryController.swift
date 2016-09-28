@@ -68,7 +68,7 @@ class OnBoardingCategoryController: UIViewController, UITableViewDelegate, UITab
         return TourManager.getOnBoardingCategoryMarkerCount();
     }
     
-    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkForIndex coachMarksForIndex: Int) -> CoachMark{
         switch (TourManager.getFirstUnseenOnBoardingCategoryMarker()){
         case .General:
             let x = UIScreen.mainScreen().bounds.width/2;

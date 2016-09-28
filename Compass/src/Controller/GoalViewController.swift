@@ -182,7 +182,7 @@ class GoalViewController: UIViewController, UIScrollViewDelegate, CoachMarksCont
         return TourManager.getGoalMarkerCount();
     }
     
-    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkForIndex coachMarksForIndex: Int) -> CoachMark{
         switch (TourManager.getFirstUnseenGoalMarker()){
         case .Add:
             var mark = coachMarksController.coachMarkForView(signMeUpButton);

@@ -200,7 +200,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         return TourManager.getFeedMarkerCount();
     }
     
-    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkForIndex coachMarksForIndex: Int) -> CoachMark{
         print("CoackMarksForIndex \(coachMarksForIndex)");
         switch (TourManager.getFirstUnseenFeedMarker()){
         case .General:

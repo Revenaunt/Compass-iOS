@@ -272,7 +272,7 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
         return TourManager.getActionMarkerCount();
     }
     
-    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkForIndex coachMarksForIndex: Int) -> CoachMark{
         switch (TourManager.getFirstUnseenActionMarker()){
         case .GotIt:
             var mark = coachMarksController.coachMarkForView(gotItButton);

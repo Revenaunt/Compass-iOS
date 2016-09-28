@@ -128,7 +128,7 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
         return TourManager.getOrganizationMarkerCount();
     }
     
-    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkForIndex coachMarksForIndex: Int) -> CoachMark{
         switch (TourManager.getFirstUnseenOrganizationMarker()){
         case .General:
             let x = UIScreen.mainScreen().bounds.width/2;

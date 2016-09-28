@@ -219,7 +219,7 @@ class GoalLibraryViewController: UITableViewController, GoalAddedDelegate, Coach
         return TourManager.getGoalLibraryMarkerCount(goalWasAdded);
     }
     
-    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkForIndex coachMarksForIndex: Int) -> CoachMark{
         switch (TourManager.getFirstUnseenGoalLibraryMarker()){
         case .General:
             let x = UIScreen.mainScreen().bounds.width/2;

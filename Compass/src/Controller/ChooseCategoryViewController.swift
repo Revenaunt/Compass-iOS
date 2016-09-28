@@ -72,7 +72,7 @@ class ChooseCategoryViewController: UITableViewController, CoachMarksControllerD
         return TourManager.getCategoryMarkerCount();
     }
     
-    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkForIndex coachMarksForIndex: Int) -> CoachMark{
         switch (TourManager.getFirstUnseenCategoryMarker()){
         case .General:
             let x = UIScreen.mainScreen().bounds.width/2;
