@@ -12,15 +12,18 @@ import Crashlytics
 import Locksmith
 import CoreData
 import ObjectMapper
+import UserNotifications
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate{
     
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool{
+        NSLog("didFinishLaunchingWithOptions");
+        
         //Crashlytics
         Fabric.with([Crashlytics.self]);
         
@@ -36,11 +39,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         //TourManager.reset();
         
         //Fire the notification registration process.
-        let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil);
-        application.registerUserNotificationSettings(settings);
-        application.registerForRemoteNotifications();
+        if #available(iOS 10.0, *){
+            UNUserNotificationCenter.currentNotificationCenter().delegate = self;
+            UNUserNotificationCenter.currentNotificationCenter().requestAuthorizationWithOptions([.Badge, .Sound, .Alert], completionHandler: {(granted, error) in
+                if (granted){
+                    print("NotificationCenter, granted: \(granted)");
+                    UIApplication.sharedApplication().registerForRemoteNotifications();
+                }
+            })
+        }
+        else{ //If user is not on iOS 10 use the old methods we've been using
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil);
+            application.registerUserNotificationSettings(settings);
+            application.registerForRemoteNotifications();
+            
+        }
         
-        NSLog("didFinishLaunchingWithOptions");
         if let payload = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary{
             let dictionary = Locksmith.loadDataForUserAccount("CompassAccount");
             if (dictionary != nil && dictionary!["token"] != nil){
@@ -85,12 +99,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         token = token.stringByReplacingOccurrencesOfString(">", withString: "")
         token = token.stringByReplacingOccurrencesOfString(" ", withString: "")
         
+        print("Pre token print");
         print(deviceToken);
         print(token as String);
+        print("Post token print");
         
         //The method calls to NotificationUtil will handle the specific cases
         NotificationUtil.setApnsToken(token as String);
         NotificationUtil.sendRegistrationToken();
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(center: UNUserNotificationCenter, willPresentNotification notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
+        
+        print("will present notification");
+        //let content = notification.request.content;
+        
+        completionHandler([.Alert, .Sound]);
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(center: UNUserNotificationCenter, didReceiveNotificationResponse response: UNNotificationResponse, withCompletionHandler completionHandler: () -> Void) {
+        
+        print("did receive notification response");
+        
+        let body = response.notification.request.content;
+        
+        print(body);
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject: AnyObject]){

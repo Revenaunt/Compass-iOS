@@ -7,6 +7,8 @@
 //
 
 
+import UIKit;
+
 
 class CompassUtil{
     static func isSuccessStatusCode(statusCode: Int) -> Bool{
@@ -46,5 +48,14 @@ class CompassUtil{
     
     static func getHeaderMap(user: User) -> [String: String]{
         return ["Authorization": "Token " + user.getToken()];
+    }
+    
+    static func openUrl(url: NSURL){
+        if #available(iOS 10.0, *){
+            UIApplication.sharedApplication().openURL(url, options: [:], completionHandler: nil);
+        }
+        else{
+            UIApplication.sharedApplication().openURL(url);
+        };
     }
 }

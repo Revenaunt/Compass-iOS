@@ -187,6 +187,7 @@
 		546F692C1D382F7C0070D73A /* AwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardCell.swift; sourceTree = "<group>"; };
 		546F692E1D3832080070D73A /* Award.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
 		546FEBE31D678973001E8AC9 /* ResetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetController.swift; sourceTree = "<group>"; };
+		547561E71D9C629D005B50A0 /* Compass.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Compass.entitlements; sourceTree = "<group>"; };
 		5475BDE81CC1426800D80D3E /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
 		5475BDEE1CC153F100D80D3E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5475BDF01CC16E9300D80D3E /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/iOS/Just.framework; sourceTree = "<group>"; };
@@ -378,6 +379,7 @@
 		5480310B1CB6B27F00112807 /* Compass */ = {
 			isa = PBXGroup;
 			children = (
+				547561E71D9C629D005B50A0 /* Compass.entitlements */,
 				5455FBBA1D08C6B400526F74 /* src */,
 				548031161CB6B27F00112807 /* Assets.xcassets */,
 				548031131CB6B27F00112807 /* Compass.xcdatamodeld */,
@@ -942,7 +944,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -981,7 +983,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -993,6 +995,7 @@
 			baseConfigurationReference = 4C0E0A6802662DB5A8DF34AD /* Pods-Compass.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Compass/Compass.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ismael Alonso (JGRBHQ353T)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ismael Alonso (JGRBHQ353T)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1022,6 +1025,7 @@
 			baseConfigurationReference = 9B6FC9C1A1D3C82D77E62546 /* Pods-Compass.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Compass/Compass.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Tennessee Data Commons (3LXVG22MWC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tennessee Data Commons (3LXVG22MWC)";
 				FRAMEWORK_SEARCH_PATHS = (

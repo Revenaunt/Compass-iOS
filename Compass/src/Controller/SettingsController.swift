@@ -45,7 +45,7 @@ class SettingsController: UITableViewController{
             print("General");
             if (indexPath.row == 0){
                 if let appSettings = NSURL(string: UIApplicationOpenSettingsURLString){
-                    UIApplication.sharedApplication().openURL(appSettings)
+                    CompassUtil.openUrl(appSettings);
                 }
                 tableView.deselectRowAtIndexPath(indexPath, animated: true);
             }
@@ -58,7 +58,7 @@ class SettingsController: UITableViewController{
                 print("before");
                 let url = NSURL(string: encodedString)!;
                 print("after");
-                UIApplication.sharedApplication().openURL(url);
+                CompassUtil.openUrl(url);
                 tableView.deselectRowAtIndexPath(indexPath, animated: true);
             }
             else if (indexPath.row == 2){
@@ -93,11 +93,11 @@ class SettingsController: UITableViewController{
         else if (indexPath.section == 2){
             print("About");
             if (indexPath.row == 0){
-                UIApplication.sharedApplication().openURL(NSURL(string: "https://app.tndata.org/terms/")!);
+                CompassUtil.openUrl(NSURL(string: "https://app.tndata.org/terms/")!);
                 tableView.deselectRowAtIndexPath(indexPath, animated: true);
             }
             else if (indexPath.row == 1){
-                UIApplication.sharedApplication().openURL(NSURL(string: "https://app.tndata.org/privacy/")!);
+                CompassUtil.openUrl(NSURL(string: "https://app.tndata.org/privacy/")!);
                 tableView.deselectRowAtIndexPath(indexPath, animated: true);
             }
             else if (indexPath.row == 2){
