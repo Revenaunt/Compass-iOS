@@ -12,15 +12,18 @@ import Crashlytics
 import Locksmith
 import CoreData
 import ObjectMapper
+import UserNotifications
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate{
     
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool{
+        NSLog("didFinishLaunchingWithOptions");
+        
         //Crashlytics
         Fabric.with([Crashlytics.self]);
         
@@ -36,16 +39,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         //TourManager.reset();
         
         //Fire the notification registration process.
-        let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil);
-        application.registerUserNotificationSettings(settings);
-        application.registerForRemoteNotifications();
+        if #available(iOS 10.0, *){
+            let center = UNUserNotificationCenter.currentNotificationCenter();
+            let options: UNAuthorizationOptions = [.Alert, .Badge, .Sound];
+            center.delegate = self;
+            center.requestAuthorizationWithOptions(options){ (granted, error) in
+                if (granted){
+                    print("NotificationCenter, notification authorization granted: \(granted)");
+                    UIApplication.sharedApplication().registerForRemoteNotifications();
+                }
+            };
+        }
+        else{ //If user is not on iOS 10 use the old methods we've been using
+            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil);
+            application.registerUserNotificationSettings(settings);
+            application.registerForRemoteNotifications();
+            
+        }
         
-        NSLog("didFinishLaunchingWithOptions");
         if let payload = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary{
             let dictionary = Locksmith.loadDataForUserAccount("CompassAccount");
             if (dictionary != nil && dictionary!["token"] != nil){
                 NSLog("Doin' some evil. With Love, APNs");
-                print(payload);
+                //print(payload);
                 
                 let message = Mapper<APNsMessage>().map(payload)!;
                 if (message.isActionMessage()){
@@ -85,17 +101,74 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         token = token.stringByReplacingOccurrencesOfString(">", withString: "")
         token = token.stringByReplacingOccurrencesOfString(" ", withString: "")
         
-        print(deviceToken);
-        print(token as String);
+        print("APNs token: \(token as String)");
         
         //The method calls to NotificationUtil will handle the specific cases
         NotificationUtil.setApnsToken(token as String);
-        NotificationUtil.sendRegistrationToken();
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(center: UNUserNotificationCenter, willPresentNotification notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void){
+        
+        print("will present notification");
+        let message = Mapper<APNsMessage>().map(notification.request.content.userInfo)!;
+        if (message.isActionMessage()){
+            completionHandler([.Alert, .Sound]);
+        }
+        else if (message.isBadgeMessage()){
+            if let rootController = window?.rootViewController as? MainController{
+                let storyboard = UIStoryboard(name: "Main", bundle: nil);
+                let badgeController = storyboard.instantiateViewControllerWithIdentifier("BadgeController") as! BadgeController;
+                badgeController.badge = message.getBadge();
+                print(message.getBadge());
+                if (UIApplication.sharedApplication().applicationState == UIApplicationState.Active){
+                    DefaultsManager.addNewAward(message.getBadge());
+                    let newBadges = DefaultsManager.getNewAwardCount();
+                    rootController.tabBar.items![2].badgeValue = "\(newBadges)";
+                    if let navController = rootController.viewControllers![2] as? UINavigationController{
+                        for (controller) in navController.viewControllers{
+                            if let awardsController = controller as? AwardsController{
+                                message.getBadge().isNew = true;
+                                awardsController.addBadge(message.getBadge());
+                                break;
+                            }
+                        }
+                    }
+                    completionHandler([]);
+                }
+                else{
+                    completionHandler([.Alert, .Sound]);
+                }
+            }
+            else{
+                completionHandler([.Alert, .Sound]);
+            }
+        }
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(center: UNUserNotificationCenter, didReceiveNotificationResponse response: UNNotificationResponse, withCompletionHandler completionHandler: () -> Void) {
+        
+        print("did receive notification response");
+        
+        switch (response.actionIdentifier){
+            case UNNotificationDefaultActionIdentifier:
+                handleNotification(response.notification.request.content.userInfo);
+                completionHandler();
+                break
+            
+            default:
+                completionHandler();
+        }
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject: AnyObject]){
         print("Doin' some evil in didReceiveRemoteNotification. With Love, APNs");
-        print(userInfo);
+        handleNotification(userInfo);
+    }
+    
+    func handleNotification(userInfo: [NSObject: AnyObject]){
+        //print(userInfo);
         let dictionary = Locksmith.loadDataForUserAccount("CompassAccount");
         if (dictionary != nil && dictionary!["token"] != nil){
             let message = Mapper<APNsMessage>().map(userInfo)!;
@@ -268,6 +341,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             }
         }
     }
-
 }
 

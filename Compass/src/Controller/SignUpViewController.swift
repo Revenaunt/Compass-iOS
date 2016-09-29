@@ -179,11 +179,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func privacyPolicy(){
-        UIApplication.sharedApplication().openURL(NSURL(string: "https://app.tndata.org/privacy/")!);
+        CompassUtil.openUrl(NSURL(string: "https://app.tndata.org/privacy/")!);
     }
     
     @IBAction func termsOfService(){
-        UIApplication.sharedApplication().openURL(NSURL(string: "https://app.tndata.org/terms/")!);
+        CompassUtil.openUrl(NSURL(string: "https://app.tndata.org/terms/")!);
     }
     
     private func toggleMenu(showButtons: Bool){

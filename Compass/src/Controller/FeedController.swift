@@ -49,7 +49,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         //Tour
         coachMarksController.dataSource = self;
         coachMarksController.delegate = self;
-        coachMarksController.overlayBackgroundColor = UIColor.clearColor();
+        coachMarksController.overlay.color = UIColor.clearColor();
     }
     
     override func viewDidAppear(animated: Bool){
@@ -197,45 +197,46 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     }
     
     func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{
+        print(TourManager.getFeedMarkerCount());
         return TourManager.getFeedMarkerCount();
     }
     
-    func coachMarksController(coachMarksController: CoachMarksController, coachMarksForIndex: Int) -> CoachMark{
+    func coachMarksController(coachMarksController: CoachMarksController, coachMarkForIndex coachMarksForIndex: Int) -> CoachMark{
         print("CoackMarksForIndex \(coachMarksForIndex)");
         switch (TourManager.getFirstUnseenFeedMarker()){
         case .General:
             let x = UIScreen.mainScreen().bounds.width/2;
             let y = UIScreen.mainScreen().bounds.height/2-50;
-            var mark = coachMarksController.coachMarkForView();
+            var mark = coachMarksController.helper.coachMarkForView();
             mark.cutoutPath = UIBezierPath(rect: CGRect(x: x, y: y, width: 0, height: 0));
             mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
-            coachMarksController.overlayBackgroundColor = UIColor.init(hexString: "#2196F3").colorWithAlphaComponent(0.5);
+            coachMarksController.overlay.color = UIColor.init(hexString: "#2196F3").colorWithAlphaComponent(0.5);
             return mark;
             
         case .UpNext:
-            var mark = coachMarksController.coachMarkForView(upNextCell);
+            var mark = coachMarksController.helper.coachMarkForView(upNextCell);
             mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
             return mark;
             
         case .Progress:
-            var mark = coachMarksController.coachMarkForView(streaksCell);
+            var mark = coachMarksController.helper.coachMarkForView(streaksCell);
             mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
             return mark;
             
         case .Add:
-            var mark = coachMarksController.coachMarkForView(addItem.valueForKey("view") as? UIView);
+            var mark = coachMarksController.helper.coachMarkForView(addItem.valueForKey("view") as? UIView);
             mark.maxWidth = UIScreen.mainScreen().bounds.width*0.8;
             return mark;
             
         default:
             break;
         }
-        return coachMarksController.coachMarkForView(addItem.valueForKey("view") as? UIView);
+        return coachMarksController.helper.coachMarkForView(addItem.valueForKey("view") as? UIView);
     }
     
     func coachMarksController(coachMarksController: CoachMarksController, coachMarkViewsForIndex: Int, coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?){
         
-        var coachViews = coachMarksController.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
+        var coachViews = coachMarksController.helper.defaultCoachViewsWithArrow(true, arrowOrientation: coachMark.arrowOrientation);
         
         switch (TourManager.getFirstUnseenFeedMarker()){
         case .General:
@@ -264,16 +265,33 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
             UIApplication.sharedApplication().endIgnoringInteractionEvents();
         });
-        
         return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView);
     }
     
+    /*func coachMarksController(coachMarksController: CoachMarksController, constraintsForSkipView skipView: UIView, inParentView parentView: UIView) -> [NSLayoutConstraint]? {
+        var constraints = [NSLayoutConstraint]();
+        let leading = NSLayoutConstraint(item: skipView, attribute: .Leading, relatedBy: .Equal, toItem: parentView, attribute: .Leading, multiplier: 0, constant: 0);
+        let bottom = NSLayoutConstraint(item: skipView, attribute: .Bottom, relatedBy: .Equal, toItem: parentView, attribute: .Bottom, multiplier: 0, constant: 0);
+        let trailing = NSLayoutConstraint(item: skipView, attribute: .Leading, relatedBy: .Equal, toItem: parentView, attribute: .Trailing, multiplier: 0, constant: 0);
+        let top = NSLayoutConstraint(item: skipView, attribute: .Leading, relatedBy: .Equal, toItem: parentView, attribute: .Top, multiplier: 0, constant: 0);
+        constraints.append(leading);
+        constraints.append(bottom);
+        constraints.append(trailing);
+        constraints.append(top);
+        return constraints;
+    }*/
+    
     func coachMarksController(coachMarksController: CoachMarksController, coachMarkWillDisappear: CoachMark, forIndex: Int){
+        print("disappear code");
         if (TourManager.getFirstUnseenFeedMarker() == TourManager.FeedMarker.UpNext){
             let indexPath = NSIndexPath(forRow: 0, inSection: FeedTypes.getUpNextSectionPosition());
             tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: true);
         }
         TourManager.markFirstUnseenFeedMarker();
+    }
+    
+    func coachMarksController(coachMarksController: CoachMarksController, didFinishShowingAndWasSkipped skipped: Bool){
+        print("finish/skipped code");
     }
     
     func loadMoreUpcoming(){

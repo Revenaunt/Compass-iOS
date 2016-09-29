@@ -32,7 +32,7 @@ class TourManager{
         if (!defaults.boolForKey(organizationMarkerKeys[OrganizationMarker.Skip.rawValue])){
             count += 1;
         }
-        return count;
+        return 0;
     }
     
     static func getFirstUnseenOrganizationMarker() -> OrganizationMarker{
@@ -77,7 +77,7 @@ class TourManager{
         if (!defaults.boolForKey(onBoardingCategoryMarkerKeys[OnBoardingCategoryMarker.Skip.rawValue])){
             count += 1;
         }
-        return count;
+        return 0;
     }
     
     static func getFirstUnseenOnBoardingCategoryMarker() -> OnBoardingCategoryMarker{
@@ -118,7 +118,7 @@ class TourManager{
         if (!defaults.boolForKey(categoryMarkerKeys[CategoryMarker.General.rawValue])){
             count += 1;
         }
-        return count;
+        return 0;
     }
     
     static func getFirstUnseenCategoryMarker() -> CategoryMarker{
@@ -152,10 +152,10 @@ class TourManager{
     static func getGoalLibraryMarkerCount(added: Bool) -> Int{
         let defaults = NSUserDefaults.standardUserDefaults();
         if (!defaults.boolForKey(goalLibraryMarkerKeys[GoalLibraryMarker.General.rawValue])){
-            return 1;
+            return 0;
         }
         if (added && !defaults.boolForKey(goalLibraryMarkerKeys[GoalLibraryMarker.Added.rawValue])){
-            return 1;
+            return 0;
         }
         return 0;
     }
@@ -198,7 +198,7 @@ class TourManager{
         if (!defaults.boolForKey(goalMarkerKeys[GoalMarker.Add.rawValue])){
             count += 1;
         }
-        return count;
+        return 0;
     }
     
     static func getFirstUnseenGoalMarker() -> GoalMarker{
@@ -245,7 +245,7 @@ class TourManager{
         if (!defaults.boolForKey(feedMarkerKeys[FeedMarker.Add.rawValue])){
             count += 1;
         }
-        return count;
+        return 0;
     }
     
     static func getFirstUnseenFeedMarker() -> FeedMarker{
@@ -298,7 +298,7 @@ class TourManager{
         if (!defaults.boolForKey(actionMarkerKeys[ActionMarker.GotIt.rawValue])){
             count += 1;
         }
-        return count;
+        return 0;
     }
     
     static func getFirstUnseenActionMarker() -> ActionMarker{

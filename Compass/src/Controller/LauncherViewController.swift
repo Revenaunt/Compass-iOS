@@ -27,13 +27,9 @@ class LauncherViewController: UIViewController{
         if (dictionary != nil && dictionary!["email"] != nil){
             let email = dictionary!["email"] as! String;
             let password = dictionary!["password"] as! String;
-            
-            print(email);
-            print(password);
+            print("User account: \(email)");
             
             Just.post(API.getLogInUrl(), json: API.getLogInBody(email, password: password)){ (response) in
-                print(response.ok);
-                print(response.statusCode ?? -1);
                 if response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!){
                     SharedData.user = Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding))!;
                     print(SharedData.user);

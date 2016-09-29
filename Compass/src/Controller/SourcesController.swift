@@ -44,7 +44,7 @@ class SourcesController: UITableViewController{
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        UIApplication.sharedApplication().openURL(NSURL(string: sources[indexPath.row].getUrl())!);
+        CompassUtil.openUrl(NSURL(string: sources[indexPath.row].getUrl())!);
     }
     
     

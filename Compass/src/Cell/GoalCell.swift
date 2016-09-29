@@ -17,6 +17,7 @@ class GoalCell: UITableViewCell{
     
     
     func setContent(goal: GoalContent, category: CategoryContent){
+        iconContainer.layoutIfNeeded();
         iconContainer.layer.cornerRadius = iconContainer.frame.size.width/2;
         iconContainer.clipsToBounds = true;
         iconContainer.layer.backgroundColor = category.getParsedColor().CGColor;
