@@ -88,7 +88,7 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
         
         //Fetch the action
         Just.get(API.getActionUrl(mappingId), headers: SharedData.user.getHeaderMap()) { (response) in
-            print(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
+            //print(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
             if (response.ok){
                 //Parse and populate
                 let action = Mapper<UserAction>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!);

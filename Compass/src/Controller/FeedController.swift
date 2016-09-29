@@ -268,6 +268,19 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView);
     }
     
+    /*func coachMarksController(coachMarksController: CoachMarksController, constraintsForSkipView skipView: UIView, inParentView parentView: UIView) -> [NSLayoutConstraint]? {
+        var constraints = [NSLayoutConstraint]();
+        let leading = NSLayoutConstraint(item: skipView, attribute: .Leading, relatedBy: .Equal, toItem: parentView, attribute: .Leading, multiplier: 0, constant: 0);
+        let bottom = NSLayoutConstraint(item: skipView, attribute: .Bottom, relatedBy: .Equal, toItem: parentView, attribute: .Bottom, multiplier: 0, constant: 0);
+        let trailing = NSLayoutConstraint(item: skipView, attribute: .Leading, relatedBy: .Equal, toItem: parentView, attribute: .Trailing, multiplier: 0, constant: 0);
+        let top = NSLayoutConstraint(item: skipView, attribute: .Leading, relatedBy: .Equal, toItem: parentView, attribute: .Top, multiplier: 0, constant: 0);
+        constraints.append(leading);
+        constraints.append(bottom);
+        constraints.append(trailing);
+        constraints.append(top);
+        return constraints;
+    }*/
+    
     func coachMarksController(coachMarksController: CoachMarksController, coachMarkWillDisappear: CoachMark, forIndex: Int){
         print("disappear code");
         if (TourManager.getFirstUnseenFeedMarker() == TourManager.FeedMarker.UpNext){

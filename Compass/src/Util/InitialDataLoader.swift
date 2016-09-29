@@ -25,9 +25,9 @@ class InitialDataLoader{
             if (response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!)){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
                 SharedData.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
-                for category in SharedData.publicCategories{
-                    print(category.toString());
-                }
+                //for category in SharedData.publicCategories{
+                //    print(category.toString());
+                //}
                 fetchFeedData();
             }
             else{

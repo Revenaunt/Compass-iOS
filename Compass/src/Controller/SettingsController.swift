@@ -74,6 +74,7 @@ class SettingsController: UITableViewController{
                     try Locksmith.deleteDataForUserAccount("CompassAccount");
                     DefaultsManager.emptyNewAwardsRecords();
                     TourManager.reset();
+                    NotificationUtil.logOut();
                     //Back to the login screen
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
                     let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("LauncherNavController");

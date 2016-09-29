@@ -11,9 +11,7 @@ import UIKit
 
 class MainController: UITabBarController{
     override func viewDidLoad(){
-        print("MainController's viewDidLoad()");
         NotificationUtil.sendRegistrationToken();
-        print(SharedData.user.getToken());
         selectedIndex = 1;
     }
 }
