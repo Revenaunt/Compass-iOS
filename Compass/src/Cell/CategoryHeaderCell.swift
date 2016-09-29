@@ -15,6 +15,7 @@ class CategoryHeaderCell: UITableViewCell{
     
     
     func setHeader(category: CategoryContent){
+        categoryImage.layoutIfNeeded();
         if (category.getImageUrl().characters.count != 0){
             Nuke.taskWith(NSURL(string: category.getImageUrl())!){
                 let image = $0.image;

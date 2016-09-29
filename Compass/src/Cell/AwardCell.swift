@@ -18,6 +18,7 @@ class AwardCell: UITableViewCell{
     
     
     func bind(badge: Badge){
+        badgeImage.layoutIfNeeded();
         if (badge.getImageUrl().characters.count != 0){
             Nuke.taskWith(NSURL(string: badge.getImageUrl())!){
                 let image = $0.image;

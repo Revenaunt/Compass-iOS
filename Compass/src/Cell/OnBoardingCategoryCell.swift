@@ -16,6 +16,7 @@ class OnBoardingCategoryCell: UITableViewCell{
     
     
     func setCategory(category: CategoryContent){
+        categoryImage.layoutIfNeeded();
         categoryImage.layer.cornerRadius = categoryImage.frame.size.width/2;
         categoryImage.clipsToBounds = true;
         categoryImage.image = UIImage(named: CompassUtil.getCategoryTileAssetName(category));
