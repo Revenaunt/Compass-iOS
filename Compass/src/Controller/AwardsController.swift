@@ -9,12 +9,14 @@
 import UIKit
 import Just
 import ObjectMapper
+import Crashlytics
 
 
 class AwardsController: UITableViewController{
     private var badges: [Badge] = [Badge]();
     
     override func viewDidLoad(){
+        Crashlytics.sharedInstance().crash();
         Just.get(API.getAwardsUrl(), headers: SharedData.user.getHeaderMap()){ (response) in
             if (response.ok){
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding)!;
