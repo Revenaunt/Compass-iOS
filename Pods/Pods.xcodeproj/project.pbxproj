@@ -17,30 +17,39 @@
 
 /* Begin PBXFileReference section */
 		0863AE80B2DBE5D681AFBAA9068F480B /* Pods-CompassTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CompassTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		0C073BB2FC315075B9DE90C24FE2C52B /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
 		0C084A0DFF562CE80BBD95F6E464278B /* Pods-Compass-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Compass-acknowledgements.markdown"; sourceTree = "<group>"; };
 		0E12B5334EFAE2B252AAE1C0E24A46C3 /* Pods-CompassTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CompassTests-frameworks.sh"; sourceTree = "<group>"; };
 		0FE73D1D32E880ED09B9C0E622BE43D1 /* Pods-CompassUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CompassUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		153FDB1188319C2F609151AE59BCC7FF /* Pods-CompassTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CompassTests.debug.xcconfig"; sourceTree = "<group>"; };
 		19690E7430A93B250EE049E7389005ED /* Pods-Compass-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Compass-frameworks.sh"; sourceTree = "<group>"; };
+		200C81134ACADBF4B01AF7F1C51DE9EC /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = iOS/Crashlytics.framework/Headers/Crashlytics.h; sourceTree = "<group>"; };
+		29DE526E5B1D3B37719460B12B391B91 /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = iOS/Crashlytics.framework/Headers/CLSLogging.h; sourceTree = "<group>"; };
 		32EE00F39E406AE88CC80DF809341633 /* Pods-CompassUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CompassUITests-dummy.m"; sourceTree = "<group>"; };
 		4816D4C68850079594BF6E657B040CD0 /* Pods-CompassTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CompassTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4916EB57316FB46F50F158C553DD6C48 /* Pods-Compass-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Compass-acknowledgements.plist"; sourceTree = "<group>"; };
+		494C290BDBEAED23BA5743A3CE2FA0D1 /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = iOS/Fabric.framework/Headers/FABAttributes.h; sourceTree = "<group>"; };
 		4DB0F79D52845DB5D6089946CC8BE305 /* Pods-Compass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Compass.debug.xcconfig"; sourceTree = "<group>"; };
 		521E336B0644506380677D91E94B3116 /* Pods-CompassTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CompassTests.release.xcconfig"; sourceTree = "<group>"; };
+		5B0AC4555A08701A9F1760172610E0AF /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = iOS/Crashlytics.framework/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
 		65BEAE940421A370E42C8268514E7350 /* Pods-CompassUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CompassUITests-frameworks.sh"; sourceTree = "<group>"; };
 		80337BC4CF45015AFD341BEC832AA1F4 /* libPods-Compass.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Compass.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82981FB005A4ED4C556297735FD4ACED /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = iOS/Fabric.framework/Headers/Fabric.h; sourceTree = "<group>"; };
+		856A7EF81F93DD33C78FA7140067110C /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = iOS/Crashlytics.framework/Headers/CLSReport.h; sourceTree = "<group>"; };
 		8876D68BC9D1AA9DA2310E996D65A704 /* Pods-CompassUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CompassUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8DB331D62E03B90D571016097AB0A7E0 /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = iOS/Crashlytics.framework/Headers/CLSAttributes.h; sourceTree = "<group>"; };
+		92972CC1C216B42A9AB4B6EABB27FC16 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9CED1C5489255CD99B0031FDA5CE8C93 /* Pods-CompassTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CompassTests-resources.sh"; sourceTree = "<group>"; };
+		A61E08527EFC3DBEDD4BFA0B5C45104C /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = iOS/Crashlytics.framework/Headers/Answers.h; sourceTree = "<group>"; };
 		A88F73F0472DA4DE034421D8330794F9 /* libPods-CompassTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CompassTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1AEAD4DB0EE98C9F76E479E1C3C936A /* libPods-CompassUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CompassUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D64C21B439D5B12340ED655418904EC3 /* Pods-Compass-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Compass-dummy.m"; sourceTree = "<group>"; };
 		D64DBF4292CBC57F73AF575CB736FDA2 /* Pods-CompassTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CompassTests-dummy.m"; sourceTree = "<group>"; };
+		DBA48C54AB315A7317F3DD387EF04883 /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = iOS/Crashlytics.framework/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
 		DC5D1FB44F4C14D1126B68920D5F7AE6 /* Pods-CompassUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CompassUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DFD786AAD2E5C59732E8DD9C3E5A0190 /* Pods-CompassUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CompassUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		E1B6F2CE97837747A137B7F9EC710EF8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
+		EAC88243AB9F702F3015F7068842116A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
 		F2A6821A60D777BD8407480F3EB1C973 /* Pods-Compass-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Compass-resources.sh"; sourceTree = "<group>"; };
 		FA5DAEF9A4778C55F2969BD3B91F2AB3 /* Pods-Compass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Compass.release.xcconfig"; sourceTree = "<group>"; };
 		FD6684748F0259EC73E5CC61251298BB /* Pods-CompassUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CompassUITests-resources.sh"; sourceTree = "<group>"; };
@@ -74,18 +83,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0FBADD4C4C312933525779355B4A728B /* Crashlytics */ = {
+		1DECF7299F0875E9BCB9492390207331 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5AF2ED3E1B1DF375ACFB148B356F91A5 /* Frameworks */,
+				26F9D6AB1F30C869A5F58AF8EF5A99C8 /* Crashlytics */,
+				D479A0301687E2A8F6F67D392B8551D2 /* Fabric */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		26F9D6AB1F30C869A5F58AF8EF5A99C8 /* Crashlytics */ = {
+			isa = PBXGroup;
+			children = (
+				5B0AC4555A08701A9F1760172610E0AF /* ANSCompatibility.h */,
+				A61E08527EFC3DBEDD4BFA0B5C45104C /* Answers.h */,
+				8DB331D62E03B90D571016097AB0A7E0 /* CLSAttributes.h */,
+				29DE526E5B1D3B37719460B12B391B91 /* CLSLogging.h */,
+				856A7EF81F93DD33C78FA7140067110C /* CLSReport.h */,
+				DBA48C54AB315A7317F3DD387EF04883 /* CLSStackFrame.h */,
+				200C81134ACADBF4B01AF7F1C51DE9EC /* Crashlytics.h */,
+				E268B07786115FF5D5DFF396150E695F /* Frameworks */,
 			);
 			path = Crashlytics;
 			sourceTree = "<group>";
 		};
-		23F124B36981587A4F2E341B8AEC8517 /* Frameworks */ = {
+		2DDA681774534EB985F60A3418A4C908 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E1B6F2CE97837747A137B7F9EC710EF8 /* Fabric.framework */,
+				92972CC1C216B42A9AB4B6EABB27FC16 /* Fabric.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -113,29 +138,12 @@
 			path = "Target Support Files/Pods-CompassTests";
 			sourceTree = "<group>";
 		};
-		4C01CE7C97A1F4AA2AA6283DCBF4679A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0FBADD4C4C312933525779355B4A728B /* Crashlytics */,
-				BD8B321ABCC17A2AA08C4077E26ECA81 /* Fabric */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		5AF2ED3E1B1DF375ACFB148B356F91A5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0C073BB2FC315075B9DE90C24FE2C52B /* Crashlytics.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				4C01CE7C97A1F4AA2AA6283DCBF4679A /* Pods */,
+				1DECF7299F0875E9BCB9492390207331 /* Pods */,
 				F6204A156959426375C61A4144583D04 /* Products */,
 				F3615C638311780141789103EB5E2236 /* Targets Support Files */,
 			);
@@ -164,10 +172,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BD8B321ABCC17A2AA08C4077E26ECA81 /* Fabric */ = {
+		D479A0301687E2A8F6F67D392B8551D2 /* Fabric */ = {
 			isa = PBXGroup;
 			children = (
-				23F124B36981587A4F2E341B8AEC8517 /* Frameworks */,
+				494C290BDBEAED23BA5743A3CE2FA0D1 /* FABAttributes.h */,
+				82981FB005A4ED4C556297735FD4ACED /* Fabric.h */,
+				2DDA681774534EB985F60A3418A4C908 /* Frameworks */,
 			);
 			path = Fabric;
 			sourceTree = "<group>";
@@ -185,6 +195,14 @@
 			);
 			name = "Pods-CompassUITests";
 			path = "Target Support Files/Pods-CompassUITests";
+			sourceTree = "<group>";
+		};
+		E268B07786115FF5D5DFF396150E695F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EAC88243AB9F702F3015F7068842116A /* Crashlytics.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F3615C638311780141789103EB5E2236 /* Targets Support Files */ = {
@@ -351,7 +369,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
-				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -361,7 +378,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FA5DAEF9A4778C55F2969BD3B91F2AB3 /* Pods-Compass.release.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tennessee Data Commons (3LXVG22MWC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -431,7 +448,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
@@ -505,7 +521,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4DB0F79D52845DB5D6089946CC8BE305 /* Pods-Compass.debug.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ismael Alonso (JGRBHQ353T)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;

@@ -24,9 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool{
         NSLog("didFinishLaunchingWithOptions");
         
-        //Crashlytics
-        Fabric.with([Crashlytics.self]);
-        
         #if DEBUG
             print("debug");
         #else
@@ -90,6 +87,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             }
         }
+        
+        //Crashlytics
+        Crashlytics().debugMode = true;
+        Fabric.with([Crashlytics.self]);
         
         return true;
     }
