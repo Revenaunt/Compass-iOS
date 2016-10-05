@@ -63,6 +63,7 @@
 		546F692D1D382F7C0070D73A /* AwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F692C1D382F7C0070D73A /* AwardCell.swift */; };
 		546F692F1D3832080070D73A /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F692E1D3832080070D73A /* Award.swift */; };
 		546FEBE41D678973001E8AC9 /* ResetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546FEBE31D678973001E8AC9 /* ResetController.swift */; };
+		5470AE3B1DA56C2500940394 /* ConstraintExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470AE3A1DA56C2500940394 /* ConstraintExt.swift */; };
 		5475BDEF1CC153F100D80D3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475BDEE1CC153F100D80D3E /* API.swift */; };
 		5475BDF11CC16E9300D80D3E /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; };
 		5475BDF21CC16E9D00D80D3E /* Just.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5475BDF01CC16E9300D80D3E /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -192,6 +193,7 @@
 		546F692C1D382F7C0070D73A /* AwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardCell.swift; sourceTree = "<group>"; };
 		546F692E1D3832080070D73A /* Award.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
 		546FEBE31D678973001E8AC9 /* ResetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetController.swift; sourceTree = "<group>"; };
+		5470AE3A1DA56C2500940394 /* ConstraintExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstraintExt.swift; path = Extension/ConstraintExt.swift; sourceTree = "<group>"; };
 		547561E71D9C629D005B50A0 /* Compass.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Compass.entitlements; sourceTree = "<group>"; };
 		5475BDE81CC1426800D80D3E /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
 		5475BDEE1CC153F100D80D3E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 		5455FBBA1D08C6B400526F74 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				5470AE3C1DA56C3200940394 /* Extension */,
 				54F60F5A1CC80C4300D1424D /* Cell */,
 				547C46701CBC1F8700953735 /* Controller */,
 				5467E9AE1CC532760088E417 /* Model */,
@@ -306,6 +309,14 @@
 				5415C9421D58FB1700E01054 /* Organization.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5470AE3C1DA56C3200940394 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5470AE3A1DA56C2500940394 /* ConstraintExt.swift */,
+			);
+			name = Extension;
 			sourceTree = "<group>";
 		};
 		5475BDED1CC153D300D80D3E /* Util */ = {
@@ -828,6 +839,7 @@
 				5468F8591CCEC1ED00D5769B /* InitialDataLoader.swift in Sources */,
 				546F69291D37F56E0070D73A /* MainController.swift in Sources */,
 				5468F8511CCEB7B200D5769B /* UserAction.swift in Sources */,
+				5470AE3B1DA56C2500940394 /* ConstraintExt.swift in Sources */,
 				5468F84D1CCEB45000D5769B /* Trigger.swift in Sources */,
 				5443355D1CD01B0A00EB066E /* UserGoal.swift in Sources */,
 				5468F84F1CCEB6C600D5769B /* UserContent.swift in Sources */,
