@@ -350,7 +350,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         switch (indexPath.section){
         case FeedTypes.getUpNextSectionPosition():
             if (SharedData.feedData.getUpNextAction() != nil){
-                performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
+                performSegueWithIdentifier("ShowReward", sender: tableView.cellForRowAtIndexPath(indexPath));
             }
             break;
             

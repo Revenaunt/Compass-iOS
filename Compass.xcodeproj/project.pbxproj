@@ -18,6 +18,7 @@
 		5427A8F81D6E27D9000A61C0 /* Instructions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5427A8F71D6E27D9000A61C0 /* Instructions.framework */; };
 		5427A8F91D6E27D9000A61C0 /* Instructions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5427A8F71D6E27D9000A61C0 /* Instructions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5427A8FB1D6E3DED000A61C0 /* TourDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5427A8FA1D6E3DED000A61C0 /* TourDefaults.plist */; };
+		5435F08A1DA4502800847A74 /* RewardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5435F0891DA4502800847A74 /* RewardController.swift */; };
 		544335571CCFC5B800EB066E /* FeedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544335561CCFC5B800EB066E /* FeedTypes.swift */; };
 		544335591CD018DF00EB066E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544335581CD018DF00EB066E /* Goal.swift */; };
 		5443355B1CD019C200EB066E /* CustomGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5443355A1CD019C200EB066E /* CustomGoal.swift */; };
@@ -147,6 +148,7 @@
 		5424E98C1CE4EA330016B4DD /* NotificationUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
 		5427A8F71D6E27D9000A61C0 /* Instructions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Instructions.framework; path = Carthage/Build/iOS/Instructions.framework; sourceTree = "<group>"; };
 		5427A8FA1D6E3DED000A61C0 /* TourDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TourDefaults.plist; sourceTree = "<group>"; };
+		5435F0891DA4502800847A74 /* RewardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardController.swift; sourceTree = "<group>"; };
 		544335561CCFC5B800EB066E /* FeedTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTypes.swift; sourceTree = "<group>"; };
 		544335581CD018DF00EB066E /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		5443355A1CD019C200EB066E /* CustomGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGoal.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				54AAD9871D58E7C300AB41E5 /* OrganizationsController.swift */,
 				547E359B1D63939600134CD9 /* PickerController.swift */,
 				546FEBE31D678973001E8AC9 /* ResetController.swift */,
+				5435F0891DA4502800847A74 /* RewardController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -792,6 +795,7 @@
 				544614231CC92C5400F2B441 /* CategoryCell.swift in Sources */,
 				54109D1F1D25BD25000FC309 /* BadgeController.swift in Sources */,
 				545627321CF4B029007C3731 /* Reward.swift in Sources */,
+				5435F08A1DA4502800847A74 /* RewardController.swift in Sources */,
 				5480310F1CB6B27F00112807 /* LauncherViewController.swift in Sources */,
 				546F692B1D382F4B0070D73A /* AwardsController.swift in Sources */,
 				5468F8531CCEB7D100D5769B /* Action.swift in Sources */,
