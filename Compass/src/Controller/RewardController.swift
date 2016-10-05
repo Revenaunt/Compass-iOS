@@ -11,7 +11,7 @@ import Just
 import ObjectMapper
 
 
-class RewardController: UIViewController{
+class RewardController: UIViewController, UIGestureRecognizerDelegate{
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var icon: UIImageView!
@@ -19,20 +19,41 @@ class RewardController: UIViewController{
     @IBOutlet weak var header: UILabel!
     @IBOutlet weak var message: UILabel!
     @IBOutlet var author: UILabel!
+    @IBOutlet weak var refreshView: UIView!
+    @IBOutlet weak var shareView: UIView!
     
     private var reward: Reward? = nil;
     private var authorConstraints = [NSLayoutConstraint]();
     
     
     override func viewDidLoad(){
+        super.viewDidLoad();
+        
+        //Content card mods
         contentCard.layer.cornerRadius = 4;
         removeAuthorLabel();
+        
+        //Tap gestures for the buttons
+        let refreshTap = UITapGestureRecognizer(target: self, action: #selector(RewardController.handleTap(_:)));
+        refreshTap.delegate = self;
+        refreshView.addGestureRecognizer(refreshTap);
+        let shareTap = UITapGestureRecognizer(target: self, action: #selector(RewardController.handleTap(_:)));
+        shareTap.delegate = self;
+        shareView.addGestureRecognizer(shareTap);
+        
+        //Decide whether the reward needs to be fetched
         if (reward == nil){
             fetchReward();
         }
         else{
             setReward(reward!);
         }
+    }
+    
+    override func viewDidAppear(animated: Bool){
+        super.viewDidAppear(animated);
+        refreshView.layer.cornerRadius = refreshView.frame.width/2;
+        shareView.layer.cornerRadius = shareView.frame.width/2;
     }
     
     private func removeAuthorLabel(){
@@ -86,5 +107,18 @@ class RewardController: UIViewController{
             addAuthorLabel();
             author.text = "-\(reward.getAuthor())";
         }
+    }
+    
+    func handleTap(sender: UITapGestureRecognizer?){
+        if sender?.view! == refreshView{
+            fetchReward();
+        }
+        else if sender?.view! == shareView{
+            shareReward();
+        }
+    }
+    
+    private func shareReward(){
+        
     }
 }
