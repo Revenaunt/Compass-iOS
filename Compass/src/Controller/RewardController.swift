@@ -12,6 +12,8 @@ import ObjectMapper
 
 
 class RewardController: UIViewController{
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var contentCard: UIView!
     @IBOutlet weak var header: UILabel!
@@ -59,6 +61,8 @@ class RewardController: UIViewController{
     }
     
     private func fetchReward(){
+        scrollView.hidden = true;
+        loadingIndicator.hidden = false;
         removeAuthorLabel();
         Just.get(API.getRandomRewardUrl()){ (response) in
             if (response.ok){
@@ -72,6 +76,8 @@ class RewardController: UIViewController{
     }
     
     private func setReward(reward: Reward){
+        scrollView.hidden = false;
+        loadingIndicator.hidden = true;
         self.reward = reward;
         icon.image = reward.getImageAsset();
         header.text = reward.getHeaderTitle();
