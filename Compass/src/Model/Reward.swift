@@ -90,11 +90,11 @@ class Reward: TDCBase, CustomStringConvertible{
     }
     
     var description: String{
-        if (isQuote()){
-            return "Quote: \(message). -\(author)";
-        }
         var result = "";
-        if (isJoke()){
+        if (isQuote()){
+            result.appendContentsOf("\(author): ");
+        }
+        else if (isJoke()){
             result.appendContentsOf("Joke: ");
         }
         else if (isFact()){
