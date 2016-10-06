@@ -7,9 +7,10 @@
 //
 
 import ObjectMapper
+import UIKit
 
 
-class Reward: TDCBase{
+class Reward: TDCBase, CustomStringConvertible{
     private let TYPE_QUOTE = "quote";
     private let TYPE_FORTUNE = "fortune";
     private let TYPE_FACT = "fact";
@@ -34,6 +35,22 @@ class Reward: TDCBase{
     
     func isJoke() -> Bool{
         return messageType == TYPE_JOKE;
+    }
+    
+    func getImageAsset() -> UIImage{
+        if (isQuote()){
+            return UIImage(named: "Quote")!;
+        }
+        else if (isFortune()){
+            return UIImage(named: "Fortune")!;
+        }
+        else if (isFact()){
+            return UIImage(named: "Fact")!;
+        }
+        else if (isJoke()){
+            return UIImage(named: "Joke")!;
+        }
+        return UIImage(named: "Transparent")!;
     }
     
     func getHeaderTitle() -> String{
@@ -70,5 +87,23 @@ class Reward: TDCBase{
         messageType <- map["message_type"];
         message <- map["message"];
         author <- map["author"];
+    }
+    
+    var description: String{
+        var result = "";
+        if (isQuote()){
+            result.appendContentsOf("\(author): ");
+        }
+        else if (isJoke()){
+            result.appendContentsOf("Joke: ");
+        }
+        else if (isFact()){
+            result.appendContentsOf("Fact: ");
+        }
+        else if (isFortune()){
+            result.appendContentsOf("Fortune: ");
+        }
+        result.appendContentsOf(message);
+        return result;
     }
 }

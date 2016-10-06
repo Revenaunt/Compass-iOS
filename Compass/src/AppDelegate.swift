@@ -89,7 +89,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         //Crashlytics
-        Crashlytics().debugMode = true;
         Fabric.with([Crashlytics.self]);
         
         return true;
