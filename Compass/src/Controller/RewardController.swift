@@ -52,6 +52,8 @@ class RewardController: UIViewController, UIGestureRecognizerDelegate{
     
     override func viewDidAppear(animated: Bool){
         super.viewDidAppear(animated);
+        
+        //Make the buttons circumferences
         refreshView.layer.cornerRadius = refreshView.frame.width/2;
         shareView.layer.cornerRadius = shareView.frame.width/2;
     }
