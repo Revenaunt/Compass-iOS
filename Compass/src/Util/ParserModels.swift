@@ -132,4 +132,19 @@ class ParserModels{
             organizations <- map["results"];
         }
     }
+    
+    class ListResult: Mappable{
+        private(set) internal var count: Int = -1
+        private(set) internal var next: String? = nil
+        
+        
+        required init?(_ map: Map){
+            
+        }
+        
+        func mapping(map: Map){
+            count <- map["count"]
+            next <- map["next"]
+        }
+    }
 }

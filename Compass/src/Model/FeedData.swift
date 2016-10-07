@@ -21,6 +21,12 @@ class FeedData: Mappable, CustomStringConvertible{
     private var nextGoalBatchUrl: String? = nil;
     
     
+    //New stuff
+    private var upNext: Action? = nil
+    private var nextUserAction: UserAction? = nil
+    private var nextCustomAction: CustomAction? = nil
+    
+    
     init(){
         
     }
@@ -45,6 +51,57 @@ class FeedData: Mappable, CustomStringConvertible{
             upNextAction = upcomingActions.removeAtIndex(0) as UpcomingAction;
         }
     }
+    
+    
+    //New stuff
+    func setNextUserAction(action: UserAction?){
+        nextUserAction = action
+    }
+    
+    func setNextCustomAction(action: CustomAction?){
+        nextCustomAction = action
+    }
+    
+    func replaceUpNext(){
+        let action = getNextAction()
+        if action != nil{
+            if action is UserAction{
+                FeedDataLoader.getInstance().loadNextUserAction()
+                nextUserAction = nil
+            }
+            else{
+                FeedDataLoader.getInstance().loadNextCustomAction()
+                nextCustomAction = nil
+            }
+        }
+        upNext = action;
+    }
+    
+    func getNextAction() -> Action?{
+        if nextUserAction != nil && nextCustomAction == nil{
+            return nextUserAction
+        }
+        else if nextUserAction == nil && nextCustomAction != nil{
+            return nextCustomAction
+        }
+        else if nextUserAction != nil{ // && nextCustomAction != nil{ (implied)
+            if nextUserAction! < nextCustomAction!{
+                return nextUserAction
+            }
+            else{
+                return nextCustomAction
+            }
+        }
+        else{
+            return nil;
+        }
+    }
+    
+    func addGoals(goals: [Goal]){
+        self.goals.appendContentsOf(goals);
+    }
+    
+    
     
     func getProgress() -> Progress?{
         return progress;

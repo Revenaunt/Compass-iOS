@@ -39,7 +39,7 @@ class UserAction: Action{
         return primaryCategoryId;
     }
     
-    func getTitle() -> String{
+    override func getTitle() -> String{
         return action!.getTitle();
     }
     
@@ -57,5 +57,16 @@ class UserAction: Action{
     
     func getGoalIconUrl() -> String{
         return goalIconUrl;
+    }
+}
+
+
+class UserActionList: ParserModels.ListResult{
+    private(set) internal var results: [UserAction]!;
+    
+    
+    override func mapping(map: Map){
+        super.mapping(map);
+        results <- map["results"];
     }
 }

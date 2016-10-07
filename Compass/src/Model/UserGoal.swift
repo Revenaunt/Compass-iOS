@@ -52,3 +52,14 @@ class UserGoal: Goal{
         return "";
     }
 }
+
+
+class UserGoalList: ParserModels.ListResult{
+    private(set) internal var results: [UserGoal]!
+    
+    
+    override func mapping(map: Map){
+        super.mapping(map);
+        results <- map["results"];
+    }
+}

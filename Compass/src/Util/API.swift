@@ -228,6 +228,14 @@ class API{
             }
         }
         
+        static func getTodaysUserActions() -> String{
+            return "\(BASE_URL)users/actions/?today=1&exclude_completed=1&page_size=1";
+        }
+        
+        static func getTodaysCustomActions() -> String{
+            return "\(BASE_URL)users/customactions/?today=1&exclude_completed=1&page_size=1";
+        }
+        
         static func getOrganizations() -> String{
             return "\(BASE_URL)organizations/";
         }
