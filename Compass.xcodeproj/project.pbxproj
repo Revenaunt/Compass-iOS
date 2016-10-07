@@ -95,7 +95,7 @@
 		5499C9C01D62674F00DBAF6C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5446E3111D622DF6009E661F /* Charts.framework */; };
 		5499C9C11D62674F00DBAF6C /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5446E3111D622DF6009E661F /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54AAD9881D58E7C300AB41E5 /* OrganizationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AAD9871D58E7C300AB41E5 /* OrganizationsController.swift */; };
-		54E562DD1DA84FC80010C20D /* NSDateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E562DC1DA84FC80010C20D /* NSDateExt.swift */; };
+		54E562DF1DA85E800010C20D /* NSDateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E562DE1DA85E800010C20D /* NSDateExt.swift */; };
 		54F60F591CC7F11A00D1424D /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F60F581CC7F11A00D1424D /* CircleProgressView.swift */; };
 		54F60F5C1CC80C7400D1424D /* UpNextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F60F5B1CC80C7400D1424D /* UpNextCell.swift */; };
 		8573BA8D3A85FBC8DE432216 /* libPods-CompassUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 077CE442412ADE3B8BBEDE28 /* libPods-CompassUITests.a */; };
@@ -234,7 +234,7 @@
 		5493554E1D14920600F325A4 /* OnBoardingCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCategoryCell.swift; sourceTree = "<group>"; };
 		5499C9BE1D6259B800DBAF6C /* StreaksCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreaksCell.swift; sourceTree = "<group>"; };
 		54AAD9871D58E7C300AB41E5 /* OrganizationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationsController.swift; sourceTree = "<group>"; };
-		54E562DC1DA84FC80010C20D /* NSDateExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExt.swift; sourceTree = "<group>"; };
+		54E562DE1DA85E800010C20D /* NSDateExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSDateExt.swift; path = Extension/NSDateExt.swift; sourceTree = "<group>"; };
 		54F60F581CC7F11A00D1424D /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		54F60F5B1CC80C7400D1424D /* UpNextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpNextCell.swift; sourceTree = "<group>"; };
 		8A270F9BCE981D16FE828B73 /* Pods-CompassUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompassUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CompassUITests/Pods-CompassUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -323,9 +323,9 @@
 		5470AE3C1DA56C3200940394 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				54E562DE1DA85E800010C20D /* NSDateExt.swift */,
 				5470AE3A1DA56C2500940394 /* ConstraintExt.swift */,
 				545685401DA83BF2005C86CE /* HttpResultExt.swift */,
-				54E562DC1DA84FC80010C20D /* NSDateExt.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -822,7 +822,7 @@
 				5480310F1CB6B27F00112807 /* LauncherViewController.swift in Sources */,
 				546F692B1D382F4B0070D73A /* AwardsController.swift in Sources */,
 				5468F8531CCEB7D100D5769B /* Action.swift in Sources */,
-				54E562DD1DA84FC80010C20D /* NSDateExt.swift in Sources */,
+				54E562DF1DA85E800010C20D /* NSDateExt.swift in Sources */,
 				5448276A1CCA88E500BBC062 /* GoalCell.swift in Sources */,
 				5493554F1D14920600F325A4 /* OnBoardingCategoryCell.swift in Sources */,
 				5415C9431D58FB1700E01054 /* Organization.swift in Sources */,
