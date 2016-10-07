@@ -11,7 +11,11 @@ import ObjectMapper
 
 class UserAction: Action{
     private var action: ActionContent? = nil;
+    
     private var primaryGoalId: Int = -1;
+    private var primaryUserGoalId: Int = -1;
+    private var goalIconUrl: String = "";
+    
     private var primaryCategoryId: Int = -1;
     
     //TODO POST parent content. Used anymore in Android??
@@ -26,6 +30,8 @@ class UserAction: Action{
         
         action <- map["action"];
         primaryGoalId <- map["primary_goal"];
+        primaryUserGoalId <- map["primary_usergoal"];
+        goalIconUrl <- map["goal_icon"];
         primaryCategoryId <- map["primary_category"];
     }
     
@@ -45,7 +51,11 @@ class UserAction: Action{
         return action!.getBehaviorTitle();
     }
     
-    func getBehaviorDescription() -> String {
+    func getBehaviorDescription() -> String{
         return action!.getBehaviorDescription()
+    }
+    
+    func getGoalIconUrl() -> String{
+        return goalIconUrl;
     }
 }

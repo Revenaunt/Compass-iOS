@@ -1176,15 +1176,8 @@
                                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAW-gx-nRQ">
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <state key="normal" title="Behavior Button"/>
-                                                <connections>
-                                                    <action selector="displayBehaviorDetails:" destination="Q9M-9N-CVz" eventType="touchUpInside" id="7Jf-LE-vUi"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action description" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDb-Oa-LVE">
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1215,50 +1208,73 @@
                                                     <constraint firstAttribute="bottom" secondItem="Jzn-un-a5O" secondAttribute="bottom" constant="5" id="vvQ-f9-VFc"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reward header" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYN-O8-PJ7">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOR YOUR GOAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yac-yo-gem">
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gw5-l6-c1q">
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqW-rX-LYY" userLabel="Goal Container">
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="veh-F6-QXW">
+                                                        <color key="backgroundColor" red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="80" id="b5o-9R-0Q4"/>
+                                                            <constraint firstAttribute="height" constant="80" id="wqm-Dm-qRB"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGc-If-8aQ">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="veh-F6-QXW" secondAttribute="bottom" id="T7m-vg-qaf"/>
+                                                    <constraint firstItem="QGc-If-8aQ" firstAttribute="leading" secondItem="veh-F6-QXW" secondAttribute="trailing" constant="8" id="Xpf-ba-RUF"/>
+                                                    <constraint firstItem="veh-F6-QXW" firstAttribute="top" secondItem="gqW-rX-LYY" secondAttribute="top" id="axO-aw-2q3"/>
+                                                    <constraint firstAttribute="trailing" secondItem="QGc-If-8aQ" secondAttribute="trailing" id="ayg-bR-VQh"/>
+                                                    <constraint firstItem="QGc-If-8aQ" firstAttribute="centerY" secondItem="gqW-rX-LYY" secondAttribute="centerY" id="bP6-SE-OHd"/>
+                                                    <constraint firstItem="veh-F6-QXW" firstAttribute="leading" secondItem="gqW-rX-LYY" secondAttribute="leading" id="buL-Y2-aPl"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOW WILL THIS HELP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVM-Ye-WDv">
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reward content" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGD-hh-hP4">
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Behavior description" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3X-Mk-Z3I">
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="xVM-Ye-WDv" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="28" id="3dD-AL-PfS"/>
                                             <constraint firstItem="36V-sI-Bi6" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="28" id="4IL-H0-swm"/>
-                                            <constraint firstAttribute="bottom" secondItem="gGD-hh-hP4" secondAttribute="bottom" priority="250" constant="30" id="Dvw-Us-7Kh"/>
-                                            <constraint firstAttribute="trailing" secondItem="hYN-O8-PJ7" secondAttribute="trailing" constant="28" id="Fb3-30-61J"/>
-                                            <constraint firstItem="gw5-l6-c1q" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="28" id="KgF-Xh-TRD"/>
+                                            <constraint firstItem="gqW-rX-LYY" firstAttribute="top" secondItem="Yac-yo-gem" secondAttribute="bottom" constant="8" id="6VK-gT-RmU"/>
+                                            <constraint firstItem="R3X-Mk-Z3I" firstAttribute="top" secondItem="xVM-Ye-WDv" secondAttribute="bottom" constant="8" id="AwZ-Pf-boh"/>
+                                            <constraint firstAttribute="trailing" secondItem="gqW-rX-LYY" secondAttribute="trailing" constant="28" id="Dg4-qY-yPC"/>
+                                            <constraint firstItem="Yac-yo-gem" firstAttribute="top" secondItem="V2O-zK-2h6" secondAttribute="bottom" constant="30" id="Drb-4W-M8H"/>
+                                            <constraint firstItem="36V-sI-Bi6" firstAttribute="top" secondItem="gqW-rX-LYY" secondAttribute="bottom" constant="30" id="GmN-FG-MvV"/>
+                                            <constraint firstAttribute="trailing" secondItem="R3X-Mk-Z3I" secondAttribute="trailing" constant="28" id="Mb4-Uy-fxC"/>
                                             <constraint firstAttribute="trailing" secondItem="V2O-zK-2h6" secondAttribute="trailing" constant="-4" id="NbU-Dz-8xJ"/>
                                             <constraint firstItem="V2O-zK-2h6" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="4" id="OOx-4d-Rf0"/>
-                                            <constraint firstItem="hYN-O8-PJ7" firstAttribute="top" secondItem="TIP-67-qLi" secondAttribute="bottom" constant="30" id="PQd-q6-Rbq"/>
                                             <constraint firstAttribute="trailing" secondItem="TIP-67-qLi" secondAttribute="trailing" constant="28" id="QYN-4b-dF5"/>
-                                            <constraint firstAttribute="trailing" secondItem="UAW-gx-nRQ" secondAttribute="trailing" constant="28" id="Qa8-li-BPv"/>
-                                            <constraint firstAttribute="bottom" secondItem="gw5-l6-c1q" secondAttribute="bottom" constant="30" id="QcK-h4-pze"/>
-                                            <constraint firstAttribute="bottom" secondItem="TIP-67-qLi" secondAttribute="bottom" priority="250" constant="30" id="Siq-p7-aZq"/>
-                                            <constraint firstItem="wDb-Oa-LVE" firstAttribute="top" secondItem="UAW-gx-nRQ" secondAttribute="bottom" constant="8" id="Tu1-fZ-Yxi"/>
-                                            <constraint firstItem="gw5-l6-c1q" firstAttribute="top" secondItem="gGD-hh-hP4" secondAttribute="bottom" constant="8" id="X9J-ol-1xC"/>
+                                            <constraint firstItem="xVM-Ye-WDv" firstAttribute="top" secondItem="TIP-67-qLi" secondAttribute="bottom" constant="30" id="TCq-zh-OSV"/>
+                                            <constraint firstAttribute="trailing" secondItem="Yac-yo-gem" secondAttribute="trailing" constant="28" id="VYe-NT-bmi"/>
+                                            <constraint firstAttribute="trailing" secondItem="xVM-Ye-WDv" secondAttribute="trailing" constant="28" id="YDr-OF-5dn"/>
                                             <constraint firstAttribute="trailing" secondItem="wDb-Oa-LVE" secondAttribute="trailing" constant="28" id="Ynd-XR-CoP"/>
-                                            <constraint firstItem="UAW-gx-nRQ" firstAttribute="top" secondItem="36V-sI-Bi6" secondAttribute="bottom" constant="8" id="Z0T-Ix-HUg"/>
-                                            <constraint firstItem="hYN-O8-PJ7" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="28" id="a3h-dz-DWn"/>
+                                            <constraint firstAttribute="bottom" secondItem="R3X-Mk-Z3I" secondAttribute="bottom" constant="30" id="ZZt-CM-weN"/>
                                             <constraint firstItem="TIP-67-qLi" firstAttribute="top" secondItem="wDb-Oa-LVE" secondAttribute="bottom" constant="12" id="bHo-x6-89Z"/>
-                                            <constraint firstItem="gGD-hh-hP4" firstAttribute="top" secondItem="hYN-O8-PJ7" secondAttribute="bottom" constant="8" id="k0k-xQ-jwF"/>
-                                            <constraint firstAttribute="trailing" secondItem="gGD-hh-hP4" secondAttribute="trailing" constant="28" id="lwM-xj-JB7"/>
-                                            <constraint firstItem="36V-sI-Bi6" firstAttribute="top" secondItem="V2O-zK-2h6" secondAttribute="bottom" constant="30" id="m1R-MM-fm7"/>
-                                            <constraint firstItem="UAW-gx-nRQ" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="28" id="nK9-yb-YQl"/>
+                                            <constraint firstItem="Yac-yo-gem" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="28" id="cbQ-tX-6IN"/>
+                                            <constraint firstItem="wDb-Oa-LVE" firstAttribute="top" secondItem="36V-sI-Bi6" secondAttribute="bottom" constant="8" id="hJJ-EB-bFn"/>
                                             <constraint firstAttribute="trailing" secondItem="36V-sI-Bi6" secondAttribute="trailing" constant="28" id="rzK-JL-58a"/>
-                                            <constraint firstItem="gGD-hh-hP4" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="28" id="s20-IQ-0MF"/>
-                                            <constraint firstAttribute="trailing" secondItem="gw5-l6-c1q" secondAttribute="trailing" constant="28" id="sSk-i5-9qX"/>
                                             <constraint firstItem="wDb-Oa-LVE" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="28" id="teq-nr-DP0"/>
+                                            <constraint firstItem="R3X-Mk-Z3I" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="28" id="wob-CK-dVW"/>
                                             <constraint firstItem="V2O-zK-2h6" firstAttribute="top" secondItem="Hgj-DZ-wFC" secondAttribute="top" id="xhZ-Bg-1XW"/>
+                                            <constraint firstItem="gqW-rX-LYY" firstAttribute="leading" secondItem="Hgj-DZ-wFC" secondAttribute="leading" constant="28" id="zt1-MK-cpP"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1283,22 +1299,18 @@
                     <connections>
                         <outlet property="actionDescription" destination="wDb-Oa-LVE" id="0T0-Z8-X4c"/>
                         <outlet property="actionTitle" destination="36V-sI-Bi6" id="xSG-c6-Dbi"/>
-                        <outlet property="behaviorButton" destination="UAW-gx-nRQ" id="RFy-qw-7nZ"/>
                         <outlet property="buttonContainer" destination="TIP-67-qLi" id="NXA-S2-bs0"/>
                         <outlet property="gotItButton" destination="Jzn-un-a5O" id="lnW-rw-rQ1"/>
                         <outlet property="hero" destination="4vm-sO-jYA" id="ZEP-ig-FJ3"/>
                         <outlet property="imageContainer" destination="V2O-zK-2h6" id="d3y-HO-11L"/>
                         <outlet property="laterButton" destination="HCG-yJ-L4f" id="Iyl-wN-8N9"/>
                         <outlet property="masterContainer" destination="Hgj-DZ-wFC" id="DKf-a2-rIa"/>
-                        <outlet property="rewardAuthor" destination="gw5-l6-c1q" id="thu-gj-95R"/>
-                        <outlet property="rewardContent" destination="gGD-hh-hP4" id="5TF-JM-z0S"/>
-                        <outlet property="rewardHeader" destination="hYN-O8-PJ7" id="lOc-vV-VVs"/>
                         <outlet property="scrollView" destination="WkA-6K-knu" id="DLR-kf-9qx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eb9-EM-G73" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="764" y="3591"/>
+            <point key="canvasLocation" x="-14" y="3591"/>
         </scene>
         <!--Reward Controller-->
         <scene sceneID="hrB-cu-3gA">
@@ -1379,11 +1391,6 @@
                                                             <constraint firstItem="ilb-yD-JeT" firstAttribute="leading" secondItem="kXa-Af-vno" secondAttribute="leading" constant="12" id="rod-eT-3Wu"/>
                                                             <constraint firstItem="ilb-yD-JeT" firstAttribute="top" secondItem="kXa-Af-vno" secondAttribute="top" constant="12" id="tes-w5-VgI"/>
                                                         </constraints>
-                                                        <connections>
-                                                            <outletCollection property="gestureRecognizers" destination="ciQ-BQ-oy8" appends="YES" id="ukx-l2-pcO"/>
-                                                            <outletCollection property="gestureRecognizers" destination="nCL-VO-hLd" appends="YES" id="3ia-JZ-Y6n"/>
-                                                            <outletCollection property="gestureRecognizers" destination="Vsa-BO-g4B" appends="YES" id="WkF-sg-JXm"/>
-                                                        </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i46-kl-UiV" userLabel="Share">
                                                         <subviews>
@@ -1461,12 +1468,8 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqt-Lh-RWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="ciQ-BQ-oy8"/>
-                <tapGestureRecognizer id="Yb6-Gl-zCf"/>
-                <tapGestureRecognizer id="nCL-VO-hLd"/>
-                <tapGestureRecognizer id="Vsa-BO-g4B"/>
             </objects>
-            <point key="canvasLocation" x="764" y="4504.4977511244379"/>
+            <point key="canvasLocation" x="764" y="3591"/>
         </scene>
         <!--Choose a Goal-->
         <scene sceneID="WnW-O5-DDw">
@@ -2347,7 +2350,7 @@
         <image name="TDC Master" width="400" height="266"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LmS-o8-yYE"/>
         <segue reference="k7y-SJ-VTq"/>
+        <segue reference="yRs-pB-MUP"/>
     </inferredMetricsTieBreakers>
 </document>

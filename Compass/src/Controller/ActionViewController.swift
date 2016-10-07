@@ -28,18 +28,12 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
     @IBOutlet weak var imageContainer: UIView!
     @IBOutlet weak var hero: UIImageView!
     @IBOutlet var actionTitle: UILabel!
-    @IBOutlet var behaviorButton: UIButton!
     @IBOutlet var actionDescription: UILabel!
     @IBOutlet var buttonContainer: UIView!
     @IBOutlet weak var laterButton: UIButton!
     @IBOutlet weak var gotItButton: UIButton!
-    @IBOutlet var rewardHeader: UILabel!
-    @IBOutlet var rewardContent: UILabel!
-    @IBOutlet var rewardAuthor: UILabel!
     
     var actionConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
-    var rewardConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
-    var authorConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
     
     private let coachMarksController = CoachMarksController();
     
@@ -56,12 +50,6 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
                     actionConstraints.append(constraint);
                 }
             }
-            else if (belongsTo(constraint, view: rewardAuthor)){
-                authorConstraints.append(constraint);
-            }
-            else if (belongsTo(constraint, view: rewardHeader) || belongsTo(constraint, view: rewardContent)){
-                rewardConstraints.append(constraint);
-            }
             else{
                 actionConstraints.append(constraint);
             }
@@ -71,12 +59,8 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
         
         //Remove all items from the master containes (except for the header) and the author
         actionTitle.removeFromSuperview();
-        behaviorButton.removeFromSuperview();
         actionDescription.removeFromSuperview();
         buttonContainer.removeFromSuperview();
-        rewardHeader.removeFromSuperview();
-        rewardContent.removeFromSuperview();
-        rewardAuthor.removeFromSuperview();
         
         //Either the mappingId is set or the upcomingAction is set (xor), select the propper mappingId
         if (upcomingAction != nil){
@@ -96,12 +80,10 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
                 dispatch_async(dispatch_get_main_queue(), {
                     self.actionTitle.text = action!.getTitle();
                     self.behaviorTitle = action!.getBehaviorTitle();
-                    self.behaviorButton.setTitle(action!.getBehaviorTitle(), forState: UIControlState.Normal);
                     self.behaviorDescription = action!.getBehaviorDescription();
                     self.actionDescription.text = action!.getDescription();
                     
                     self.masterContainer.addSubview(self.actionTitle);
-                    self.masterContainer.addSubview(self.behaviorButton);
                     self.masterContainer.addSubview(self.actionDescription);
                     self.masterContainer.addSubview(self.buttonContainer);
                     self.masterContainer.addConstraints(self.actionConstraints);
@@ -119,9 +101,6 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
                             self.scrollView.scrollRectToVisible(self.buttonContainer.frame, animated: true);
                         }
                     }
-                    
-                    //Fetch the reward
-                    self.fetchReward();
                 });
                 //Fetch the hero
                 let category = SharedData.getCategory(action!.getPrimaryCategoryId());
@@ -184,32 +163,6 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
                         self.hero.image = $0.image;
                     }.resume();
                 }
-            }
-        }
-    }
-    
-    private func fetchReward(){
-        Just.get(API.getRandomRewardUrl()){ (response) in
-            if (response.ok){
-                print("Reward retrieved");
-                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                let rewardContent = (Mapper<ParserModels.RewardArray>().map(result)?.rewards![0])!;
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.rewardHeader.text = rewardContent.getHeaderTitle();
-                    self.rewardContent.text = rewardContent.getMessage();
-                    self.masterContainer.addSubview(self.rewardHeader);
-                    self.masterContainer.addSubview(self.rewardContent);
-                    self.masterContainer.addConstraints(self.rewardConstraints);
-                    if (rewardContent.isQuote()){
-                        self.rewardAuthor.text = rewardContent.getAuthor();
-                        self.masterContainer.addSubview(self.rewardAuthor);
-                        self.masterContainer.addConstraints(self.authorConstraints);
-                    }
-                    self.masterContainer.setNeedsLayout();
-                    self.masterContainer.layoutIfNeeded();
-                    self.scrollView.contentSize = self.masterContainer.frame.size;
-                });
             }
         }
     }
