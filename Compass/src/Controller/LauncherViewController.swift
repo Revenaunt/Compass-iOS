@@ -93,21 +93,21 @@ class LauncherViewController: UIViewController{
     
     private func fetchCategories(){
         Just.get(API.getCategoriesUrl()){ (response) in
-            if (response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!)){
-                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                SharedData.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
+            if response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!){
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding)
+                SharedData.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!
                 for category in SharedData.publicCategories{
-                    print(category.toString());
+                    print(category.toString())
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), {
-                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("OnBoardingNavController");
-                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
-                });
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("OnBoardingNavController")
+                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController
+                })
             }
             else{
-                self.showMenu();
+                self.showMenu()
             }
         }
     }
