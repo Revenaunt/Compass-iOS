@@ -261,3 +261,13 @@ class FeedData: Mappable, CustomStringConvertible{
         }
     }
 }
+
+
+class FeedDataList: ParserModels.ListResult{
+    var feedData: [FeedData]!
+    
+    
+    override func mapping(map: Map){
+        feedData <- map["results"]
+    }
+}

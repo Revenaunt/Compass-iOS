@@ -111,11 +111,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
     }
     
     private func loadFeedData(){
-        FeedDataLoader.getInstance().load(){ (feedData) in
-            SharedData.feedData = feedData
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainTabBarController")
-            UIApplication.sharedApplication().keyWindow?.rootViewController = viewController
+        FeedDataLoader.getInstance().load(){ (success) in
+            if success{
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainTabBarController")
+                UIApplication.sharedApplication().keyWindow?.rootViewController = viewController
+            }
+            else{
+                self.toggleMenu(true)
+            }
         }
     }
     
