@@ -82,6 +82,14 @@ final class FeedDataLoader{
     
     func loadNextGoalBatch(callback: ([Goal]) -> Void){
         goalLoadCallback = callback
+        if getNextGoalBatchUrl != nil{
+            if getNextGoalBatchUrl!.containsString("custom"){
+                fetchCustomGoals(getNextGoalBatchUrl!)
+            }
+            else{
+                fetchUserGoals(getNextGoalBatchUrl!)
+            }
+        }
     }
     
     private func onFeedDataLoaded(){
@@ -116,7 +124,9 @@ final class FeedDataLoader{
             
             initialActionLoadRunning = false
             if !initialGoalLoadRunning{
-                dataLoadCallback(feedData!)
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.dataLoadCallback(self.feedData!)
+                })
             }
         }
     }
@@ -147,7 +157,9 @@ final class FeedDataLoader{
             
             initialActionLoadRunning = false
             if !initialGoalLoadRunning{
-                dataLoadCallback(feedData!)
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.dataLoadCallback(self.feedData!)
+                })
             }
         }
     }
@@ -156,6 +168,33 @@ final class FeedDataLoader{
         return url == nil || !url!.isEmpty;
     }
     
+    
+    private func fetchCustomGoals(url: String){
+        Just.get(url, headers: SharedData.user.getHeaderMap()){ (response) in
+            if response.ok{
+                self.processCustomGoals(Mapper<CustomGoalList>().map(response.contentStr)!)
+            }
+        }
+    }
+    
+    private func processCustomGoals(goalList: CustomGoalList){
+        getNextGoalBatchUrl = goalList.next
+        for goal in goalList.results{
+            goalBatch.append(goal)
+        }
+        if getNextGoalBatchUrl == nil{
+            getNextGoalBatchUrl = API.getUserGoalsUrl()
+            if goalBatch.count < 3{
+                fetchUserGoals(getNextGoalBatchUrl!)
+            }
+            else{
+                dispatchGoals()
+            }
+        }
+        else{
+            dispatchGoals()
+        }
+    }
     
     private func fetchUserGoals(url: String){
         Just.get(url, headers: SharedData.user.getHeaderMap()){ (response) in
@@ -167,13 +206,27 @@ final class FeedDataLoader{
     
     private func processUserGoals(goalList: UserGoalList){
         getNextGoalBatchUrl = goalList.next
+        for goal in goalList.results{
+            goalBatch.append(goal)
+        }
+        dispatchGoals();
+    }
+    
+    private func dispatchGoals(){
         if initialGoalLoadRunning{
-            feedData!.addGoals(goalList.results)
-            dataLoadCallback(feedData!)
+            feedData!.addGoals(goalBatch)
+            if !initialActionLoadRunning{
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.dataLoadCallback(self.feedData!)
+                })
+            }
             initialGoalLoadRunning = false
         }
         else{
-            goalLoadCallback(goalList.results)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.goalLoadCallback(self.goalBatch)
+                self.goalBatch.removeAll()
+            })
         }
     }
 }

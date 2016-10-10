@@ -32,3 +32,14 @@ class CustomGoal: Goal{
         return title;
     }
 }
+
+
+class CustomGoalList: ParserModels.ListResult{
+    private(set) internal var results: [CustomGoal]!;
+    
+    
+    override func mapping(map: Map){
+        super.mapping(map);
+        results <- map["results"];
+    }
+}
