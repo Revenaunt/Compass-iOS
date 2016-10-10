@@ -25,7 +25,7 @@ class FeedTypes{
     }
     
     static func hasUpNextAction() -> Bool{
-        return feedData.getUpNextAction() != nil;
+        return feedData.getUpNext() != nil;
     }
     
     static func getUpNextSectionPosition() -> Int{
@@ -88,7 +88,7 @@ class FeedTypes{
                 return hasStreaks() ? 1 : 0;
             
             case getUpcomingSectionPosition():
-                return SharedData.feedData.getUpcoming().count;
+                return 0;
             
             case getGoalsSectionPosition():
                 if (SharedData.feedData.canLoadMoreGoals()){

@@ -107,8 +107,8 @@ class FeedData: Mappable, CustomStringConvertible{
         return progress;
     }
     
-    func getUpNextAction() -> UpcomingAction?{
-        return upNextAction;
+    func getUpNext() -> Action?{
+        return upNext;
     }
     
     func getStreaks() -> [Streak]?{

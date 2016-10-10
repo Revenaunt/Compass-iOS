@@ -24,7 +24,7 @@ class UpNextCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func bind(upNext: UpcomingAction?, progress: FeedData.Progress){
+    func bind(upNext: Action?, progress: FeedData.Progress){
         if (upNext == nil){
             if (progress.getTotalActions() == 0){
                 action.text = "No activities selected for today";
@@ -37,7 +37,13 @@ class UpNextCell: UITableViewCell {
         }
         else{
             action.text = upNext!.getTitle();
-            goal.text = upNext!.getGoalTitle();
+            if (upNext is UserAction){
+                var description = (upNext as! UserAction).getDescription()
+                if description.characters.count > 30{
+                    description = "\(description.chopAt(30))..."
+                }
+                goal.text = description;
+            }
         }
     }
 }

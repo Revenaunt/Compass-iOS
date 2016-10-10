@@ -114,12 +114,6 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if (FeedTypes.isUpcomingSection(section)){
-            if (SharedData.feedData.canLoadMoreActions(displayedUpcoming.count)){
-                return displayedUpcoming.count+1;
-            }
-            return displayedUpcoming.count;
-        }
         return FeedTypes.getSectionItemCount(section);
     }
     
@@ -139,7 +133,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             cell = tableView.dequeueReusableCellWithIdentifier("UpNextCell", forIndexPath: indexPath);
             let upNextCell = cell as! UpNextCell;
             self.upNextCell = upNextCell;
-            upNextCell.bind(SharedData.feedData.getUpNextAction(), progress: SharedData.feedData.getProgress()!);
+            upNextCell.bind(SharedData.feedData.getUpNext(), progress: SharedData.feedData.getProgress()!);
         }
         else if (FeedTypes.isStreaksSection(indexPath.section)){
             print("Binding streaks cell");
@@ -349,7 +343,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         switch (indexPath.section){
         case FeedTypes.getUpNextSectionPosition():
-            if (SharedData.feedData.getUpNextAction() != nil){
+            if (SharedData.feedData.getUpNext() != nil){
                 performSegueWithIdentifier("ShowReward", sender: tableView.cellForRowAtIndexPath(indexPath));
             }
             break;
@@ -381,8 +375,8 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             let actionController = segue.destinationViewController as! ActionViewController;
             actionController.delegate = self;
             if (sender as? UpNextCell) != nil{
-                if let upNext = SharedData.feedData.getUpNextAction(){
-                    actionController.upcomingAction = upNext;
+                if let upNext = SharedData.feedData.getUpNext(){
+                    //actionController.upcomingAction = upNext;
                     selectedActionIndex = -1;
                 }
             }

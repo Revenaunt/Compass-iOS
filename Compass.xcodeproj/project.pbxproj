@@ -46,6 +46,7 @@
 		545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BF1CC695F50037FAEF /* TDCBase.swift */; };
 		545D98C21CC697100037FAEF /* TDCContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C11CC697100037FAEF /* TDCContent.swift */; };
 		545D98C41CC69A890037FAEF /* ParserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98C31CC69A890037FAEF /* ParserModels.swift */; };
+		545ED65F1DAC5AE20099FEE3 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545ED65E1DAC5AE20099FEE3 /* StringExt.swift */; };
 		5460E4111D18172A00A4FBAB /* OnBoardingCategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5460E4101D18172A00A4FBAB /* OnBoardingCategoryController.swift */; };
 		5460E4131D1821C500A4FBAB /* LoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5460E4121D1821C500A4FBAB /* LoadingController.swift */; };
 		546114DA1CF386C6007BBD1B /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546114D91CF386C6007BBD1B /* GoalViewController.swift */; };
@@ -180,6 +181,7 @@
 		545D98BF1CC695F50037FAEF /* TDCBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCBase.swift; sourceTree = "<group>"; };
 		545D98C11CC697100037FAEF /* TDCContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCContent.swift; sourceTree = "<group>"; };
 		545D98C31CC69A890037FAEF /* ParserModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserModels.swift; sourceTree = "<group>"; };
+		545ED65E1DAC5AE20099FEE3 /* StringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		5460E4101D18172A00A4FBAB /* OnBoardingCategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCategoryController.swift; sourceTree = "<group>"; };
 		5460E4121D1821C500A4FBAB /* LoadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingController.swift; sourceTree = "<group>"; };
 		546114D91CF386C6007BBD1B /* GoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				54E562DE1DA85E800010C20D /* NSDateExt.swift */,
 				5470AE3A1DA56C2500940394 /* ConstraintExt.swift */,
 				545685401DA83BF2005C86CE /* HttpResultExt.swift */,
+				545ED65E1DAC5AE20099FEE3 /* StringExt.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -871,6 +874,7 @@
 				547A60891D36B43B006FE596 /* SettingsController.swift in Sources */,
 				5467E9B01CC534D00088E417 /* User.swift in Sources */,
 				547AF1BC1CFF34F7008EC34F /* APNsMessage.swift in Sources */,
+				545ED65F1DAC5AE20099FEE3 /* StringExt.swift in Sources */,
 				547E359C1D63939600134CD9 /* PickerController.swift in Sources */,
 				545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */,
 				5443355B1CD019C200EB066E /* CustomGoal.swift in Sources */,
