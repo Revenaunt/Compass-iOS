@@ -66,21 +66,25 @@ class LauncherViewController: UIViewController{
     }
     
     private func loadFeedData(){
-        FeedDataLoader.getInstance().load(){ (feedData) in
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainTabBarController")
-            UIApplication.sharedApplication().keyWindow?.rootViewController = viewController
+        FeedDataLoader.getInstance().load(){ (success) in
+            if success{
+                let triggerTime = (Int64(NSEC_PER_SEC) * 5);
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+                    print(SharedData.feedData)
+                });
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainTabBarController")
+                UIApplication.sharedApplication().keyWindow?.rootViewController = viewController
+            }
+            else{
+                self.showMenu()
+            }
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool){
         super.viewWillAppear(animated);
         navigationController?.setNavigationBarHidden(true, animated: animated);
-    }
-
-    override func didReceiveMemoryWarning(){
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     private func showMenu(){

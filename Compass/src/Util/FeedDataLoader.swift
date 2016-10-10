@@ -22,6 +22,7 @@ import ObjectMapper
  */
 final class FeedDataLoader{
     //MARK: Singleton and instance retrieval
+    
     private static var loader: FeedDataLoader?
     
     /// FeedDataLoader instance getter.
@@ -124,7 +125,7 @@ final class FeedDataLoader{
      UserActions loaded this way are placed directly in the FeedData buffer.
      */
     func loadNextUserAction(){
-        if isFeedDataLoaded() && getNextUserActionUrl != nil{
+        if getNextUserActionUrl != nil{
             fetchUserAction(getNextUserActionUrl!)
         }
     }
@@ -134,7 +135,7 @@ final class FeedDataLoader{
      CustomActions loaded this way are placed directly in the FeedData buffer.
      */
     func loadNextCustomAction(){
-        if isFeedDataLoaded() && getNextCustomActionUrl != nil{
+        if getNextCustomActionUrl != nil{
             fetchCustomAction(getNextCustomActionUrl!)
         }
     }

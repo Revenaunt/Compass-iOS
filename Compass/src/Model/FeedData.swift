@@ -190,7 +190,7 @@ class FeedData: Mappable, CustomStringConvertible{
     }
     
     var description: String{
-        return "Feed Data: \(upNextAction != nil ? "has" : "doesn't have") up next, \(upcomingActions.count) actions, \(goals.count) goals";
+        return "Feed Data: \(upNext != nil ? "has" : "doesn't have") up next, \(nextUserAction != nil ? "has" : "doesn't have") nextUA, \(nextCustomAction != nil ? "has" : "doesn't have") nextCA, \(upcomingActions.count) actions, \(goals.count) goals";
     }
     
     
