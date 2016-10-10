@@ -31,7 +31,7 @@ class LauncherViewController: UIViewController{
             
             Just.post(API.getLogInUrl(), json: API.getLogInBody(email, password: password)){ (response) in
                 if response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!){
-                    SharedData.user = Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding))!;
+                    SharedData.user = Mapper<User>().map(response.contentStr)!;
                     print(SharedData.user);
                     if (SharedData.user.needsOnBoarding()){
                         self.fetchCategories();
@@ -39,14 +39,14 @@ class LauncherViewController: UIViewController{
                     else{
                         InitialDataLoader.load(SharedData.user){ (success) in
                             if (success){
-                                let needsOnboarding = SharedData.user.needsOnBoarding();
-                                var mainController = "MainTabBarController"
-                                if needsOnboarding{
-                                    mainController = "OnBoardingNavigationController"
+                                if SharedData.user.needsOnBoarding(){
+                                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("OnBoardingNavigationController")
+                                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController
                                 }
-                                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                                let viewController = mainStoryboard.instantiateViewControllerWithIdentifier(mainController);
-                                UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+                                else{
+                                    self.loadFeedData();
+                                }
                             }
                             else{
                                 self.showMenu()
@@ -62,6 +62,14 @@ class LauncherViewController: UIViewController{
         }
         else{
             showMenu();
+        }
+    }
+    
+    private func loadFeedData(){
+        FeedDataLoader.getInstance().load(){ (feedData) in
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainTabBarController")
+            UIApplication.sharedApplication().keyWindow?.rootViewController = viewController
         }
     }
     
