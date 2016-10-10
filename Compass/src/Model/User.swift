@@ -20,7 +20,7 @@ class User: TDCBase, CustomStringConvertible{
     private var token: String = "";
     private var dateJoined: String = "";
     private var needsOnBoardingVar: Bool = true;
-    private var dailyNotificationLimit = 0;
+    private var dailyNotificationLimit = 3;  // Default to 3, otherwise this will get set to 0 when the user signs up.
     
     //Profile answers
     private var zipCode: String = "";
