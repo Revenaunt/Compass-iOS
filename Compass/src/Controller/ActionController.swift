@@ -13,32 +13,37 @@ import Nuke
 import Instructions
 
 
-class ActionController: UIViewController, CoachMarksControllerDataSource, CoachMarksControllerDelegate, UIScrollViewDelegate{
+class ActionController: UIViewController, CoachMarksControllerDataSource, CoachMarksControllerDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate{
     //Data
     var delegate: ActionDelegate? = nil
     var action: Action? = nil
-    var notification: APNsMessage? = nil
+    var message: APNsMessage? = nil
     
     
     //UI components
-    //  Activity indicator and scroll view, only one of them is shown at the same time
+    //  Activity indicator, error, and scroll view; only one of them is shown at the same time
     @IBOutlet weak var loading: UIActivityIndicatorView!
+    @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
+    //  Container for all views below
+    @IBOutlet weak var masterContainer: UIView!
     //  Header
     @IBOutlet weak var imageContainer: UIView!
     @IBOutlet weak var hero: UIImageView!
-    @IBOutlet weak var actionTitle: UILabel!
     //  Goal
     @IBOutlet weak var goalIconContainer: UIView!
-    @IBOutlet weak var goalIcon: UIImageView!
+    @IBOutlet weak var userGoalIcon: UIImageView!
+    @IBOutlet weak var customGoalIcon: UIImageView!
     @IBOutlet weak var goalTitle: UILabel!
     //  Action
+    @IBOutlet weak var actionTitle: UILabel!
     @IBOutlet weak var actionDescription: UILabel!
     @IBOutlet weak var buttonContainer: UIView!
     @IBOutlet weak var laterButton: UIButton!
     @IBOutlet weak var gotItButton: UIButton!
     //  Behavior
-    @IBOutlet weak var behaviorDescription: UILabel!
+    @IBOutlet weak var moreInfoHeader: UILabel!
+    @IBOutlet weak var moreInfo: UILabel!
     
     private let coachMarksController = CoachMarksController()
     
@@ -50,60 +55,30 @@ class ActionController: UIViewController, CoachMarksControllerDataSource, CoachM
         
         scrollView.delegate = self;
         
-        //Remove all items from the master containes (except for the header) and the author
-        actionTitle.removeFromSuperview();
-        actionDescription.removeFromSuperview();
-        buttonContainer.removeFromSuperview();
+        //Set up the retry tap
+        let retry = UITapGestureRecognizer(target: self, action: #selector(ActionController.handleTap(_:)));
+        retry.delegate = self;
+        errorMessage.addGestureRecognizer(retry);
         
-        //Either the mappingId is set or the upcomingAction is set (xor), select the propper mappingId
-        /*if (upcomingAction != nil){
-            laterButton.hidden = true;
-            mappingId = upcomingAction!.getId();
-        }*/
-        
-        //print("Mapping id: \(mappingId)")
-        
-        //Fetch the action
-        /*Just.get(API.getActionUrl(mappingId), headers: SharedData.user.getHeaderMap()) { (response) in
-            //print(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
-            if (response.ok){
-                //Parse and populate
-                let action = Mapper<UserAction>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.actionTitle.text = action!.getTitle();
-                    self.behaviorTitle = action!.getBehaviorTitle();
-                    self.behaviorDescription = action!.getBehaviorDescription();
-                    self.actionDescription.text = action!.getDescription();
-                    
-                    self.masterContainer.addSubview(self.actionTitle);
-                    self.masterContainer.addSubview(self.actionDescription);
-                    self.masterContainer.addSubview(self.buttonContainer);
-                    self.masterContainer.addConstraints(self.actionConstraints);
-                    self.masterContainer.setNeedsLayout();
-                    self.masterContainer.layoutIfNeeded();
-                    self.scrollView.contentSize = self.masterContainer.frame.size;
-                    
-                    if (TourManager.getActionMarkerCount() != 0){
-                        let container = CGRectMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y,
-                                                   self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-                        if (CGRectIntersectsRect(self.buttonContainer.frame, container)){
-                            self.coachMarksController.startOn(self);
-                        }
-                        else{
-                            self.scrollView.scrollRectToVisible(self.buttonContainer.frame, animated: true);
-                        }
-                    }
-                });
-                //Fetch the hero
-                let category = SharedData.getCategory(action!.getPrimaryCategoryId());
-                if (category != nil && category!.getImageUrl().characters.count != 0){
-                    Nuke.taskWith(NSURL(string: category!.getImageUrl())!){
-                        self.hero.image = $0.image;
-                    }.resume();
+        if action != nil{
+            populateUI()
+            if action is UserAction{
+                let categoryId = (action as! UserAction).getPrimaryCategoryId()
+                let category = SharedData.getCategory(categoryId)
+                if category != nil{
+                    setCategory(category!)
+                }
+                else{
+                    fetchCategory(categoryId)
                 }
             }
-        };*/
+        }
+        else if message != nil{
+            fetchAction()
+        }
+        else{
+            displayLoadingError()
+        }
         
         //Tour
         coachMarksController.dataSource = self;
@@ -111,25 +86,124 @@ class ActionController: UIViewController, CoachMarksControllerDataSource, CoachM
         coachMarksController.overlay.color = UIColor.clearColor();
     }
     
-    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView){
-        coachMarksController.startOn(self);
+    override func viewDidLayoutSubviews(){
+        goalIconContainer.layer.cornerRadius = goalIconContainer.frame.width/2
     }
     
-    private func belongsTo(constraint: NSLayoutConstraint, view: UIView) -> Bool{
-        return constraint.firstItem === view || constraint.secondItem === view;
+    func handleTap(sender: UITapGestureRecognizer?){
+        if sender?.view == errorMessage{
+            if message != nil{
+                fetchAction()
+            }
+        }
     }
     
-    private func fetchCategory(categoryId: Int){
-        Just.get(API.getUserCategoryUrl(categoryId), headers: SharedData.user.getHeaderMap()) { (response) in
-            if (response.ok){
-                let category = Mapper<ParserModels.UserCategoryArray>().map(String(data: response.content!, encoding:NSUTF8StringEncoding)!)?.categories![0];
-                if (category!.getImageUrl().characters.count != 0){
-                    Nuke.taskWith(NSURL(string: category!.getImageUrl())!){
-                        self.hero.image = $0.image;
-                    }.resume();
+    private func fetchAction(){
+        loading.hidden = false
+        errorMessage.hidden = true
+        scrollView.hidden = true
+        if message!.isUserActionMessage(){
+            let url = API.getActionUrl(message!.getMappingId())
+            Just.get(url, headers: SharedData.user.getHeaderMap()){ (response) in
+                if response.ok{
+                    self.action = Mapper<UserAction>().map(response.contentStr)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.populateUI()
+                    })
+                    self.fetchCategory((self.action as! UserAction).getPrimaryCategoryId())
+                }
+                else{
+                    self.displayLoadingError()
                 }
             }
         }
+        else if message!.isCustomActionMessage(){
+            let url = API.URL.getCustomAction(message!.getObjectId())
+            Just.get(url, headers: SharedData.user.getHeaderMap()){ (response) in
+                if response.ok{
+                    self.action = Mapper<CustomAction>().map(response.contentStr)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.populateUI()
+                    })
+                }
+                else{
+                    self.displayLoadingError()
+                }
+            }
+        }
+    }
+    
+    private func populateUI(){
+        if action is UserAction{
+            let userAction = action as! UserAction
+            Nuke.taskWith(NSURL(string: userAction.getGoalIconUrl())!){
+                self.userGoalIcon.image = $0.image
+            }.resume()
+            actionDescription.text = userAction.getDescription()
+            moreInfo.text = userAction.getMoreInfo()
+        }
+        else if action is CustomAction{
+            if SharedData.user.isMale(){
+                customGoalIcon.image = UIImage(named: "Guy")
+            }
+            else{
+                customGoalIcon.image = UIImage(named: "Guy")
+            }
+            actionDescription.text = "This is an activity that you created when you set this goal for yourself. Congratulations for being so engaged! How's it going for you?"
+            
+            self.moreInfoHeader.removeFromSuperview()
+            self.moreInfo.removeFromSuperview()
+            self.masterContainer.setNeedsLayout()
+            self.masterContainer.layoutIfNeeded()
+            self.scrollView.contentSize = self.masterContainer.frame.size
+        }
+        
+        goalTitle.text = action?.getGoalTitle()
+        actionTitle.text = action?.getTitle()
+        
+        //Finally, display the content and hide the activity indicator
+        loading.hidden = true
+        scrollView.hidden = false
+        
+        //TODO: Fix this cluster
+            if TourManager.getActionMarkerCount() != 0{
+            let container = CGRectMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y,
+                self.scrollView.frame.size.width, self.scrollView.frame.size.height)
+            if CGRectIntersectsRect(self.buttonContainer.frame, container){
+                self.coachMarksController.startOn(self)
+            }
+            else{
+                self.scrollView.scrollRectToVisible(self.buttonContainer.frame, animated: true)
+            }
+        }
+    }
+    
+    private func displayLoadingError(){
+        loading.hidden = true
+        errorMessage.hidden = false
+        scrollView.hidden = true
+    }
+    
+    private func fetchCategory(id: Int){
+        Just.get(API.URL.getCategory(id), headers: SharedData.user.getHeaderMap()){ (response) in
+            if response.ok{
+                self.setCategory(Mapper<CategoryContent>().map(response.contentStr)!)
+            }
+        }
+    }
+    
+    private func setCategory(category: CategoryContent){
+        if (category.getImageUrl().characters.count != 0){
+            Nuke.taskWith(NSURL(string: category.getImageUrl())!){
+                self.hero.image = $0.image
+            }.resume()
+        }
+        imageContainer.backgroundColor = category.getParsedColor()
+        goalIconContainer.backgroundColor = category.getParsedColor()
+    }
+    
+    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView){
+        coachMarksController.startOn(self);
     }
     
     @IBAction func later(){

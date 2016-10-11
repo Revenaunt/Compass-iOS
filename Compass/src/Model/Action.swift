@@ -34,6 +34,10 @@ class Action: UserContent{
         return formatter.dateFromString(nextReminder)
     }
     
+    func getGoalTitle() -> String{
+        return goalTitle
+    }
+    
     func getTitle() -> String{
         return ""
     }

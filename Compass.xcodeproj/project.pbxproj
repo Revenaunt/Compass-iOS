@@ -79,6 +79,7 @@
 		547C46721CBC2D2900953735 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547C46711CBC2D2900953735 /* SignUpViewController.swift */; };
 		547E359C1D63939600134CD9 /* PickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E359B1D63939600134CD9 /* PickerController.swift */; };
 		547E56D31D397A1D00572A29 /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E56D21D397A1D00572A29 /* DefaultsManager.swift */; };
+		547F885F1DAD5D1A00DF2115 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547F885E1DAD5D1A00DF2115 /* UIColorExt.swift */; };
 		5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480310C1CB6B27F00112807 /* AppDelegate.swift */; };
 		5480310F1CB6B27F00112807 /* LauncherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480310E1CB6B27F00112807 /* LauncherViewController.swift */; };
 		548031121CB6B27F00112807 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 548031101CB6B27F00112807 /* Main.storyboard */; };
@@ -213,6 +214,7 @@
 		547C46711CBC2D2900953735 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		547E359B1D63939600134CD9 /* PickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerController.swift; sourceTree = "<group>"; };
 		547E56D21D397A1D00572A29 /* DefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
+		547F885E1DAD5D1A00DF2115 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		548031091CB6B27F00112807 /* Compass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Compass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5480310C1CB6B27F00112807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5480310E1CB6B27F00112807 /* LauncherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherViewController.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				5470AE3A1DA56C2500940394 /* ConstraintExt.swift */,
 				545685401DA83BF2005C86CE /* HttpResultExt.swift */,
 				545ED65E1DAC5AE20099FEE3 /* StringExt.swift */,
+				547F885E1DAD5D1A00DF2115 /* UIColorExt.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */,
 				5475BDEF1CC153F100D80D3E /* API.swift in Sources */,
 				54AAD9881D58E7C300AB41E5 /* OrganizationsController.swift in Sources */,
+				547F885F1DAD5D1A00DF2115 /* UIColorExt.swift in Sources */,
 				544614271CC9719800F2B441 /* GoalLibraryViewController.swift in Sources */,
 				54010E151CC6D31A009FB013 /* FeedController.swift in Sources */,
 				5448276C1CCA956000BBC062 /* CategoryHeaderCell.swift in Sources */,

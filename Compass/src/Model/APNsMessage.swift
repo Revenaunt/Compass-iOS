@@ -11,8 +11,9 @@ import ObjectMapper
 
 class APNsMessage: Mappable{
     //Notification message types
-    private let TYPE_ACTION = "action";
-    private let TYPE_BADGE = "award";
+    private let TYPE_USER_ACTION = "action"
+    private let TYPE_CUSTOM_ACTION = "customaction"
+    private let TYPE_BADGE = "award"
     
     //Common fields
     private var notificationId: Int = -1;
@@ -29,30 +30,42 @@ class APNsMessage: Mappable{
     }
     
     func mapping(map: Map){
-        notificationId <- map["id"];
-        objectType <- map["object_type"];
-        badge <- map["badge"];
-        objectId <- map["object_id"];
-        mappingId <- map["user_mapping_id"];
+        notificationId <- map["id"]
+        objectType <- map["object_type"]
+        badge <- map["badge"]
+        objectId <- map["object_id"]
+        mappingId <- map["user_mapping_id"]
+    }
+    
+    func isUserActionMessage() -> Bool{
+        return objectType == TYPE_USER_ACTION
+    }
+    
+    func isCustomActionMessage() -> Bool{
+        return objectType == TYPE_CUSTOM_ACTION
     }
     
     func isActionMessage() -> Bool{
-        return objectType == TYPE_ACTION;
+        return isUserActionMessage() || isCustomActionMessage()
     }
     
     func isBadgeMessage() -> Bool{
-        return objectType == TYPE_BADGE;
+        return objectType == TYPE_BADGE
     }
     
     func getBadge() -> Badge{
-        return badge!;
+        return badge!
     }
     
     func getNotificationId() -> Int{
-        return notificationId;
+        return notificationId
+    }
+    
+    func getObjectId() -> Int{
+        return objectId
     }
     
     func getMappingId() -> Int{
-        return mappingId;
+        return mappingId
     }
 }

@@ -307,7 +307,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         switch (indexPath.section){
         case FeedTypes.getUpNextSectionPosition():
             if (SharedData.feedData.getUpNext() != nil){
-                performSegueWithIdentifier("ShowReward", sender: tableView.cellForRowAtIndexPath(indexPath));
+                performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
             }
             break;
             
@@ -334,7 +334,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             actionController.delegate = self;
             if (sender as? UpNextCell) != nil{
                 if let upNext = SharedData.feedData.getUpNext(){
-                    //actionController.upcomingAction = upNext;
+                    actionController.action = upNext;
                     selectedActionIndex = -1;
                 }
             }
