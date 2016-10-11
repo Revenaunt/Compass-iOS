@@ -104,19 +104,9 @@ class FeedData: Mappable, CustomStringConvertible{
         return goals;
     }
     
-    func didIt(index: Int){
-        /*if (index == -1){
-            if (upcomingActions.count == 0){
-                upNextAction = nil;
-            }
-            else{
-                upNextAction = upcomingActions.removeAtIndex(0) as UpcomingAction;
-            }
-        }
-        else{
-            upcomingActions.removeAtIndex(index);
-        }
-        streaks![streaks!.count-1].count += 1;*/
+    func didIt(){
+        streaks![streaks!.count-1].count += 1
+        replaceUpNext()
     }
     
     func removeGoal(goal: Goal){

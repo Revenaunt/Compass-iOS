@@ -18,45 +18,39 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     
     @IBOutlet weak var addItem: UIBarButtonItem!
     
-    var didIt: Bool = false;
-    var selectedActionIndex: Int = -1;
-    var selectedGoal: UserGoal? = nil;
-    var selectedGoalIndex: Int? = nil;
+    var didIt: Bool = false
+    var selectedGoal: UserGoal? = nil
+    var selectedGoalIndex: Int? = nil
     
-    var upNextCell: UpNextCell? = nil;
-    var streaksCell: StreaksCell? = nil;
-    var goalsFooterCell: FooterCell? = nil;
+    var upNextCell: UpNextCell? = nil
+    var streaksCell: StreaksCell? = nil
+    var goalsFooterCell: FooterCell? = nil
     
-    private let coachMarksController = CoachMarksController();
+    private let coachMarksController = CoachMarksController()
     
     
     override func viewDidLoad(){
-        if (TourManager.getFeedMarkerCount() != 0){
-            UIApplication.sharedApplication().beginIgnoringInteractionEvents();
+        if TourManager.getFeedMarkerCount() != 0{
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         }
         
         //Automatic height calculation
-        tableView.rowHeight = UITableViewAutomaticDimension;
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         //Refresh
-        refreshControl!.addTarget(self, action: #selector(FeedController.refresh), forControlEvents: UIControlEvents.ValueChanged);
+        refreshControl!.addTarget(self, action: #selector(FeedController.refresh), forControlEvents: UIControlEvents.ValueChanged)
         
         //Tour
-        coachMarksController.dataSource = self;
-        coachMarksController.delegate = self;
-        coachMarksController.overlay.color = UIColor.clearColor();
+        coachMarksController.dataSource = self
+        coachMarksController.delegate = self
+        coachMarksController.overlay.color = UIColor.clearColor()
     }
     
     override func viewDidAppear(animated: Bool){
-        if (didIt){
-            SharedData.feedData.didIt(selectedActionIndex);
-            /*displayedUpcoming = SharedData.feedData.getUpcoming(displayedUpcoming.count-1);
-            if (displayedUpcoming.count == 0){
-                displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
-            }*/
-            didIt = false;
-            selectedActionIndex = -1;
-            tableView.reloadData();
+        if didIt{
+            SharedData.feedData.didIt()
+            didIt = false
+            tableView.reloadData()
         }
         
         if (selectedGoal != nil && selectedGoalIndex != nil){
@@ -335,7 +329,6 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             if (sender as? UpNextCell) != nil{
                 if let upNext = SharedData.feedData.getUpNext(){
                     actionController.action = upNext;
-                    selectedActionIndex = -1;
                 }
             }
         }

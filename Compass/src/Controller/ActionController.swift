@@ -61,6 +61,7 @@ class ActionController: UIViewController, CoachMarksControllerDataSource, CoachM
         errorMessage.addGestureRecognizer(retry);
         
         if action != nil{
+            laterButton.removeFromSuperview()
             populateUI()
             if action is UserAction{
                 let categoryId = (action as! UserAction).getPrimaryCategoryId()
@@ -233,10 +234,10 @@ class ActionController: UIViewController, CoachMarksControllerDataSource, CoachM
     }
     
     @IBAction func gotIt(){
-        //Just.post(API.getPostActionReportUrl(mappingId), json: API.getPostActionReportBody("completed"),
-        //          headers: SharedData.user.getHeaderMap()){ response in
-                    
-        //};
+        Just.post(API.getPostActionReportUrl(action!.getId()),
+                  json: API.getPostActionReportBody("completed"),
+                  headers: SharedData.user.getHeaderMap()){ (response) in }
+        
         if (delegate != nil){
             delegate!.onDidIt();
         }
@@ -256,8 +257,9 @@ class ActionController: UIViewController, CoachMarksControllerDataSource, CoachM
         
         print(date + " " + time);
         
-        //Just.put(API.getPutSnoozeUrl(notificationId), json: API.getPutSnoozeBody(date, time: time),
-        //         headers: SharedData.user.getHeaderMap());
+        Just.put(API.getPutSnoozeUrl(message!.getNotificationId()),
+                 json: API.getPutSnoozeBody(date, time: time),
+                 headers: SharedData.user.getHeaderMap()){ (response) in }
     }
     
     func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{
