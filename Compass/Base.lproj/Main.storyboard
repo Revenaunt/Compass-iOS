@@ -717,50 +717,8 @@
                                     <outlet property="chart" destination="Lrs-rG-XMO" id="vNm-Sr-Vhz"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UpcomingCell" rowHeight="105" id="lbd-71-qxq" customClass="UpcomingCell" customModule="Compass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="718" width="375" height="105"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lbd-71-qxq" id="LSN-Od-JU1">
-                                    <frame key="frameInset" width="375" height="105"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1a9-jM-YAa">
-                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Time" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSP-8g-6kW">
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtY-t1-dpa">
-                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
-                                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="1a9-jM-YAa" firstAttribute="leading" secondItem="LSN-Od-JU1" secondAttribute="leadingMargin" constant="16" id="0wg-yF-YbW"/>
-                                        <constraint firstItem="1a9-jM-YAa" firstAttribute="top" secondItem="LSN-Od-JU1" secondAttribute="topMargin" id="5QZ-tp-NA1"/>
-                                        <constraint firstItem="tSP-8g-6kW" firstAttribute="leading" secondItem="LSN-Od-JU1" secondAttribute="leadingMargin" constant="16" id="9rW-6e-wCK"/>
-                                        <constraint firstItem="1a9-jM-YAa" firstAttribute="trailing" secondItem="LSN-Od-JU1" secondAttribute="trailingMargin" constant="-16" id="Bzk-fE-8VH"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="tSP-8g-6kW" secondAttribute="bottom" id="MNV-xq-2mW"/>
-                                        <constraint firstItem="PtY-t1-dpa" firstAttribute="trailing" secondItem="LSN-Od-JU1" secondAttribute="trailingMargin" constant="-16" id="Tzx-I3-cYw"/>
-                                        <constraint firstItem="PtY-t1-dpa" firstAttribute="leading" secondItem="LSN-Od-JU1" secondAttribute="leadingMargin" constant="16" id="Vpf-Sp-yXX"/>
-                                        <constraint firstItem="tSP-8g-6kW" firstAttribute="trailing" secondItem="LSN-Od-JU1" secondAttribute="trailingMargin" constant="-16" id="n3t-uh-6d4"/>
-                                        <constraint firstItem="tSP-8g-6kW" firstAttribute="top" secondItem="PtY-t1-dpa" secondAttribute="bottom" constant="8" id="rRl-pj-bfq"/>
-                                        <constraint firstItem="PtY-t1-dpa" firstAttribute="top" secondItem="1a9-jM-YAa" secondAttribute="bottom" constant="8" id="xHv-Lw-IJH"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="action" destination="1a9-jM-YAa" id="L4l-8Z-QpR"/>
-                                    <outlet property="goal" destination="PtY-t1-dpa" id="LEn-56-bbk"/>
-                                    <outlet property="time" destination="tSP-8g-6kW" id="1RT-XT-JBH"/>
-                                </connections>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedGoalCell" rowHeight="100" id="RoT-1z-5rg" customClass="FeedGoalCell" customModule="Compass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="823" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="718" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="RoT-1z-5rg" id="NdQ-zH-vPz">
                                     <frame key="frameInset" width="375" height="100"/>
@@ -821,7 +779,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FooterCell" rowHeight="47" id="VhU-zq-ODk" customClass="FooterCell" customModule="Compass" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="923" width="375" height="47"/>
+                                <rect key="frame" x="0.0" y="818" width="375" height="47"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VhU-zq-ODk" id="29R-CU-hV8">
                                     <frame key="frameInset" width="375" height="47"/>
@@ -2350,7 +2308,7 @@
         <image name="TDC Master" width="400" height="266"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="LmS-o8-yYE"/>
         <segue reference="k7y-SJ-VTq"/>
-        <segue reference="yRs-pB-MUP"/>
     </inferredMetricsTieBreakers>
 </document>

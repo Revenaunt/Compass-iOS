@@ -16,7 +16,6 @@ import Instructions
 class ActionViewController: UIViewController, CoachMarksControllerDataSource, CoachMarksControllerDelegate, UIScrollViewDelegate{
     //Data
     var delegate: ActionDelegate? = nil;
-    var upcomingAction: UpcomingAction? = nil;
     var notificationId: Int = -1;
     var mappingId: Int = -1;
     var behaviorDescription: String = ""
@@ -63,10 +62,10 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
         buttonContainer.removeFromSuperview();
         
         //Either the mappingId is set or the upcomingAction is set (xor), select the propper mappingId
-        if (upcomingAction != nil){
+        /*if (upcomingAction != nil){
             laterButton.hidden = true;
             mappingId = upcomingAction!.getId();
-        }
+        }*/
         
         print("Mapping id: \(mappingId)")
         
