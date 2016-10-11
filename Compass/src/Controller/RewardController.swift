@@ -22,7 +22,7 @@ class RewardController: UIViewController, UIGestureRecognizerDelegate{
     @IBOutlet weak var refreshView: UIView!
     @IBOutlet weak var shareView: UIView!
     
-    private var reward: Reward? = nil;
+    var reward: Reward? = nil;
     private var authorConstraints = [NSLayoutConstraint]();
     
     

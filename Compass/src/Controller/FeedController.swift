@@ -315,6 +315,10 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             tableView.deselectRowAtIndexPath(indexPath, animated: true);
             break;
             
+        case FeedTypes.getRewardSectionPosition():
+            performSegueWithIdentifier("ShowRewardFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
+            break
+            
         case FeedTypes.getGoalsSectionPosition():
             let goalCount = SharedData.feedData.getGoals().count
             if goalCount < indexPath.row {
@@ -337,6 +341,10 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
                     actionController.action = upNext;
                 }
             }
+        }
+        if (segue.identifier == "ShowRewardFromFeed"){
+            let rewardController = segue.destinationViewController as! RewardController;
+            rewardController.reward = SharedData.feedData.getReward()
         }
         else if (segue.identifier == "ShowGoalFromFeed"){
             if let selectedCell = sender as? FeedGoalCell{
