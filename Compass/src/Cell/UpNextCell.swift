@@ -8,41 +8,49 @@
 
 import UIKit
 
-class UpNextCell: UITableViewCell {
-    @IBOutlet weak var action: UILabel!
-    @IBOutlet weak var goal: UILabel!
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+/// Up Next Action cell.
+/**
+ Displays the requested action data. This action should be FeedData.upNext
+ 
+ - Author: Ismael Alonso
+ */
+class UpNextCell: UITableViewCell{
+    //MARK: UI components
     
+    @IBOutlet weak var actionTitle: UILabel!
+    @IBOutlet weak var actionDescription: UILabel!
+    
+    
+    //MARK: Binding method
+    
+    /// Sets the cell's dataset.
+    /**
+     Binds an action to this cell.
+     
+     - parameter upNext: the action to be displayed, nil if one isn't available.
+     - parameter progress: the progress object, for being able to tell if the lack of action is
+    due to the user not having actions in his dataset or having completed them all.
+     */
     func bind(upNext: Action?, progress: FeedData.Progress){
         if (upNext == nil){
             if (progress.getTotalActions() == 0){
-                action.text = "No activities selected for today";
-                goal.text = "Select a goal to get started";
+                actionTitle.text = "No activities selected for today"
+                actionDescription.text = "Select a goal to get started"
             }
             else{
-                action.text = "No activities remaining today";
-                goal.text = "See you tomorrow";
+                actionTitle.text = "No activities remaining today"
+                actionDescription.text = "See you tomorrow"
             }
         }
         else{
-            action.text = upNext!.getTitle();
-            if (upNext is UserAction){
+            actionTitle.text = upNext!.getTitle()
+            if upNext is UserAction{
                 var description = (upNext as! UserAction).getDescription()
                 if description.characters.count > 30{
                     description = "\(description.chopAt(30))..."
                 }
-                goal.text = description;
+                actionDescription.text = description
             }
         }
     }
