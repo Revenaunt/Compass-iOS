@@ -48,12 +48,20 @@ class FeedTypes{
         return getStreaksSectionPosition() == section;
     }
     
+    static func getRewardSectionPosition() -> Int{
+        return getStreaksSectionPosition() + 1
+    }
+    
+    static func isRewardSection(section: Int) -> Bool{
+        return getRewardSectionPosition() == section
+    }
+    
     static func hasGoals() -> Bool{
         return feedData.getGoals().count != 0;
     }
     
     static func getGoalsSectionPosition() -> Int{
-        return getStreaksSectionPosition() + 1;
+        return getRewardSectionPosition() + 1;
     }
     
     static func isGoalsSection(section: Int) -> Bool{
@@ -74,6 +82,9 @@ class FeedTypes{
             
             case getStreaksSectionPosition():
                 return hasStreaks() ? 1 : 0;
+            
+            case getRewardSectionPosition():
+                return 1
             
             case getGoalsSectionPosition():
                 if (FeedDataLoader.getInstance().canLoadMoreGoals()){

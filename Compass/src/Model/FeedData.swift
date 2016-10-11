@@ -11,11 +11,12 @@ import ObjectMapper
 
 //No need to extend TDCBase
 class FeedData: Mappable, CustomStringConvertible{
-    private let LOAD_MORE_COUNT = 3;
+    private let LOAD_MORE_COUNT = 3
     
-    private var progress: Progress? = nil;
-    private var streaks: [Streak]? = nil;
-    private var goals: [Goal] = [Goal]();
+    private var progress: Progress? = nil
+    private var streaks: [Streak]? = nil
+    private var reward: Reward!
+    private var goals: [Goal] = [Goal]()
     
     
     //New stuff
@@ -33,8 +34,9 @@ class FeedData: Mappable, CustomStringConvertible{
     }
     
     func mapping(map: Map){
-        progress <- map["progress"];
-        streaks <- map["streaks"];
+        progress <- map["progress"]
+        streaks <- map["streaks"]
+        reward <- map["funcontent"]
     }
     
     
@@ -84,6 +86,10 @@ class FeedData: Mappable, CustomStringConvertible{
     
     func addGoals(goals: [Goal]){
         self.goals.appendContentsOf(goals);
+    }
+    
+    func getReward() -> Reward{
+        return reward
     }
     
     

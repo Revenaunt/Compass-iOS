@@ -132,6 +132,12 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             streaksCell.setStreaks(SharedData.feedData.getStreaks()!);
             
         }
+        else if (FeedTypes.isRewardSection(indexPath.section)){
+            print("Binding reward cell");
+            cell = tableView.dequeueReusableCellWithIdentifier("RewardCell", forIndexPath: indexPath);
+            let rewardCell = cell as! RewardCell;
+            rewardCell.bind(SharedData.feedData.getReward());
+        }
         else{
             //The footer
             if indexPath.row == SharedData.feedData.getGoals().count{

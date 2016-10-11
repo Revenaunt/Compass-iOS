@@ -715,7 +715,7 @@
                                     <outlet property="chart" destination="Lrs-rG-XMO" id="vNm-Sr-Vhz"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RewardCell" rowHeight="111" id="GH9-sl-7Q6">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RewardCell" rowHeight="111" id="GH9-sl-7Q6" customClass="RewardCell" customModule="Compass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="524" width="375" height="111"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GH9-sl-7Q6" id="52g-Uo-Nkj">
@@ -741,13 +741,13 @@
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oYT-D9-ro5" userLabel="Reward Container">
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Reward preview" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dke-Xp-6i6">
-                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reward header" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c14-Xf-0RN">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reward title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c14-Xf-0RN">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Reward preview" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dke-Xp-6i6">
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                                     <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -765,13 +765,22 @@
                                         </view>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="fDE-7J-7qD" firstAttribute="top" relation="greaterThanOrEqual" secondItem="52g-Uo-Nkj" secondAttribute="topMargin" constant="4" id="9Kg-x3-uCh"/>
                                         <constraint firstItem="oYT-D9-ro5" firstAttribute="centerY" secondItem="52g-Uo-Nkj" secondAttribute="centerY" id="CKh-7T-bdT"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="oYT-D9-ro5" secondAttribute="trailing" constant="8" id="Q09-WY-DBs"/>
                                         <constraint firstItem="fDE-7J-7qD" firstAttribute="centerY" secondItem="52g-Uo-Nkj" secondAttribute="centerY" id="ZD4-s1-CLZ"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="fDE-7J-7qD" secondAttribute="bottom" constant="4" id="ldE-xs-jpV"/>
                                         <constraint firstItem="oYT-D9-ro5" firstAttribute="leading" secondItem="fDE-7J-7qD" secondAttribute="trailing" constant="8" id="mz2-bV-4WS"/>
+                                        <constraint firstItem="oYT-D9-ro5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="52g-Uo-Nkj" secondAttribute="topMargin" constant="4" id="oUr-BL-LY3"/>
                                         <constraint firstItem="fDE-7J-7qD" firstAttribute="leading" secondItem="52g-Uo-Nkj" secondAttribute="leadingMargin" constant="8" id="pV2-v8-O4T"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="oYT-D9-ro5" secondAttribute="bottom" constant="4" id="sPC-hU-vcq"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="rewardHeader" destination="c14-Xf-0RN" id="h2H-bp-SNi"/>
+                                    <outlet property="rewardImage" destination="lYC-eu-VWO" id="ONT-0u-eRX"/>
+                                    <outlet property="rewardPreview" destination="Dke-Xp-6i6" id="GKO-Fd-Es7"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedGoalCell" rowHeight="100" id="RoT-1z-5rg" customClass="FeedGoalCell" customModule="Compass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="635" width="375" height="100"/>
