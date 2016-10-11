@@ -48,24 +48,12 @@ class FeedTypes{
         return getStreaksSectionPosition() == section;
     }
     
-    static func hasUpcoming() -> Bool{
-        return feedData.getUpcoming().count != 0;
-    }
-    
-    static func getUpcomingSectionPosition() -> Int{
-        return getStreaksSectionPosition() + 1;
-    }
-    
-    static func isUpcomingSection(section: Int) -> Bool{
-        return getUpcomingSectionPosition() == section;
-    }
-    
     static func hasGoals() -> Bool{
         return feedData.getGoals().count != 0;
     }
     
     static func getGoalsSectionPosition() -> Int{
-        return getUpcomingSectionPosition() + 1;
+        return getStreaksSectionPosition() + 1;
     }
     
     static func isGoalsSection(section: Int) -> Bool{
@@ -87,11 +75,8 @@ class FeedTypes{
             case getStreaksSectionPosition():
                 return hasStreaks() ? 1 : 0;
             
-            case getUpcomingSectionPosition():
-                return 0;
-            
             case getGoalsSectionPosition():
-                if (SharedData.feedData.canLoadMoreGoals()){
+                if (FeedDataLoader.getInstance().canLoadMoreGoals()){
                     return SharedData.feedData.getGoals().count+1;
                 }
                 return SharedData.feedData.getGoals().count;
@@ -108,9 +93,6 @@ class FeedTypes{
             
             case getStreaksSectionPosition():
                 return hasStreaks() ? "Weekly progress" : "";
-            
-            case getUpcomingSectionPosition():
-                return hasUpcoming() ? "Upcoming" : "";
             
             case getGoalsSectionPosition():
                 return (hasGoals() || updatingGoals) ? "Your goals" : "";

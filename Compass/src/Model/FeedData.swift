@@ -15,10 +15,7 @@ class FeedData: Mappable, CustomStringConvertible{
     
     private var progress: Progress? = nil;
     private var streaks: [Streak]? = nil;
-    private var upNextAction: UpcomingAction? = nil;
-    private var upcomingActions: [UpcomingAction] = [UpcomingAction]();
     private var goals: [Goal] = [Goal]();
-    private var nextGoalBatchUrl: String? = nil;
     
     
     //New stuff
@@ -38,18 +35,6 @@ class FeedData: Mappable, CustomStringConvertible{
     func mapping(map: Map){
         progress <- map["progress"];
         streaks <- map["streaks"];
-        upcomingActions <- map["upcoming"];
-        var upcoming = [UpcomingAction]();
-        for action in upcomingActions{
-            if (action.isUserAction()){
-                upcoming.append(action);
-            }
-        }
-        upcomingActions = upcoming;
-        
-        if (upcomingActions.count > 0){
-            upNextAction = upcomingActions.removeAtIndex(0) as UpcomingAction;
-        }
     }
     
     
@@ -115,38 +100,12 @@ class FeedData: Mappable, CustomStringConvertible{
         return streaks;
     }
     
-    func getUpcoming() -> [UpcomingAction]{
-        return upcomingActions;
-    }
-    
-    func getUpcoming(size: Int) -> [UpcomingAction]{
-        var size = size;
-        if (size > upcomingActions.count){
-            size = upcomingActions.count;
-        }
-        else if (size < 0){
-            size = 0;
-        }
-        var list = [UpcomingAction]();
-        var i = 0;
-        while (i < size){
-            list.append(upcomingActions[i]);
-            i += 1;
-        }
-        return list;
-    }
-    
     func getGoals() -> [Goal]{
         return goals;
     }
     
-    func addGoals(goals: [Goal], nextGoalBatchUrl: String?){
-        self.goals.appendContentsOf(goals);
-        self.nextGoalBatchUrl = nextGoalBatchUrl;
-    }
-    
     func didIt(index: Int){
-        if (index == -1){
+        /*if (index == -1){
             if (upcomingActions.count == 0){
                 upNextAction = nil;
             }
@@ -157,7 +116,7 @@ class FeedData: Mappable, CustomStringConvertible{
         else{
             upcomingActions.removeAtIndex(index);
         }
-        streaks![streaks!.count-1].count += 1;
+        streaks![streaks!.count-1].count += 1;*/
     }
     
     func removeGoal(goal: Goal){
@@ -169,28 +128,8 @@ class FeedData: Mappable, CustomStringConvertible{
         }
     }
     
-    func getNextGoalBatchUrl() -> String?{
-        return nextGoalBatchUrl;
-    }
-    
-    func canLoadMoreActions(displayedUpcoming: Int) -> Bool{
-        return displayedUpcoming < upcomingActions.count;
-    }
-    
-    func loadModeUpcoming(displayedUpcoming: Int) -> [UpcomingAction]{
-        var batch = [UpcomingAction]();
-        while (batch.count < LOAD_MORE_COUNT && canLoadMoreActions(displayedUpcoming + batch.count)){
-            batch.append(upcomingActions[displayedUpcoming+batch.count]);
-        }
-        return batch;
-    }
-    
-    func canLoadMoreGoals() -> Bool{
-        return nextGoalBatchUrl != nil;
-    }
-    
     var description: String{
-        return "Feed Data: \(upNext != nil ? "has" : "doesn't have") up next, \(nextUserAction != nil ? "has" : "doesn't have") nextUA, \(nextCustomAction != nil ? "has" : "doesn't have") nextCA, \(upcomingActions.count) actions, \(goals.count) goals";
+        return "Feed Data: \(upNext != nil ? "has" : "doesn't have") up next, \(nextUserAction != nil ? "has" : "doesn't have") nextUA, \(nextCustomAction != nil ? "has" : "doesn't have") nextCA, \(goals.count) goals";
     }
     
     

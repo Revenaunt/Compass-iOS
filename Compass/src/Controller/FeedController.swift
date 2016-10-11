@@ -18,7 +18,6 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     
     @IBOutlet weak var addItem: UIBarButtonItem!
     
-    var displayedUpcoming = [UpcomingAction]();
     var didIt: Bool = false;
     var selectedActionIndex: Int = -1;
     var selectedGoal: UserGoal? = nil;
@@ -36,10 +35,6 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             UIApplication.sharedApplication().beginIgnoringInteractionEvents();
         }
         
-        if (displayedUpcoming.count == 0){
-            displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
-        }
-        
         //Automatic height calculation
         tableView.rowHeight = UITableViewAutomaticDimension;
         
@@ -55,10 +50,10 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     override func viewDidAppear(animated: Bool){
         if (didIt){
             SharedData.feedData.didIt(selectedActionIndex);
-            displayedUpcoming = SharedData.feedData.getUpcoming(displayedUpcoming.count-1);
+            /*displayedUpcoming = SharedData.feedData.getUpcoming(displayedUpcoming.count-1);
             if (displayedUpcoming.count == 0){
                 displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
-            }
+            }*/
             didIt = false;
             selectedActionIndex = -1;
             tableView.reloadData();
@@ -101,10 +96,10 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     }
     
     func refresh(){
-        InitialDataLoader.load(SharedData.user){ (success) in
-            self.displayedUpcoming.removeAll();
-            self.displayedUpcoming.appendContentsOf(SharedData.feedData.loadModeUpcoming(0));
-            self.tableView.reloadData();
+        FeedDataLoader.getInstance().load(){ (success) in
+            if (success){
+                self.tableView.reloadData();
+            }
             self.refreshControl?.endRefreshing()
         }
     }
@@ -143,28 +138,13 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             streaksCell.setStreaks(SharedData.feedData.getStreaks()!);
             
         }
-        else if (FeedTypes.isUpcomingSection(indexPath.section)){
-            //The footer
-            if (indexPath.row == displayedUpcoming.count && SharedData.feedData.canLoadMoreActions(displayedUpcoming.count)){
-                print("Binding footer");
-                cell = tableView.dequeueReusableCellWithIdentifier("FooterCell", forIndexPath: indexPath);
-                let footerCell = cell as! FooterCell;
-                footerCell.bind(self, type: FooterCell.FooterType.Upcoming);
-            }
-            else{
-                print("Binding upcoming cell");
-                cell = tableView.dequeueReusableCellWithIdentifier("UpcomingCell", forIndexPath: indexPath);
-                let upcomingCell = cell as! UpcomingCell;
-                upcomingCell.bind(SharedData.feedData.getUpcoming()[indexPath.row]);
-            }
-        }
         else{
             //The footer
             if (indexPath.row == SharedData.feedData.getGoals().count){
                 print("Binding footer");
                 cell = tableView.dequeueReusableCellWithIdentifier("FooterCell", forIndexPath: indexPath);
                 goalsFooterCell = cell as? FooterCell;
-                goalsFooterCell!.bind(self, type: FooterCell.FooterType.Goals);
+                goalsFooterCell!.bind(self);
             }
             else{
                 print("Binding goal cell");
@@ -288,51 +268,34 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         print("finish/skipped code");
     }
     
-    func loadMoreUpcoming(){
-        let start = displayedUpcoming.count;
-        let more = SharedData.feedData.loadModeUpcoming(displayedUpcoming.count);
-        displayedUpcoming.appendContentsOf(more);
-        
-        var paths = [NSIndexPath]();
-        for i in 0...more.count-1{
-            paths.append(NSIndexPath(forRow: start+i, inSection: FeedTypes.getUpcomingSectionPosition()));
-        }
-        print("Count: \(displayedUpcoming.count)");
-        tableView.beginUpdates();
-        if (!SharedData.feedData.canLoadMoreActions(displayedUpcoming.count)){
-            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: start, inSection: FeedTypes.getUpcomingSectionPosition())],
-                                             withRowAnimation: .Automatic)
-        }
-        tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
-        tableView.endUpdates();
-    }
-    
     func loadMoreGoals(footer: FooterCell){
-        Just.get(SharedData.feedData.getNextGoalBatchUrl()!, headers: SharedData.user.getHeaderMap()){ response in
-            if (response.ok){
-                let start = SharedData.feedData.getGoals().count;
-                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                let uga = Mapper<ParserModels.UserGoalArray>().map(result)!;
-                if (uga.goals!.count > 0){
-                    SharedData.feedData.addGoals(uga.goals!, nextGoalBatchUrl: uga.next);
+        FeedDataLoader.getInstance().loadNextGoalBatch(){ (goals) in
+            if goals != nil{
+                //Count the current amount of goals and add the new ones
+                let preCount = SharedData.feedData.getGoals().count
+                SharedData.feedData.addGoals(goals!)
+                
+                //Create the path objects to update the table
+                var addPaths = [NSIndexPath]()
+                let section = FeedTypes.getGoalsSectionPosition()
+                for i in 0...goals!.count-1{
+                    addPaths.append(NSIndexPath(forRow: preCount+i, inSection: section))
                 }
-                var paths = [NSIndexPath]();
-                for i in 0...uga.goals!.count-1{
-                    paths.append(NSIndexPath(forRow: start+i, inSection: FeedTypes.getGoalsSectionPosition()));
+                
+                //Update the table
+                self.tableView.beginUpdates();
+                if (!FeedDataLoader.getInstance().canLoadMoreGoals()){
+                    let deletePaths = [NSIndexPath(forRow: preCount, inSection: section)]
+                    self.tableView.deleteRowsAtIndexPaths(deletePaths, withRowAnimation: .Automatic)
+                    self.goalsFooterCell = nil;
                 }
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.tableView.beginUpdates();
-                    if (!SharedData.feedData.canLoadMoreGoals()){
-                        self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: start, inSection: FeedTypes.getGoalsSectionPosition())],
-                            withRowAnimation: .Automatic);
-                        self.goalsFooterCell = nil;
-                    }
-                    footer.end();
-                    self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic);
-                    self.tableView.endUpdates();
-                    FeedTypes.setUpdatingGoals(false);
-                });
+                self.tableView.insertRowsAtIndexPaths(addPaths, withRowAnimation: .Automatic)
+                self.tableView.endUpdates()
             }
+            
+            //Update the footer
+            FeedTypes.setUpdatingGoals(false);
+            footer.end()
         }
     }
     
@@ -352,18 +315,13 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             tableView.deselectRowAtIndexPath(indexPath, animated: true);
             break;
             
-        case FeedTypes.getUpcomingSectionPosition():
-            if (SharedData.feedData.getUpcoming()[indexPath.row].isUserAction()){
-                performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
-            }
-            break;
-            
         case FeedTypes.getGoalsSectionPosition():
             let goalCount = SharedData.feedData.getGoals().count
             if goalCount < indexPath.row {
                 performSegueWithIdentifier("ShowGoalFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
             }
             break;
+            
         default:
             break;
         }
@@ -379,11 +337,6 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
                     //actionController.upcomingAction = upNext;
                     selectedActionIndex = -1;
                 }
-            }
-            else if let selectedCell = sender as? UpcomingCell{
-                let indexPath = tableView.indexPathForCell(selectedCell);
-                selectedActionIndex = indexPath!.row;
-                actionController.upcomingAction = SharedData.feedData.getUpcoming()[indexPath!.row];
             }
         }
         else if (segue.identifier == "ShowGoalFromFeed"){
