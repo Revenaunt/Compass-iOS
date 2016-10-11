@@ -141,7 +141,7 @@ class API{
     }
     
     static func getCustomGoalsUrl() -> String{
-        return postProcess(BASE_URL + "users/customgoals/?page_size=999999");
+        return postProcess(BASE_URL + "users/customgoals/?page_size=3");
     }
     
     static func getPostGoalUrl(goal: GoalContent) -> String{

@@ -263,7 +263,7 @@ final class FeedDataLoader{
         self.feedData = feedData
         fetchUserAction(API.URL.getTodaysUserActions())
         fetchCustomAction(API.URL.getTodaysCustomActions())
-        fetchCustomGoals(API.getUserGoalsUrl());
+        fetchCustomGoals(API.getCustomGoalsUrl());
     }
     
     /// Decides what to do with a recently fetched UserAction
@@ -371,7 +371,7 @@ final class FeedDataLoader{
         for goal in goalList.results{
             goalBatch.append(goal)
         }
-        dispatchGoals();
+        dispatchGoals()
     }
     
     //MARK: Dispatching methods
@@ -402,6 +402,7 @@ final class FeedDataLoader{
     private func dispatchGoals(){
         if initialGoalLoadRunning{
             feedData!.addGoals(goalBatch)
+            goalBatch.removeAll()
             if !initialActionLoadRunning{
                 dispatchFeedData()
             }

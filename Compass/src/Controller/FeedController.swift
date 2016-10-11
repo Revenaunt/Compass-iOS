@@ -140,11 +140,11 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         }
         else{
             //The footer
-            if (indexPath.row == SharedData.feedData.getGoals().count){
-                print("Binding footer");
-                cell = tableView.dequeueReusableCellWithIdentifier("FooterCell", forIndexPath: indexPath);
-                goalsFooterCell = cell as? FooterCell;
-                goalsFooterCell!.bind(self);
+            if indexPath.row == SharedData.feedData.getGoals().count{
+                print("Binding footer")
+                cell = tableView.dequeueReusableCellWithIdentifier("FooterCell", forIndexPath: indexPath)
+                goalsFooterCell = cell as? FooterCell
+                goalsFooterCell!.bind(self)
             }
             else{
                 print("Binding goal cell");
