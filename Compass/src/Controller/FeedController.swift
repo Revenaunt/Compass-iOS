@@ -330,7 +330,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         segue.destinationViewController.hidesBottomBarWhenPushed = true;
         if (segue.identifier == "ShowActionFromFeed"){
-            let actionController = segue.destinationViewController as! ActionViewController;
+            let actionController = segue.destinationViewController as! ActionController;
             actionController.delegate = self;
             if (sender as? UpNextCell) != nil{
                 if let upNext = SharedData.feedData.getUpNext(){

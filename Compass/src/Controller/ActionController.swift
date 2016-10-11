@@ -13,45 +13,39 @@ import Nuke
 import Instructions
 
 
-class ActionViewController: UIViewController, CoachMarksControllerDataSource, CoachMarksControllerDelegate, UIScrollViewDelegate{
+class ActionController: UIViewController, CoachMarksControllerDataSource, CoachMarksControllerDelegate, UIScrollViewDelegate{
     //Data
-    var delegate: ActionDelegate? = nil;
-    var notificationId: Int = -1;
-    var mappingId: Int = -1;
-    var behaviorDescription: String = ""
-    var behaviorTitle: String = ""
+    var delegate: ActionDelegate? = nil
+    var action: Action? = nil
+    var notification: APNsMessage? = nil
+    
     
     //UI components
+    //  Activity indicator and scroll view, only one of them is shown at the same time
+    @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var masterContainer: UIView!
+    //  Header
     @IBOutlet weak var imageContainer: UIView!
     @IBOutlet weak var hero: UIImageView!
-    @IBOutlet var actionTitle: UILabel!
-    @IBOutlet var actionDescription: UILabel!
-    @IBOutlet var buttonContainer: UIView!
+    @IBOutlet weak var actionTitle: UILabel!
+    //  Goal
+    @IBOutlet weak var goalIconContainer: UIView!
+    @IBOutlet weak var goalIcon: UIImageView!
+    @IBOutlet weak var goalTitle: UILabel!
+    //  Action
+    @IBOutlet weak var actionDescription: UILabel!
+    @IBOutlet weak var buttonContainer: UIView!
     @IBOutlet weak var laterButton: UIButton!
     @IBOutlet weak var gotItButton: UIButton!
+    //  Behavior
+    @IBOutlet weak var behaviorDescription: UILabel!
     
-    var actionConstraints: [NSLayoutConstraint] = [NSLayoutConstraint]();
-    
-    private let coachMarksController = CoachMarksController();
+    private let coachMarksController = CoachMarksController()
     
 
     override func viewDidLoad(){
         if (TourManager.getActionMarkerCount() != 0){
             UIApplication.sharedApplication().beginIgnoringInteractionEvents();
-        }
-        
-        //Backup the constraints
-        for constraint in masterContainer.constraints{
-            if (belongsTo(constraint, view: imageContainer) || belongsTo(constraint, view: hero)){
-                if (belongsTo(constraint, view: actionTitle)){
-                    actionConstraints.append(constraint);
-                }
-            }
-            else{
-                actionConstraints.append(constraint);
-            }
         }
         
         scrollView.delegate = self;
@@ -67,10 +61,10 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
             mappingId = upcomingAction!.getId();
         }*/
         
-        print("Mapping id: \(mappingId)")
+        //print("Mapping id: \(mappingId)")
         
         //Fetch the action
-        Just.get(API.getActionUrl(mappingId), headers: SharedData.user.getHeaderMap()) { (response) in
+        /*Just.get(API.getActionUrl(mappingId), headers: SharedData.user.getHeaderMap()) { (response) in
             //print(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
             if (response.ok){
                 //Parse and populate
@@ -109,7 +103,7 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
                     }.resume();
                 }
             }
-        };
+        };*/
         
         //Tour
         coachMarksController.dataSource = self;
@@ -123,34 +117,6 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
     
     private func belongsTo(constraint: NSLayoutConstraint, view: UIView) -> Bool{
         return constraint.firstItem === view || constraint.secondItem === view;
-    }
-    
-    @IBAction func displayBehaviorDetails(sender: AnyObject) {
-        //let alertController = UIAlertController(title: behaviorTitle, message: behaviorDescription, preferredStyle: .ActionSheet)
-        let alertController = UIAlertController(title: behaviorTitle, message: behaviorDescription, preferredStyle: .Alert)
-
-        // HACK for changing the style of alerts. Note the comment about this being private API usage.
-        // http://stackoverflow.com/a/26949674/182778
-
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = NSTextAlignment.Justified
-        let messageText = NSMutableAttributedString(
-            string: behaviorDescription,
-            attributes: [
-                NSParagraphStyleAttributeName: paragraphStyle,
-            ]
-        )
-        alertController.setValue(messageText, forKey: "attributedMessage")
-        
-        // Wire up OK action and present the alert.
-        let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
-            // OK doesn't do anything.
-        }
-        alertController.addAction(OKAction)
-        
-        self.presentViewController(alertController, animated: true) {
-            // Neither does presenting the alert.
-        }
     }
     
     private func fetchCategory(categoryId: Int){
@@ -193,10 +159,10 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
     }
     
     @IBAction func gotIt(){
-        Just.post(API.getPostActionReportUrl(mappingId), json: API.getPostActionReportBody("completed"),
-                  headers: SharedData.user.getHeaderMap()){ response in
+        //Just.post(API.getPostActionReportUrl(mappingId), json: API.getPostActionReportBody("completed"),
+        //          headers: SharedData.user.getHeaderMap()){ response in
                     
-        };
+        //};
         if (delegate != nil){
             delegate!.onDidIt();
         }
@@ -216,8 +182,8 @@ class ActionViewController: UIViewController, CoachMarksControllerDataSource, Co
         
         print(date + " " + time);
         
-        Just.put(API.getPutSnoozeUrl(notificationId), json: API.getPutSnoozeBody(date, time: time),
-                 headers: SharedData.user.getHeaderMap());
+        //Just.put(API.getPutSnoozeUrl(notificationId), json: API.getPutSnoozeBody(date, time: time),
+        //         headers: SharedData.user.getHeaderMap());
     }
     
     func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{

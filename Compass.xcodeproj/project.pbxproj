@@ -87,7 +87,7 @@
 		5480311A1CB6B27F00112807 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 548031181CB6B27F00112807 /* LaunchScreen.storyboard */; };
 		548031251CB6B27F00112807 /* CompassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548031241CB6B27F00112807 /* CompassTests.swift */; };
 		548031301CB6B27F00112807 /* CompassUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480312F1CB6B27F00112807 /* CompassUITests.swift */; };
-		5488FC211CFDEF2900E758C1 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5488FC201CFDEF2900E758C1 /* ActionViewController.swift */; };
+		5488FC211CFDEF2900E758C1 /* ActionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5488FC201CFDEF2900E758C1 /* ActionController.swift */; };
 		5488FC231CFDF9EF00E758C1 /* UserCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5488FC221CFDF9EF00E758C1 /* UserCategory.swift */; };
 		5493554F1D14920600F325A4 /* OnBoardingCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493554E1D14920600F325A4 /* OnBoardingCategoryCell.swift */; };
 		5499C9BF1D6259B800DBAF6C /* StreaksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5499C9BE1D6259B800DBAF6C /* StreaksCell.swift */; };
@@ -227,7 +227,7 @@
 		5480312B1CB6B27F00112807 /* CompassUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CompassUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5480312F1CB6B27F00112807 /* CompassUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassUITests.swift; sourceTree = "<group>"; };
 		548031311CB6B27F00112807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5488FC201CFDEF2900E758C1 /* ActionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
+		5488FC201CFDEF2900E758C1 /* ActionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionController.swift; sourceTree = "<group>"; };
 		5488FC221CFDF9EF00E758C1 /* UserCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCategory.swift; sourceTree = "<group>"; };
 		5493554E1D14920600F325A4 /* OnBoardingCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCategoryCell.swift; sourceTree = "<group>"; };
 		5499C9BE1D6259B800DBAF6C /* StreaksCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreaksCell.swift; sourceTree = "<group>"; };
@@ -348,7 +348,7 @@
 		547C46701CBC1F8700953735 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5488FC201CFDEF2900E758C1 /* ActionViewController.swift */,
+				5488FC201CFDEF2900E758C1 /* ActionController.swift */,
 				544614201CC927CE00F2B441 /* ChooseCategoryViewController.swift */,
 				544614261CC9719800F2B441 /* GoalLibraryViewController.swift */,
 				546114D91CF386C6007BBD1B /* GoalViewController.swift */,
@@ -825,7 +825,7 @@
 				5415C9431D58FB1700E01054 /* Organization.swift in Sources */,
 				547966371D0628D5006846E1 /* LibraryLoadingCell.swift in Sources */,
 				5456853F1DA80BE9005C86CE /* CustomAction.swift in Sources */,
-				5488FC211CFDEF2900E758C1 /* ActionViewController.swift in Sources */,
+				5488FC211CFDEF2900E758C1 /* ActionController.swift in Sources */,
 				5415C9451D59020A00E01054 /* OrganizationCell.swift in Sources */,
 				54F60F5C1CC80C7400D1424D /* UpNextCell.swift in Sources */,
 				547A608B1D36BB35006FE596 /* SourcesController.swift in Sources */,

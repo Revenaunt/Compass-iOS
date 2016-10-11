@@ -68,9 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     window?.rootViewController = navController;
                     
                     //Create the action controller and immediately push
-                    let actionController = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionViewController;
-                    actionController.mappingId = message.getMappingId();
-                    actionController.notificationId = message.getNotificationId();
+                    let actionController = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionController;
+                    actionController.notification = message
                     navController.pushViewController(actionController, animated: false);
                 }
                 else if (message.isBadgeMessage()){
@@ -175,9 +174,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             print("The message was parsed properly");
             if (message.isActionMessage()){
                 let storyboard = UIStoryboard(name: "Main", bundle: nil);
-                let actionController = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionViewController;
-                actionController.mappingId = message.getMappingId();
-                actionController.notificationId = message.getNotificationId();
+                let actionController = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionController;
+                actionController.notification = message
                 if let rootController = window?.rootViewController as? MainController{
                     rootController.selectedIndex = 1;
                     if let navController = rootController.viewControllers![1] as? UINavigationController{
