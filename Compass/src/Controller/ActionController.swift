@@ -41,7 +41,8 @@ class ActionController: UIViewController, CoachMarksControllerDataSource, CoachM
     @IBOutlet weak var buttonContainer: UIView!
     @IBOutlet weak var laterButton: UIButton!
     @IBOutlet weak var gotItButton: UIButton!
-    //  Behavior
+    //  More info
+    @IBOutlet weak var moreInfoRuler: UIView!
     @IBOutlet weak var moreInfoHeader: UILabel!
     @IBOutlet weak var moreInfo: UILabel!
     
@@ -152,6 +153,7 @@ class ActionController: UIViewController, CoachMarksControllerDataSource, CoachM
             }
             actionDescription.text = "This is an activity that you created when you set this goal for yourself. Congratulations for being so engaged! How's it going for you?"
             
+            self.moreInfoRuler.removeFromSuperview()
             self.moreInfoHeader.removeFromSuperview()
             self.moreInfo.removeFromSuperview()
             self.masterContainer.setNeedsLayout()

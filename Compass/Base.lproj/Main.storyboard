@@ -1288,7 +1288,7 @@
                                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cSf-Ce-EGq">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cSf-Ce-EGq" userLabel="First Ruler">
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="4kD-g5-OeJ"/>
@@ -1381,6 +1381,7 @@
                         <outlet property="masterContainer" destination="Hgj-DZ-wFC" id="XTn-Hg-q3l"/>
                         <outlet property="moreInfo" destination="R3X-Mk-Z3I" id="fmX-aI-NpN"/>
                         <outlet property="moreInfoHeader" destination="xVM-Ye-WDv" id="fnL-N9-NRf"/>
+                        <outlet property="moreInfoRuler" destination="fdB-4q-XK2" id="dQ3-FO-ckC"/>
                         <outlet property="scrollView" destination="WkA-6K-knu" id="DLR-kf-9qx"/>
                         <outlet property="userGoalIcon" destination="4CW-Y5-cIq" id="SIV-ol-yw2"/>
                     </connections>
