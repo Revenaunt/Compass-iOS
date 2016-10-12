@@ -223,6 +223,10 @@ class API{
             return "\(BASE_URL)categories/\(id)/"
         }
         
+        static func getUserGoal(id: Int) -> String{
+            return "\(BASE_URL)users/goals/\(id)/"
+        }
+        
         static func deleteGoal(goal: Goal) -> String{
             if (goal is UserGoal){
                 return "\(BASE_URL)users/goals/\(goal.getId())/";
