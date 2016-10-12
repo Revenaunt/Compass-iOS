@@ -251,6 +251,10 @@ class API{
         static func postOrganization() -> String{
             return "\(BASE_URL)organizations/members/";
         }
+        
+        static func postRemoveOrganization(organization: Organization) -> String{
+            return "\(BASE_URL)organizations/\(organization.getId())/remove-member/"
+        }
     }
     
     class BODY{
@@ -261,6 +265,12 @@ class API{
         }
         
         static func postOrganization(organization: Organization) -> [String: AnyObject]{
+            var body = [String: AnyObject]();
+            body["organization"] = organization.getId();
+            return body;
+        }
+        
+        static func postRemoveOrganization(organization: Organization) -> [String: AnyObject]{
             var body = [String: AnyObject]();
             body["organization"] = organization.getId();
             return body;

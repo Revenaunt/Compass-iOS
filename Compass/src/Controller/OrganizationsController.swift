@@ -19,7 +19,8 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var error: UILabel!
     @IBOutlet weak var skipButton: UIButton!
     
-    var organizations: [Organization] = [Organization]();
+    var organizations: [Organization] = [Organization]()
+    var selectedOrganziation: Organization? = nil
     
     private let coachMarksController = CoachMarksController();
     
@@ -40,6 +41,25 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
         coachMarksController.overlay.color = UIColor.clearColor();
         
         loadData();
+    }
+    
+    override func viewWillAppear(animated: Bool){
+        super.viewWillAppear(animated)
+        if selectedOrganziation != nil{
+            let org = selectedOrganziation!
+            print("Deleting \(org)...")
+            Just.post(API.URL.postRemoveOrganization(selectedOrganziation!),
+                      json: API.BODY.postRemoveOrganization(selectedOrganziation!),
+                      headers: SharedData.user.getHeaderMap()){ (response) in
+                
+                print(response.statusCode)
+                if response.ok{
+                    print(response.contentStr)
+                    print("Deleted \(org)")
+                }
+            }
+            selectedOrganziation = nil
+        }
     }
     
     private func loadData(){
@@ -92,10 +112,10 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
         progress.hidden = false;
         progress.startAnimating();
         
-        print("Selected \(organizations[indexPath.row])")
-        
+        selectedOrganziation = organizations[indexPath.row]
+        print("Selected \(selectedOrganziation!)")
         Just.post(API.URL.postOrganization(), headers: SharedData.user.getHeaderMap(),
-                  json: API.BODY.postOrganization(organizations[indexPath.row])){ (response) in
+                  json: API.BODY.postOrganization(selectedOrganziation!)){ (response) in
             
             if response.ok{
                 //Note: POSTing to this endpoint returns the list of organizations, ignore.
@@ -105,9 +125,9 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
                         let categoryList = Mapper<CategoryContentList>().map(response.contentStr)!
                         print(categoryList.categories)
                         SharedData.publicCategories = categoryList.categories
-                        print(SharedData.publicCategories)
-                        print(SharedData.nonDefaultCategoryLists)
-                        print(SharedData.filteredCategoryLists)
+                        //print(SharedData.publicCategories)
+                        //print(SharedData.nonDefaultCategoryLists)
+                        //print(SharedData.filteredCategoryLists)
                         
                         dispatch_async(dispatch_get_main_queue(), {
                             self.transitionToCategories();
