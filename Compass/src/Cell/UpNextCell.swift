@@ -18,8 +18,11 @@ import UIKit
 class UpNextCell: UITableViewCell{
     //MARK: UI components
     
+    @IBOutlet weak var actionContainer: UIView!
     @IBOutlet weak var actionTitle: UILabel!
-    @IBOutlet weak var actionDescription: UILabel!
+    @IBOutlet var actionDescription: UILabel!
+    
+    private var descriptionConstraints = [NSLayoutConstraint]()
     
     
     //MARK: Binding method
@@ -34,6 +37,7 @@ class UpNextCell: UITableViewCell{
      */
     func bind(upNext: Action?, progress: FeedData.Progress){
         if (upNext == nil){
+            addDescription()
             if (progress.getTotalActions() == 0){
                 actionTitle.text = "No activities selected for today"
                 actionDescription.text = "Select a goal to get started"
@@ -46,12 +50,37 @@ class UpNextCell: UITableViewCell{
         else{
             actionTitle.text = upNext!.getTitle()
             if upNext is UserAction{
+                addDescription()
                 var description = (upNext as! UserAction).getDescription()
                 if description.characters.count > 30{
                     description = "\(description.chopAt(30))..."
                 }
                 actionDescription.text = description
             }
+            else{
+                removeDescription()
+            }
+        }
+    }
+    
+    private func addDescription(){
+        if !descriptionConstraints.isEmpty{
+            actionContainer.addSubview(actionDescription)
+            for constraint in descriptionConstraints{
+                actionContainer.addConstraint(constraint)
+            }
+            descriptionConstraints.removeAll()
+        }
+    }
+    
+    private func removeDescription(){
+        if descriptionConstraints.isEmpty{
+            for constraint in actionContainer.constraints{
+                if constraint.belongsTo(actionDescription){
+                    descriptionConstraints.append(constraint)
+                }
+            }
+            actionDescription.removeFromSuperview()
         }
     }
 }
