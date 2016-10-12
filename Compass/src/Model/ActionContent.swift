@@ -32,3 +32,14 @@ class ActionContent: TDCContent{
         return moreInfo
     }
 }
+
+
+class ActionContentList: ListResult{
+    private(set) internal var results: [ActionContent]!
+    
+    
+    override func mapping(map: Map){
+        super.mapping(map)
+        results <- map["results"]
+    }
+}

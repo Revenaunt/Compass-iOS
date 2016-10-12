@@ -198,7 +198,7 @@ class FeedData: Mappable, CustomStringConvertible{
 }
 
 
-class FeedDataList: ParserModels.ListResult{
+class FeedDataList: ListResult{
     var feedData: [FeedData]!
     
     

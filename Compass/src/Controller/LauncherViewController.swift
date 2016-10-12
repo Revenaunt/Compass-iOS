@@ -101,7 +101,7 @@ class LauncherViewController: UIViewController{
                 let result = String(data: response.content!, encoding:NSUTF8StringEncoding)
                 SharedData.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!
                 for category in SharedData.publicCategories{
-                    print(category.toString())
+                    print(category)
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), {

@@ -307,7 +307,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         switch (indexPath.section){
         case FeedTypes.getUpNextSectionPosition():
             if (SharedData.feedData.getUpNext() != nil){
-                performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
+                performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
             }
             break;
             
@@ -320,19 +320,19 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             break
             
         case FeedTypes.getGoalsSectionPosition():
-            let goalCount = SharedData.feedData.getGoals().count
-            if goalCount < indexPath.row {
-                performSegueWithIdentifier("ShowGoalFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
+            if indexPath.row < SharedData.feedData.getGoals().count{
+                performSegueWithIdentifier("ShowMyGoalFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
             }
             break;
             
         default:
+            print("Falling back to default")
             break;
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
-        segue.destinationViewController.hidesBottomBarWhenPushed = true;
+        //segue.destinationViewController.hidesBottomBarWhenPushed = true;
         if (segue.identifier == "ShowActionFromFeed"){
             let actionController = segue.destinationViewController as! ActionController;
             actionController.delegate = self;
@@ -346,8 +346,8 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             let rewardController = segue.destinationViewController as! RewardController;
             rewardController.reward = SharedData.feedData.getReward()
         }
-        else if (segue.identifier == "ShowGoalFromFeed"){
-            if let selectedCell = sender as? FeedGoalCell{
+        else if (segue.identifier == "ShowMyGoalFromFeed"){
+            /*if let selectedCell = sender as? FeedGoalCell{
                 let indexPath = tableView.indexPathForCell(selectedCell);
                 if let userGoal = SharedData.feedData.getGoals()[indexPath!.row] as? UserGoal{
                     let goalController = segue.destinationViewController as! GoalViewController;
@@ -363,7 +363,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
                     goalController.userGoal = userGoal;
                     goalController.fromFeed = true
                 }
-            }
+            }*/
         }
     }
 }

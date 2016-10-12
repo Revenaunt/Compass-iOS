@@ -45,11 +45,9 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
     private func loadData(){
         Just.get(API.URL.getOrganizations()){ (response) in
             if (response.ok){
-                let result = String(data: response.content!, encoding:NSUTF8StringEncoding)!;
-                print(result);
-                let orgArray = Mapper<ParserModels.OrganizationArray>().map(result)!;
-                self.organizations = orgArray.organizations!;
-                print(self.organizations.count);
+                let organizationList = Mapper<OrganizationList>().map(response.contentStr)!
+                print(organizationList.organizations)
+                self.organizations = organizationList.organizations!;
                 dispatch_async(dispatch_get_main_queue(), {
                     self.progress.hidden = true;
                     self.tableView.hidden = false;
@@ -94,26 +92,30 @@ class OrganizationsController: UIViewController, UITableViewDelegate, UITableVie
         progress.hidden = false;
         progress.startAnimating();
         
+        print("Selected \(organizations[indexPath.row])")
+        
         Just.post(API.URL.postOrganization(), headers: SharedData.user.getHeaderMap(),
                   json: API.BODY.postOrganization(organizations[indexPath.row])){ (response) in
             
-            if (response.ok){
-                print("Posted org");
+            if response.ok{
+                //Note: POSTing to this endpoint returns the list of organizations, ignore.
+                
                 Just.get(API.getCategoriesUrl(), headers: SharedData.user.getHeaderMap()){ (response) in
-                    print(String(data: response.content!, encoding:NSUTF8StringEncoding)!);
                     if (response.ok){
-                        print("Fetched cats");
-                        let result = String(data: response.content!, encoding:NSUTF8StringEncoding)!;
-                        let categoryArray = Mapper<ParserModels.CategoryContentArray>().map(result);
-                        SharedData.publicCategories = (categoryArray?.categories)!;
+                        let categoryList = Mapper<CategoryContentList>().map(response.contentStr)!
+                        print(categoryList.categories)
+                        SharedData.publicCategories = categoryList.categories
+                        print(SharedData.publicCategories)
+                        print(SharedData.nonDefaultCategoryLists)
+                        print(SharedData.filteredCategoryLists)
                         
                         dispatch_async(dispatch_get_main_queue(), {
                             self.transitionToCategories();
                             self.tableView.hidden = false;
                             self.progress.hidden = true;
-                        });
+                        })
                     }
-                };
+                }
             }
             else{
                 print(response.statusCode);

@@ -9,15 +9,30 @@
 import ObjectMapper;
 
 
-class Organization: TDCBase{
-    private var name: String = "";
+class Organization: TDCBase, CustomStringConvertible{
+    private var name: String = ""
     
     func getName() -> String{
-        return name;
+        return name
     }
     
     override func mapping(map: Map){
-        super.mapping(map);
-        name <- map["name"];
+        super.mapping(map)
+        name <- map["name"]
+    }
+    
+    var description: String{
+        return "Organization #\(getId()): \(name)"
+    }
+}
+
+
+class OrganizationList: ListResult{
+    private(set) internal var organizations: [Organization]!
+    
+    
+    override func mapping(map: Map){
+        super.mapping(map)
+        organizations <- map["results"];
     }
 }
