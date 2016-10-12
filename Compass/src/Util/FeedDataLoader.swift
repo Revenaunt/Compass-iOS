@@ -179,6 +179,7 @@ final class FeedDataLoader{
     /// Fires the request to the endpoint that exposes FeedData.
     private func fetchFeedData(){
         Just.get(API.getFeedDataUrl(), headers: SharedData.user.getHeaderMap()){ (response) in
+            print(response.contentStr)
             if response.ok{
                 self.onFeedDataLoaded(Mapper<FeedDataList>().map(response.contentStr)!.feedData[0])
             }

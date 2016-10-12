@@ -31,8 +31,8 @@ class LoadingController: UIViewController{
         navigationController?.setNavigationBarHidden(true, animated: animated);
     }
     
-    func loadData(){
-        InitialDataLoader.load(SharedData.user){ (success) in
+    private func loadData(){
+        FeedDataLoader.getInstance().load(){ (success) in
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
             var viewController: UIViewController
             if (success){
