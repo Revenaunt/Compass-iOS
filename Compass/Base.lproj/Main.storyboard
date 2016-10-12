@@ -896,6 +896,7 @@
                         <segue destination="Q9M-9N-CVz" kind="show" identifier="ShowActionFromFeed" id="hTQ-xJ-UuW"/>
                         <segue destination="Cu2-RZ-yAI" kind="show" identifier="ShowRewardFromFeed" id="Yrm-B9-bxP"/>
                         <segue destination="41x-8C-doX" kind="show" identifier="ShowMyGoalFromFeed" id="AlR-4L-Jcj"/>
+                        <segue destination="i24-uW-uw0" kind="show" identifier="ShowGoalFromFeed" id="fTB-ff-mwj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="teD-m8-TBF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1400,7 +1401,7 @@
                         <viewControllerLayoutGuide type="top" id="pfZ-9g-oC1"/>
                         <viewControllerLayoutGuide type="bottom" id="6N7-pn-6PI"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Lb5-I2-CBz">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Lb5-I2-CBz">
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -2502,6 +2503,7 @@
         <image name="TDC Master" width="400" height="266"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="fTB-ff-mwj"/>
         <segue reference="k7y-SJ-VTq"/>
     </inferredMetricsTieBreakers>
 </document>

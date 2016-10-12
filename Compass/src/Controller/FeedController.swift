@@ -320,8 +320,8 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             break
             
         case FeedTypes.getGoalsSectionPosition():
-            if indexPath.row < SharedData.feedData.getGoals().count{
-                performSegueWithIdentifier("ShowMyGoalFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
+            if indexPath.row < SharedData.feedData.getGoals().count && SharedData.feedData.getGoals()[indexPath.row] is UserGoal{
+                performSegueWithIdentifier("ShowGoalFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
             }
             break;
             
@@ -346,8 +346,8 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             let rewardController = segue.destinationViewController as! RewardController;
             rewardController.reward = SharedData.feedData.getReward()
         }
-        else if (segue.identifier == "ShowMyGoalFromFeed"){
-            /*if let selectedCell = sender as? FeedGoalCell{
+        else if (segue.identifier == "ShowGoalFromFeed"){
+            if let selectedCell = sender as? FeedGoalCell{
                 let indexPath = tableView.indexPathForCell(selectedCell);
                 if let userGoal = SharedData.feedData.getGoals()[indexPath!.row] as? UserGoal{
                     let goalController = segue.destinationViewController as! GoalViewController;
@@ -358,12 +358,12 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
                     selectedGoalIndex = indexPath?.row;
                     print(selectedGoalIndex);
                     
-                    goalController.goal = goal;
-                    goalController.category = category;
-                    goalController.userGoal = userGoal;
+                    goalController.goal = goal
+                    goalController.category = category
+                    goalController.userGoal = userGoal
                     goalController.fromFeed = true
                 }
-            }*/
+            }
         }
     }
 }
