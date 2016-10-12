@@ -32,7 +32,7 @@ class CustomAction: Action{
 }
 
 
-class CustomActionList: ParserModels.ListResult{
+class CustomActionList: ListResult{
     private(set) internal var results: [CustomAction]!
     
     

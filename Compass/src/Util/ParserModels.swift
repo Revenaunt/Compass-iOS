@@ -106,32 +106,20 @@ class ParserModels{
             awards <- map["results"];
         }
     }
+}
+
     
-    class OrganizationArray: Mappable{
-        var organizations: [Organization]? = nil;
+class ListResult: Mappable{
+    private(set) internal var count: Int = -1
+    private(set) internal var next: String? = nil
+
+    
+    required init?(_ map: Map){
         
-        
-        required init?(_ map: Map){
-            
-        }
-        
-        func mapping(map: Map){
-            organizations <- map["results"];
-        }
     }
     
-    class ListResult: Mappable{
-        private(set) internal var count: Int = -1
-        private(set) internal var next: String? = nil
-        
-        
-        required init?(_ map: Map){
-            
-        }
-        
-        func mapping(map: Map){
-            count <- map["count"]
-            next <- map["next"]
-        }
+    func mapping(map: Map){
+        count <- map["count"]
+        next <- map["next"]
     }
 }

@@ -54,7 +54,7 @@ class UserGoal: Goal{
 }
 
 
-class UserGoalList: ParserModels.ListResult{
+class UserGoalList: ListResult{
     private(set) internal var results: [UserGoal]!
     
     

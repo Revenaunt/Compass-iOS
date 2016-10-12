@@ -307,7 +307,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         switch (indexPath.section){
         case FeedTypes.getUpNextSectionPosition():
             if (SharedData.feedData.getUpNext() != nil){
-                performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath));
+                performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
             }
             break;
             
@@ -320,19 +320,19 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             break
             
         case FeedTypes.getGoalsSectionPosition():
-            let goalCount = SharedData.feedData.getGoals().count
-            if goalCount < indexPath.row {
+            if indexPath.row < SharedData.feedData.getGoals().count && SharedData.feedData.getGoals()[indexPath.row] is UserGoal{
                 performSegueWithIdentifier("ShowGoalFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
             }
             break;
             
         default:
+            print("Falling back to default")
             break;
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
-        segue.destinationViewController.hidesBottomBarWhenPushed = true;
+        //segue.destinationViewController.hidesBottomBarWhenPushed = true;
         if (segue.identifier == "ShowActionFromFeed"){
             let actionController = segue.destinationViewController as! ActionController;
             actionController.delegate = self;
@@ -358,9 +358,9 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
                     selectedGoalIndex = indexPath?.row;
                     print(selectedGoalIndex);
                     
-                    goalController.goal = goal;
-                    goalController.category = category;
-                    goalController.userGoal = userGoal;
+                    goalController.goal = goal
+                    goalController.category = category
+                    goalController.userGoal = userGoal
                     goalController.fromFeed = true
                 }
             }

@@ -57,7 +57,7 @@ class UserAction: Action{
 }
 
 
-class UserActionList: ParserModels.ListResult{
+class UserActionList: ListResult{
     private(set) internal var results: [UserAction]!
     
     
