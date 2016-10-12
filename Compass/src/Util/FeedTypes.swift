@@ -105,6 +105,9 @@ class FeedTypes{
             case getStreaksSectionPosition():
                 return hasStreaks() ? "Weekly progress" : "";
             
+            case getRewardSectionPosition():
+                return " "
+            
             case getGoalsSectionPosition():
                 return (hasGoals() || updatingGoals) ? "Your goals" : "";
             
