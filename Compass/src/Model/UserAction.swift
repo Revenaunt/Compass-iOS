@@ -10,42 +10,59 @@ import ObjectMapper
 
 
 class UserAction: Action{
-    private var action: ActionContent? = nil;
-    private var primaryGoalId: Int = -1;
-    private var primaryCategoryId: Int = -1;
+    private var action: ActionContent!
+    
+    private var primaryGoalId: Int = -1
+    private var primaryUserGoalId: Int = -1
+    private var goalIconUrl: String = ""
+    
+    private var primaryCategoryId: Int = -1
     
     //TODO POST parent content. Used anymore in Android??
     
     
     required init?(_ map: Map){
-        super.init(map);
+        super.init(map)
     }
     
     override func mapping(map: Map){
-        super.mapping(map);
+        super.mapping(map)
         
-        action <- map["action"];
-        primaryGoalId <- map["primary_goal"];
-        primaryCategoryId <- map["primary_category"];
+        action <- map["action"]
+        primaryGoalId <- map["primary_goal"]
+        primaryUserGoalId <- map["primary_usergoal"]
+        goalIconUrl <- map["goal_icon"]
+        primaryCategoryId <- map["primary_category"]
     }
     
     func getPrimaryCategoryId() -> Int{
-        return primaryCategoryId;
+        return primaryCategoryId
     }
     
-    func getTitle() -> String{
-        return action!.getTitle();
+    override func getTitle() -> String{
+        return action.getTitle()
     }
     
     func getDescription() -> String{
-        return action!.getDescription();
+        return action.getDescription()
     }
     
-    func getBehaviorTitle() -> String{
-        return action!.getBehaviorTitle();
+    func getMoreInfo() -> String{
+        return action.getMoreInfo()
     }
     
-    func getBehaviorDescription() -> String {
-        return action!.getBehaviorDescription()
+    func getGoalIconUrl() -> String{
+        return goalIconUrl
+    }
+}
+
+
+class UserActionList: ParserModels.ListResult{
+    private(set) internal var results: [UserAction]!
+    
+    
+    override func mapping(map: Map){
+        super.mapping(map)
+        results <- map["results"]
     }
 }

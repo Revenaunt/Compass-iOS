@@ -75,6 +75,14 @@ class User: TDCBase, CustomStringConvertible{
         return token;
     }
     
+    func isMale() -> Bool{
+        return sex == "" || sex == "male"
+    }
+    
+    func isFemale() -> Bool{
+        return sex == "female"
+    }
+    
     func needsOnBoarding() -> Bool{
         return needsOnBoardingVar;
     }

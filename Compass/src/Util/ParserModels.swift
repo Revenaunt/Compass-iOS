@@ -81,19 +81,6 @@ class ParserModels{
         }
     }
     
-    class FeedDataArray: Mappable{
-        var feedData: [FeedData]? = nil;
-        
-        
-        required init?(_ map: Map){
-            
-        }
-        
-        func mapping(map: Map){
-            feedData <- map["results"];
-        }
-    }
-    
     class RewardArray: Mappable{
         var rewards: [Reward]? = nil;
         
@@ -130,6 +117,21 @@ class ParserModels{
         
         func mapping(map: Map){
             organizations <- map["results"];
+        }
+    }
+    
+    class ListResult: Mappable{
+        private(set) internal var count: Int = -1
+        private(set) internal var next: String? = nil
+        
+        
+        required init?(_ map: Map){
+            
+        }
+        
+        func mapping(map: Map){
+            count <- map["count"]
+            next <- map["next"]
         }
     }
 }

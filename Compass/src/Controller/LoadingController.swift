@@ -33,12 +33,15 @@ class LoadingController: UIViewController{
     
     func loadData(){
         InitialDataLoader.load(SharedData.user){ (success) in
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+            var viewController: UIViewController
             if (success){
-                print(SharedData.feedData);
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainTabBarController");
-                UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+                viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainTabBarController");
             }
+            else{
+                viewController = mainStoryboard.instantiateViewControllerWithIdentifier("LauncherNavController");
+            }
+            UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
         }
     }
 }

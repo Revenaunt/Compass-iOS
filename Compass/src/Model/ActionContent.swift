@@ -10,37 +10,25 @@ import ObjectMapper
 
 
 class ActionContent: TDCContent{
-    private var sequenceOrder: Int = -1;
-    private var moreInfo: String = "";
-    private var htmlMoreInfo: String = "";
-    private var externalResource: String = "";
-    private var externalResourceName: String = "";
-    private var behaviorId: Int = -1;
-    private var behaviorTitle: String = "";
-    private var behaviorDescription: String = "";
+    private var sequenceOrder: Int = -1
+    private var moreInfo: String = ""
+    private var externalResource: String = ""
+    private var externalResourceName: String = ""
     
     required init?(_ map: Map){
         super.init(map)
     }
     
     override func mapping(map: Map){
-        super.mapping(map);
+        super.mapping(map)
         
-        sequenceOrder <- map["sequence_order"];
-        moreInfo <- map["more_info"];
-        htmlMoreInfo <- map["html_more_info"];
-        externalResource <- map["external_resource"];
-        externalResourceName <- map["external_resource_name"];
-        behaviorId <- map["behavior"];
-        behaviorTitle <- map["behavior_title"];
-        behaviorDescription <- map["behavior_description"];
+        sequenceOrder <- map["sequence_order"]
+        moreInfo <- map["more_info"]
+        externalResource <- map["external_resource"]
+        externalResourceName <- map["external_resource_name"]
     }
     
-    func getBehaviorTitle() -> String{
-        return behaviorTitle;
-    }
-    
-    func getBehaviorDescription() -> String {
-        return behaviorDescription
+    func getMoreInfo() -> String{
+        return moreInfo
     }
 }

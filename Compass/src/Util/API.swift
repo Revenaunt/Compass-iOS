@@ -141,7 +141,7 @@ class API{
     }
     
     static func getCustomGoalsUrl() -> String{
-        return postProcess(BASE_URL + "users/customgoals/?page_size=999999");
+        return postProcess(BASE_URL + "users/customgoals/?page_size=3");
     }
     
     static func getPostGoalUrl(goal: GoalContent) -> String{
@@ -219,6 +219,10 @@ class API{
             return "\(BASE_URL)users/accounts/";
         }
         
+        static func getCategory(id: Int) -> String{
+            return "\(BASE_URL)categories/\(id)/"
+        }
+        
         static func deleteGoal(goal: Goal) -> String{
             if (goal is UserGoal){
                 return "\(BASE_URL)users/goals/\(goal.getId())/";
@@ -226,6 +230,18 @@ class API{
             else{
                 return "\(BASE_URL)users/customgoals/\(goal.getId())/";
             }
+        }
+        
+        static func getTodaysUserActions() -> String{
+            return "\(BASE_URL)users/actions/?today=1&exclude_completed=1&page_size=1";
+        }
+        
+        static func getCustomAction(id: Int) -> String{
+            return "\(BASE_URL)users/customactions/\(id)/"
+        }
+        
+        static func getTodaysCustomActions() -> String{
+            return "\(BASE_URL)users/customactions/?today=1&exclude_completed=1&page_size=1";
         }
         
         static func getOrganizations() -> String{

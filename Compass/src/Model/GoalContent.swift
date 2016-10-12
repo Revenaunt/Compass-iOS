@@ -12,7 +12,6 @@ import ObjectMapper
 class GoalContent: TDCContent{
     private var outcome: String = "";
     private var categoryIdSet: Set<Int> = Set<Int>();
-    private var behaviorCount: Int = 0;
     
     func getOutcome() -> String{
         return outcome;
@@ -20,10 +19,6 @@ class GoalContent: TDCContent{
     
     func getCategoryIdSet() -> Set<Int>{
         return categoryIdSet;
-    }
-    
-    func getBehaviorCount() -> Int{
-        return behaviorCount;
     }
     
     required init?(_ map: Map){
@@ -35,7 +30,6 @@ class GoalContent: TDCContent{
         
         outcome <- map["outcome"];
         categoryIdSet <- map["categories"];
-        behaviorCount <- map["behaviors_count"];
     }
     
     func toString() -> String{

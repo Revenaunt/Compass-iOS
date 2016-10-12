@@ -11,27 +11,20 @@ import UIKit
 
 class FooterCell: UITableViewCell{
     private var delegate: FeedController!;
-    private var type: FooterType!;
     
     @IBOutlet weak var seeMoreButton: UIButton!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     
     
     @IBAction func seeMore(){
-        if (type == FooterType.Upcoming){
-            delegate.loadMoreUpcoming();
-        }
-        else if (type == FooterType.Goals){
-            seeMoreButton.hidden = true;
-            activity.hidden = false;
-            activity.startAnimating();
-            delegate.loadMoreGoals(self);
-        }
+        seeMoreButton.hidden = true;
+        activity.hidden = false;
+        activity.startAnimating();
+        delegate.loadMoreGoals(self);
     }
     
-    func bind(delegate: FeedController, type: FooterType){
+    func bind(delegate: FeedController){
         self.delegate = delegate;
-        self.type = type;
         seeMoreButton.hidden = false;
         activity.hidden = true;
     }
@@ -39,10 +32,5 @@ class FooterCell: UITableViewCell{
     func end(){
         seeMoreButton.hidden = false;
         activity.hidden = true;
-    }
-    
-    
-    enum FooterType{
-        case Upcoming, Goals;
     }
 }

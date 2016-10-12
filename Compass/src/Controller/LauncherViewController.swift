@@ -31,7 +31,7 @@ class LauncherViewController: UIViewController{
             
             Just.post(API.getLogInUrl(), json: API.getLogInBody(email, password: password)){ (response) in
                 if response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!){
-                    SharedData.user = Mapper<User>().map(String(data: response.content!, encoding:NSUTF8StringEncoding))!;
+                    SharedData.user = Mapper<User>().map(response.contentStr)!;
                     print(SharedData.user);
                     if (SharedData.user.needsOnBoarding()){
                         self.fetchCategories();
@@ -39,14 +39,14 @@ class LauncherViewController: UIViewController{
                     else{
                         InitialDataLoader.load(SharedData.user){ (success) in
                             if (success){
-                                let needsOnboarding = SharedData.user.needsOnBoarding();
-                                var mainController = "MainTabBarController"
-                                if needsOnboarding{
-                                    mainController = "OnBoardingNavigationController"
+                                if SharedData.user.needsOnBoarding(){
+                                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("OnBoardingNavigationController")
+                                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController
                                 }
-                                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                                let viewController = mainStoryboard.instantiateViewControllerWithIdentifier(mainController);
-                                UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+                                else{
+                                    self.loadFeedData();
+                                }
                             }
                             else{
                                 self.showMenu()
@@ -65,14 +65,26 @@ class LauncherViewController: UIViewController{
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    private func loadFeedData(){
+        FeedDataLoader.getInstance().load(){ (success) in
+            if success{
+                let triggerTime = (Int64(NSEC_PER_SEC) * 5);
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+                    print(SharedData.feedData)
+                });
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainTabBarController")
+                UIApplication.sharedApplication().keyWindow?.rootViewController = viewController
+            }
+            else{
+                self.showMenu()
+            }
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool){
         super.viewWillAppear(animated);
         navigationController?.setNavigationBarHidden(true, animated: animated);
-    }
-
-    override func didReceiveMemoryWarning(){
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     private func showMenu(){
@@ -85,21 +97,21 @@ class LauncherViewController: UIViewController{
     
     private func fetchCategories(){
         Just.get(API.getCategoriesUrl()){ (response) in
-            if (response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!)){
-                let result = String(data: response.content!, encoding:NSUTF8StringEncoding);
-                SharedData.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!;
+            if response.ok && CompassUtil.isSuccessStatusCode(response.statusCode!){
+                let result = String(data: response.content!, encoding:NSUTF8StringEncoding)
+                SharedData.publicCategories = (Mapper<ParserModels.CategoryContentArray>().map(result)?.categories)!
                 for category in SharedData.publicCategories{
-                    print(category.toString());
+                    print(category.toString())
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), {
-                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("OnBoardingNavController");
-                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
-                });
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("OnBoardingNavController")
+                    UIApplication.sharedApplication().keyWindow?.rootViewController = viewController
+                })
             }
             else{
-                self.showMenu();
+                self.showMenu()
             }
         }
     }

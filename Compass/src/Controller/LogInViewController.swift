@@ -84,19 +84,41 @@ class LogInViewController: UIViewController, UITextFieldDelegate{
                 }
                 
                 InitialDataLoader.load(SharedData.user){ (success) in
-                    if (success){
-                        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                        let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainTabBarController");
-                        UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+                    if success{
+                        if SharedData.user.needsOnBoarding(){
+                            self.transitionToOnboarding()
+                        }
+                        else{
+                            self.loadFeedData()
+                        }
                     }
                     else{
-                        self.toggleMenu(true);
+                        self.toggleMenu(true)
                     }
                 }
             }
             else{
-                print(response.error);
-                self.toggleMenu(true);
+                print(response.error)
+                self.toggleMenu(true)
+            }
+        }
+    }
+    
+    private func transitionToOnboarding(){
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("OnBoardingNavController")
+        UIApplication.sharedApplication().keyWindow?.rootViewController = viewController
+    }
+    
+    private func loadFeedData(){
+        FeedDataLoader.getInstance().load(){ (success) in
+            if success{
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainTabBarController")
+                UIApplication.sharedApplication().keyWindow?.rootViewController = viewController
+            }
+            else{
+                self.toggleMenu(true)
             }
         }
     }

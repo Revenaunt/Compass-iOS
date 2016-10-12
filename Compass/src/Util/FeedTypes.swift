@@ -25,7 +25,7 @@ class FeedTypes{
     }
     
     static func hasUpNextAction() -> Bool{
-        return feedData.getUpNextAction() != nil;
+        return feedData.getUpNext() != nil;
     }
     
     static func getUpNextSectionPosition() -> Int{
@@ -48,16 +48,12 @@ class FeedTypes{
         return getStreaksSectionPosition() == section;
     }
     
-    static func hasUpcoming() -> Bool{
-        return feedData.getUpcoming().count != 0;
+    static func getRewardSectionPosition() -> Int{
+        return getStreaksSectionPosition() + 1
     }
     
-    static func getUpcomingSectionPosition() -> Int{
-        return getStreaksSectionPosition() + 1;
-    }
-    
-    static func isUpcomingSection(section: Int) -> Bool{
-        return getUpcomingSectionPosition() == section;
+    static func isRewardSection(section: Int) -> Bool{
+        return getRewardSectionPosition() == section
     }
     
     static func hasGoals() -> Bool{
@@ -65,7 +61,7 @@ class FeedTypes{
     }
     
     static func getGoalsSectionPosition() -> Int{
-        return getUpcomingSectionPosition() + 1;
+        return getRewardSectionPosition() + 1;
     }
     
     static func isGoalsSection(section: Int) -> Bool{
@@ -87,11 +83,11 @@ class FeedTypes{
             case getStreaksSectionPosition():
                 return hasStreaks() ? 1 : 0;
             
-            case getUpcomingSectionPosition():
-                return SharedData.feedData.getUpcoming().count;
+            case getRewardSectionPosition():
+                return 1
             
             case getGoalsSectionPosition():
-                if (SharedData.feedData.canLoadMoreGoals()){
+                if (FeedDataLoader.getInstance().canLoadMoreGoals()){
                     return SharedData.feedData.getGoals().count+1;
                 }
                 return SharedData.feedData.getGoals().count;
@@ -108,9 +104,6 @@ class FeedTypes{
             
             case getStreaksSectionPosition():
                 return hasStreaks() ? "Weekly progress" : "";
-            
-            case getUpcomingSectionPosition():
-                return hasUpcoming() ? "Upcoming" : "";
             
             case getGoalsSectionPosition():
                 return (hasGoals() || updatingGoals) ? "Your goals" : "";

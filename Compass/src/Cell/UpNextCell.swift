@@ -8,36 +8,79 @@
 
 import UIKit
 
-class UpNextCell: UITableViewCell {
-    @IBOutlet weak var action: UILabel!
-    @IBOutlet weak var goal: UILabel!
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+/// Up Next Action cell.
+/**
+ Displays the requested action data. This action should be FeedData.upNext
+ 
+ - Author: Ismael Alonso
+ */
+class UpNextCell: UITableViewCell{
+    //MARK: UI components
     
-    func bind(upNext: UpcomingAction?, progress: FeedData.Progress){
+    @IBOutlet weak var actionContainer: UIView!
+    @IBOutlet weak var actionTitle: UILabel!
+    @IBOutlet var actionDescription: UILabel!
+    
+    private var descriptionConstraints = [NSLayoutConstraint]()
+    
+    
+    //MARK: Binding method
+    
+    /// Sets the cell's dataset.
+    /**
+     Binds an action to this cell.
+     
+     - parameter upNext: the action to be displayed, nil if one isn't available.
+     - parameter progress: the progress object, for being able to tell if the lack of action is
+    due to the user not having actions in his dataset or having completed them all.
+     */
+    func bind(upNext: Action?, progress: FeedData.Progress){
         if (upNext == nil){
+            addDescription()
             if (progress.getTotalActions() == 0){
-                action.text = "No activities selected for today";
-                goal.text = "Select a goal to get started";
+                actionTitle.text = "No activities selected for today"
+                actionDescription.text = "Select a goal to get started"
             }
             else{
-                action.text = "No activities remaining today";
-                goal.text = "See you tomorrow";
+                actionTitle.text = "No activities remaining today"
+                actionDescription.text = "See you tomorrow"
             }
         }
         else{
-            action.text = upNext!.getTitle();
-            goal.text = upNext!.getGoalTitle();
+            actionTitle.text = upNext!.getTitle()
+            if upNext is UserAction{
+                addDescription()
+                var description = (upNext as! UserAction).getDescription()
+                if description.characters.count > 30{
+                    description = "\(description.chopAt(30))..."
+                }
+                actionDescription.text = description
+            }
+            else{
+                removeDescription()
+            }
+        }
+    }
+    
+    private func addDescription(){
+        if !descriptionConstraints.isEmpty{
+            actionContainer.addSubview(actionDescription)
+            for constraint in descriptionConstraints{
+                actionContainer.addConstraint(constraint)
+            }
+            descriptionConstraints.removeAll()
+        }
+    }
+    
+    private func removeDescription(){
+        if descriptionConstraints.isEmpty{
+            for constraint in actionContainer.constraints{
+                if constraint.belongsTo(actionDescription){
+                    descriptionConstraints.append(constraint)
+                }
+            }
+            actionDescription.removeFromSuperview()
         }
     }
 }
