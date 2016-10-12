@@ -35,10 +35,10 @@ class UpNextCell: UITableViewCell{
      - parameter progress: the progress object, for being able to tell if the lack of action is
     due to the user not having actions in his dataset or having completed them all.
      */
-    func bind(upNext: Action?, progress: FeedData.Progress){
-        if (upNext == nil){
+    func bind(upNext: Action?, progress: FeedData.Progress?){
+        if upNext == nil{
             addDescription()
-            if (progress.getTotalActions() == 0){
+            if progress == nil ||  progress!.getTotalActions() == 0{
                 actionTitle.text = "No activities selected for today"
                 actionDescription.text = "Select a goal to get started"
             }

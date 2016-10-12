@@ -122,7 +122,7 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             cell = tableView.dequeueReusableCellWithIdentifier("UpNextCell", forIndexPath: indexPath);
             let upNextCell = cell as! UpNextCell;
             self.upNextCell = upNextCell;
-            upNextCell.bind(SharedData.feedData.getUpNext(), progress: SharedData.feedData.getProgress()!);
+            upNextCell.bind(SharedData.feedData.getUpNext(), progress: SharedData.feedData.getProgress());
         }
         else if (FeedTypes.isStreaksSection(indexPath.section)){
             print("Binding streaks cell");
