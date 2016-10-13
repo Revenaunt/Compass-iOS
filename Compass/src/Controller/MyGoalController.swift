@@ -173,3 +173,14 @@ extension MyGoalController: UITableViewDataSource{
 extension MyGoalController: UITableViewDelegate{
     
 }
+
+
+extension MyGoalController: UserGoalCustomActionCellDelegate, UserGoalNewCustomActionCellDelegate{
+    func onAddCustomAction(title: String){
+        
+    }
+    
+    func onSaveCustomAction(source: UITableViewCell, newTitle: String){
+        
+    }
+}

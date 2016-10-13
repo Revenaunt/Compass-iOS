@@ -18,3 +18,8 @@ class UserGoalNewCustomActionCell: UITableViewCell{
         
     }
 }
+
+
+protocol UserGoalNewCustomActionCellDelegate{
+    func onAddCustomAction(title: String);
+}

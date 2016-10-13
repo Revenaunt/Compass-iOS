@@ -18,3 +18,8 @@ class UserGoalCustomActionCell: UITableViewCell{
         
     }
 }
+
+
+protocol UserGoalCustomActionCellDelegate{
+    func onSaveCustomAction(source: UITableViewCell, newTitle: String);
+}
