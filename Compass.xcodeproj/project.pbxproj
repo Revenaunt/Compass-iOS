@@ -59,6 +59,9 @@
 		5468F8531CCEB7D100D5769B /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8521CCEB7D100D5769B /* Action.swift */; };
 		5468F8551CCEBA8300D5769B /* FeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8541CCEBA8300D5769B /* FeedData.swift */; };
 		5468F8591CCEC1ED00D5769B /* InitialDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8581CCEC1ED00D5769B /* InitialDataLoader.swift */; };
+		546C7F241DAFCEC900158526 /* ContentWrapUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546C7F231DAFCEC900158526 /* ContentWrapUITableView.swift */; };
+		546C7F261DAFD65900158526 /* UserGoalCustomActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546C7F251DAFD65900158526 /* UserGoalCustomActionCell.swift */; };
+		546C7F281DAFD66B00158526 /* UserGoalNewCustomActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546C7F271DAFD66B00158526 /* UserGoalNewCustomActionCell.swift */; };
 		546D4D571DAEA05C0027C187 /* MyGoalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546D4D561DAEA05C0027C187 /* MyGoalController.swift */; };
 		546F69291D37F56E0070D73A /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F69281D37F56E0070D73A /* MainController.swift */; };
 		546F692B1D382F4B0070D73A /* AwardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F692A1D382F4B0070D73A /* AwardsController.swift */; };
@@ -195,6 +198,9 @@
 		5468F8521CCEB7D100D5769B /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		5468F8541CCEBA8300D5769B /* FeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedData.swift; sourceTree = "<group>"; };
 		5468F8581CCEC1ED00D5769B /* InitialDataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialDataLoader.swift; sourceTree = "<group>"; };
+		546C7F231DAFCEC900158526 /* ContentWrapUITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentWrapUITableView.swift; sourceTree = "<group>"; };
+		546C7F251DAFD65900158526 /* UserGoalCustomActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGoalCustomActionCell.swift; sourceTree = "<group>"; };
+		546C7F271DAFD66B00158526 /* UserGoalNewCustomActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGoalNewCustomActionCell.swift; sourceTree = "<group>"; };
 		546D4D561DAEA05C0027C187 /* MyGoalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGoalController.swift; sourceTree = "<group>"; };
 		546F69281D37F56E0070D73A /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		546F692A1D382F4B0070D73A /* AwardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardsController.swift; sourceTree = "<group>"; };
@@ -297,14 +303,18 @@
 		5467E9AE1CC532760088E417 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				547AF1BB1CFF34F7008EC34F /* APNsMessage.swift */,
 				5468F8521CCEB7D100D5769B /* Action.swift */,
 				5468F84A1CCEB20600D5769B /* ActionContent.swift */,
+				547AF1BB1CFF34F7008EC34F /* APNsMessage.swift */,
+				546F692E1D3832080070D73A /* Award.swift */,
+				545C639A1D259AC500F48C15 /* Badge.swift */,
 				545D98BD1CC68C820037FAEF /* CategoryContent.swift */,
+				5456853E1DA80BE9005C86CE /* CustomAction.swift */,
 				5443355A1CD019C200EB066E /* CustomGoal.swift */,
 				5468F8541CCEBA8300D5769B /* FeedData.swift */,
 				544335581CD018DF00EB066E /* Goal.swift */,
 				544614241CC9495C00F2B441 /* GoalContent.swift */,
+				5415C9421D58FB1700E01054 /* Organization.swift */,
 				545627311CF4B029007C3731 /* Reward.swift */,
 				5467E9B31CC5551F0088E417 /* SharedData.swift */,
 				545D98BF1CC695F50037FAEF /* TDCBase.swift */,
@@ -315,10 +325,6 @@
 				5488FC221CFDF9EF00E758C1 /* UserCategory.swift */,
 				5468F84E1CCEB6C600D5769B /* UserContent.swift */,
 				5443355C1CD01B0A00EB066E /* UserGoal.swift */,
-				545C639A1D259AC500F48C15 /* Badge.swift */,
-				546F692E1D3832080070D73A /* Award.swift */,
-				5415C9421D58FB1700E01054 /* Organization.swift */,
-				5456853E1DA80BE9005C86CE /* CustomAction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -445,6 +451,7 @@
 			isa = PBXGroup;
 			children = (
 				54F60F581CC7F11A00D1424D /* CircleProgressView.swift */,
+				546C7F231DAFCEC900158526 /* ContentWrapUITableView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -466,6 +473,8 @@
 				5415C9441D59020A00E01054 /* OrganizationCell.swift */,
 				5499C9BE1D6259B800DBAF6C /* StreaksCell.swift */,
 				547F88601DAD925000DF2115 /* RewardCell.swift */,
+				546C7F251DAFD65900158526 /* UserGoalCustomActionCell.swift */,
+				546C7F271DAFD66B00158526 /* UserGoalNewCustomActionCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -873,8 +882,10 @@
 				544614271CC9719800F2B441 /* GoalLibraryViewController.swift in Sources */,
 				54010E151CC6D31A009FB013 /* FeedController.swift in Sources */,
 				5448276C1CCA956000BBC062 /* CategoryHeaderCell.swift in Sources */,
+				546C7F241DAFCEC900158526 /* ContentWrapUITableView.swift in Sources */,
 				5480310D1CB6B27F00112807 /* AppDelegate.swift in Sources */,
 				5460E4111D18172A00A4FBAB /* OnBoardingCategoryController.swift in Sources */,
+				546C7F281DAFD66B00158526 /* UserGoalNewCustomActionCell.swift in Sources */,
 				5424E98D1CE4EA330016B4DD /* NotificationUtil.swift in Sources */,
 				547A60891D36B43B006FE596 /* SettingsController.swift in Sources */,
 				5467E9B01CC534D00088E417 /* User.swift in Sources */,
@@ -889,6 +900,7 @@
 				544335571CCFC5B800EB066E /* FeedTypes.swift in Sources */,
 				546114DA1CF386C6007BBD1B /* GoalViewController.swift in Sources */,
 				545D98C41CC69A890037FAEF /* ParserModels.swift in Sources */,
+				546C7F261DAFD65900158526 /* UserGoalCustomActionCell.swift in Sources */,
 				5467E9B41CC5551F0088E417 /* SharedData.swift in Sources */,
 				5468F8491CCEB09600D5769B /* FeedGoalCell.swift in Sources */,
 				5468F84B1CCEB20600D5769B /* ActionContent.swift in Sources */,

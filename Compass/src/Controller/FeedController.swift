@@ -14,7 +14,7 @@ import ObjectMapper
 import Instructions
 
 
-class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate{
+class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelegate{
     
     @IBOutlet weak var addItem: UIBarButtonItem!
     
@@ -170,8 +170,105 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         return 120;
     }
     
+    func loadMoreGoals(footer: FooterCell){
+        FeedDataLoader.getInstance().loadNextGoalBatch(){ (goals) in
+            if goals != nil{
+                //Count the current amount of goals and add the new ones
+                let preCount = SharedData.feedData.getGoals().count
+                SharedData.feedData.addGoals(goals!)
+                
+                //Create the path objects to update the table
+                var addPaths = [NSIndexPath]()
+                let section = FeedTypes.getGoalsSectionPosition()
+                for i in 0...goals!.count-1{
+                    addPaths.append(NSIndexPath(forRow: preCount+i, inSection: section))
+                }
+                
+                //Update the table
+                self.tableView.beginUpdates();
+                if (!FeedDataLoader.getInstance().canLoadMoreGoals()){
+                    let deletePaths = [NSIndexPath(forRow: preCount, inSection: section)]
+                    self.tableView.deleteRowsAtIndexPaths(deletePaths, withRowAnimation: .Automatic)
+                    self.goalsFooterCell = nil;
+                }
+                self.tableView.insertRowsAtIndexPaths(addPaths, withRowAnimation: .Automatic)
+                self.tableView.endUpdates()
+            }
+            
+            //Update the footer
+            FeedTypes.setUpdatingGoals(false);
+            footer.end()
+        }
+    }
+    
+    @IBAction func addTap(sender: AnyObject){
+        self.performSegueWithIdentifier("Library", sender: self);
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        switch (indexPath.section){
+        case FeedTypes.getUpNextSectionPosition():
+            if (SharedData.feedData.getUpNext() != nil){
+                performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
+            }
+            break;
+            
+        case FeedTypes.getStreaksSectionPosition():
+            tableView.deselectRowAtIndexPath(indexPath, animated: true);
+            break;
+            
+        case FeedTypes.getRewardSectionPosition():
+            performSegueWithIdentifier("ShowRewardFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
+            break
+            
+        case FeedTypes.getGoalsSectionPosition():
+            if indexPath.row < SharedData.feedData.getGoals().count && SharedData.feedData.getGoals()[indexPath.row] is UserGoal{
+                performSegueWithIdentifier("ShowMyGoalFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
+            }
+            break;
+            
+        default:
+            print("Falling back to default")
+            break;
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        //segue.destinationViewController.hidesBottomBarWhenPushed = true;
+        if (segue.identifier == "ShowActionFromFeed"){
+            let actionController = segue.destinationViewController as! ActionController;
+            actionController.delegate = self;
+            if (sender as? UpNextCell) != nil{
+                if let upNext = SharedData.feedData.getUpNext(){
+                    actionController.action = upNext;
+                }
+            }
+        }
+        if (segue.identifier == "ShowRewardFromFeed"){
+            let rewardController = segue.destinationViewController as! RewardController;
+            rewardController.reward = SharedData.feedData.getReward()
+        }
+        else if segue.identifier == "ShowMyGoalFromFeed"{
+            if let selectedCell = sender as? FeedGoalCell{
+                let indexPath = tableView.indexPathForCell(selectedCell);
+                if let userGoal = SharedData.feedData.getGoals()[indexPath!.row] as? UserGoal{
+                    selectedGoal = userGoal;
+                    selectedGoalIndex = indexPath?.row;
+                    print(selectedGoalIndex);
+                    
+                    let goalController = segue.destinationViewController as! MyGoalController
+                    goalController.userGoal = userGoal
+                }
+            }
+        }
+    }
+}
+
+
+//Tour Extension for the FeedController
+extension FeedController: CoachMarksControllerDataSource, CoachMarksControllerDelegate{
     func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{
-        print(TourManager.getFeedMarkerCount());
+        //print(TourManager.getFeedMarkerCount());
         return TourManager.getFeedMarkerCount();
     }
     
@@ -242,19 +339,6 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
         return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView);
     }
     
-    /*func coachMarksController(coachMarksController: CoachMarksController, constraintsForSkipView skipView: UIView, inParentView parentView: UIView) -> [NSLayoutConstraint]? {
-        var constraints = [NSLayoutConstraint]();
-        let leading = NSLayoutConstraint(item: skipView, attribute: .Leading, relatedBy: .Equal, toItem: parentView, attribute: .Leading, multiplier: 0, constant: 0);
-        let bottom = NSLayoutConstraint(item: skipView, attribute: .Bottom, relatedBy: .Equal, toItem: parentView, attribute: .Bottom, multiplier: 0, constant: 0);
-        let trailing = NSLayoutConstraint(item: skipView, attribute: .Leading, relatedBy: .Equal, toItem: parentView, attribute: .Trailing, multiplier: 0, constant: 0);
-        let top = NSLayoutConstraint(item: skipView, attribute: .Leading, relatedBy: .Equal, toItem: parentView, attribute: .Top, multiplier: 0, constant: 0);
-        constraints.append(leading);
-        constraints.append(bottom);
-        constraints.append(trailing);
-        constraints.append(top);
-        return constraints;
-    }*/
-    
     func coachMarksController(coachMarksController: CoachMarksController, coachMarkWillDisappear: CoachMark, forIndex: Int){
         print("disappear code");
         if (TourManager.getFirstUnseenFeedMarker() == TourManager.FeedMarker.UpNext){
@@ -267,106 +351,8 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     func coachMarksController(coachMarksController: CoachMarksController, didFinishShowingAndWasSkipped skipped: Bool){
         print("finish/skipped code");
     }
-    
-    func loadMoreGoals(footer: FooterCell){
-        FeedDataLoader.getInstance().loadNextGoalBatch(){ (goals) in
-            if goals != nil{
-                //Count the current amount of goals and add the new ones
-                let preCount = SharedData.feedData.getGoals().count
-                SharedData.feedData.addGoals(goals!)
-                
-                //Create the path objects to update the table
-                var addPaths = [NSIndexPath]()
-                let section = FeedTypes.getGoalsSectionPosition()
-                for i in 0...goals!.count-1{
-                    addPaths.append(NSIndexPath(forRow: preCount+i, inSection: section))
-                }
-                
-                //Update the table
-                self.tableView.beginUpdates();
-                if (!FeedDataLoader.getInstance().canLoadMoreGoals()){
-                    let deletePaths = [NSIndexPath(forRow: preCount, inSection: section)]
-                    self.tableView.deleteRowsAtIndexPaths(deletePaths, withRowAnimation: .Automatic)
-                    self.goalsFooterCell = nil;
-                }
-                self.tableView.insertRowsAtIndexPaths(addPaths, withRowAnimation: .Automatic)
-                self.tableView.endUpdates()
-            }
-            
-            //Update the footer
-            FeedTypes.setUpdatingGoals(false);
-            footer.end()
-        }
-    }
-    
-    @IBAction func addTap(sender: AnyObject){
-        self.performSegueWithIdentifier("Library", sender: self);
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        switch (indexPath.section){
-        case FeedTypes.getUpNextSectionPosition():
-            if (SharedData.feedData.getUpNext() != nil){
-                performSegueWithIdentifier("ShowActionFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
-            }
-            break;
-            
-        case FeedTypes.getStreaksSectionPosition():
-            tableView.deselectRowAtIndexPath(indexPath, animated: true);
-            break;
-            
-        case FeedTypes.getRewardSectionPosition():
-            performSegueWithIdentifier("ShowRewardFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
-            break
-            
-        case FeedTypes.getGoalsSectionPosition():
-            if indexPath.row < SharedData.feedData.getGoals().count && SharedData.feedData.getGoals()[indexPath.row] is UserGoal{
-                performSegueWithIdentifier("ShowGoalFromFeed", sender: tableView.cellForRowAtIndexPath(indexPath))
-            }
-            break;
-            
-        default:
-            print("Falling back to default")
-            break;
-        }
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
-        //segue.destinationViewController.hidesBottomBarWhenPushed = true;
-        if (segue.identifier == "ShowActionFromFeed"){
-            let actionController = segue.destinationViewController as! ActionController;
-            actionController.delegate = self;
-            if (sender as? UpNextCell) != nil{
-                if let upNext = SharedData.feedData.getUpNext(){
-                    actionController.action = upNext;
-                }
-            }
-        }
-        if (segue.identifier == "ShowRewardFromFeed"){
-            let rewardController = segue.destinationViewController as! RewardController;
-            rewardController.reward = SharedData.feedData.getReward()
-        }
-        else if (segue.identifier == "ShowGoalFromFeed"){
-            if let selectedCell = sender as? FeedGoalCell{
-                let indexPath = tableView.indexPathForCell(selectedCell);
-                if let userGoal = SharedData.feedData.getGoals()[indexPath!.row] as? UserGoal{
-                    let goalController = segue.destinationViewController as! GoalViewController;
-                    let goal = userGoal.getGoal();
-                    let category = SharedData.getCategory((userGoal.getPrimaryCategoryId()));
-                    
-                    selectedGoal = userGoal;
-                    selectedGoalIndex = indexPath?.row;
-                    print(selectedGoalIndex);
-                    
-                    goalController.goal = goal
-                    goalController.category = category
-                    goalController.userGoal = userGoal
-                    goalController.fromFeed = true
-                }
-            }
-        }
-    }
 }
+
 
 extension String{
     func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat{

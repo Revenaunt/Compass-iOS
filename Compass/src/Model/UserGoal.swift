@@ -10,46 +10,54 @@ import ObjectMapper
 
 
 class UserGoal: Goal{
-    let Type: String = "UserGoal";
+    let Type: String = "UserGoal"
     
-    var goal: GoalContent? = nil;
-    var primaryCategoryId: Int = -1;
-    var progress: FeedData.Progress? = nil;
+    var goal: GoalContent!
+    var primaryCategoryId: Int = -1
+    var progress: FeedData.Progress? = nil
     
     
     override func mapping(map: Map){
-        super.mapping(map);
-        goal <- map["goal"];
-        primaryCategoryId <- map["primary_category"];
-        progress <- map ["progress"];
+        super.mapping(map)
+        goal <- map["goal"]
+        primaryCategoryId <- map["primary_category"]
+        progress <- map ["progress"]
     }
     
     override func getType() -> String{
-        return Type;
+        return Type
     }
     
     func getGoal() -> GoalContent{
-        return goal!;
+        return goal
+    }
+    
+    override func getContentId() -> Int{
+        return goal.getId()
+    }
+    
+    func getDescription() -> String{
+        return goal.getDescription()
     }
     
     func getPrimaryCategoryId() -> Int{
-        return primaryCategoryId;
+        return primaryCategoryId
     }
     
     func getProgress() -> FeedData.Progress{
-        return progress!;
+        return progress!
     }
     
     override func getTitle() -> String{
-        return goal!.getTitle();
+        return goal.getTitle()
     }
     
     override func getIconUrl() -> String {
-        return goal!.getIconUrl();
+        return goal.getIconUrl()
     }
     
     override func getColor() -> String{
-        return "";
+        return ""
     }
 }
 
@@ -59,7 +67,7 @@ class UserGoalList: ListResult{
     
     
     override func mapping(map: Map){
-        super.mapping(map);
-        results <- map["results"];
+        super.mapping(map)
+        results <- map["results"]
     }
 }

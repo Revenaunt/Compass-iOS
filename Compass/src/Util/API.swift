@@ -248,6 +248,16 @@ class API{
             return "\(BASE_URL)users/customactions/?today=1&exclude_completed=1&page_size=1";
         }
         
+        static func getCustomActions(goal: Goal) -> String{
+            if goal is UserGoal{
+                return "\(BASE_URL)users/customactions/?goal=\(goal.getContentId())"
+            }
+            if goal is CustomGoal{
+                return "\(BASE_URL)users/customactions/?customgoal=\(goal.getId())"
+            }
+            return ""
+        }
+        
         static func getOrganizations() -> String{
             return "\(BASE_URL)organizations/";
         }
