@@ -1652,7 +1652,10 @@
                                                                             </constraints>
                                                                             <nil key="textColor"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                            <textInputTraits key="textInputTraits"/>
+                                                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                                            <connections>
+                                                                                <outlet property="delegate" destination="41x-8C-doX" id="sRF-h4-y6E"/>
+                                                                            </connections>
                                                                         </textField>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEL-qD-wrP">
                                                                             <state key="normal" title="Add"/>
@@ -1748,6 +1751,7 @@
                         <outlet property="hero" destination="Nno-nq-Gts" id="LPB-m7-vEh"/>
                         <outlet property="loadingIndicator" destination="Fbd-99-crN" id="DDH-PH-9vz"/>
                         <outlet property="scrollView" destination="hve-ID-sDC" id="2o4-SP-Mdq"/>
+                        <outlet property="scrollViewBottomConstraint" destination="CYY-3T-M6Y" id="A7A-yr-JM6"/>
                         <outlet property="tableView" destination="TNg-vu-od7" id="mde-P3-4XU"/>
                     </connections>
                 </viewController>

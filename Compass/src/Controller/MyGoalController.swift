@@ -25,6 +25,7 @@ class MyGoalController: UIViewController{
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var hero: UIImageView!
     @IBOutlet weak var goalTitle: UILabel!
     @IBOutlet weak var goalDescription: UILabel!
@@ -34,11 +35,27 @@ class MyGoalController: UIViewController{
     
     var tableViewConstraints = [NSLayoutConstraint]()
     
+    var newActionCell: UserGoalNewCustomActionCell? = nil
+    
     
     //MARK: Initial load methods
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: #selector(MyGoalController.keyboardWillShow(_:)),
+            name: UIKeyboardWillShowNotification,
+            object: nil
+        )
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: #selector(MyGoalController.keyboardWillHide(_:)),
+            name: UIKeyboardWillHideNotification,
+            object: nil
+        )
         
         for constraint in customContentContainer.constraints{
             if constraint.belongsTo(tableView){
@@ -59,6 +76,10 @@ class MyGoalController: UIViewController{
             populateUI()
             fetchCustomActions()
         }
+    }
+    
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     private func fetchGoal(){
@@ -127,6 +148,22 @@ class MyGoalController: UIViewController{
         customContentIndicator.hidden = true
         tableView.hidden = false
     }
+    
+    func keyboardWillShow(notification: NSNotification){
+        let info = notification.userInfo as! [String: AnyObject]
+        let kbSize = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue().size
+        scrollViewBottomConstraint.constant = kbSize.height
+        
+        let newY = scrollView.contentOffset.y+kbSize.height
+        scrollView.setContentOffset(CGPointMake(0, newY), animated: true)
+        
+        view.layoutIfNeeded()
+    }
+    
+    func keyboardWillHide(notification: NSNotification){
+        scrollViewBottomConstraint.constant = 0
+        view.layoutIfNeeded()
+    }
 }
 
 
@@ -153,8 +190,8 @@ extension MyGoalController: UITableViewDataSource{
         }
         else{
             let cell = tableView.dequeueReusableCellWithIdentifier("UserGoalNewCustomActionCell")!
-            let newActionCell = cell as! UserGoalNewCustomActionCell
-            return newActionCell
+            newActionCell = cell as? UserGoalNewCustomActionCell
+            return newActionCell!
         }
     }
     
@@ -176,11 +213,23 @@ extension MyGoalController: UITableViewDelegate{
 
 
 extension MyGoalController: UserGoalCustomActionCellDelegate, UserGoalNewCustomActionCellDelegate{
+    func onNewActionFieldFocused(){
+        
+    }
+    
     func onAddCustomAction(title: String){
         
     }
     
     func onSaveCustomAction(source: UITableViewCell, newTitle: String){
         
+    }
+}
+
+
+extension MyGoalController: UITextFieldDelegate{
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true
     }
 }
