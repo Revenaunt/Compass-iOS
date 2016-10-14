@@ -1573,7 +1573,8 @@
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hve-ID-sDC">
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="au9-LB-WTd" userLabel="Master Container">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="au9-LB-WTd" userLabel="Master Container">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="506"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="TDC Master" translatesAutoresizingMaskIntoConstraints="NO" id="Nno-nq-Gts">
                                                 <constraints>
@@ -1595,10 +1596,12 @@
                                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XhK-Iv-CGg" userLabel="Custom Content Container">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XhK-Iv-CGg" userLabel="Custom Content Container">
+                                                <frame key="frameInset" minX="28" minY="333" width="319" height="165"/>
                                                 <subviews>
                                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wT9-9T-xwa"/>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TNg-vu-od7" customClass="ContentWrapUITableView" customModule="Compass" customModuleProvider="target">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TNg-vu-od7" customClass="ContentWrapUITableView" customModule="Compass" customModuleProvider="target">
+                                                        <frame key="frameInset" width="319" height="164"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserGoalCustomActionCell" rowHeight="47" id="ai1-1n-fu6" customClass="UserGoalCustomActionCell" customModule="Compass" customModuleProvider="target">
@@ -1608,7 +1611,7 @@
                                                                     <frame key="frameInset" width="319" height="47"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GFE-vx-Fm0">
+                                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Custom Action Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GFE-vx-Fm0">
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="30" id="Day-ui-n7c"/>
                                                                             </constraints>
@@ -1616,7 +1619,7 @@
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                             <textInputTraits key="textInputTraits"/>
                                                                         </textField>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSn-oQ-HIS">
+                                                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSn-oQ-HIS">
                                                                             <state key="normal" title="Save"/>
                                                                             <connections>
                                                                                 <action selector="save" destination="ai1-1n-fu6" eventType="touchUpInside" id="yVi-Mq-VRZ"/>
@@ -1627,14 +1630,15 @@
                                                                         <constraint firstAttribute="bottom" secondItem="HSn-oQ-HIS" secondAttribute="bottom" id="F9w-0t-E0W"/>
                                                                         <constraint firstAttribute="trailing" secondItem="HSn-oQ-HIS" secondAttribute="trailing" id="JXZ-Wq-01U"/>
                                                                         <constraint firstAttribute="bottom" secondItem="GFE-vx-Fm0" secondAttribute="bottom" constant="8" id="RZj-wz-r2d"/>
+                                                                        <constraint firstItem="HSn-oQ-HIS" firstAttribute="centerY" secondItem="GFE-vx-Fm0" secondAttribute="centerY" id="VoA-Ax-hxZ"/>
                                                                         <constraint firstItem="GFE-vx-Fm0" firstAttribute="leading" secondItem="nY1-ox-poE" secondAttribute="leading" id="bxw-SC-oEa"/>
                                                                         <constraint firstItem="GFE-vx-Fm0" firstAttribute="top" secondItem="nY1-ox-poE" secondAttribute="top" constant="8" id="e3I-Ae-BCH"/>
                                                                         <constraint firstAttribute="trailingMargin" secondItem="GFE-vx-Fm0" secondAttribute="trailing" priority="250" id="lSt-b7-Mgu"/>
-                                                                        <constraint firstItem="HSn-oQ-HIS" firstAttribute="top" secondItem="nY1-ox-poE" secondAttribute="top" id="lyT-X9-TRg"/>
                                                                         <constraint firstItem="HSn-oQ-HIS" firstAttribute="leading" secondItem="GFE-vx-Fm0" secondAttribute="trailing" constant="8" id="x64-Yu-0Ee"/>
                                                                     </constraints>
                                                                 </tableViewCellContentView>
                                                                 <connections>
+                                                                    <outlet property="content" destination="nY1-ox-poE" id="eqG-1R-b3L"/>
                                                                     <outlet property="customAction" destination="GFE-vx-Fm0" id="Pni-Kd-Zdn"/>
                                                                     <outlet property="saveButton" destination="HSn-oQ-HIS" id="MRj-Fa-HpS"/>
                                                                 </connections>

@@ -18,6 +18,7 @@ class MyGoalController: UIViewController{
     var userGoalId: Int!
     var userGoal: UserGoal? = nil
     var customActions = [CustomAction]()
+    var editingActions = [Bool]()
     
     
     //MARK: UI components
@@ -37,12 +38,18 @@ class MyGoalController: UIViewController{
     
     var newActionCell: UserGoalNewCustomActionCell? = nil
     
+    var selectedField: UITextField? = nil
+    var scrolledBy: CGFloat = 0
+    
     
     //MARK: Initial load methods
     
     override func viewDidLoad(){
         super.viewDidLoad()
         
+        //We need to know when the keyboard appears or goes away to adjust the scrollview's bottom
+        //  constraint and scroll the view in order to have the text field being written to inside
+        //  the screen
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: #selector(MyGoalController.keyboardWillShow(_:)),
@@ -57,18 +64,22 @@ class MyGoalController: UIViewController{
             object: nil
         )
         
+        //At load time the table should have nothing, as CustomActions need to be fetched, so
+        //  remove it from the view hierarchy
         for constraint in customContentContainer.constraints{
             if constraint.belongsTo(tableView){
                 tableViewConstraints.append(constraint)
             }
         }
         tableView.removeFromSuperview()
+        //Set both the delegate and the data source
         tableView.dataSource = self
         tableView.delegate = self
         
         //Automatic height calculation
         tableView.rowHeight = UITableViewAutomaticDimension
         
+        //If the UserGoal is nil fetch it, otherwise display it and fetch the custom actions
         if userGoal == nil{
             fetchGoal()
         }
@@ -79,6 +90,7 @@ class MyGoalController: UIViewController{
     }
     
     deinit{
+        //Remove keyboard observers in the destructor
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
@@ -141,6 +153,11 @@ class MyGoalController: UIViewController{
     }
     
     private func setCustomActions(){
+        //Generate the editing flag list (false by default)
+        for _ in customActions{
+            editingActions.append(false)
+        }
+        //Add the table back to the layout
         customContentContainer.addSubview(tableView)
         for constraint in tableViewConstraints{
             customContentContainer.addConstraint(constraint)
@@ -154,11 +171,29 @@ class MyGoalController: UIViewController{
     
     func keyboardWillShow(notification: NSNotification){
         let info = notification.userInfo as! [String: AnyObject]
-        let kbSize = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue().size
-        scrollViewBottomConstraint.constant = kbSize.height
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue().size
+        scrollViewBottomConstraint.constant = keyboardSize.height
         
-        let newY = scrollView.contentOffset.y+kbSize.height
-        scrollView.setContentOffset(CGPointMake(0, newY), animated: true)
+        //If there ain't a selected field set, that means that the selected field is the
+        //  new action field, for now scroll all the times
+        if selectedField == nil{
+            let newY = scrollView.contentOffset.y+keyboardSize.height
+            scrollView.setContentOffset(CGPointMake(0, newY), animated: true)
+        }
+        else{
+            let abs = selectedField!.superview!.convertPoint(selectedField!.frame.origin, toView: nil)
+            let windowHeight = UIScreen.mainScreen().bounds.height
+            
+            let fPos = windowHeight - keyboardSize.height - 30
+            let blCornerYPos = abs.y + selectedField!.frame.height
+            if blCornerYPos > fPos{
+                scrolledBy = blCornerYPos - fPos
+                print(scrollView.contentOffset)
+                let newY = scrollView.contentOffset.y+scrolledBy
+                print(newY)
+                scrollView.setContentOffset(CGPointMake(0, newY), animated: true)
+            }
+        }
         
         view.layoutIfNeeded()
     }
@@ -166,6 +201,8 @@ class MyGoalController: UIViewController{
     func keyboardWillHide(notification: NSNotification){
         scrollViewBottomConstraint.constant = 0
         view.layoutIfNeeded()
+        scrolledBy = 0
+        selectedField = nil
     }
 }
 
@@ -187,16 +224,47 @@ extension MyGoalController: UITableViewDataSource{
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         if indexPath.section == 0{
-            let cell = tableView.dequeueReusableCellWithIdentifier("UserGoalCustomActionCell")!
+            let cell = tableView.dequeueReusableCellWithIdentifier(
+                "UserGoalCustomActionCell",
+                forIndexPath: indexPath
+            )
+            cell.selectionStyle = UITableViewCellSelectionStyle.Default
             let actionCell = cell as! UserGoalCustomActionCell
-            actionCell.setActionTitle(customActions[indexPath.row].getTitle())
+            actionCell.setAction(self, title: customActions[indexPath.row].getTitle())
             return actionCell
         }
         else{
-            let cell = tableView.dequeueReusableCellWithIdentifier("UserGoalNewCustomActionCell")!
+            let cell = tableView.dequeueReusableCellWithIdentifier(
+                "UserGoalNewCustomActionCell",
+                forIndexPath: indexPath
+            )
             newActionCell = cell as? UserGoalNewCustomActionCell
             newActionCell?.delegate = self
             return newActionCell!
+        }
+    }
+}
+
+
+extension MyGoalController: UITableViewDelegate{
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        if indexPath.section == 0{
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! UserGoalCustomActionCell
+            
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            
+            let sheet = UIAlertController(
+                title: "Choose an option", message: "",
+                preferredStyle: UIAlertControllerStyle.ActionSheet
+            )
+            sheet.addAction(UIAlertAction(title: "Edit", style: .Default){ action in
+                self.selectedField = cell.customAction
+                cell.edit()
+            })
+            sheet.addAction(UIAlertAction(title: "Delete", style: .Destructive){ action in })
+            sheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            
+            presentViewController(sheet, animated: true, completion: nil);
         }
     }
     
@@ -209,11 +277,6 @@ extension MyGoalController: UITableViewDataSource{
         }
         return 0
     }
-}
-
-
-extension MyGoalController: UITableViewDelegate{
-    
 }
 
 
@@ -246,7 +309,7 @@ extension MyGoalController: UserGoalCustomActionCellDelegate, UserGoalNewCustomA
         }
     }
     
-    func onSaveCustomAction(source: UITableViewCell, newTitle: String){
+    func onSaveCustomAction(newTitle: String){
         
     }
 }
