@@ -258,6 +258,10 @@ class API{
             return ""
         }
         
+        static func postCustomAction() -> String{
+            return "\(BASE_URL)users/customactions/"
+        }
+        
         static func getOrganizations() -> String{
             return "\(BASE_URL)organizations/";
         }
@@ -272,6 +276,19 @@ class API{
     }
     
     class BODY{
+        static func postPutCustomAction(title: String, goal: Goal) -> [String: AnyObject]{
+            var body = [String: AnyObject]()
+            body["title"] = title
+            body["notification_text"] = title
+            if goal is UserGoal{
+                body["goal"] = goal.getContentId()
+            }
+            else if goal is CustomGoal{
+                body["customgoal"] = goal.getId()
+            }
+            return body
+        }
+        
         static func resetPassword(email: String) -> [String: String]{
             var body = [String: String]();
             body["email"] = email;

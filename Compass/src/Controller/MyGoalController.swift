@@ -147,6 +147,9 @@ class MyGoalController: UIViewController{
         }
         customContentIndicator.hidden = true
         tableView.hidden = false
+        tableView.invalidateIntrinsicContentSize()
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
     }
     
     func keyboardWillShow(notification: NSNotification){
@@ -186,11 +189,13 @@ extension MyGoalController: UITableViewDataSource{
         if indexPath.section == 0{
             let cell = tableView.dequeueReusableCellWithIdentifier("UserGoalCustomActionCell")!
             let actionCell = cell as! UserGoalCustomActionCell
+            actionCell.setActionTitle(customActions[indexPath.row].getTitle())
             return actionCell
         }
         else{
             let cell = tableView.dequeueReusableCellWithIdentifier("UserGoalNewCustomActionCell")!
             newActionCell = cell as? UserGoalNewCustomActionCell
+            newActionCell?.delegate = self
             return newActionCell!
         }
     }
@@ -200,7 +205,7 @@ extension MyGoalController: UITableViewDataSource{
             return 46
         }
         if indexPath.section == 1{
-            return 48
+            return 85
         }
         return 0
     }
@@ -213,12 +218,32 @@ extension MyGoalController: UITableViewDelegate{
 
 
 extension MyGoalController: UserGoalCustomActionCellDelegate, UserGoalNewCustomActionCellDelegate{
-    func onNewActionFieldFocused(){
-        
-    }
-    
     func onAddCustomAction(title: String){
-        
+        Just.post(
+            API.URL.postCustomAction(),
+            headers: SharedData.user.getHeaderMap(),
+            json: API.BODY.postPutCustomAction(title, goal: userGoal!)
+        ){ (response) in
+            if response.ok{
+                self.customActions.append(Mapper<CustomAction>().map(response.contentStr)!)
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    CATransaction.begin()
+                    CATransaction.setCompletionBlock(){
+                        self.tableView.invalidateIntrinsicContentSize()
+                        self.view.setNeedsLayout()
+                        self.view.layoutIfNeeded()
+                    }
+                    self.tableView.reloadData()
+                    self.tableView.sizeToFit()
+                    CATransaction.commit()
+                })
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.newActionCell?.onActionSaveComplete(response.ok)
+            })
+        }
     }
     
     func onSaveCustomAction(source: UITableViewCell, newTitle: String){

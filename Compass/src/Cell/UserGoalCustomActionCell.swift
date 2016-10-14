@@ -10,9 +10,13 @@ import UIKit
 
 
 class UserGoalCustomActionCell: UITableViewCell{
-    @IBOutlet weak var cusotmAction: UITextField!
+    @IBOutlet weak var customAction: UITextField!
     @IBOutlet weak var saveButton: UIButton!
     
+    
+    func setActionTitle(title: String){
+        customAction.text = title
+    }
     
     @IBAction func save(){
         

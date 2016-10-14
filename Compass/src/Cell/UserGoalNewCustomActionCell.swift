@@ -21,9 +21,6 @@ class UserGoalNewCustomActionCell: UITableViewCell{
         self.delegate = delegate
     }
     
-    @IBAction func onTextFieldFocused(){
-    }
-    
     @IBAction func add(){
         if customAction.text?.characters.count != 0{
             if delegate != nil{
@@ -47,6 +44,5 @@ class UserGoalNewCustomActionCell: UITableViewCell{
 
 
 protocol UserGoalNewCustomActionCellDelegate{
-    func onNewActionFieldFocused()
     func onAddCustomAction(title: String)
 }

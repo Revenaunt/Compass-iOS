@@ -11,6 +11,7 @@ import UIKit
 
 class ContentWrapUITableView: UITableView{
     override func intrinsicContentSize() -> CGSize{
+        setNeedsLayout()
         layoutIfNeeded()
         return CGSizeMake(UIViewNoIntrinsicMetric, self.contentSize.height)
     }
