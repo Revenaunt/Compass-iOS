@@ -262,6 +262,10 @@ class API{
             return "\(BASE_URL)users/customactions/"
         }
         
+        static func putCustomAction(action: CustomAction) -> String{
+            return "\(BASE_URL)users/customactions/\(action.getId())/"
+        }
+        
         static func getOrganizations() -> String{
             return "\(BASE_URL)organizations/";
         }

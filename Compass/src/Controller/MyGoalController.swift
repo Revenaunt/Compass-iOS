@@ -309,8 +309,14 @@ extension MyGoalController: UserGoalCustomActionCellDelegate, UserGoalNewCustomA
         }
     }
     
-    func onSaveCustomAction(newTitle: String){
-        
+    func onSaveCustomAction(cell: UserGoalCustomActionCell, newTitle: String){
+        if let indexPath = tableView.indexPathForCell(cell){
+            Just.put(
+                API.URL.putCustomAction(customActions[indexPath.row]),
+                headers: SharedData.user.getHeaderMap(),
+                json: API.BODY.postPutCustomAction(newTitle, goal: userGoal!)
+            ){ (response) in }
+        }
     }
 }
 

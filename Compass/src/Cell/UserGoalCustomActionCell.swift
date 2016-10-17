@@ -44,7 +44,7 @@ class UserGoalCustomActionCell: UITableViewCell{
             customAction.resignFirstResponder()
             selectionStyle = .Default
             removeSaveButton()
-            delegate.onSaveCustomAction(customAction.text!)
+            delegate.onSaveCustomAction(self, newTitle: customAction.text!)
         }
     }
     
@@ -61,5 +61,5 @@ class UserGoalCustomActionCell: UITableViewCell{
 
 
 protocol UserGoalCustomActionCellDelegate{
-    func onSaveCustomAction(newTitle: String)
+    func onSaveCustomAction(cell: UserGoalCustomActionCell, newTitle: String)
 }
