@@ -1374,6 +1374,7 @@
                         <outlet property="buttonContainer" destination="TIP-67-qLi" id="NXA-S2-bs0"/>
                         <outlet property="customGoalIcon" destination="Myc-pU-jJ6" id="zLp-WD-JDA"/>
                         <outlet property="errorMessage" destination="umA-wn-ANc" id="5iC-mh-iTz"/>
+                        <outlet property="goalContainer" destination="gqW-rX-LYY" id="f2f-qv-ixE"/>
                         <outlet property="goalIconContainer" destination="veh-F6-QXW" id="24V-vh-iK3"/>
                         <outlet property="goalTitle" destination="QGc-If-8aQ" id="rzm-aS-d5z"/>
                         <outlet property="gotItButton" destination="Jzn-un-a5O" id="lnW-rw-rQ1"/>
@@ -1387,6 +1388,7 @@
                         <outlet property="moreInfoRuler" destination="fdB-4q-XK2" id="dQ3-FO-ckC"/>
                         <outlet property="scrollView" destination="WkA-6K-knu" id="DLR-kf-9qx"/>
                         <outlet property="userGoalIcon" destination="4CW-Y5-cIq" id="SIV-ol-yw2"/>
+                        <segue destination="41x-8C-doX" kind="show" identifier="ShowMyGoalFromAction" id="UjD-v2-J0K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eb9-EM-G73" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1551,7 +1553,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqt-Lh-RWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="764" y="3724"/>
+            <point key="canvasLocation" x="1559" y="3724"/>
         </scene>
         <!--My Goal-->
         <scene sceneID="BQx-T4-Vfb">
@@ -1562,7 +1564,7 @@
                         <viewControllerLayoutGuide type="bottom" id="LIk-Wd-MLC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uGh-Kv-xd7">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="656"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Fbd-99-crN"/>
@@ -1771,7 +1773,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WFM-8U-bfs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1557.5999999999999" y="3723.6881559220392"/>
+            <point key="canvasLocation" x="764" y="3724"/>
         </scene>
         <!--Choose a Goal-->
         <scene sceneID="WnW-O5-DDw">
@@ -2654,5 +2656,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="fTB-ff-mwj"/>
         <segue reference="k7y-SJ-VTq"/>
+        <segue reference="UjD-v2-J0K"/>
     </inferredMetricsTieBreakers>
 </document>

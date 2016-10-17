@@ -13,7 +13,7 @@ import Nuke
 import Instructions
 
 
-class ActionController: UIViewController, CoachMarksControllerDataSource, CoachMarksControllerDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate{
+class ActionController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate{
     //Data
     var delegate: ActionDelegate? = nil
     var action: Action? = nil
@@ -31,6 +31,7 @@ class ActionController: UIViewController, CoachMarksControllerDataSource, CoachM
     @IBOutlet weak var imageContainer: UIView!
     @IBOutlet weak var hero: UIImageView!
     //  Goal
+    @IBOutlet weak var goalContainer: UIView!
     @IBOutlet weak var goalIconContainer: UIView!
     @IBOutlet weak var userGoalIcon: UIImageView!
     @IBOutlet weak var customGoalIcon: UIImageView!
@@ -60,6 +61,10 @@ class ActionController: UIViewController, CoachMarksControllerDataSource, CoachM
         let retry = UITapGestureRecognizer(target: self, action: #selector(ActionController.handleTap(_:)));
         retry.delegate = self;
         errorMessage.addGestureRecognizer(retry);
+        
+        let goal = UITapGestureRecognizer(target: self, action: #selector(ActionController.handleTap(_:)));
+        goal.delegate = self;
+        goalContainer.addGestureRecognizer(goal);
         
         if action != nil{
             laterButton.removeFromSuperview()
@@ -96,6 +101,11 @@ class ActionController: UIViewController, CoachMarksControllerDataSource, CoachM
         if sender?.view == errorMessage{
             if message != nil{
                 fetchAction()
+            }
+        }
+        if sender?.view == goalContainer{
+            if action is UserAction{
+                performSegueWithIdentifier("ShowMyGoalFromAction", sender: nil)
             }
         }
     }
@@ -264,6 +274,17 @@ class ActionController: UIViewController, CoachMarksControllerDataSource, CoachM
                  headers: SharedData.user.getHeaderMap()){ (response) in }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        if segue.identifier == "ShowMyGoalFromAction"{
+            let myGoalController = segue.destinationViewController as! MyGoalController
+            print((action as! UserAction).getPrimaryUserGoalId())
+            myGoalController.userGoalId = (action as! UserAction).getPrimaryUserGoalId()
+        }
+    }
+}
+
+
+extension ActionController: CoachMarksControllerDataSource, CoachMarksControllerDelegate{
     func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{
         return TourManager.getActionMarkerCount();
     }
