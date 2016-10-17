@@ -223,6 +223,10 @@ class API{
             return "\(BASE_URL)categories/\(id)/"
         }
         
+        static func getUserGoal(id: Int) -> String{
+            return "\(BASE_URL)users/goals/\(id)/"
+        }
+        
         static func deleteGoal(goal: Goal) -> String{
             if (goal is UserGoal){
                 return "\(BASE_URL)users/goals/\(goal.getId())/";
@@ -244,6 +248,33 @@ class API{
             return "\(BASE_URL)users/customactions/?today=1&exclude_completed=1&page_size=1";
         }
         
+        static func getCustomActions(goal: Goal) -> String{
+            if goal is UserGoal{
+                return "\(BASE_URL)users/customactions/?goal=\(goal.getContentId())"
+            }
+            if goal is CustomGoal{
+                return "\(BASE_URL)users/customactions/?customgoal=\(goal.getId())"
+            }
+            return ""
+        }
+        
+        static func postCustomAction() -> String{
+            return "\(BASE_URL)users/customactions/"
+        }
+        
+        static func putCustomAction(action: CustomAction) -> String{
+            return "\(BASE_URL)users/customactions/\(action.getId())/"
+        }
+        
+        static func deleteAction(action: Action) -> String{
+            if action is UserAction{
+                return "\(BASE_URL)users/actions/\(action.getId())/"
+            }
+            else{
+                return "\(BASE_URL)users/customactions/\(action.getId())/"
+            }
+        }
+        
         static func getOrganizations() -> String{
             return "\(BASE_URL)organizations/";
         }
@@ -258,6 +289,19 @@ class API{
     }
     
     class BODY{
+        static func postPutCustomAction(title: String, goal: Goal) -> [String: AnyObject]{
+            var body = [String: AnyObject]()
+            body["title"] = title
+            body["notification_text"] = title
+            if goal is UserGoal{
+                body["goal"] = goal.getContentId()
+            }
+            else if goal is CustomGoal{
+                body["customgoal"] = goal.getId()
+            }
+            return body
+        }
+        
         static func resetPassword(email: String) -> [String: String]{
             var body = [String: String]();
             body["email"] = email;

@@ -39,6 +39,14 @@ class UserAction: Action{
         return primaryCategoryId
     }
     
+    func getPrimaryGoalId() -> Int{
+        return primaryGoalId
+    }
+    
+    func getPrimaryUserGoalId() -> Int{
+        return primaryUserGoalId
+    }
+    
     override func getTitle() -> String{
         return action.getTitle()
     }

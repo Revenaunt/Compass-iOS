@@ -30,4 +30,8 @@ class UserContent: TDCBase{
     func isEditable() -> Bool{
         return editable;
     }
+    
+    func getContentId() -> Int{
+        return -1
+    }
 }
