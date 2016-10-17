@@ -261,7 +261,19 @@ extension MyGoalController: UITableViewDelegate{
                 self.selectedField = cell.customAction
                 cell.edit()
             })
-            sheet.addAction(UIAlertAction(title: "Delete", style: .Destructive){ action in })
+            sheet.addAction(UIAlertAction(title: "Delete", style: .Destructive){ action in
+                Just.delete(
+                    API.URL.deleteAction(self.customActions[indexPath.row]),
+                    headers: SharedData.user.getHeaderMap()
+                ){ (response) in }
+                
+                self.customActions.removeAtIndex(indexPath.row)
+                self.tableView.reloadData()
+                self.tableView.sizeToFit()
+                self.tableView.invalidateIntrinsicContentSize()
+                self.view.setNeedsLayout()
+                self.view.layoutIfNeeded()
+            })
             sheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
             
             presentViewController(sheet, animated: true, completion: nil);

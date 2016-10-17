@@ -13,6 +13,7 @@ class UserGoalCustomActionCell: UITableViewCell{
     private var delegate: UserGoalCustomActionCellDelegate!
     
     @IBOutlet weak var content: UIView!
+    @IBOutlet weak var bullet: UIView!
     @IBOutlet weak var customAction: UITextField!
     @IBOutlet var saveButton: UIButton!
     
@@ -22,6 +23,9 @@ class UserGoalCustomActionCell: UITableViewCell{
     func setAction(delegate: UserGoalCustomActionCellDelegate, title: String){
         self.delegate = delegate
         customAction.text = title
+        
+        bullet.layoutIfNeeded()
+        bullet.layer.cornerRadius = bullet.bounds.width/2
         
         removeSaveButton()
     }

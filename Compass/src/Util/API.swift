@@ -266,6 +266,15 @@ class API{
             return "\(BASE_URL)users/customactions/\(action.getId())/"
         }
         
+        static func deleteAction(action: Action) -> String{
+            if action is UserAction{
+                return "\(BASE_URL)users/actions/\(action.getId())/"
+            }
+            else{
+                return "\(BASE_URL)users/customactions/\(action.getId())/"
+            }
+        }
+        
         static func getOrganizations() -> String{
             return "\(BASE_URL)organizations/";
         }

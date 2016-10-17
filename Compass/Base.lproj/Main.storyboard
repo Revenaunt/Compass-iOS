@@ -1401,7 +1401,7 @@
                         <viewControllerLayoutGuide type="top" id="pfZ-9g-oC1"/>
                         <viewControllerLayoutGuide type="bottom" id="6N7-pn-6PI"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Lb5-I2-CBz">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Lb5-I2-CBz">
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1611,6 +1611,13 @@
                                                                     <frame key="frameInset" width="319" height="47"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M5R-b2-d5e" userLabel="Bullet">
+                                                                            <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="6" id="hN3-di-Kwg"/>
+                                                                                <constraint firstAttribute="width" constant="6" id="lpg-zB-UJU"/>
+                                                                            </constraints>
+                                                                        </view>
                                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Custom Action Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GFE-vx-Fm0">
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="30" id="Day-ui-n7c"/>
@@ -1628,16 +1635,19 @@
                                                                     </subviews>
                                                                     <constraints>
                                                                         <constraint firstAttribute="bottom" secondItem="HSn-oQ-HIS" secondAttribute="bottom" id="F9w-0t-E0W"/>
+                                                                        <constraint firstItem="GFE-vx-Fm0" firstAttribute="leading" secondItem="M5R-b2-d5e" secondAttribute="trailing" constant="8" id="Ftx-pT-q2t"/>
                                                                         <constraint firstAttribute="trailing" secondItem="HSn-oQ-HIS" secondAttribute="trailing" id="JXZ-Wq-01U"/>
                                                                         <constraint firstAttribute="bottom" secondItem="GFE-vx-Fm0" secondAttribute="bottom" constant="8" id="RZj-wz-r2d"/>
                                                                         <constraint firstItem="HSn-oQ-HIS" firstAttribute="centerY" secondItem="GFE-vx-Fm0" secondAttribute="centerY" id="VoA-Ax-hxZ"/>
-                                                                        <constraint firstItem="GFE-vx-Fm0" firstAttribute="leading" secondItem="nY1-ox-poE" secondAttribute="leading" id="bxw-SC-oEa"/>
+                                                                        <constraint firstItem="M5R-b2-d5e" firstAttribute="leading" secondItem="nY1-ox-poE" secondAttribute="leadingMargin" id="WJU-ri-kuP"/>
                                                                         <constraint firstItem="GFE-vx-Fm0" firstAttribute="top" secondItem="nY1-ox-poE" secondAttribute="top" constant="8" id="e3I-Ae-BCH"/>
                                                                         <constraint firstAttribute="trailingMargin" secondItem="GFE-vx-Fm0" secondAttribute="trailing" priority="250" id="lSt-b7-Mgu"/>
+                                                                        <constraint firstItem="M5R-b2-d5e" firstAttribute="centerY" secondItem="nY1-ox-poE" secondAttribute="centerY" id="tth-aN-IiF"/>
                                                                         <constraint firstItem="HSn-oQ-HIS" firstAttribute="leading" secondItem="GFE-vx-Fm0" secondAttribute="trailing" constant="8" id="x64-Yu-0Ee"/>
                                                                     </constraints>
                                                                 </tableViewCellContentView>
                                                                 <connections>
+                                                                    <outlet property="bullet" destination="M5R-b2-d5e" id="9gq-iE-WFL"/>
                                                                     <outlet property="content" destination="nY1-ox-poE" id="eqG-1R-b3L"/>
                                                                     <outlet property="customAction" destination="GFE-vx-Fm0" id="Pni-Kd-Zdn"/>
                                                                     <outlet property="saveButton" destination="HSn-oQ-HIS" id="MRj-Fa-HpS"/>
