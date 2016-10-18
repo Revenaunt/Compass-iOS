@@ -18,7 +18,7 @@ class MyGoalController: UIViewController{
     var userGoalId: Int!
     var userGoal: UserGoal? = nil
     var customActions = [CustomAction]()
-    var editingActions = [Bool]()
+    var selectedAction: CustomAction?
     
     
     //MARK: UI components
@@ -153,10 +153,6 @@ class MyGoalController: UIViewController{
     }
     
     private func setCustomActions(){
-        //Generate the editing flag list (false by default)
-        for _ in customActions{
-            editingActions.append(false)
-        }
         //Add the table back to the layout
         customContentContainer.addSubview(tableView)
         for constraint in tableViewConstraints{
@@ -208,12 +204,15 @@ class MyGoalController: UIViewController{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         if segue.identifier == "TriggerFromMyGoal"{
             let triggerController = segue.destinationViewController as! TriggerController
+            triggerController.delegate = self
             if sender == nil{
-                triggerController.action = customActions[customActions.count-1]
+                selectedAction = customActions[customActions.count-1]
+                triggerController.action = selectedAction
             }
             else{
                 let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
-                triggerController.action = customActions[indexPath!.row]
+                selectedAction = customActions[indexPath!.row]
+                triggerController.action = selectedAction
             }
         }
     }
@@ -346,6 +345,15 @@ extension MyGoalController: UserGoalCustomActionCellDelegate, UserGoalNewCustomA
                 headers: SharedData.user.getHeaderMap(),
                 json: API.BODY.postPutCustomAction(newTitle, goal: userGoal!)
             ){ (response) in }
+        }
+    }
+}
+
+
+extension MyGoalController: TriggerControllerDelegate{
+    func onTriggerSavedForAction(action: Action){
+        if action.getTrigger() != nil{
+            selectedAction?.setTrigger(action.getTrigger()!)
         }
     }
 }

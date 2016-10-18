@@ -275,6 +275,15 @@ class API{
             }
         }
         
+        //MARK: Triggers
+        static func putTrigger(action: Action) -> String{
+            if action is CustomAction{
+                return "\(BASE_URL)users/customactions/\(action.getId())/"
+            }
+            return ""
+        }
+        
+        //MARK: Organizations
         static func getOrganizations() -> String{
             return "\(BASE_URL)organizations/";
         }
@@ -288,6 +297,8 @@ class API{
         }
     }
     
+    
+    //MARK: Bodies
     class BODY{
         static func postPutCustomAction(title: String, goal: Goal) -> [String: AnyObject]{
             var body = [String: AnyObject]()
@@ -306,6 +317,15 @@ class API{
             var body = [String: String]();
             body["email"] = email;
             return body;
+        }
+        
+        static func putTrigger(trigger: Trigger) -> [String: String]{
+            var body = [String: String]()
+            body["custom_trigger_time"] = trigger.getRawTime()
+            body["custom_trigger_date"] = trigger.getRawDate()
+            body["custom_trigger_rrule"] = trigger.getRecurrence()
+            body["custom_trigger_disabled"] = "\(trigger.isDisabled())"
+            return body
         }
         
         static func postOrganization(organization: Organization) -> [String: AnyObject]{

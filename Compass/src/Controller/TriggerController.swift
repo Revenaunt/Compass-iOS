@@ -7,13 +7,18 @@
 //
 
 import UIKit
+import Just
+import ObjectMapper
 
 
 class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePickerControllerDelegate, DatePickerControllerDelegate, RecurrencePickerControllerDelegate{
     
     //MARK: Data
     
+    var delegate: TriggerControllerDelegate!
     var action: Action!
+    private var trigger = Trigger()
+    private var saving = false
     
     //MARK: UI components
     
@@ -25,6 +30,8 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var recurrenceContainer: UIView!
     @IBOutlet weak var recurrenceLabel: UILabel!
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var savingIndicator: UIActivityIndicatorView!
     
     //MARK: Formatters
     
@@ -54,24 +61,22 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
         timeFormat.dateFormat = "h:mm a"
         dateFormat.dateFormat = "MMM d yyyy"
         
-        var trigger = action.getTrigger()
-        if trigger == nil{
-            trigger = Trigger()
+        if action.getTrigger() != nil{
+            trigger = action.getTrigger()!.copy()
         }
-        action.setTrigger(trigger!)
         
         //Set the state of the form
         title = action.getGoalTitle()
         actionTitle.text = action.getTitle()
-        triggerSwitch.setOn(trigger!.isEnabled(), animated: false)
-        if trigger!.hasTime(){
-            timeLabel.text = trigger!.getFormattedTime(timeFormat)
+        triggerSwitch.setOn(trigger.isEnabled(), animated: false)
+        if trigger.hasTime(){
+            timeLabel.text = trigger.getFormattedTime(timeFormat)
         }
-        if trigger!.hasDate(){
-            dateLabel.text = trigger!.getFormattedDate(dateFormat)
+        if trigger.hasDate(){
+            dateLabel.text = trigger.getFormattedDate(dateFormat)
         }
-        if trigger!.hasRecurrence(){
-            recurrenceLabel.text = trigger!.getRecurrenceDisplay()
+        if trigger.hasRecurrence(){
+            recurrenceLabel.text = trigger.getRecurrenceDisplay()
         }
     }
     
@@ -79,14 +84,16 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
     //MARK: Tap detection, segues, and delegate callbacks
     
     func handleTap(sender: UITapGestureRecognizer?){
-        if sender?.view == timeContainer{
-            performSegueWithIdentifier("TimePickerFromTrigger", sender: self)
-        }
-        else if sender?.view == dateContainer{
-            performSegueWithIdentifier("DatePickerFromTrigger", sender: self)
-        }
-        else if sender?.view == recurrenceContainer{
-            performSegueWithIdentifier("RecurrencePickerFromTrigger", sender: self)
+        if !saving{
+            if sender?.view == timeContainer{
+                performSegueWithIdentifier("TimePickerFromTrigger", sender: self)
+            }
+            else if sender?.view == dateContainer{
+                performSegueWithIdentifier("DatePickerFromTrigger", sender: self)
+            }
+            else if sender?.view == recurrenceContainer{
+                performSegueWithIdentifier("RecurrencePickerFromTrigger", sender: self)
+            }
         }
     }
     
@@ -109,25 +116,26 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
     
     func onTimePicked(time: NSDate){
         timeLabel.text = timeFormat.stringFromDate(time)
-        action.getTrigger()!.setTime(time)
+        trigger.setTime(time)
     }
     
     func onDatePicked(date: NSDate){
         dateLabel.text = dateFormat.stringFromDate(date)
-        action.getTrigger()!.setDate(date)
+        trigger.setDate(date)
     }
     
     func onRecurrencePicked(rrule: String, display: String){
         recurrenceLabel.text = display
-        action.getTrigger()!.setRRule(rrule, display: display)
+        trigger.setRRule(rrule, display: display)
     }
     
     
     //MARK: UI actions
     
     @IBAction func onStateChange(){
+        trigger.setEnabled(triggerSwitch.on)
         if !triggerSwitch.on{
-            //disable, save, pop
+            save()
         }
     }
     
@@ -139,6 +147,41 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
     //MARK: Saving a trigger
     
     private func save(){
-        
+        triggerSwitch.enabled = false
+        doneButton.enabled = false
+        savingIndicator.hidden = false
+        saving = true
+        Just.put(
+            API.URL.putTrigger(action),
+            json: API.BODY.putTrigger(trigger),
+            headers: SharedData.user.getHeaderMap()
+        ){ (response) in
+            print(response.statusCode)
+            if response.ok{
+                print (response.contentStr)
+                if self.action is CustomAction{
+                    print ("Is custom")
+                    let action = Mapper<CustomAction>().map(response.contentStr)!
+                    self.delegate.onTriggerSavedForAction(action)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.navigationController?.popViewControllerAnimated(true)
+                    })
+                }
+            }
+            else{
+                self.saving = false;
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.triggerSwitch.enabled = true
+                    self.doneButton.enabled = true
+                    self.savingIndicator.hidden = true
+                    self.saving = false
+                })
+            }
+        }
     }
+}
+
+
+protocol TriggerControllerDelegate{
+    func onTriggerSavedForAction(action: Action)
 }

@@ -44,8 +44,16 @@ class Trigger: TDCBase{
         return !disabled
     }
     
+    func isDisabled() -> Bool{
+        return disabled
+    }
+    
     func hasTime() -> Bool{
         return !(time ?? "").isEmpty
+    }
+    
+    func getRawTime() -> String{
+        return time ?? ""
     }
     
     func getTime() -> NSDate{
@@ -65,8 +73,12 @@ class Trigger: TDCBase{
         return !(date ?? "").isEmpty
     }
     
+    func getRawDate() -> String{
+        return date ?? ""
+    }
+    
     func getDate() -> NSDate{
-        if !(date ?? "").isEmpty{
+        if hasDate(){
             let formatter = NSDateFormatter()
             formatter.dateFormat = "yyyy-MM-d"
             return formatter.dateFromString(date!)!
@@ -80,6 +92,10 @@ class Trigger: TDCBase{
     
     func hasRecurrence() -> Bool{
         return !(recurrences ?? "").isEmpty
+    }
+    
+    func getRecurrence() -> String{
+        return recurrences ?? ""
     }
     
     func getRecurrenceDisplay() -> String{
@@ -101,5 +117,22 @@ class Trigger: TDCBase{
     func setRRule(rrule: String, display: String){
         recurrences = rrule
         recurrencesDisplay = display
+    }
+    
+    func setEnabled(enabled: Bool){
+        self.disabled = !enabled
+    }
+    
+    func copy() -> Trigger{
+        let trigger = Trigger()
+        
+        trigger.name = self.name
+        trigger.time = self.time
+        trigger.date = self.date
+        trigger.recurrences = self.recurrences
+        trigger.recurrencesDisplay = self.recurrencesDisplay
+        trigger.disabled = self.disabled
+        
+        return trigger
     }
 }
