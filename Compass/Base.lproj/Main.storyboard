@@ -1769,7 +1769,7 @@
                         <outlet property="scrollView" destination="hve-ID-sDC" id="2o4-SP-Mdq"/>
                         <outlet property="scrollViewBottomConstraint" destination="CYY-3T-M6Y" id="A7A-yr-JM6"/>
                         <outlet property="tableView" destination="TNg-vu-od7" id="mde-P3-4XU"/>
-                        <segue destination="PhS-DN-iT0" kind="show" id="NIf-gK-Olr"/>
+                        <segue destination="PhS-DN-iT0" kind="show" identifier="TriggerFromMyGoal" id="NIf-gK-Olr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WFM-8U-bfs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2639,7 +2639,11 @@
                                                 <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JyT-2l-lgd"/>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JyT-2l-lgd">
+                                                <connections>
+                                                    <action selector="onStateChange" destination="PhS-DN-iT0" eventType="valueChanged" id="hJd-rl-2E6"/>
+                                                </connections>
+                                            </switch>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MT2-d2-hdL" userLabel="1stSeparator">
                                                 <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -2739,6 +2743,9 @@
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yE2-NY-Plh">
                                                 <state key="normal" title="Done"/>
+                                                <connections>
+                                                    <action selector="done" destination="PhS-DN-iT0" eventType="touchUpInside" id="EaE-Ni-60G"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2800,6 +2807,15 @@
                             <constraint firstItem="yaP-Kh-kOt" firstAttribute="top" secondItem="vsp-Yd-TpX" secondAttribute="bottom" id="slM-73-Dqc"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dateContainer" destination="Lf4-9X-P0S" id="XUf-1X-zmn"/>
+                        <outlet property="dateLabel" destination="9Ab-c1-gqK" id="Uvw-7b-s5J"/>
+                        <outlet property="recurrenceContainer" destination="O57-OV-TVm" id="Gy5-TL-Ova"/>
+                        <outlet property="recurrenceLabel" destination="l8Z-H4-9qI" id="K4h-mj-cW6"/>
+                        <outlet property="timeContainer" destination="o7h-jr-lVQ" id="MY0-Gf-5dQ"/>
+                        <outlet property="timeLabel" destination="OfM-Pn-SZd" id="eFw-rf-ed1"/>
+                        <outlet property="triggerSwitch" destination="JyT-2l-lgd" id="wOO-xt-73e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p3o-p0-clz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
