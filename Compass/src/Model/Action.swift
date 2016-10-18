@@ -41,6 +41,14 @@ class Action: UserContent{
     func getTitle() -> String{
         return ""
     }
+    
+    func getTrigger() -> Trigger?{
+        return trigger
+    }
+    
+    func setTrigger(trigger: Trigger){
+        self.trigger = trigger
+    }
 }
 
 

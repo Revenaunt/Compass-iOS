@@ -2808,6 +2808,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="actionTitle" destination="Og6-TI-iqN" id="bfD-Jr-8PD"/>
                         <outlet property="dateContainer" destination="Lf4-9X-P0S" id="XUf-1X-zmn"/>
                         <outlet property="dateLabel" destination="9Ab-c1-gqK" id="Uvw-7b-s5J"/>
                         <outlet property="recurrenceContainer" destination="O57-OV-TVm" id="Gy5-TL-Ova"/>

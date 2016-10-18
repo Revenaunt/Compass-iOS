@@ -204,6 +204,15 @@ class MyGoalController: UIViewController{
         scrolledBy = 0
         selectedField = nil
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        if segue.identifier == "TriggerFromMyGoal"{
+            if sender == nil{
+                let triggerController = segue.destinationViewController as! TriggerController
+                triggerController.action = customActions[customActions.count-1]
+            }
+        }
+    }
 }
 
 
@@ -312,6 +321,8 @@ extension MyGoalController: UserGoalCustomActionCellDelegate, UserGoalNewCustomA
                     self.tableView.reloadData()
                     self.tableView.sizeToFit()
                     CATransaction.commit()
+                    
+                    self.performSegueWithIdentifier("TriggerFromMyGoal", sender: nil)
                 })
             }
             

@@ -13,12 +13,11 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate{
     
     //MARK: Data
     
-    var trigger: Trigger!
     var action: Action!
-    var goalTitle: String!
     
     //MARK: UI components
     
+    @IBOutlet weak var actionTitle: UILabel!
     @IBOutlet weak var triggerSwitch: UISwitch!
     @IBOutlet weak var timeContainer: UIView!
     @IBOutlet weak var timeLabel: UILabel!
@@ -28,6 +27,7 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate{
     @IBOutlet weak var recurrenceLabel: UILabel!
     
     //MARK: Formatters
+    
     private let timeFormat = NSDateFormatter()
     private let dateFormat = NSDateFormatter()
     
@@ -54,16 +54,24 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate{
         timeFormat.dateFormat = "h:mm a"
         dateFormat.dateFormat = "MMM d yyyy"
         
+        var trigger = action.getTrigger()
+        if trigger == nil{
+            trigger = Trigger()
+        }
+        action.setTrigger(trigger!)
+        
         //Set the state of the form
-        triggerSwitch.setOn(trigger.isEnabled(), animated: false)
-        if trigger.hasTime(){
-            timeLabel.text = trigger.getFormattedTime(timeFormat)
+        title = action.getGoalTitle()
+        actionTitle.text = action.getTitle()
+        triggerSwitch.setOn(trigger!.isEnabled(), animated: false)
+        if trigger!.hasTime(){
+            timeLabel.text = trigger!.getFormattedTime(timeFormat)
         }
-        if trigger.hasDate(){
-            dateLabel.text = trigger.getFormattedDate(dateFormat)
+        if trigger!.hasDate(){
+            dateLabel.text = trigger!.getFormattedDate(dateFormat)
         }
-        if trigger.hasRecurrence(){
-            recurrenceLabel.text = trigger.getRecurrenceDisplay()
+        if trigger!.hasRecurrence(){
+            recurrenceLabel.text = trigger!.getRecurrenceDisplay()
         }
     }
     

@@ -21,6 +21,10 @@ class Trigger: TDCBase{
     private var disabled: Bool = false
     
     
+    init(){
+        super.init(id: -1)
+    }
+    
     required init?(_ map: Map){
         super.init(map)
     }
