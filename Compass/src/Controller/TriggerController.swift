@@ -9,7 +9,7 @@
 import UIKit
 
 
-class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePickerControllerDelegate{
+class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePickerControllerDelegate, DatePickerControllerDelegate{
     
     //MARK: Data
     
@@ -83,7 +83,7 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
             performSegueWithIdentifier("TimePickerFromTrigger", sender: self)
         }
         else if sender?.view == dateContainer{
-            
+            performSegueWithIdentifier("DatePickerFromTrigger", sender: self)
         }
         else if sender?.view == recurrenceContainer{
             
@@ -96,11 +96,21 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
             timePickerController.delegate = self
             timePickerController.date = action.getTrigger()!.getTime()
         }
+        else if segue.identifier == "DatePickerFromTrigger"{
+            let datePickerController = segue.destinationViewController as! DatePickerController
+            datePickerController.delegate = self
+            datePickerController.date = action.getTrigger()!.getDate()
+        }
     }
     
     func onTimePicked(time: NSDate){
         timeLabel.text = timeFormat.stringFromDate(time)
         action.getTrigger()!.setTime(time)
+    }
+    
+    func onDatePicked(date: NSDate){
+        dateLabel.text = dateFormat.stringFromDate(date)
+        action.getTrigger()!.setDate(date)
     }
     
     

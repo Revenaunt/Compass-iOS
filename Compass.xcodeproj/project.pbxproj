@@ -42,6 +42,7 @@
 		5456853F1DA80BE9005C86CE /* CustomAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5456853E1DA80BE9005C86CE /* CustomAction.swift */; };
 		545685411DA83BF2005C86CE /* HttpResultExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545685401DA83BF2005C86CE /* HttpResultExt.swift */; };
 		54577C3E1DB683D300B41367 /* TimePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54577C3D1DB683D300B41367 /* TimePickerController.swift */; };
+		54577C401DB6893D00B41367 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54577C3F1DB6893D00B41367 /* DatePickerController.swift */; };
 		545C639B1D259AC500F48C15 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545C639A1D259AC500F48C15 /* Badge.swift */; };
 		545D98BE1CC68C820037FAEF /* CategoryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BD1CC68C820037FAEF /* CategoryContent.swift */; };
 		545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BF1CC695F50037FAEF /* TDCBase.swift */; };
@@ -181,6 +182,7 @@
 		5456853E1DA80BE9005C86CE /* CustomAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAction.swift; sourceTree = "<group>"; };
 		545685401DA83BF2005C86CE /* HttpResultExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpResultExt.swift; path = Extension/HttpResultExt.swift; sourceTree = "<group>"; };
 		54577C3D1DB683D300B41367 /* TimePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerController.swift; sourceTree = "<group>"; };
+		54577C3F1DB6893D00B41367 /* DatePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
 		545C639A1D259AC500F48C15 /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		545D98BD1CC68C820037FAEF /* CategoryContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryContent.swift; sourceTree = "<group>"; };
 		545D98BF1CC695F50037FAEF /* TDCBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCBase.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 				547A608A1D36BB35006FE596 /* SourcesController.swift */,
 				548563F41DB534EC00A7A3DC /* TriggerController.swift */,
 				54577C3D1DB683D300B41367 /* TimePickerController.swift */,
+				54577C3F1DB6893D00B41367 /* DatePickerController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -886,6 +889,7 @@
 				5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */,
 				5475BDEF1CC153F100D80D3E /* API.swift in Sources */,
 				54AAD9881D58E7C300AB41E5 /* OrganizationsController.swift in Sources */,
+				54577C401DB6893D00B41367 /* DatePickerController.swift in Sources */,
 				544614271CC9719800F2B441 /* GoalLibraryViewController.swift in Sources */,
 				54010E151CC6D31A009FB013 /* FeedController.swift in Sources */,
 				5448276C1CCA956000BBC062 /* CategoryHeaderCell.swift in Sources */,

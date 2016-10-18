@@ -91,4 +91,10 @@ class Trigger: TDCBase{
         formatter.dateFormat = "H:mm:ss"
         self.time = formatter.stringFromDate(time)
     }
+    
+    func setDate(date: NSDate){
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-d"
+        self.date = formatter.stringFromDate(date)
+    }
 }
