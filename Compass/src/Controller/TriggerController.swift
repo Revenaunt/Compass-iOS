@@ -9,7 +9,7 @@
 import UIKit
 
 
-class TriggerController: UIViewController, UIGestureRecognizerDelegate{
+class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePickerControllerDelegate{
     
     //MARK: Data
     
@@ -76,11 +76,11 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate{
     }
     
     
-    //MARK: Tap detection
+    //MARK: Tap detection, segues, and delegate callbacks
     
     func handleTap(sender: UITapGestureRecognizer?){
         if sender?.view == timeContainer{
-            
+            performSegueWithIdentifier("TimePickerFromTrigger", sender: self)
         }
         else if sender?.view == dateContainer{
             
@@ -88,6 +88,19 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate{
         else if sender?.view == recurrenceContainer{
             
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        if segue.identifier == "TimePickerFromTrigger"{
+            let timePickerController = segue.destinationViewController as! TimePickerController
+            timePickerController.delegate = self
+            timePickerController.date = action.getTrigger()!.getTime()
+        }
+    }
+    
+    func onTimePicked(time: NSDate){
+        timeLabel.text = timeFormat.stringFromDate(time)
+        action.getTrigger()!.setTime(time)
     }
     
     

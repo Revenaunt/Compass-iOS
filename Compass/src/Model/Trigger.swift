@@ -85,4 +85,10 @@ class Trigger: TDCBase{
     func getRecurrenceDisplay() -> String{
         return recurrencesDisplay
     }
+    
+    func setTime(time: NSDate){
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "H:mm:ss"
+        self.time = formatter.stringFromDate(time)
+    }
 }
