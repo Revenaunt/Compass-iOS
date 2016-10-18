@@ -51,6 +51,7 @@
 		5460E4111D18172A00A4FBAB /* OnBoardingCategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5460E4101D18172A00A4FBAB /* OnBoardingCategoryController.swift */; };
 		5460E4131D1821C500A4FBAB /* LoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5460E4121D1821C500A4FBAB /* LoadingController.swift */; };
 		546114DA1CF386C6007BBD1B /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546114D91CF386C6007BBD1B /* GoalViewController.swift */; };
+		5463D0B71DB6922900DBD392 /* RecurrencePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5463D0B61DB6922900DBD392 /* RecurrencePickerController.swift */; };
 		5467E9B01CC534D00088E417 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9AF1CC534D00088E417 /* User.swift */; };
 		5467E9B41CC5551F0088E417 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9B31CC5551F0088E417 /* SharedData.swift */; };
 		5468F8491CCEB09600D5769B /* FeedGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8481CCEB09600D5769B /* FeedGoalCell.swift */; };
@@ -191,6 +192,7 @@
 		5460E4101D18172A00A4FBAB /* OnBoardingCategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCategoryController.swift; sourceTree = "<group>"; };
 		5460E4121D1821C500A4FBAB /* LoadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingController.swift; sourceTree = "<group>"; };
 		546114D91CF386C6007BBD1B /* GoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
+		5463D0B61DB6922900DBD392 /* RecurrencePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecurrencePickerController.swift; sourceTree = "<group>"; };
 		5467E9AF1CC534D00088E417 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5467E9B31CC5551F0088E417 /* SharedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
 		5468F8481CCEB09600D5769B /* FeedGoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedGoalCell.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				548563F41DB534EC00A7A3DC /* TriggerController.swift */,
 				54577C3D1DB683D300B41367 /* TimePickerController.swift */,
 				54577C3F1DB6893D00B41367 /* DatePickerController.swift */,
+				5463D0B61DB6922900DBD392 /* RecurrencePickerController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -904,6 +907,7 @@
 				547AF1BC1CFF34F7008EC34F /* APNsMessage.swift in Sources */,
 				547E359C1D63939600134CD9 /* PickerController.swift in Sources */,
 				545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */,
+				5463D0B71DB6922900DBD392 /* RecurrencePickerController.swift in Sources */,
 				5443355B1CD019C200EB066E /* CustomGoal.swift in Sources */,
 				547E56D31D397A1D00572A29 /* DefaultsManager.swift in Sources */,
 				5446E3161D624BEE009E661F /* Extensions.swift in Sources */,

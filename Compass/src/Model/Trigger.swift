@@ -97,4 +97,9 @@ class Trigger: TDCBase{
         formatter.dateFormat = "yyyy-MM-d"
         self.date = formatter.stringFromDate(date)
     }
+    
+    func setRRule(rrule: String, display: String){
+        recurrences = rrule
+        recurrencesDisplay = display
+    }
 }
