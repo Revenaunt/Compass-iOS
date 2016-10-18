@@ -207,9 +207,13 @@ class MyGoalController: UIViewController{
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         if segue.identifier == "TriggerFromMyGoal"{
+            let triggerController = segue.destinationViewController as! TriggerController
             if sender == nil{
-                let triggerController = segue.destinationViewController as! TriggerController
                 triggerController.action = customActions[customActions.count-1]
+            }
+            else{
+                let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
+                triggerController.action = customActions[indexPath!.row]
             }
         }
     }
@@ -269,6 +273,9 @@ extension MyGoalController: UITableViewDelegate{
             sheet.addAction(UIAlertAction(title: "Edit", style: .Default){ action in
                 self.selectedField = cell.customAction
                 cell.edit()
+            })
+            sheet.addAction(UIAlertAction(title: "Reschedule", style: .Default){ action in
+                self.performSegueWithIdentifier("TriggerFromMyGoal", sender: cell)
             })
             sheet.addAction(UIAlertAction(title: "Delete", style: .Destructive){ action in
                 Just.delete(
