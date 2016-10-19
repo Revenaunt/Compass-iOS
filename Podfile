@@ -6,6 +6,7 @@ target 'Compass' do
   # Pods for Compass
   pod 'Fabric'
   pod 'Crashlytics'
+  #pod "TBRepeatPicker"
 
   target 'CompassTests' do
     inherit! :search_paths

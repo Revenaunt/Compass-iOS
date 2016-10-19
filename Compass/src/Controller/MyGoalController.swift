@@ -18,7 +18,7 @@ class MyGoalController: UIViewController{
     var userGoalId: Int!
     var userGoal: UserGoal? = nil
     var customActions = [CustomAction]()
-    var editingActions = [Bool]()
+    var selectedAction: CustomAction?
     
     
     //MARK: UI components
@@ -153,10 +153,6 @@ class MyGoalController: UIViewController{
     }
     
     private func setCustomActions(){
-        //Generate the editing flag list (false by default)
-        for _ in customActions{
-            editingActions.append(false)
-        }
         //Add the table back to the layout
         customContentContainer.addSubview(tableView)
         for constraint in tableViewConstraints{
@@ -203,6 +199,22 @@ class MyGoalController: UIViewController{
         view.layoutIfNeeded()
         scrolledBy = 0
         selectedField = nil
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        if segue.identifier == "TriggerFromMyGoal"{
+            let triggerController = segue.destinationViewController as! TriggerController
+            triggerController.delegate = self
+            if sender == nil{
+                selectedAction = customActions[customActions.count-1]
+                triggerController.action = selectedAction
+            }
+            else{
+                let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
+                selectedAction = customActions[indexPath!.row]
+                triggerController.action = selectedAction
+            }
+        }
     }
 }
 
@@ -261,6 +273,9 @@ extension MyGoalController: UITableViewDelegate{
                 self.selectedField = cell.customAction
                 cell.edit()
             })
+            sheet.addAction(UIAlertAction(title: "Reschedule", style: .Default){ action in
+                self.performSegueWithIdentifier("TriggerFromMyGoal", sender: cell)
+            })
             sheet.addAction(UIAlertAction(title: "Delete", style: .Destructive){ action in
                 Just.delete(
                     API.URL.deleteAction(self.customActions[indexPath.row]),
@@ -312,6 +327,8 @@ extension MyGoalController: UserGoalCustomActionCellDelegate, UserGoalNewCustomA
                     self.tableView.reloadData()
                     self.tableView.sizeToFit()
                     CATransaction.commit()
+                    
+                    self.performSegueWithIdentifier("TriggerFromMyGoal", sender: nil)
                 })
             }
             
@@ -328,6 +345,15 @@ extension MyGoalController: UserGoalCustomActionCellDelegate, UserGoalNewCustomA
                 headers: SharedData.user.getHeaderMap(),
                 json: API.BODY.postPutCustomAction(newTitle, goal: userGoal!)
             ){ (response) in }
+        }
+    }
+}
+
+
+extension MyGoalController: TriggerControllerDelegate{
+    func onTriggerSavedForAction(action: Action){
+        if action.getTrigger() != nil{
+            selectedAction?.setTrigger(action.getTrigger()!)
         }
     }
 }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3053F869D226CB9B6BC78DBB /* libPods-Compass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A25F428103A60D8C325F8A9 /* libPods-Compass.a */; };
+		05A37F85864B12FC4CB9B46C /* libPods-CompassTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B611C65D025E5890181DF40A /* libPods-CompassTests.a */; };
 		54010E111CC6BAA2009FB013 /* Locksmith.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 547C466C1CBBF9EC00953735 /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54010E131CC6C398009FB013 /* CompassUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54010E121CC6C398009FB013 /* CompassUtil.swift */; };
 		54010E151CC6D31A009FB013 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54010E141CC6D31A009FB013 /* FeedController.swift */; };
@@ -41,6 +41,8 @@
 		5456853D1DA7F9FC005C86CE /* FeedDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5456853C1DA7F9FC005C86CE /* FeedDataLoader.swift */; };
 		5456853F1DA80BE9005C86CE /* CustomAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5456853E1DA80BE9005C86CE /* CustomAction.swift */; };
 		545685411DA83BF2005C86CE /* HttpResultExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545685401DA83BF2005C86CE /* HttpResultExt.swift */; };
+		54577C3E1DB683D300B41367 /* TimePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54577C3D1DB683D300B41367 /* TimePickerController.swift */; };
+		54577C401DB6893D00B41367 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54577C3F1DB6893D00B41367 /* DatePickerController.swift */; };
 		545C639B1D259AC500F48C15 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545C639A1D259AC500F48C15 /* Badge.swift */; };
 		545D98BE1CC68C820037FAEF /* CategoryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BD1CC68C820037FAEF /* CategoryContent.swift */; };
 		545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545D98BF1CC695F50037FAEF /* TDCBase.swift */; };
@@ -49,6 +51,7 @@
 		5460E4111D18172A00A4FBAB /* OnBoardingCategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5460E4101D18172A00A4FBAB /* OnBoardingCategoryController.swift */; };
 		5460E4131D1821C500A4FBAB /* LoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5460E4121D1821C500A4FBAB /* LoadingController.swift */; };
 		546114DA1CF386C6007BBD1B /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546114D91CF386C6007BBD1B /* GoalViewController.swift */; };
+		5463D0B71DB6922900DBD392 /* RecurrencePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5463D0B61DB6922900DBD392 /* RecurrencePickerController.swift */; };
 		5467E9B01CC534D00088E417 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9AF1CC534D00088E417 /* User.swift */; };
 		5467E9B41CC5551F0088E417 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5467E9B31CC5551F0088E417 /* SharedData.swift */; };
 		5468F8491CCEB09600D5769B /* FeedGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5468F8481CCEB09600D5769B /* FeedGoalCell.swift */; };
@@ -93,6 +96,7 @@
 		5480311A1CB6B27F00112807 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 548031181CB6B27F00112807 /* LaunchScreen.storyboard */; };
 		548031251CB6B27F00112807 /* CompassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548031241CB6B27F00112807 /* CompassTests.swift */; };
 		548031301CB6B27F00112807 /* CompassUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5480312F1CB6B27F00112807 /* CompassUITests.swift */; };
+		548563F51DB534EC00A7A3DC /* TriggerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548563F41DB534EC00A7A3DC /* TriggerController.swift */; };
 		5488FC211CFDEF2900E758C1 /* ActionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5488FC201CFDEF2900E758C1 /* ActionController.swift */; };
 		5488FC231CFDF9EF00E758C1 /* UserCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5488FC221CFDF9EF00E758C1 /* UserCategory.swift */; };
 		5493554F1D14920600F325A4 /* OnBoardingCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493554E1D14920600F325A4 /* OnBoardingCategoryCell.swift */; };
@@ -103,8 +107,8 @@
 		54E562DF1DA85E800010C20D /* NSDateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E562DE1DA85E800010C20D /* NSDateExt.swift */; };
 		54F60F591CC7F11A00D1424D /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F60F581CC7F11A00D1424D /* CircleProgressView.swift */; };
 		54F60F5C1CC80C7400D1424D /* UpNextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F60F5B1CC80C7400D1424D /* UpNextCell.swift */; };
-		8573BA8D3A85FBC8DE432216 /* libPods-CompassUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 077CE442412ADE3B8BBEDE28 /* libPods-CompassUITests.a */; };
-		CF0AFC881874553BE9444C89 /* libPods-CompassTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08DD7C02C459C0D1CFA33613 /* libPods-CompassTests.a */; };
+		B3AFD81FA1D6AAD6AC40CE35 /* libPods-CompassUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3553F8AC6A07DB695AEDE49D /* libPods-CompassUITests.a */; };
+		BFE5AE135CE6012C7A26BAA3 /* libPods-Compass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F83B7BB9DE0DDBD2E0A306AC /* libPods-Compass.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,10 +148,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		077CE442412ADE3B8BBEDE28 /* libPods-CompassUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CompassUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		08DD7C02C459C0D1CFA33613 /* libPods-CompassTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CompassTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E5E342EB7E1B3B54D372FD2 /* Pods-CompassTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompassTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CompassTests/Pods-CompassTests.release.xcconfig"; sourceTree = "<group>"; };
-		4A25F428103A60D8C325F8A9 /* libPods-Compass.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Compass.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3553F8AC6A07DB695AEDE49D /* libPods-CompassUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CompassUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0E0A6802662DB5A8DF34AD /* Pods-Compass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Compass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Compass/Pods-Compass.debug.xcconfig"; sourceTree = "<group>"; };
 		4FB75CC448FACCEDDBDF2460 /* Pods-CompassTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompassTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CompassTests/Pods-CompassTests.debug.xcconfig"; sourceTree = "<group>"; };
 		54010E121CC6C398009FB013 /* CompassUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassUtil.swift; sourceTree = "<group>"; };
@@ -180,6 +182,8 @@
 		5456853C1DA7F9FC005C86CE /* FeedDataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedDataLoader.swift; sourceTree = "<group>"; };
 		5456853E1DA80BE9005C86CE /* CustomAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAction.swift; sourceTree = "<group>"; };
 		545685401DA83BF2005C86CE /* HttpResultExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpResultExt.swift; path = Extension/HttpResultExt.swift; sourceTree = "<group>"; };
+		54577C3D1DB683D300B41367 /* TimePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerController.swift; sourceTree = "<group>"; };
+		54577C3F1DB6893D00B41367 /* DatePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
 		545C639A1D259AC500F48C15 /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		545D98BD1CC68C820037FAEF /* CategoryContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryContent.swift; sourceTree = "<group>"; };
 		545D98BF1CC695F50037FAEF /* TDCBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCBase.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 		5460E4101D18172A00A4FBAB /* OnBoardingCategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCategoryController.swift; sourceTree = "<group>"; };
 		5460E4121D1821C500A4FBAB /* LoadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingController.swift; sourceTree = "<group>"; };
 		546114D91CF386C6007BBD1B /* GoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
+		5463D0B61DB6922900DBD392 /* RecurrencePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecurrencePickerController.swift; sourceTree = "<group>"; };
 		5467E9AF1CC534D00088E417 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5467E9B31CC5551F0088E417 /* SharedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
 		5468F8481CCEB09600D5769B /* FeedGoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedGoalCell.swift; sourceTree = "<group>"; };
@@ -239,6 +244,7 @@
 		5480312B1CB6B27F00112807 /* CompassUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CompassUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5480312F1CB6B27F00112807 /* CompassUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassUITests.swift; sourceTree = "<group>"; };
 		548031311CB6B27F00112807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		548563F41DB534EC00A7A3DC /* TriggerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerController.swift; sourceTree = "<group>"; };
 		5488FC201CFDEF2900E758C1 /* ActionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionController.swift; sourceTree = "<group>"; };
 		5488FC221CFDF9EF00E758C1 /* UserCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCategory.swift; sourceTree = "<group>"; };
 		5493554E1D14920600F325A4 /* OnBoardingCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCategoryCell.swift; sourceTree = "<group>"; };
@@ -249,7 +255,9 @@
 		54F60F5B1CC80C7400D1424D /* UpNextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpNextCell.swift; sourceTree = "<group>"; };
 		8A270F9BCE981D16FE828B73 /* Pods-CompassUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompassUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CompassUITests/Pods-CompassUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9B6FC9C1A1D3C82D77E62546 /* Pods-Compass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Compass.release.xcconfig"; path = "Pods/Target Support Files/Pods-Compass/Pods-Compass.release.xcconfig"; sourceTree = "<group>"; };
+		B611C65D025E5890181DF40A /* libPods-CompassTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CompassTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7D36A3C9F9BEF0EA619E86A /* Pods-CompassUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompassUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CompassUITests/Pods-CompassUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F83B7BB9DE0DDBD2E0A306AC /* libPods-Compass.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Compass.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,7 +271,7 @@
 				5499C9C01D62674F00DBAF6C /* Charts.framework in Frameworks */,
 				5448276E1CCAC36A00BBC062 /* Nuke.framework in Frameworks */,
 				5427A8F81D6E27D9000A61C0 /* Instructions.framework in Frameworks */,
-				3053F869D226CB9B6BC78DBB /* libPods-Compass.a in Frameworks */,
+				BFE5AE135CE6012C7A26BAA3 /* libPods-Compass.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +279,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF0AFC881874553BE9444C89 /* libPods-CompassTests.a in Frameworks */,
+				05A37F85864B12FC4CB9B46C /* libPods-CompassTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,7 +287,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8573BA8D3A85FBC8DE432216 /* libPods-CompassUITests.a in Frameworks */,
+				B3AFD81FA1D6AAD6AC40CE35 /* libPods-CompassUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +389,10 @@
 				547A60881D36B43B006FE596 /* SettingsController.swift */,
 				547C46711CBC2D2900953735 /* SignUpViewController.swift */,
 				547A608A1D36BB35006FE596 /* SourcesController.swift */,
+				548563F41DB534EC00A7A3DC /* TriggerController.swift */,
+				54577C3D1DB683D300B41367 /* TimePickerController.swift */,
+				54577C3F1DB6893D00B41367 /* DatePickerController.swift */,
+				5463D0B61DB6922900DBD392 /* RecurrencePickerController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -482,9 +494,9 @@
 		7AB3422A3D08137A36F94525 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4A25F428103A60D8C325F8A9 /* libPods-Compass.a */,
-				08DD7C02C459C0D1CFA33613 /* libPods-CompassTests.a */,
-				077CE442412ADE3B8BBEDE28 /* libPods-CompassUITests.a */,
+				F83B7BB9DE0DDBD2E0A306AC /* libPods-Compass.a */,
+				B611C65D025E5890181DF40A /* libPods-CompassTests.a */,
+				3553F8AC6A07DB695AEDE49D /* libPods-CompassUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -853,6 +865,7 @@
 				545D98C21CC697100037FAEF /* TDCContent.swift in Sources */,
 				5477AB751D00BE9E0075A25D /* FooterCell.swift in Sources */,
 				544BB8421D6F741600954235 /* TourManager.swift in Sources */,
+				548563F51DB534EC00A7A3DC /* TriggerController.swift in Sources */,
 				5488FC231CFDF9EF00E758C1 /* UserCategory.swift in Sources */,
 				546F692D1D382F7C0070D73A /* AwardCell.swift in Sources */,
 				546FEBE41D678973001E8AC9 /* ResetController.swift in Sources */,
@@ -879,6 +892,7 @@
 				5449E5F21CBD646E0017629E /* LogInViewController.swift in Sources */,
 				5475BDEF1CC153F100D80D3E /* API.swift in Sources */,
 				54AAD9881D58E7C300AB41E5 /* OrganizationsController.swift in Sources */,
+				54577C401DB6893D00B41367 /* DatePickerController.swift in Sources */,
 				544614271CC9719800F2B441 /* GoalLibraryViewController.swift in Sources */,
 				54010E151CC6D31A009FB013 /* FeedController.swift in Sources */,
 				5448276C1CCA956000BBC062 /* CategoryHeaderCell.swift in Sources */,
@@ -893,9 +907,11 @@
 				547AF1BC1CFF34F7008EC34F /* APNsMessage.swift in Sources */,
 				547E359C1D63939600134CD9 /* PickerController.swift in Sources */,
 				545D98C01CC695F50037FAEF /* TDCBase.swift in Sources */,
+				5463D0B71DB6922900DBD392 /* RecurrencePickerController.swift in Sources */,
 				5443355B1CD019C200EB066E /* CustomGoal.swift in Sources */,
 				547E56D31D397A1D00572A29 /* DefaultsManager.swift in Sources */,
 				5446E3161D624BEE009E661F /* Extensions.swift in Sources */,
+				54577C3E1DB683D300B41367 /* TimePickerController.swift in Sources */,
 				5499C9BF1D6259B800DBAF6C /* StreaksCell.swift in Sources */,
 				544335571CCFC5B800EB066E /* FeedTypes.swift in Sources */,
 				546114DA1CF386C6007BBD1B /* GoalViewController.swift in Sources */,
@@ -1065,7 +1081,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				New_Setting = "";
-				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				OTHER_SWIFT_FLAGS = "-DDebug";
 				PRODUCT_BUNDLE_IDENTIFIER = org.getcompass.Compass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ee4c26bc-3bc8-4e2a-96e0-3356e2075236";
@@ -1095,7 +1111,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				New_Setting = "";
-				OTHER_SWIFT_FLAGS = "-DRELEASE";
+				OTHER_SWIFT_FLAGS = "-DRelease";
 				PRODUCT_BUNDLE_IDENTIFIER = org.getcompass.Compass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "15de93e2-6806-4102-aafc-7ebc96eead1f";
