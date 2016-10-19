@@ -16,16 +16,17 @@ class OnBoardingCategoryCell: UITableViewCell{
     
     
     func setCategory(category: CategoryContent){
-        categoryImage.layoutIfNeeded();
-        categoryImage.layer.cornerRadius = categoryImage.frame.size.width/2;
-        categoryImage.clipsToBounds = true;
-        categoryImage.image = UIImage(named: CompassUtil.getCategoryTileAssetName(category));
-        if (category.getIconUrl().characters.count != 0){
+        if category.getIconUrl().characters.count != 0{
             Nuke.taskWith(NSURL(string: category.getIconUrl())!){
-                let image = $0.image;
-                self.categoryImage.image = image;
-                }.resume();
+                self.categoryImage.image = $0.image
+            }.resume()
         }
-        categoryTitle.text = category.getTitle();
+        else{
+            categoryImage.layoutIfNeeded()
+            categoryImage.layer.cornerRadius = categoryImage.frame.size.width/2
+            categoryImage.clipsToBounds = true
+            categoryImage.image = UIImage(named: "Tile - Master")
+        }
+        categoryTitle.text = category.getTitle()
     }
 }
