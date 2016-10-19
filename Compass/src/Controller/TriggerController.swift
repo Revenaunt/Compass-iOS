@@ -11,7 +11,13 @@ import Just
 import ObjectMapper
 
 
-class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePickerControllerDelegate, DatePickerControllerDelegate, RecurrencePickerControllerDelegate{
+/// Controller for the Trigger editor
+/**
+ Displays current Trigger information and allows the user to modify it.
+ 
+ - Author: Ismael Alonso
+ */
+class TriggerController: UIViewController, UIGestureRecognizerDelegate{
     
     //MARK: Data
     
@@ -61,11 +67,10 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
         timeFormat.dateFormat = "h:mm a"
         dateFormat.dateFormat = "MMM d yyyy"
         
+        //If the action has a trigger, set it
         if let actionTrigger = action.getTrigger(){
             trigger = actionTrigger
         }
-        
-        print(trigger)
         
         //Set the state of the form
         title = action.getGoalTitle()
@@ -83,7 +88,7 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
     }
     
     
-    //MARK: Tap detection, segues, and delegate callbacks
+    //MARK: Tap detection and segues
     
     func handleTap(sender: UITapGestureRecognizer?){
         if !saving{
@@ -116,21 +121,6 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
         }
     }
     
-    func onTimePicked(time: NSDate){
-        timeLabel.text = timeFormat.stringFromDate(time)
-        trigger.setTime(time)
-    }
-    
-    func onDatePicked(date: NSDate){
-        dateLabel.text = dateFormat.stringFromDate(date)
-        trigger.setDate(date)
-    }
-    
-    func onRecurrencePicked(rrule: String, display: String){
-        recurrenceLabel.text = display
-        trigger.setRRule(rrule, display: display)
-    }
-    
     
     //MARK: UI actions
     
@@ -148,22 +138,29 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
     
     //MARK: Saving a trigger
     
+    /// Saves the state of a Trigger.
+    /**
+     Disables the form and sends a PUT request to the API with the updated Trigger information
+     and decides what to do based on the response. If the request was completed successfully,
+     the delegate is called and the controller popped from the stack. If the request failed the
+     form is enabled again.
+     */
     private func save(){
-        print("Is trigger enabled: \(trigger.isEnabled())")
+        //Disable the form
         triggerSwitch.enabled = false
         doneButton.enabled = false
         savingIndicator.hidden = false
         saving = true
+        //Send the request
         Just.put(
             API.URL.putTrigger(action),
             json: API.BODY.putTrigger(trigger),
             headers: SharedData.user.getHeaderMap()
         ){ (response) in
             if response.ok{
-                print (response.contentStr)
+                //If it worked, deliver
                 if self.action is CustomAction{
                     let action = Mapper<CustomAction>().map(response.contentStr)!
-                    print(action.getTrigger())
                     self.delegate.onTriggerSavedForAction(action)
                     dispatch_async(dispatch_get_main_queue(), {
                         self.navigationController?.popViewControllerAnimated(true)
@@ -171,6 +168,7 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
                 }
             }
             else{
+                //If it didn't work, enable the form
                 self.saving = false;
                 dispatch_async(dispatch_get_main_queue(), {
                     self.triggerSwitch.enabled = true
@@ -184,6 +182,37 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
 }
 
 
+//MARK: Picker delegates
+
+extension TriggerController: TimePickerControllerDelegate{
+    func onTimePicked(time: NSDate){
+        timeLabel.text = timeFormat.stringFromDate(time)
+        trigger.setTime(time)
+    }
+}
+
+extension TriggerController: DatePickerControllerDelegate{
+    func onDatePicked(date: NSDate){
+        dateLabel.text = dateFormat.stringFromDate(date)
+        trigger.setDate(date)
+    }
+}
+
+extension TriggerController: RecurrencePickerControllerDelegate{
+    func onRecurrencePicked(rrule: String, display: String){
+        recurrenceLabel.text = display
+        trigger.setRRule(rrule, display: display)
+    }
+}
+
+
+/// Delegate for the TriggerController.
+/**
+ Contains a Trigger delivery function.
+ 
+ - Author: Ismael Alonso.
+ */
 protocol TriggerControllerDelegate{
+    ///Delivers the Trigger inside an Action created from the API response.
     func onTriggerSavedForAction(action: Action)
 }
