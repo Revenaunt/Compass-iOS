@@ -9,16 +9,20 @@
 import ObjectMapper
 
 
-class Trigger: TDCBase{
+class Trigger: TDCBase, CustomStringConvertible{
     private var name: String = ""
     
     private var time: String?
     private var date: String?
-    private var recurrences: String?
+    private var recurrence: String?
     
-    private var recurrencesDisplay: String = ""
+    private var recurrenceDisplay: String?
     
     private var disabled: Bool = false
+    
+    var description: String{
+        return "\(time ?? "no time"), \(date ?? "no date"), \(recurrence ?? "no recurrence"), enabled: \(!disabled)"
+    }
     
     
     init(){
@@ -35,8 +39,8 @@ class Trigger: TDCBase{
         name <- map["name"]
         time <- map["time"]
         date <- map["date"]
-        recurrences <- map["recurrences"]
-        recurrencesDisplay <- map["recurrences_display"]
+        recurrence <- map["recurrences"]
+        recurrenceDisplay <- map["recurrences_display"]
         disabled <- map["disabled"]
     }
     
@@ -91,15 +95,15 @@ class Trigger: TDCBase{
     }
     
     func hasRecurrence() -> Bool{
-        return !(recurrences ?? "").isEmpty
+        return !(recurrence ?? "").isEmpty
     }
     
     func getRecurrence() -> String{
-        return recurrences ?? ""
+        return recurrence ?? ""
     }
     
     func getRecurrenceDisplay() -> String{
-        return recurrencesDisplay
+        return recurrenceDisplay ?? ""
     }
     
     func setTime(time: NSDate){
@@ -115,8 +119,8 @@ class Trigger: TDCBase{
     }
     
     func setRRule(rrule: String, display: String){
-        recurrences = rrule
-        recurrencesDisplay = display
+        recurrence = rrule
+        recurrenceDisplay = display
     }
     
     func setEnabled(enabled: Bool){
@@ -129,8 +133,8 @@ class Trigger: TDCBase{
         trigger.name = self.name
         trigger.time = self.time
         trigger.date = self.date
-        trigger.recurrences = self.recurrences
-        trigger.recurrencesDisplay = self.recurrencesDisplay
+        trigger.recurrence = self.recurrence
+        trigger.recurrenceDisplay = self.recurrenceDisplay
         trigger.disabled = self.disabled
         
         return trigger

@@ -61,9 +61,11 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
         timeFormat.dateFormat = "h:mm a"
         dateFormat.dateFormat = "MMM d yyyy"
         
-        if action.getTrigger() != nil{
-            trigger = action.getTrigger()!.copy()
+        if let actionTrigger = action.getTrigger(){
+            trigger = actionTrigger
         }
+        
+        print(trigger)
         
         //Set the state of the form
         title = action.getGoalTitle()
@@ -101,12 +103,12 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
         if segue.identifier == "TimePickerFromTrigger"{
             let timePickerController = segue.destinationViewController as! TimePickerController
             timePickerController.delegate = self
-            timePickerController.date = action.getTrigger()!.getTime()
+            timePickerController.date = trigger.getTime()
         }
         else if segue.identifier == "DatePickerFromTrigger"{
             let datePickerController = segue.destinationViewController as! DatePickerController
             datePickerController.delegate = self
-            datePickerController.date = action.getTrigger()!.getDate()
+            datePickerController.date = trigger.getDate()
         }
         else if segue.identifier == "RecurrencePickerFromTrigger"{
             let recurrencePicker = segue.destinationViewController as! RecurrencePickerController
@@ -147,6 +149,7 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
     //MARK: Saving a trigger
     
     private func save(){
+        print("Is trigger enabled: \(trigger.isEnabled())")
         triggerSwitch.enabled = false
         doneButton.enabled = false
         savingIndicator.hidden = false
@@ -156,12 +159,11 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate, TimePick
             json: API.BODY.putTrigger(trigger),
             headers: SharedData.user.getHeaderMap()
         ){ (response) in
-            print(response.statusCode)
             if response.ok{
                 print (response.contentStr)
                 if self.action is CustomAction{
-                    print ("Is custom")
                     let action = Mapper<CustomAction>().map(response.contentStr)!
+                    print(action.getTrigger())
                     self.delegate.onTriggerSavedForAction(action)
                     dispatch_async(dispatch_get_main_queue(), {
                         self.navigationController?.popViewControllerAnimated(true)
