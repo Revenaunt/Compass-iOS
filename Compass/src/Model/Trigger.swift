@@ -10,8 +10,6 @@ import ObjectMapper
 
 
 class Trigger: TDCBase, CustomStringConvertible{
-    private var name: String = ""
-    
     private var time: String?
     private var date: String?
     private var recurrence: String?
@@ -36,9 +34,8 @@ class Trigger: TDCBase, CustomStringConvertible{
     override func mapping(map: Map){
         super.mapping(map)
         
-        name <- map["name"]
         time <- map["time"]
-        date <- map["date"]
+        date <- map["trigger_date"]
         recurrence <- map["recurrences"]
         recurrenceDisplay <- map["recurrences_display"]
         disabled <- map["disabled"]
@@ -116,6 +113,7 @@ class Trigger: TDCBase, CustomStringConvertible{
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-d"
         self.date = formatter.stringFromDate(date)
+        print(self.date)
     }
     
     func setRRule(rrule: String, display: String){
@@ -130,7 +128,6 @@ class Trigger: TDCBase, CustomStringConvertible{
     func copy() -> Trigger{
         let trigger = Trigger()
         
-        trigger.name = self.name
         trigger.time = self.time
         trigger.date = self.date
         trigger.recurrence = self.recurrence

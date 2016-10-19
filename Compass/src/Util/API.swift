@@ -319,12 +319,13 @@ class API{
             return body;
         }
         
-        static func putTrigger(trigger: Trigger) -> [String: String]{
-            var body = [String: String]()
+        static func putTrigger(trigger: Trigger) -> [String: AnyObject]{
+            var body = [String: AnyObject]()
             body["custom_trigger_time"] = trigger.getRawTime()
             body["custom_trigger_date"] = trigger.getRawDate()
             body["custom_trigger_rrule"] = trigger.getRecurrence()
-            body["custom_trigger_disabled"] = "\(trigger.isDisabled())"
+            body["custom_trigger_disabled"] = trigger.isDisabled()
+            print(body)
             return body
         }
         

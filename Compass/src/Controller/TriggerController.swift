@@ -71,6 +71,7 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate{
         if let actionTrigger = action.getTrigger(){
             trigger = actionTrigger
         }
+        print(trigger)
         
         //Set the state of the form
         title = action.getGoalTitle()
@@ -151,6 +152,7 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate{
         doneButton.enabled = false
         savingIndicator.hidden = false
         saving = true
+        print(trigger)
         //Send the request
         Just.put(
             API.URL.putTrigger(action),
@@ -160,7 +162,9 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate{
             if response.ok{
                 //If it worked, deliver
                 if self.action is CustomAction{
+                    print(response.contentStr)
                     let action = Mapper<CustomAction>().map(response.contentStr)!
+                    print(action.getTrigger())
                     self.delegate.onTriggerSavedForAction(action)
                     dispatch_async(dispatch_get_main_queue(), {
                         self.navigationController?.popViewControllerAnimated(true)
@@ -168,6 +172,7 @@ class TriggerController: UIViewController, UIGestureRecognizerDelegate{
                 }
             }
             else{
+                print(response.contentStr)
                 //If it didn't work, enable the form
                 self.saving = false;
                 dispatch_async(dispatch_get_main_queue(), {
@@ -194,6 +199,7 @@ extension TriggerController: TimePickerControllerDelegate{
 extension TriggerController: DatePickerControllerDelegate{
     func onDatePicked(date: NSDate){
         dateLabel.text = dateFormat.stringFromDate(date)
+        print(date)
         trigger.setDate(date)
     }
 }

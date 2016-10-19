@@ -29,12 +29,12 @@ class RecurrencePickerController: UITableViewController, UIPickerViewDataSource,
         }
         else if indexPath.row == 2{
             let row = weekdayPicker.selectedRowInComponent(0)
-            rrule = "RRULE:FREQ=WEEKLY;INTERVAL=1;\(getRRuleWeekday(row))"
+            rrule = "RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=\(getRRuleWeekday(row))"
             display = "Weekly, \(getRRuleWeekdayDisplay(row))"
         }
         else if indexPath.row == 3{
             let row = weekdayPicker.selectedRowInComponent(0)
-            rrule = "RRULE:FREQ=WEEKLY;INTERVAL=2;\(getRRuleWeekday(row))"
+            rrule = "RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=\(getRRuleWeekday(row))"
             display = "Biweekly, \(getRRuleWeekdayDisplay(row))"
         }
         else if indexPath.row == 4{
