@@ -325,7 +325,6 @@ class API{
             body["custom_trigger_date"] = trigger.getRawDate()
             body["custom_trigger_rrule"] = trigger.getRecurrence()
             body["custom_trigger_disabled"] = trigger.isDisabled()
-            print(body)
             return body
         }
         
