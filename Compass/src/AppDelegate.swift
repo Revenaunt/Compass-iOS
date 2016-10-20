@@ -54,35 +54,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
         }
         
+        //Notification has been tapped being the app completely dead. This appears to be the
+        //  procedure by which iOS 10 does it as well
         if let payload = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary{
-            let dictionary = Locksmith.loadDataForUserAccount("CompassAccount");
-            if (dictionary != nil && dictionary!["token"] != nil){
-                NSLog("Doin' some evil. With Love, APNs");
-                //print(payload);
+            let dictionary = Locksmith.loadDataForUserAccount("CompassAccount")
+            if dictionary != nil && dictionary!["token"] != nil{
+                NSLog("Doin' some evil. With Love, APNs")
                 
-                let message = Mapper<APNsMessage>().map(payload)!;
-                if (message.isActionMessage()){
+                let message = Mapper<APNsMessage>().map(payload)!
+                if message.isActionMessage(){
                     //Create the navigation controller and set as root
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil);
-                    let navController = storyboard.instantiateViewControllerWithIdentifier("LauncherNavController") as! UINavigationController;
-                    window?.rootViewController = navController;
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let navController = storyboard.instantiateViewControllerWithIdentifier("LauncherNavController") as! UINavigationController
+                    window?.rootViewController = navController
                     
                     //Create the action controller and immediately push
-                    let actionController = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionController;
+                    let actionController = storyboard.instantiateViewControllerWithIdentifier("ActionController") as! ActionController
                     actionController.message = message
-                    navController.pushViewController(actionController, animated: false);
+                    navController.pushViewController(actionController, animated: false)
                 }
-                else if (message.isBadgeMessage()){
+                else if message.isBadgeMessage(){
                     //Create the navigation controller and set as root
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil);
-                    let navController = storyboard.instantiateViewControllerWithIdentifier("LauncherNavController") as! UINavigationController;
-                    window?.rootViewController = navController;
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let navController = storyboard.instantiateViewControllerWithIdentifier("LauncherNavController") as! UINavigationController
+                    window?.rootViewController = navController
                     
                     //Create the badge controller and immediately push
-                    let badgeController = storyboard.instantiateViewControllerWithIdentifier("BadgeController") as! BadgeController;
-                    badgeController.badge = message.getBadge();
-                    print(message.getBadge());
-                    navController.pushViewController(badgeController, animated: false);
+                    let badgeController = storyboard.instantiateViewControllerWithIdentifier("BadgeController") as! BadgeController
+                    badgeController.badge = message.getBadge()
+                    print(message.getBadge())
+                    navController.pushViewController(badgeController, animated: false)
                 }
             }
         }
@@ -106,33 +107,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         NotificationUtil.setApnsToken(token as String);
     }
     
+    //If I am not mistaken, this is the method that displays a notification when the message is
+    //  received
     @available(iOS 10.0, *)
-    func userNotificationCenter(center: UNUserNotificationCenter, willPresentNotification notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void){
+    func userNotificationCenter(
+        center: UNUserNotificationCenter,
+        willPresentNotification notification: UNNotification,
+        withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void
+    ){
         
         print("will present notification");
         let message = Mapper<APNsMessage>().map(notification.request.content.userInfo)!;
+        //If this is an action notification, just display the thing
         if (message.isActionMessage()){
             completionHandler([.Alert, .Sound]);
         }
+        //If this is a badge notification, something cooler may be done
         else if (message.isBadgeMessage()){
-            if let rootController = window?.rootViewController as? MainController{
-                let storyboard = UIStoryboard(name: "Main", bundle: nil);
-                let badgeController = storyboard.instantiateViewControllerWithIdentifier("BadgeController") as! BadgeController;
-                badgeController.badge = message.getBadge();
-                print(message.getBadge());
-                if (UIApplication.sharedApplication().applicationState == UIApplicationState.Active){
-                    DefaultsManager.addNewAward(message.getBadge());
-                    let newBadges = DefaultsManager.getNewAwardCount();
-                    rootController.tabBar.items![2].badgeValue = "\(newBadges)";
-                    if let navController = rootController.viewControllers![2] as? UINavigationController{
+            //Add one to the count of new awards to display a badge
+            DefaultsManager.addNewAward(message.getBadge());
+            //If the application is in the foreground
+            if (UIApplication.sharedApplication().applicationState == UIApplicationState.Active){
+                //If the main controller is available
+                if let rootController = window?.rootViewController as? MainController{
+                    //If the tab bar items are available, update the badge
+                    if let items = rootController.tabBar.items{
+                        print("Items are available")
+                        items[2].badgeValue = "\(DefaultsManager.getNewAwardCount())"
+                    }
+                    
+                    //If the awards controller is available, add the badge to it
+                    if let navController = rootController.viewControllers?[2] as? UINavigationController{
                         for (controller) in navController.viewControllers{
                             if let awardsController = controller as? AwardsController{
-                                message.getBadge().isNew = true;
-                                awardsController.addBadge(message.getBadge());
+                                message.getBadge().isNew = true
+                                awardsController.addBadge(message.getBadge())
                                 break;
                             }
                         }
                     }
+                    //At this point, there is no need to display a notification
                     completionHandler([]);
                 }
                 else{
@@ -145,11 +159,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
+    //This happens when a notification gets tapped in iOS 10
     @available(iOS 10.0, *)
-    func userNotificationCenter(center: UNUserNotificationCenter, didReceiveNotificationResponse response: UNNotificationResponse, withCompletionHandler completionHandler: () -> Void) {
-        
-        print("did receive notification response");
-        
+    func userNotificationCenter(
+        center: UNUserNotificationCenter,
+        didReceiveNotificationResponse response:
+        UNNotificationResponse, withCompletionHandler completionHandler: () -> Void
+    ){
         switch (response.actionIdentifier){
             case UNNotificationDefaultActionIdentifier:
                 handleNotification(response.notification.request.content.userInfo);
@@ -167,7 +183,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func handleNotification(userInfo: [NSObject: AnyObject]){
-        //print(userInfo);
         let dictionary = Locksmith.loadDataForUserAccount("CompassAccount");
         if (dictionary != nil && dictionary!["token"] != nil){
             let message = Mapper<APNsMessage>().map(userInfo)!;
@@ -184,17 +199,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             }
             else if (message.isBadgeMessage()){
+                //if a root controller exists (and is main)
                 if let rootController = window?.rootViewController as? MainController{
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil);
+                    //Get the storyboard and instantiate the BadgeController
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let badgeController = storyboard.instantiateViewControllerWithIdentifier("BadgeController") as! BadgeController;
+                    //Set the badge
                     badgeController.badge = message.getBadge();
-                    print(message.getBadge());
+                    
+                    //If the app is already in the foreground
                     if (UIApplication.sharedApplication().applicationState == UIApplicationState.Active){
-                        DefaultsManager.addNewAward(message.getBadge());
+                        //Set the badge
                         let newBadges = DefaultsManager.getNewAwardCount();
                         rootController.tabBar.items![2].badgeValue = "\(newBadges)";
+                        //If we have access to the navigation controller hosting the awards
                         if let navController = rootController.viewControllers![2] as? UINavigationController{
-                            for (controller) in navController.viewControllers{
+                            //Find the awards controller and update it
+                            for controller in navController.viewControllers{
                                 if let awardsController = controller as? AwardsController{
                                     message.getBadge().isNew = true;
                                     awardsController.addBadge(message.getBadge());
@@ -213,8 +234,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
     }
-    
-    
     
     
     

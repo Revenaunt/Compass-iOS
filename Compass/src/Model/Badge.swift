@@ -9,13 +9,17 @@
 import ObjectMapper
 
 
-class Badge: TDCBase{
+class Badge: TDCBase, CustomStringConvertible{
     private var name: String = "";
-    private var description: String = "";
+    private var text: String = "";
     private var imageUrl: String = "";
     private var userCount: Int = -1;
     
     var isNew: Bool = false;
+    
+    var description: String{
+        return "(Badge) \(name): \(text)"
+    }
     
     
     required init?(_ map: Map){
@@ -25,7 +29,7 @@ class Badge: TDCBase{
     override func mapping(map: Map){
         super.mapping(map);
         name <- map["name"];
-        description <- map["description"];
+        text <- map["description"];
         imageUrl <- map["image"];
         userCount <- map["users_count"];
     }
@@ -35,7 +39,7 @@ class Badge: TDCBase{
     }
     
     func getDescription() -> String{
-        return description;
+        return text;
     }
     
     func getImageUrl() -> String{
