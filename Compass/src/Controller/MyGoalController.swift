@@ -12,9 +12,10 @@ import ObjectMapper
 import Nuke
 
 
-class MyGoalController: UIViewController{
+class MyGoalController: UIViewController, UIGestureRecognizerDelegate{
     //MARK: Data
     
+    var delegate: MyGoalControllerDelegate?
     var userGoalId: Int!
     var userGoal: UserGoal? = nil
     var customActions = [CustomAction]()
@@ -64,6 +65,11 @@ class MyGoalController: UIViewController{
             object: nil
         )
         
+        //Tap to retry
+        let goalTap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        goalTap.delegate = self
+        errorMessage.addGestureRecognizer(goalTap)
+        
         //At load time the table should have nothing, as CustomActions need to be fetched, so
         //  remove it from the view hierarchy
         for constraint in customContentContainer.constraints{
@@ -94,6 +100,12 @@ class MyGoalController: UIViewController{
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    func handleTap(sender: UITapGestureRecognizer?){
+        if sender?.view == errorMessage{
+            fetchGoal()
+        }
+    }
+    
     private func fetchGoal(){
         //Switch component state
         loadingIndicator.hidden = false
@@ -112,6 +124,7 @@ class MyGoalController: UIViewController{
             }
             else{
                 dispatch_async(dispatch_get_main_queue(), {
+                    self.view.bringSubviewToFront(self.errorMessage)
                     self.loadingIndicator.hidden = true
                     self.errorMessage.hidden = false
                 })
@@ -120,6 +133,7 @@ class MyGoalController: UIViewController{
     }
     
     private func populateUI(){
+        view.sendSubviewToBack(errorMessage)
         loadingIndicator.hidden = true
         errorMessage.hidden = true
         scrollView.hidden = false
@@ -130,6 +144,25 @@ class MyGoalController: UIViewController{
         goalTitle.text = userGoal!.getTitle()
         goalDescription.text = userGoal!.getDescription()
         customContentIndicator.hidden = false
+    }
+    
+    @IBAction func removeGoal(){
+        //There should always be a goal if the user is able to tap the button, but check in case
+        if (userGoal != nil){
+            //Delete request
+            Just.delete(
+                API.URL.deleteGoal(userGoal!),
+                headers: SharedData.user.getHeaderMap()
+            ){ (response) in }
+            //Remove from the data set
+            SharedData.feedData.removeGoal(userGoal!)
+            //Pop this controller
+            navigationController!.popViewControllerAnimated(true)
+            //If there is a delegate, call the function
+            if delegate != nil{
+                delegate!.onGoalRemoved()
+            }
+        }
     }
     
     private func setCategory(category: CategoryContent){
@@ -364,4 +397,9 @@ extension MyGoalController: UITextFieldDelegate{
         textField.resignFirstResponder()
         return true
     }
+}
+
+
+protocol MyGoalControllerDelegate{
+    func onGoalRemoved()
 }

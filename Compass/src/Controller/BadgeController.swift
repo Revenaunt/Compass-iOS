@@ -27,6 +27,20 @@ class BadgeController: UIViewController{
         
         name.text = badge.getName();
         badgeDescription.text = badge.getDescription();
+        
+        DefaultsManager.removeNewAward(badge)
+        if let tabController = tabBarController{
+            if let items = tabController.tabBar.items{
+                let newAwardCount = DefaultsManager.getNewAwardCount()
+                if newAwardCount == 0{
+                    items[2].badgeValue = nil
+                }
+                else{
+                    items[2].badgeValue = "\(newAwardCount)"
+                }
+            }
+        }
+        
     }
     
     override func viewDidAppear(animated: Bool){

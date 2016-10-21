@@ -11,7 +11,20 @@ import UIKit
 
 class MainController: UITabBarController{
     override func viewDidLoad(){
+        super.viewDidLoad()
         NotificationUtil.sendRegistrationToken();
         selectedIndex = 1;
+    }
+    
+    override func viewWillAppear(animated: Bool){
+        super.viewWillAppear(animated)
+        
+        let newAwardCount = DefaultsManager.getNewAwardCount()
+        if newAwardCount == 0{
+            tabBar.items?[2].badgeValue = nil
+        }
+        else{
+            tabBar.items?[2].badgeValue = "\(newAwardCount)"
+        }
     }
 }

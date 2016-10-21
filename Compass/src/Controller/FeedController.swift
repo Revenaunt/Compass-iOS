@@ -18,7 +18,8 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     
     @IBOutlet weak var addItem: UIBarButtonItem!
     
-    var didIt: Bool = false
+    var didIt = false
+    var goalRemoved = false
     var selectedGoal: UserGoal? = nil
     var selectedGoalIndex: Int? = nil
     
@@ -52,6 +53,11 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
             didIt = false
             tableView.reloadData()
         }
+        if goalRemoved{
+            SharedData.feedData.replaceUpNext()
+            goalRemoved = false
+            tableView.reloadData()
+        }
         
         if (selectedGoal != nil && selectedGoalIndex != nil){
             let goals = SharedData.feedData.getGoals();
@@ -76,7 +82,11 @@ class FeedController: UITableViewController, UIActionSheetDelegate, ActionDelega
     }
     
     func onDidIt(){
-        didIt = true;
+        didIt = true
+    }
+    
+    func onGoalRemoved(){
+        goalRemoved = true
     }
     
     func removeGoalFromFeed(index: Int){

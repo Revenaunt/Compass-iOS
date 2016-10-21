@@ -93,19 +93,6 @@ class ParserModels{
             rewards <- map["results"];
         }
     }
-    
-    class AwardArray: Mappable{
-        var awards: [Award]? = nil;
-        
-        
-        required init?(_ map: Map){
-            
-        }
-        
-        func mapping(map: Map){
-            awards <- map["results"];
-        }
-    }
 }
 
     

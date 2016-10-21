@@ -146,6 +146,7 @@ class ActionController: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     }
     
     private func populateUI(){
+        view.sendSubviewToBack(errorMessage)
         if action is UserAction{
             let userAction = action as! UserAction
             Nuke.taskWith(NSURL(string: userAction.getGoalIconUrl())!){
@@ -192,6 +193,7 @@ class ActionController: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     }
     
     private func displayLoadingError(){
+        view.bringSubviewToFront(errorMessage)
         loading.hidden = true
         errorMessage.hidden = false
         scrollView.hidden = true
@@ -277,9 +279,19 @@ class ActionController: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         if segue.identifier == "ShowMyGoalFromAction"{
             let myGoalController = segue.destinationViewController as! MyGoalController
-            print((action as! UserAction).getPrimaryUserGoalId())
+            myGoalController.delegate = self
             myGoalController.userGoalId = (action as! UserAction).getPrimaryUserGoalId()
         }
+    }
+}
+
+
+extension ActionController: MyGoalControllerDelegate{
+    func onGoalRemoved(){
+        if delegate != nil{
+            delegate!.onGoalRemoved()
+        }
+        navigationController!.popViewControllerAnimated(true)
     }
 }
 
@@ -329,5 +341,6 @@ extension ActionController: CoachMarksControllerDataSource, CoachMarksController
 }
 
 protocol ActionDelegate{
-    func onDidIt();
+    func onDidIt()
+    func onGoalRemoved()
 }

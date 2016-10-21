@@ -118,9 +118,9 @@ class FeedData: Mappable, CustomStringConvertible{
     func removeGoal(goal: Goal){
         let index = goals.indexOf{
             $0 == goal;
-        };
+        }
         if (index != nil){
-            goals.removeAtIndex(index!);
+            goals.removeAtIndex(index!)
         }
     }
     
