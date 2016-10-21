@@ -66,7 +66,6 @@ class MyGoalController: UIViewController, UIGestureRecognizerDelegate{
         )
         
         //Tap to retry
-        view.bringSubviewToFront(errorMessage)
         let goalTap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         goalTap.delegate = self
         errorMessage.addGestureRecognizer(goalTap)
@@ -125,6 +124,7 @@ class MyGoalController: UIViewController, UIGestureRecognizerDelegate{
             }
             else{
                 dispatch_async(dispatch_get_main_queue(), {
+                    self.view.bringSubviewToFront(self.errorMessage)
                     self.loadingIndicator.hidden = true
                     self.errorMessage.hidden = false
                 })
@@ -133,6 +133,7 @@ class MyGoalController: UIViewController, UIGestureRecognizerDelegate{
     }
     
     private func populateUI(){
+        view.sendSubviewToBack(errorMessage)
         loadingIndicator.hidden = true
         errorMessage.hidden = true
         scrollView.hidden = false

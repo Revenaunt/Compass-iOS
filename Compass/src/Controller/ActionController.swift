@@ -146,6 +146,7 @@ class ActionController: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     }
     
     private func populateUI(){
+        view.sendSubviewToBack(errorMessage)
         if action is UserAction{
             let userAction = action as! UserAction
             Nuke.taskWith(NSURL(string: userAction.getGoalIconUrl())!){
@@ -192,6 +193,7 @@ class ActionController: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     }
     
     private func displayLoadingError(){
+        view.bringSubviewToFront(errorMessage)
         loading.hidden = true
         errorMessage.hidden = false
         scrollView.hidden = true
