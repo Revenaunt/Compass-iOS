@@ -277,7 +277,7 @@ class ActionController: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         if segue.identifier == "ShowMyGoalFromAction"{
             let myGoalController = segue.destinationViewController as! MyGoalController
-            print((action as! UserAction).getPrimaryUserGoalId())
+            myGoalController.delegate = self
             myGoalController.userGoalId = (action as! UserAction).getPrimaryUserGoalId()
         }
     }
@@ -286,7 +286,9 @@ class ActionController: UIViewController, UIScrollViewDelegate, UIGestureRecogni
 
 extension ActionController: MyGoalControllerDelegate{
     func onGoalRemoved(){
-        SharedData.feedData.replaceUpNext()
+        if delegate != nil{
+            delegate!.onGoalRemoved()
+        }
         navigationController!.popViewControllerAnimated(true)
     }
 }
@@ -337,5 +339,6 @@ extension ActionController: CoachMarksControllerDataSource, CoachMarksController
 }
 
 protocol ActionDelegate{
-    func onDidIt();
+    func onDidIt()
+    func onGoalRemoved()
 }
