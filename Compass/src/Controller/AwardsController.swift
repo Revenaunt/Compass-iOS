@@ -14,7 +14,9 @@ import Crashlytics
 
 class AwardsController: UIViewController{
     //MARK: Data
-    private var badges: [Badge] = [Badge]()
+    private var badges = [Badge]()
+    private var badgeQueue = [Badge]()
+    private var displaying = false
     
     //MARK: UI components
     @IBOutlet weak var noAwards: UILabel!
@@ -69,18 +71,36 @@ class AwardsController: UIViewController{
             fetchAwards(false)
         }
         else{
+            //If there are awards, make sure the table is showing
             loadingAwards.hidden = true
             noAwards.hidden = true
             tableView.hidden = false
+            
+            //If there are badges in the queue add them and clear the queue
+            if !badgeQueue.isEmpty{
+                var indexPaths = [NSIndexPath]()
+                for badge in badgeQueue{
+                    badges.append(badge)
+                    indexPaths.append(NSIndexPath(forRow: badges.count-1, inSection: 0))
+                }
+                badgeQueue.removeAll()
+                tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+            }
         }
+        displaying = true
     }
+    
+    override func viewWillDisappear(animated: Bool){
+        super.viewWillDisappear(animated)
+        displaying = false
+    }
+    
+    
+    //MARK: Fetch and refresh
     
     func refresh(refreshControl: UIRefreshControl){
         fetchAwards(true)
     }
-    
-    
-    //MARK: Fetching
     
     private func fetchAwards(refreshing: Bool){
         //Show the activity indicator if nor refreshing
@@ -160,11 +180,14 @@ class AwardsController: UIViewController{
             badges.filter{ $0 == badge }[0].isNew = true
             tableView.reloadData()
         }
-        else{
-            badges.append(badge)
-            if tableView != nil{
+        else if !badges.isEmpty{
+            if displaying{
+                badges.append(badge)
                 let paths = [NSIndexPath(forRow: badges.count-1, inSection: 0)]
                 tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic)
+            }
+            else{
+                badgeQueue.append(badge)
             }
         }
     }
@@ -180,6 +203,7 @@ extension AwardsController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+        print("cellForRowAtIndexPath \(indexPath)")
         let cell = tableView.dequeueReusableCellWithIdentifier("AwardCell", forIndexPath: indexPath) as! AwardCell
         cell.bind(badges[indexPath.row])
         if badges[indexPath.row].isNew{
