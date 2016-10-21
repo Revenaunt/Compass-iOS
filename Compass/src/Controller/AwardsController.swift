@@ -203,7 +203,6 @@ extension AwardsController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        print("cellForRowAtIndexPath \(indexPath)")
         let cell = tableView.dequeueReusableCellWithIdentifier("AwardCell", forIndexPath: indexPath) as! AwardCell
         cell.bind(badges[indexPath.row])
         if badges[indexPath.row].isNew{

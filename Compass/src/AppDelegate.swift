@@ -126,34 +126,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         else if (message.isBadgeMessage()){
             //Add one to the count of new awards to display a badge
             DefaultsManager.addNewAward(message.getBadge());
-            //If the application is in the foreground
-            if (UIApplication.sharedApplication().applicationState == UIApplicationState.Active){
-                //If the main controller is available
-                if let rootController = window?.rootViewController as? MainController{
-                    //If the tab bar items are available, update the badge
-                    if let items = rootController.tabBar.items{
-                        print("Items are available")
-                        items[2].badgeValue = "\(DefaultsManager.getNewAwardCount())"
-                    }
-                    
-                    //If the awards controller is available, add the badge to it
-                    if let navController = rootController.viewControllers?[2] as? UINavigationController{
-                        for (controller) in navController.viewControllers{
-                            if let awardsController = controller as? AwardsController{
-                                message.getBadge().isNew = true
-                                awardsController.addBadge(message.getBadge())
-                                break;
-                            }
+            //If the main controller is available
+            if let rootController = window?.rootViewController as? MainController{
+                print("Controller is available")
+                //If the tab bar items are available, update the badge
+                if let items = rootController.tabBar.items{
+                    print("Tab bar items are available")
+                    items[2].badgeValue = "\(DefaultsManager.getNewAwardCount())"
+                }
+                
+                if let navController = rootController.viewControllers?[2] as? UINavigationController{
+                    for (controller) in navController.viewControllers{
+                        if let awardsController = controller as? AwardsController{
+                            message.getBadge().isNew = true
+                            awardsController.addBadge(message.getBadge())
+                            break;
                         }
                     }
-                    //At this point, there is no need to display a notification
-                    completionHandler([]);
                 }
-                else{
-                    completionHandler([.Alert, .Sound]);
-                }
+                //At this point, there is no need to display a notification
+                completionHandler([]);
             }
             else{
+                print("rootController ain't available")
                 completionHandler([.Alert, .Sound]);
             }
         }
@@ -166,6 +161,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         didReceiveNotificationResponse response:
         UNNotificationResponse, withCompletionHandler completionHandler: () -> Void
     ){
+        print("DidReceiveNotificationResponse")
         switch (response.actionIdentifier){
             case UNNotificationDefaultActionIdentifier:
                 handleNotification(response.notification.request.content.userInfo);
@@ -177,11 +173,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
+    //This happens when a notification is tapped in iOS 9
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject: AnyObject]){
         print("Doin' some evil in didReceiveRemoteNotification. With Love, APNs");
         handleNotification(userInfo);
     }
     
+    //Common handler for notification tap events
     func handleNotification(userInfo: [NSObject: AnyObject]){
         let dictionary = Locksmith.loadDataForUserAccount("CompassAccount");
         if (dictionary != nil && dictionary!["token"] != nil){
