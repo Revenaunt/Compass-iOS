@@ -1085,7 +1085,7 @@
                         <viewControllerLayoutGuide type="top" id="kx8-Dj-vag"/>
                         <viewControllerLayoutGuide type="bottom" id="r5I-Zj-1gI"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="l7p-FE-hEC">
+                    <view key="view" contentMode="scaleToFill" id="l7p-FE-hEC">
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1403,7 +1403,7 @@
                         <viewControllerLayoutGuide type="top" id="pfZ-9g-oC1"/>
                         <viewControllerLayoutGuide type="bottom" id="6N7-pn-6PI"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Lb5-I2-CBz">
+                    <view key="view" contentMode="scaleToFill" id="Lb5-I2-CBz">
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1568,7 +1568,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Fbd-99-crN"/>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Couldn't load your goal. Tap to try again." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XO2-93-abG">
+                            <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Couldn't load your goal. Tap to try again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XO2-93-abG">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1576,7 +1576,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hve-ID-sDC">
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="au9-LB-WTd" userLabel="Master Container">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="506"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="TDC Master" translatesAutoresizingMaskIntoConstraints="NO" id="Nno-nq-Gts">
                                                 <constraints>
@@ -1598,8 +1598,7 @@
                                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XhK-Iv-CGg" userLabel="Custom Content Container">
-                                                <frame key="frameInset" minX="28" minY="333" width="319" height="165"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XhK-Iv-CGg" userLabel="Custom Content Container">
                                                 <subviews>
                                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wT9-9T-xwa"/>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TNg-vu-od7" customClass="ContentWrapUITableView" customModule="Compass" customModuleProvider="target">
@@ -1711,13 +1710,22 @@
                                                     <constraint firstItem="wT9-9T-xwa" firstAttribute="centerX" secondItem="XhK-Iv-CGg" secondAttribute="centerX" id="xnv-hs-BC8"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uf-pe-2n8">
+                                                <state key="normal" title="Remove"/>
+                                                <connections>
+                                                    <action selector="removeGoal" destination="41x-8C-doX" eventType="touchUpInside" id="pLD-CS-ORt"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="gQd-Iy-2Zy" firstAttribute="leading" secondItem="au9-LB-WTd" secondAttribute="leading" constant="28" id="784-mb-K9V"/>
                                             <constraint firstAttribute="bottom" secondItem="XhK-Iv-CGg" secondAttribute="bottom" constant="30" id="7GO-xa-YC0"/>
+                                            <constraint firstItem="8uf-pe-2n8" firstAttribute="top" secondItem="7B1-c3-pGC" secondAttribute="bottom" constant="8" id="7kg-zx-ggu"/>
                                             <constraint firstItem="Nno-nq-Gts" firstAttribute="top" secondItem="au9-LB-WTd" secondAttribute="top" id="7mD-7z-HO4"/>
                                             <constraint firstAttribute="trailing" secondItem="XhK-Iv-CGg" secondAttribute="trailing" constant="28" id="9q9-T5-02t"/>
+                                            <constraint firstAttribute="trailing" secondItem="8uf-pe-2n8" secondAttribute="trailing" constant="28" id="E6S-zr-esn"/>
+                                            <constraint firstItem="gQd-Iy-2Zy" firstAttribute="top" secondItem="8uf-pe-2n8" secondAttribute="bottom" constant="30" id="JJR-he-WI1"/>
                                             <constraint firstItem="7B1-c3-pGC" firstAttribute="leading" secondItem="au9-LB-WTd" secondAttribute="leading" constant="28" id="JJt-eF-J1R"/>
                                             <constraint firstItem="QUj-vm-evQ" firstAttribute="leading" secondItem="au9-LB-WTd" secondAttribute="leading" constant="28" id="JLc-L0-vIp"/>
                                             <constraint firstAttribute="trailing" secondItem="Nno-nq-Gts" secondAttribute="trailing" id="LtS-7d-PgV"/>
@@ -1730,7 +1738,6 @@
                                             <constraint firstItem="Nno-nq-Gts" firstAttribute="width" secondItem="au9-LB-WTd" secondAttribute="width" id="oKW-oo-2Ga"/>
                                             <constraint firstAttribute="trailing" secondItem="gQd-Iy-2Zy" secondAttribute="trailing" constant="28" id="pKR-3U-BBm"/>
                                             <constraint firstItem="Nno-nq-Gts" firstAttribute="leading" secondItem="au9-LB-WTd" secondAttribute="leading" id="sDW-pN-qH9"/>
-                                            <constraint firstItem="gQd-Iy-2Zy" firstAttribute="top" secondItem="7B1-c3-pGC" secondAttribute="bottom" constant="30" id="vq5-TH-cRe"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1774,7 +1781,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WFM-8U-bfs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="764" y="3748"/>
+            <point key="canvasLocation" x="764" y="3747.9760119940033"/>
         </scene>
         <!--Choose a Goal-->
         <scene sceneID="WnW-O5-DDw">
@@ -2540,7 +2547,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="117"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="srt-OG-nUD" id="8TT-dx-B97">
-                                            <frame key="frameInset" width="375" height="116"/>
+                                            <frame key="frameInset" width="375" height="117"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K8W-tV-gLB">

@@ -284,6 +284,14 @@ class ActionController: UIViewController, UIScrollViewDelegate, UIGestureRecogni
 }
 
 
+extension ActionController: MyGoalControllerDelegate{
+    func onGoalRemoved(){
+        SharedData.feedData.replaceUpNext()
+        navigationController!.popViewControllerAnimated(true)
+    }
+}
+
+
 extension ActionController: CoachMarksControllerDataSource, CoachMarksControllerDelegate{
     func numberOfCoachMarksForCoachMarksController(coachMarkController: CoachMarksController) -> Int{
         return TourManager.getActionMarkerCount();
