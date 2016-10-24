@@ -11,6 +11,7 @@ import Just
 import ObjectMapper
 import Nuke
 import Instructions
+import Crashlytics
 
 
 class ActionController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate{
@@ -18,6 +19,8 @@ class ActionController: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     var delegate: ActionDelegate? = nil
     var action: Action? = nil
     var message: APNsMessage? = nil
+    var startTime: Double = 0
+    var enterBackgroundTime: Double = -1
     
     
     //UI components
@@ -91,10 +94,95 @@ class ActionController: UIViewController, UIScrollViewDelegate, UIGestureRecogni
         coachMarksController.dataSource = self;
         coachMarksController.delegate = self;
         coachMarksController.overlay.color = UIColor.clearColor();
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(ActionController.appWillResignActive),
+            name: UIApplicationWillResignActiveNotification,
+            object: nil
+        )
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(ActionController.appWillTerminate),
+            name: UIApplicationWillTerminateNotification,
+            object: nil
+        )
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(ActionController.appWillEnterForeground),
+            name: UIApplicationWillEnterForegroundNotification,
+            object: nil
+        )
     }
     
     override func viewDidLayoutSubviews(){
         goalIconContainer.layer.cornerRadius = goalIconContainer.frame.width/2
+    }
+    
+    override func viewDidAppear(animated: Bool){
+        super.viewDidAppear(animated)
+        startTime = NSDate().timeIntervalSince1970
+    }
+    
+    override func viewWillDisappear(animated: Bool){
+        print("viewWillDisappear")
+        recordTime()
+        removeObservers()
+        super.viewWillDisappear(animated)
+    }
+    
+    func appWillResignActive(){
+        enterBackgroundTime = NSDate().timeIntervalSince1970
+    }
+    
+    func appWillTerminate(){
+        if (enterBackgroundTime < 0){
+            let now = NSDate().timeIntervalSince1970
+            startTime += now-enterBackgroundTime
+        }
+        recordTime()
+        removeObservers()
+    }
+    
+    func appWillEnterForeground(){
+        let now = NSDate().timeIntervalSince1970
+        startTime += now-enterBackgroundTime
+        enterBackgroundTime = -1
+    }
+    
+    private func recordTime(){
+        if action != nil{
+            print("recording time")
+            let now = NSDate().timeIntervalSince1970
+            let time = Int(now-startTime)
+            print(time)
+            Answers.logContentViewWithName(
+                action!.getTitle(),
+                contentType: "Action",
+                contentId: "\(action!.getId())",
+                customAttributes: ["Duration": time]
+            )
+        }
+    }
+    
+    private func removeObservers(){
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.removeObserver(
+            self,
+            name: UIApplicationWillResignActiveNotification,
+            object: nil
+        )
+        notificationCenter.removeObserver(
+            self,
+            name: UIApplicationWillTerminateNotification,
+            object: nil
+        )
+        notificationCenter.removeObserver(
+            self,
+            name: UIApplicationWillEnterForegroundNotification,
+            object: nil
+        )
     }
     
     func handleTap(sender: UITapGestureRecognizer?){

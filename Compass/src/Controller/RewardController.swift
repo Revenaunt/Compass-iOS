@@ -114,20 +114,24 @@ class RewardController: UIViewController, UIGestureRecognizerDelegate{
     
     func handleTap(sender: UITapGestureRecognizer?){
         if sender!.view == refreshView{
-            fetchReward();
+            fetchReward()
         }
         else if sender!.view == shareView{
-            shareReward();
+            shareReward()
         }
     }
     
     private func shareReward(){
         let description = reward!.description
-        
-        Answers.logShareWithMethod(nil, contentName: description, contentType: "Badge", contentId: "\(reward!.getId())", customAttributes: nil)
-        
-        let items = [description];
-        let controller = UIActivityViewController(activityItems: items, applicationActivities: nil);
-        presentViewController(controller, animated: true, completion: nil);
+        Answers.logShareWithMethod(
+            nil,
+            contentName: description,
+            contentType: "Badge",
+            contentId: "\(reward!.getId())",
+            customAttributes: nil
+        )
+        let items = [description]
+        let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        presentViewController(controller, animated: true, completion:  nil)
     }
 }
