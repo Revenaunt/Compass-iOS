@@ -126,7 +126,6 @@ class ActionController: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     }
     
     override func viewWillDisappear(animated: Bool){
-        print("viewWillDisappear")
         recordTime()
         removeObservers()
         super.viewWillDisappear(animated)
@@ -153,10 +152,8 @@ class ActionController: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     
     private func recordTime(){
         if action != nil{
-            print("recording time")
             let now = NSDate().timeIntervalSince1970
             let time = Int(now-startTime)
-            print(time)
             Answers.logContentViewWithName(
                 action!.getTitle(),
                 contentType: "Action",
