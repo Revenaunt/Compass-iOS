@@ -88,8 +88,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         
-        //Crashlytics
-        Fabric.with([Crashlytics.self]);
+        //Crashlytics and Answers
+        Fabric.with([Crashlytics.self, Answers.self])
         
         return true;
     }

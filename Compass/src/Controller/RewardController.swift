@@ -9,6 +9,7 @@
 import UIKit
 import Just
 import ObjectMapper
+import Crashlytics
 
 
 class RewardController: UIViewController, UIGestureRecognizerDelegate{
@@ -121,7 +122,11 @@ class RewardController: UIViewController, UIGestureRecognizerDelegate{
     }
     
     private func shareReward(){
-        let items = [reward!.description];
+        let description = reward!.description
+        
+        Answers.logShareWithMethod(nil, contentName: description, contentType: "Badge", contentId: "\(reward!.getId())", customAttributes: nil)
+        
+        let items = [description];
         let controller = UIActivityViewController(activityItems: items, applicationActivities: nil);
         presentViewController(controller, animated: true, completion: nil);
     }
