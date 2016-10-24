@@ -10,6 +10,7 @@ import UIKit
 import Just
 import ObjectMapper
 import Nuke
+import Crashlytics
 
 
 class MyGoalController: UIViewController, UIGestureRecognizerDelegate{
@@ -20,6 +21,8 @@ class MyGoalController: UIViewController, UIGestureRecognizerDelegate{
     var userGoal: UserGoal? = nil
     var customActions = [CustomAction]()
     var selectedAction: CustomAction?
+    var startTime: Double = 0
+    var enterBackgroundTime: Double = -1
     
     
     //MARK: UI components
@@ -93,11 +96,94 @@ class MyGoalController: UIViewController, UIGestureRecognizerDelegate{
             populateUI()
             fetchCustomActions()
         }
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(MyGoalController.appWillResignActive),
+            name: UIApplicationWillResignActiveNotification,
+            object: nil
+        )
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(MyGoalController.appWillTerminate),
+            name: UIApplicationWillTerminateNotification,
+            object: nil
+        )
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(MyGoalController.appWillEnterForeground),
+            name: UIApplicationWillEnterForegroundNotification,
+            object: nil
+        )
     }
     
     deinit{
         //Remove keyboard observers in the destructor
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    override func viewDidAppear(animated: Bool){
+        super.viewDidAppear(animated)
+        startTime = NSDate().timeIntervalSince1970
+    }
+    
+    override func viewWillDisappear(animated: Bool){
+        recordTime()
+        removeObservers()
+        super.viewWillDisappear(animated)
+    }
+    
+    func appWillResignActive(){
+        enterBackgroundTime = NSDate().timeIntervalSince1970
+    }
+    
+    func appWillTerminate(){
+        if (enterBackgroundTime < 0){
+            let now = NSDate().timeIntervalSince1970
+            startTime += now-enterBackgroundTime
+        }
+        recordTime()
+        removeObservers()
+    }
+    
+    func appWillEnterForeground(){
+        let now = NSDate().timeIntervalSince1970
+        startTime += now-enterBackgroundTime
+        enterBackgroundTime = -1
+    }
+    
+    private func recordTime(){
+        if userGoal != nil{
+            let now = NSDate().timeIntervalSince1970
+            let time = Int(now-startTime)
+            print(time)
+            Answers.logContentViewWithName(
+                userGoal!.getTitle(),
+                contentType: "Goal",
+                contentId: "\(userGoal!.getId())",
+                customAttributes: ["Duration": time]
+            )
+        }
+    }
+    
+    private func removeObservers(){
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.removeObserver(
+            self,
+            name: UIApplicationWillResignActiveNotification,
+            object: nil
+        )
+        notificationCenter.removeObserver(
+            self,
+            name: UIApplicationWillTerminateNotification,
+            object: nil
+        )
+        notificationCenter.removeObserver(
+            self,
+            name: UIApplicationWillEnterForegroundNotification,
+            object: nil
+        )
     }
     
     func handleTap(sender: UITapGestureRecognizer?){
